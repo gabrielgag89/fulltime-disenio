@@ -1,0 +1,24 @@
+La dirección para hacer el Checkout es:
+
+https://fulltime-disenio.googlecode.com/svn/trunk/
+
+Saludos
+
+///////////////////////////////////////////
+
+
+Para utilizar el versionado desde la facultad:
+hay que ir a settings(del tortoise), red, habilitar la casilla
+proxy server e ingresar en server address:192.168.16.8
+el puerto es 8080
+Y por ultimo en SSH client: buscamos TortoisePlink.exe que esta en la carpeta 
+bin, donde instalamos tortoise y listo.
+
+Cuando instalan el tortoise, click derecho sobre la carpeta donde quieran que 
+se bajen los archivos del servidor y hacemos checkout.
+
+IMPORTANTE: siempre antes de empezar a modificar un archivo hacer update
+
+Para actualizar los archivos en el servidor: click derecho sobre el archivo y luego commit. 
+Para obtener algun archivo actualizado: click derecho sobre el archivo o carpeta y luego update. 
+
