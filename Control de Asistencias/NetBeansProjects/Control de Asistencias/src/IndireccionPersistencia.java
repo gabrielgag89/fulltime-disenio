@@ -338,7 +338,8 @@ public class IndireccionPersistencia {
       marcada.setHoraEntrada(hE);
       marcada.setHoraSalida(hS);
       marcada.setRegimenAsignado((RegimenAsignado) vRA.get(0));
-      marcada.setHorarioRegimen((HorarioRegimen) ((RegimenAsignado) vRA.get(0)).getRegimenHorario().getHorariosRegimen().get(0));
+      marcada.setHorarioRegimen((HorarioRegimen) ((RegimenAsignado) vRA.get(0))
+              .getRegimenHorario().getHorariosRegimen().get(0));
       marcada.setValidez("Válida");
       
       vMarcadas.addElement(marcada);
@@ -357,7 +358,8 @@ public class IndireccionPersistencia {
       marcada.setHoraEntrada(hE);
       marcada.setHoraSalida(hS);
       marcada.setRegimenAsignado((RegimenAsignado) vRA.get(0));
-      marcada.setHorarioRegimen((HorarioRegimen) ((RegimenAsignado) vRA.get(0)).getRegimenHorario().getHorariosRegimen().get(1));
+      marcada.setHorarioRegimen((HorarioRegimen) ((RegimenAsignado) vRA.get(0))
+              .getRegimenHorario().getHorariosRegimen().get(1));
       marcada.setValidez("Válida");
       
       vMarcadas.addElement(marcada);
@@ -376,7 +378,8 @@ public class IndireccionPersistencia {
       marcada.setHoraEntrada(hE);
       marcada.setHoraSalida(hS);
       marcada.setRegimenAsignado((RegimenAsignado) vRA.get(0));
-      marcada.setHorarioRegimen((HorarioRegimen) ((RegimenAsignado) vRA.get(0)).getRegimenHorario().getHorariosRegimen().get(2));
+      marcada.setHorarioRegimen((HorarioRegimen) ((RegimenAsignado) vRA.get(0))
+              .getRegimenHorario().getHorariosRegimen().get(2));
       marcada.setValidez("Válida");
       
       vMarcadas.addElement(marcada);
@@ -395,7 +398,8 @@ public class IndireccionPersistencia {
       marcada.setHoraEntrada(hE);
       marcada.setHoraSalida(hS);
       marcada.setRegimenAsignado((RegimenAsignado) vRA.get(0));
-      marcada.setHorarioRegimen((HorarioRegimen) ((RegimenAsignado) vRA.get(0)).getRegimenHorario().getHorariosRegimen().get(3));
+      marcada.setHorarioRegimen((HorarioRegimen) ((RegimenAsignado) vRA.get(0))
+              .getRegimenHorario().getHorariosRegimen().get(3));
       marcada.setValidez("Válida");
       
       vMarcadas.addElement(marcada);
@@ -414,7 +418,8 @@ public class IndireccionPersistencia {
       marcada.setHoraEntrada(hE);
       marcada.setHoraSalida(hS);
       marcada.setRegimenAsignado((RegimenAsignado) vRA.get(0));
-      marcada.setHorarioRegimen((HorarioRegimen) ((RegimenAsignado) vRA.get(0)).getRegimenHorario().getHorariosRegimen().get(4));
+      marcada.setHorarioRegimen((HorarioRegimen) ((RegimenAsignado) vRA.get(0))
+              .getRegimenHorario().getHorariosRegimen().get(4));
       marcada.setValidez("Válida");
       
       vMarcadas.addElement(marcada);
@@ -434,7 +439,8 @@ public class IndireccionPersistencia {
       marcada.setHoraEntrada(hE);
       marcada.setHoraSalida(hS);
       marcada.setRegimenAsignado((RegimenAsignado) vRA.get(0));
-      marcada.setHorarioRegimen((HorarioRegimen) ((RegimenAsignado) vRA.get(0)).getRegimenHorario().getHorariosRegimen().get(2));
+      marcada.setHorarioRegimen((HorarioRegimen) ((RegimenAsignado) vRA.get(0))
+              .getRegimenHorario().getHorariosRegimen().get(2));
       marcada.setValidez("Válida");
       
       vMarcadas.addElement(marcada);

@@ -19,11 +19,11 @@ public class FabricaEstrategiaCalculoTardanza {
       return instancia;
    } // fin del método getInstancia
    
-   public EstrategiaCalculoTardanza getEstrategiaCalculoTardanza(RegimenAsignado regimenA){
-      String nombre = regimenA.getTipoCH().getDescripcion();
+   public EstrategiaCalculoTardanza getEstrategiaCalculoTardanza(Marcada marcada){
+      String nombre = marcada.getRegimenAsignado().getTipoCH().getDescripcion();
       
       try {
-         String claseInt = "persistencia.plantilla.EstrategiaCalculoTardanza"+nombre;
+         String claseInt = "EstrategiaCalculoTardanza"+nombre;
          return (EstrategiaCalculoTardanza) Class.forName(claseInt).newInstance();
       }
       catch (InstantiationException ex) {

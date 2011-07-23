@@ -1,24 +1,19 @@
-// : EstrategiaCalculoTardanzaSinControl.java
+// EstrategiaCalculoTardanzaSinControl: EstrategiaCalculoTardanzaSinControl.java
 // 
+
+import java.util.Vector;
 
 /**
  *
  * @author Gabriel
  */
 public class EstrategiaCalculoTardanzaSinControl implements EstrategiaCalculoTardanza {
-
-	public EstrategiaCalculoTardanzaSinControl(){
-
-	}
-
-	public void finalize() throws Throwable {
-
-	}
-	/**
-	 * 
-	 * @param marcada
-	 */
-	public double calcularTardanza(Marcada marcada){
-		return 0;
-	}
+   /**
+    * 
+    * @param marcada
+    * @param dtoDAT 
+    */
+   public int calcularTardanza(Marcada marcada, DTODiaATrabajar dtoDAT, Vector vVRT, int diasPerdon){
+      return 0;
+   }
 } // fin de la clase EstrategiaCalculoTardanzaSinControl
