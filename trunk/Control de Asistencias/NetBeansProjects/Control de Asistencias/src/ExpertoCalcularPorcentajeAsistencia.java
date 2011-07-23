@@ -64,12 +64,8 @@ public class ExpertoCalcularPorcentajeAsistencia {
       
       Marcada marcada;
       Date fechaM;
-      String tipoControl;
       DTODiaATrabajar dtoDAT;
-      VigenciaRangoTardanza vigenciaRT;
-      RangoDeTardanza rangoT;
-      Vector vRangoT;
-      double minutosTardanza, porcentajeDesc;
+      EstrategiaCalculoTardanza estrategia;
       int diasPerdon = 0;
       
       for(int i = 0; i < vMarcadas.size(); i++){
@@ -77,49 +73,13 @@ public class ExpertoCalcularPorcentajeAsistencia {
          fechaM = marcada.getFecha();
          
          if(perteneceRango(fechaD, fechaH, fechaM)){
-            tipoControl = marcada.getRegimenAsignado().getTipoCH().getDescripcion();
             dtoDAT = buscarDTODiaATrabajar(vDtoDAT, fechaM);
             
             if(dtoDAT != null){
-               if(tipoControl.equals("EntradaSalida")){
-                  vigenciaRT = buscarVigencia(vVRT, fechaM, dtoDAT.getHorasDia());
-                  vRangoT = vigenciaRT.getRangoDeTardanza();
-                  
-                  minutosTardanza = calcularTardanzaEntrada(marcada);
-                  minutosTardanza += calcularTardanzaSalida(marcada);
-                  
-                  rangoT = buscarRangoTardanza(vRangoT, minutosTardanza);
-                  porcentajeDesc = rangoT.getPorcentajeDescuento();
-                  
-                  if(minutosTardanza > 0 && diasPerdon++ >= rangoT.getCdadDiasPerdon())
-                     dtoDAT.sumarMinutosTardanza(porcentajeDesc * dtoDAT.getHorasDia() / 100);
-                  
-               }
-               else if(tipoControl.equals("Entrada")){
-                  vigenciaRT = buscarVigencia(vVRT, fechaM, dtoDAT.getHorasDia());
-                  vRangoT = vigenciaRT.getRangoDeTardanza();
-                  
-                  minutosTardanza = calcularTardanzaEntrada(marcada);
-                  
-                  rangoT = buscarRangoTardanza(vRangoT, minutosTardanza);
-                  porcentajeDesc = rangoT.getPorcentajeDescuento();
-                  
-                  if(minutosTardanza > 0 && diasPerdon++ >= rangoT.getCdadDiasPerdon())
-                     dtoDAT.sumarMinutosTardanza(porcentajeDesc * dtoDAT.getHorasDia() / 100);
-               }
-               else if(tipoControl.equals("Salida")){
-                  vigenciaRT = buscarVigencia(vVRT, fechaM, dtoDAT.getHorasDia());
-                  vRangoT = vigenciaRT.getRangoDeTardanza();
-                  
-                  minutosTardanza = calcularTardanzaSalida(marcada);
-                  
-                  rangoT = buscarRangoTardanza(vRangoT, minutosTardanza);
-                  porcentajeDesc = rangoT.getPorcentajeDescuento();
-                  
-                  if(minutosTardanza > 0 && diasPerdon++ >= rangoT.getCdadDiasPerdon())
-                     dtoDAT.sumarMinutosTardanza(porcentajeDesc * dtoDAT.getHorasDia() / 100);
-               } // fin de if interno 2
-            } // fin de de if interno 1
+               estrategia = FabricaEstrategiaCalculoTardanza.getInstancia().getEstrategiaCalculoTardanza(marcada);
+               
+               diasPerdon = estrategia.calcularTardanza(marcada, dtoDAT, vVRT, diasPerdon);
+            } // fin de de if
          } // fin de if externo
       } // fin de for
       
