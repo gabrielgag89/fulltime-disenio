@@ -1,4 +1,4 @@
-// : HorarioRegimen.java
+// HorarioRegimen: HorarioRegimen.java
 // 
 
 import java.util.Vector;
@@ -8,51 +8,31 @@ import java.util.Vector;
  * @author Gabriel
  */
 public class HorarioRegimen {
+   private Time horaDesde;
+   private Time horaHasta;
+   private String nombreDia;
 
-	private Time horaDesde;
-	private Time horaHasta;
-	private String nombreDia;
+   public Time getHoraDesde() {
+      return horaDesde;
+   }
 
-	public HorarioRegimen(){
+   public void setHoraDesde(Time horaDesde) {
+      this.horaDesde = horaDesde;
+   }
 
-	}
+   public Time getHoraHasta() {
+      return horaHasta;
+   }
 
-	public void finalize() throws Throwable {
+   public void setHoraHasta(Time horaHasta) {
+      this.horaHasta = horaHasta;
+   }
 
-	}
-	public Time getHoraDesde(){
-		return horaDesde;
-	}
+   public String getNombreDia() {
+      return nombreDia;
+   }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setHoraDesde(Time newVal){
-		horaDesde = newVal;
-	}
-
-	public Time getHoraHasta(){
-		return horaHasta;
-	}
-
-	public String getNombreDia(){
-		return nombreDia;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setHoraHasta(Time newVal){
-		horaHasta = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNombreDia(String newVal){
-		nombreDia = newVal;
-	}
+   public void setNombreDia(String nombreDia) {
+      this.nombreDia = nombreDia;
+   }
 } // fin de la clase HorarioRegimen

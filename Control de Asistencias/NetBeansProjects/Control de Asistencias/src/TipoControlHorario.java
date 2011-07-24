@@ -1,4 +1,4 @@
-// : TipoControlHorario.java
+// TipoControlHorario: TipoControlHorario.java
 // 
 
 /**
@@ -6,38 +6,22 @@
  * @author Gabriel
  */
 public class TipoControlHorario {
+   private int codigo;
+   private String descripcion;
 
-	private int codigo;
-	private String descripcion;
+   public int getCodigo() {
+      return codigo;
+   }
 
-	public TipoControlHorario(){
+   public void setCodigo(int codigo) {
+      this.codigo = codigo;
+   }
 
-	}
+   public String getDescripcion() {
+      return descripcion;
+   }
 
-	public void finalize() throws Throwable {
-
-	}
-	public int getCodigo(){
-		return codigo;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCodigo(int newVal){
-		codigo = newVal;
-	}
-
-	public String getDescripcion(){
-		return descripcion;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDescripcion(String newVal){
-		descripcion = newVal;
-	}
+   public void setDescripcion(String descripcion) {
+      this.descripcion = descripcion;
+   }
 } // fin de la clase TipoControlHorario

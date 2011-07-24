@@ -1,4 +1,4 @@
-// : RangoDeTardanza.java
+// RangoDeTardanza: RangoDeTardanza.java
 // 
 
 /**

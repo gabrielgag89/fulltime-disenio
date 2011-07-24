@@ -1,4 +1,4 @@
-// : Time.java
+// Time: Time.java
 // 
 
 import java.util.Date;

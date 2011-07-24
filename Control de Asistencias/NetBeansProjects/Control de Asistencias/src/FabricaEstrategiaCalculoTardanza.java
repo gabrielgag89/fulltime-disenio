@@ -1,4 +1,4 @@
-// : FabricaEstrategiaCalculoTardanza.java
+// FabricaEstrategiaCalculoTardanza: FabricaEstrategiaCalculoTardanza.java
 // 
 
 /**

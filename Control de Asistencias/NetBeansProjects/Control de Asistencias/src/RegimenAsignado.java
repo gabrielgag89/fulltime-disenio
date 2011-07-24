@@ -10,18 +10,10 @@ import java.util.Date;
 public class RegimenAsignado {
    private Date fechaDesde;
    private Date fechaHasta;
-   private RegimenHorario regimenHorario;
-   private Oficina oficina;
-   private TipoControlHorario tipoCH;
    private Empleado empleado;
-
-   public Empleado getEmpleado() {
-      return empleado;
-   } // fin del método getEmpleado
-
-   public void setEmpleado(Empleado empleado) {
-      this.empleado = empleado;
-   } // fin del método setEmpleado
+   private RegimenHorario regimenHorario;
+   private TipoControlHorario tipoCH;
+   private Oficina oficina;
 
    public Date getFechaDesde() {
       return fechaDesde;
@@ -39,13 +31,13 @@ public class RegimenAsignado {
       this.fechaHasta = fechaHasta;
    } // fin del método setFechaHasta
 
-   public Oficina getOficina() {
-      return oficina;
-   } // fin del método getOficina
+   public Empleado getEmpleado() {
+      return empleado;
+   } // fin del método getEmpleado
 
-   public void setOficina(Oficina oficina) {
-      this.oficina = oficina;
-   } // fin del método setOficina
+   public void setEmpleado(Empleado empleado) {
+      this.empleado = empleado;
+   } // fin del método setEmpleado
 
    public RegimenHorario getRegimenHorario() {
       return regimenHorario;
@@ -62,4 +54,12 @@ public class RegimenAsignado {
    public void setTipoCH(TipoControlHorario tipoCH) {
       this.tipoCH = tipoCH;
    } // fin del método setTipoCH
+
+   public Oficina getOficina() {
+      return oficina;
+   } // fin del método getOficina
+
+   public void setOficina(Oficina oficina) {
+      this.oficina = oficina;
+   } // fin del método setOficina
 } // fin de la clase RegimenAsignado
