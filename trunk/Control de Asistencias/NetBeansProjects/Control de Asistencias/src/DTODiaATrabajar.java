@@ -11,6 +11,7 @@ public class DTODiaATrabajar {
    private Date fecha;
    private double horasDia;
    private double minutosDescuento = 0;
+   private boolean tieneMarcada;
 
    public Date getFecha() {
       return fecha;
@@ -42,5 +43,13 @@ public class DTODiaATrabajar {
    
    public void sumarMinutosDescuento(double minutosDescuento){
       this.minutosDescuento += minutosDescuento;
+   }
+
+   public boolean isTieneMarcada() {
+      return tieneMarcada;
+   }
+
+   public void setTieneMarcada(boolean tieneMarcada) {
+      this.tieneMarcada = tieneMarcada;
    }
 } // fin de la clase DTODiaATrabajar

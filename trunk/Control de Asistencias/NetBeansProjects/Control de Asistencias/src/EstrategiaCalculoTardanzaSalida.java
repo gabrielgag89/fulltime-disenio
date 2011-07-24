@@ -24,12 +24,10 @@ public class EstrategiaCalculoTardanzaSalida implements EstrategiaCalculoTardanz
       RangoDeTardanza rangoT = buscarRangoTardanza(vRangoT, minutosTardanza);
       double porcentajeDesc = rangoT.getPorcentajeDescuento();
       
-      if(minutosTardanza > 0 && diasPerdon++ >= rangoT.getCdadDiasPerdon()){
+      if(minutosTardanza > 0 && diasPerdon++ >= rangoT.getCdadDiasPerdon())
          dtoDAT.sumarMinutosDescuento(porcentajeDesc * dtoDAT.getHorasDia() / 100);
-         return 1;
-      }
-         
-      return 0;
+      
+      return diasPerdon;
    }
 
    /**
@@ -51,6 +49,7 @@ public class EstrategiaCalculoTardanzaSalida implements EstrategiaCalculoTardanz
             if(ServiciosTiempo.perteneceRango(vigencia.getFechaDesde(), vigencia.getFechaHasta(), fechaM) &&
                     ServiciosTiempo.perteneceRango(tHT.getHoraDesde(), tHT.getHoraHasta(), horas))
                return vigencia;
+            
       } // fin de for
       
       return null;
@@ -90,6 +89,7 @@ public class EstrategiaCalculoTardanzaSalida implements EstrategiaCalculoTardanz
          
          if(ServiciosTiempo.perteneceRango(rangoT.getMinutosDesde(), rangoT.getMinutosHasta(), minutosTardanza))
             return rangoT;
+         
       } // fin de for
       
       return null;
