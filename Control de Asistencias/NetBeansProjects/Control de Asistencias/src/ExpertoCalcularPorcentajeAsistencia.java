@@ -74,13 +74,21 @@ public class ExpertoCalcularPorcentajeAsistencia {
          
          if(ServiciosTiempo.perteneceRango(fechaD, fechaH, fechaM)){
             dtoDAT = buscarDTODiaATrabajar(vDtoDAT, fechaM);
+            dtoDAT.setTieneMarcada(true);
             
             if(dtoDAT != null){
                estrategia = FabricaEstrategiaCalculoTardanza.getInstancia().getEstrategiaCalculoTardanza(marcada);
-               
                diasPerdon = estrategia.calcularTardanza(marcada, dtoDAT, vVRT, diasPerdon);
             } // fin de de if
          } // fin de if externo
+      } // fin de for
+      
+      for(int i = 0; i < vDtoDAT.size(); i++){
+         dtoDAT = (DTODiaATrabajar) vDtoDAT.get(i);
+         
+         if(!dtoDAT.isTieneMarcada())
+            dtoDAT.setMinutosDescuento(dtoDAT.getHorasDia() * 60);
+         
       } // fin de for
       
       return vDtoDAT;
@@ -142,6 +150,7 @@ public class ExpertoCalcularPorcentajeAsistencia {
          if(ServiciosTiempo.sonFechasIguales(dtoDATv.getFecha(), dtoDAT.getFecha())){
             dtoDATv.sumarHorasDia(dtoDAT.getHorasDia());
             return true;
+            
          } // fin de if
       } // fin de for
       
@@ -163,6 +172,7 @@ public class ExpertoCalcularPorcentajeAsistencia {
          
          if(ServiciosTiempo.sonFechasIguales(dtoDAT.getFecha(), fechaM))
             return dtoDAT;
+         
       } // fin de for
       
       return null;

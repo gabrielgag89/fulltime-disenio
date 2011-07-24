@@ -19,10 +19,13 @@ public final class ServiciosTiempo {
     * {@code false} - si el régimen asignado no pertenece al período de consulta
     */
    public static boolean perteneceRango(Date fCompDesde, Date fCompHasta, Date fConsultaDesde, Date fConsultaHasta){
+      
       if(isFechaMayorIgual(fConsultaDesde, fCompDesde) && isFechaMenorIgual(fConsultaDesde, fCompHasta))
          return true;
+              
       else if(isFechaMayorIgual(fConsultaHasta, fCompDesde) && isFechaMenorIgual(fConsultaHasta, fCompHasta))
          return true;
+              
       else if(isFechaMayorIgual(fCompDesde, fConsultaDesde) && isFechaMenorIgual(fCompHasta, fConsultaHasta))
          return true;
       
@@ -38,6 +41,7 @@ public final class ServiciosTiempo {
     * {@code false} - si la fecha a comparar no pertenece al período de consulta
     */
    public static boolean perteneceRango(Date fConsultaDesde, Date fConsultaHasta, Date fechaComp){
+      
       if(isFechaMayorIgual(fechaComp, fConsultaDesde) && isFechaMenorIgual(fechaComp, fConsultaHasta))
          return true;
       
@@ -71,10 +75,13 @@ public final class ServiciosTiempo {
     * {@code false} - si {@code f1} es menor que {@code f2}
     */
    public static boolean isFechaMayorIgual(Date f1, Date f2){
+      
       if(f1.getYear() > f2.getYear())
          return true;
+              
       else if(f1.getYear() == f2.getYear() && f1.getMonth() > f2.getMonth())
          return true;
+              
       else if(f1.getYear() == f2.getYear() && f1.getMonth() == f2.getMonth() && f1.getDate() >= f2.getDate())
          return true;
       
@@ -89,10 +96,13 @@ public final class ServiciosTiempo {
     * {@code false} - si {@code f1} es mayor que {@code f2}
     */
    public static boolean isFechaMenorIgual(Date f1, Date f2){
+      
       if(f1.getYear() < f2.getYear())
          return true;
+              
       else if(f1.getYear() == f2.getYear() && f1.getMonth() < f2.getMonth())
          return true;
+              
       else if(f1.getYear() == f2.getYear() && f1.getMonth() == f2.getMonth() && f1.getDate() <= f2.getDate())
          return true;
       
@@ -106,8 +116,10 @@ public final class ServiciosTiempo {
     * @return la fecha en la que comienza la consulta para el régimen asignado correspondiente
     */
    public static Date buscarDiaInicio(Date fRegimen, Date fConsulta){
+      
       if(isFechaMayorIgual(fConsulta, fRegimen))
          return fConsulta;
+              
       else
          return fRegimen;
    } // fin del método buscarDiaInicio
@@ -119,8 +131,10 @@ public final class ServiciosTiempo {
     * @return la fecha en la que termina la consulta para el régimen asignado correspondiente
     */
    public static Date buscarDiaFin(Date fRegimen, Date fConsulta){
+      
       if(isFechaMenorIgual(fConsulta, fRegimen))
          return fConsulta;
+              
       else
          return fRegimen;
    } // fin del método buscarDiaFin
@@ -191,6 +205,7 @@ public final class ServiciosTiempo {
     * {@code false} - si las fechas recibidas no son iguales
     */
    public static boolean sonFechasIguales(Date f1, Date f2){
+      
       if(f1.getDate() == f2.getDate() && f1.getMonth() == f2.getMonth() && f1.getYear() == f2.getYear())
          return true;
       
@@ -242,19 +257,23 @@ public final class ServiciosTiempo {
       if(mes == 4 || mes == 6 || mes == 9 || mes == 11){
          if(dia > 30)
             return false;
+         
       }
       else if(mes == 1 || mes == 3 || mes == 5 || mes == 7 ||
                mes == 8 || mes == 10 || mes == 12){
          if(dia > 31)
             return false;
+         
       }
       else if((anio % 4) == 0){
          if(dia > 29)
             return false;
+         
       }
       else{
          if(dia > 28)
             return false;
+         
       } // fin de if
 
       return true;
@@ -268,6 +287,7 @@ public final class ServiciosTiempo {
     * {@code false} - si {@code h1} es menor que {@code h2}
     */
    public static boolean isHoraMayorIgual(Time h1, Time h2){
+      
       if(h1.getHora() > h2.getHora())
          return true;
               
@@ -288,6 +308,7 @@ public final class ServiciosTiempo {
     * {@code false} - si {@code h1} es mayor que {@code h2}
     */
    public static boolean isHoraMenorIgual(Time h1, Time h2){
+      
       if(h1.getHora() < h2.getHora())
          return true;
               

@@ -50,6 +50,7 @@ public class EstrategiaCalculoTardanzaEntrada implements EstrategiaCalculoTardan
             if(ServiciosTiempo.perteneceRango(vigencia.getFechaDesde(), vigencia.getFechaHasta(), fechaM) &&
                     ServiciosTiempo.perteneceRango(tHT.getHoraDesde(), tHT.getHoraHasta(), horas))
                return vigencia;
+            
       } // fin de for
       
       return null;
@@ -89,6 +90,7 @@ public class EstrategiaCalculoTardanzaEntrada implements EstrategiaCalculoTardan
          
          if(ServiciosTiempo.perteneceRango(rangoT.getMinutosDesde(), rangoT.getMinutosHasta(), minutosTardanza))
             return rangoT;
+         
       } // fin de for
       
       return null;
