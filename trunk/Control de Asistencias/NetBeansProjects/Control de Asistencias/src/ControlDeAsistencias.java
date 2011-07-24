@@ -33,7 +33,7 @@ public class ControlDeAsistencias {
          System.out.println("\nNúmero de DTO: " + i);
          System.out.println("Fecha: " + dtoDAT.getFecha());
          System.out.println("Horas a trabajar: " + dtoDAT.getHorasDia());
-         System.out.println("Minutos de descuento: " + dtoDAT.getMinutosTardanza());
+         System.out.println("Minutos de descuento: " + dtoDAT.getMinutosDescuento());
       } // fin de for
    } // fin de main
 } // fin de la clase ControlDeAsistencias

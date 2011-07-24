@@ -1,4 +1,4 @@
-// : Oficina.java
+// Oficina: Oficina.java
 // 
 
 /**
@@ -6,25 +6,13 @@
  * @author Gabriel
  */
 public class Oficina {
+   private int codigo;
 
-	private int codOficina;
+   public int getCodigo() {
+      return codigo;
+   }
 
-	public Oficina(){
-
-	}
-
-	public void finalize() throws Throwable {
-
-	}
-	public int getCodOficina(){
-		return codOficina;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCodOficina(int newVal){
-		codOficina = newVal;
-	}
+   public void setCodigo(int codigo) {
+      this.codigo = codigo;
+   }
 } // fin de la clase Oficina

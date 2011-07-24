@@ -1,4 +1,4 @@
-// : RelojPersonal.java
+// RelojPersonal: RelojPersonal.java
 // 
 
 /**
@@ -6,64 +6,40 @@
  * @author Gabriel
  */
 public class RelojPersonal {
+   private int codigo;
+   private int numeroSerie;
+   public Oficina oficina;
+   public Modelo modelo;
 
-	private int codReloj;
-	private int numeroSerie;
-	public Oficina m_Oficina;
-	public Modelo m_Modelo;
+   public int getCodigo() {
+      return codigo;
+   }
 
-	public RelojPersonal(){
+   public void setCodigo(int codigo) {
+      this.codigo = codigo;
+   }
 
-	}
+   public int getNumeroSerie() {
+      return numeroSerie;
+   }
 
-	public void finalize() throws Throwable {
+   public void setNumeroSerie(int numeroSerie) {
+      this.numeroSerie = numeroSerie;
+   }
 
-	}
-	public int getCodReloj(){
-		return codReloj;
-	}
+   public Oficina getOficina() {
+      return oficina;
+   }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCodReloj(int newVal){
-		codReloj = newVal;
-	}
+   public void setOficina(Oficina oficina) {
+      this.oficina = oficina;
+   }
 
-	public int getNumeroSerie(){
-		return numeroSerie;
-	}
+   public Modelo getModelo() {
+      return modelo;
+   }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNumeroSerie(int newVal){
-		numeroSerie = newVal;
-	}
-
-	public Oficina getOficina(){
-		return null;
-	}
-
-	public Modelo getModelo(){
-		return null;
-	}
-
-	/**
-	 * 
-	 * @param Oficina
-	 */
-	public void setOficina(Oficina Oficina){
-
-	}
-
-	/**
-	 * 
-	 * @param Modelo
-	 */
-	public void setModelo(Modelo Modelo){
-
-	}
+   public void setModelo(Modelo modelo) {
+      this.modelo = modelo;
+   }
 } // fin de la clase RelojPersonal

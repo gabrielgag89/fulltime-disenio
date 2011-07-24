@@ -1,4 +1,4 @@
-// : DTODiaATrabajar.java
+// DTODiaATrabajar: DTODiaATrabajar.java
 // 
 
 import java.util.Date;
@@ -9,9 +9,8 @@ import java.util.Date;
  */
 public class DTODiaATrabajar {
    private Date fecha;
-   private String nombreDia;
    private double horasDia;
-   private double minutosTardanza = 0;
+   private double minutosDescuento = 0;
 
    public Date getFecha() {
       return fecha;
@@ -29,27 +28,19 @@ public class DTODiaATrabajar {
       this.horasDia = horasDia;
    }
 
-   public String getNombreDia() {
-      return nombreDia;
+   public double getMinutosDescuento() {
+      return minutosDescuento;
    }
 
-   public void setNombreDia(String nombreDia) {
-      this.nombreDia = nombreDia;
-   }
-
-   public double getMinutosTardanza() {
-      return minutosTardanza;
-   }
-
-   public void setMinutosTardanza(double minutosTardanza) {
-      this.minutosTardanza = minutosTardanza;
+   public void setMinutosDescuento(double minutosDescuento) {
+      this.minutosDescuento = minutosDescuento;
    }
    
    public void sumarHorasDia(double horasDia){
       this.horasDia += horasDia;
    }
    
-   public void sumarMinutosTardanza(double minutosTardanza){
-      this.minutosTardanza += minutosTardanza;
+   public void sumarMinutosDescuento(double minutosDescuento){
+      this.minutosDescuento += minutosDescuento;
    }
 } // fin de la clase DTODiaATrabajar

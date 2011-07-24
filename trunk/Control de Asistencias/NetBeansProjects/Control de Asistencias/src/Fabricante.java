@@ -1,4 +1,4 @@
-// : Fabricante.java
+// Fabricante: Fabricante.java
 // 
 
 /**
@@ -6,25 +6,13 @@
  * @author Gabriel
  */
 public class Fabricante {
+   private String nombreFabricante;
 
-	private String nombreFabricante;
+   public String getNombreFabricante() {
+      return nombreFabricante;
+   }
 
-	public Fabricante(){
-
-	}
-
-	public void finalize() throws Throwable {
-
-	}
-	public String getNombreFabricante(){
-		return nombreFabricante;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNombreFabricante(String newVal){
-		nombreFabricante = newVal;
-	}
+   public void setNombreFabricante(String nombreFabricante) {
+      this.nombreFabricante = nombreFabricante;
+   }
 } // fin de la clase Fabricante

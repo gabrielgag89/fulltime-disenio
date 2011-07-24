@@ -1,4 +1,4 @@
-// : DTODiasHoras.java
+// DTODiasHoras: DTODiasHoras.java
 // 
 
 /**

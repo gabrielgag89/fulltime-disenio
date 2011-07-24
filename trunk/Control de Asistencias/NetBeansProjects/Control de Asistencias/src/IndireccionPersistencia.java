@@ -203,8 +203,8 @@ public class IndireccionPersistencia {
       
       // régimen horario
       RH = new RegimenHorario();
-      RH.setCodigoRH(1);
-      RH.setNombreRH("Común Semana");
+      RH.setCodigo(1);
+      RH.setNombre("Común Semana");
       RH.setHorariosRegimen(vHR);
       
       fDesde = new Date();
@@ -289,8 +289,8 @@ public class IndireccionPersistencia {
       
       // régimen horario
       RH = new RegimenHorario();
-      RH.setCodigoRH(1);
-      RH.setNombreRH("Común Semana");
+      RH.setCodigo(1);
+      RH.setNombre("Común Semana");
       RH.setHorariosRegimen(vHR);
       
       fDesde = new Date();

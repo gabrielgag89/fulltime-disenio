@@ -14,6 +14,6 @@ public class EstrategiaCalculoTardanzaSinControl implements EstrategiaCalculoTar
     * @param dtoDAT 
     */
    public int calcularTardanza(Marcada marcada, DTODiaATrabajar dtoDAT, Vector vVRT, int diasPerdon){
-      return 0;
+      return diasPerdon;
    }
 } // fin de la clase EstrategiaCalculoTardanzaSinControl
