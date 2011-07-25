@@ -19,13 +19,17 @@ public class EstrategiaCalculoTardanzaSalida implements EstrategiaCalculoTardanz
       VigenciaRangoTardanza vigenciaRT = buscarVigencia(vVRT, marcada.getFecha(), dtoDAT.getHorasDia());
       Vector vRangoT = vigenciaRT.getRangoDeTardanza();
       
+      double horasHR = ServiciosTiempo.calcularTiempo(marcada.getHorarioRegimen().getHoraDesde(), marcada.getHorarioRegimen().getHoraHasta());
+      
       double minutosTardanza = calcularTardanzaSalida(marcada);
       
       RangoDeTardanza rangoT = buscarRangoTardanza(vRangoT, minutosTardanza);
       double porcentajeDesc = rangoT.getPorcentajeDescuento();
       
-      if(minutosTardanza > 0 && diasPerdon++ >= rangoT.getCdadDiasPerdon())
+      if(minutosTardanza > 0 && diasPerdon++ >= rangoT.getCdadDiasPerdon()){
          dtoDAT.sumarMinutosDescuento(porcentajeDesc * dtoDAT.getHorasDia() / 100);
+         dtoDAT.restarHorasRestantes(horasHR);
+      }
       
       return diasPerdon;
    }
