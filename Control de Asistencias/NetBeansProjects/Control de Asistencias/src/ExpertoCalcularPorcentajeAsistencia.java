@@ -74,7 +74,6 @@ public class ExpertoCalcularPorcentajeAsistencia {
          
          if(ServiciosTiempo.perteneceRango(fechaD, fechaH, fechaM)){
             dtoDAT = buscarDTODiaATrabajar(vDtoDAT, fechaM);
-            dtoDAT.setTieneMarcada(true);
             
             if(dtoDAT != null){
                estrategia = FabricaEstrategiaCalculoTardanza.getInstancia().getEstrategiaCalculoTardanza(marcada);
@@ -86,8 +85,8 @@ public class ExpertoCalcularPorcentajeAsistencia {
       for(int i = 0; i < vDtoDAT.size(); i++){
          dtoDAT = (DTODiaATrabajar) vDtoDAT.get(i);
          
-         if(!dtoDAT.isTieneMarcada())
-            dtoDAT.setMinutosDescuento(dtoDAT.getHorasDia() * 60);
+         if(dtoDAT.getHorasRestantes() > 0)
+            dtoDAT.setMinutosDescuento(dtoDAT.getHorasRestantes() * 60);
          
       } // fin de for
       

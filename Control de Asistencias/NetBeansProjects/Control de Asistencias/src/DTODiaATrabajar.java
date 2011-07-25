@@ -10,8 +10,8 @@ import java.util.Date;
 public class DTODiaATrabajar {
    private Date fecha;
    private double horasDia;
+   private double horasRestantes;
    private double minutosDescuento = 0;
-   private boolean tieneMarcada;
 
    public Date getFecha() {
       return fecha;
@@ -29,6 +29,10 @@ public class DTODiaATrabajar {
       this.horasDia = horasDia;
    }
 
+   public double getHorasRestantes() {
+      return horasRestantes;
+   }
+
    public double getMinutosDescuento() {
       return minutosDescuento;
    }
@@ -39,17 +43,14 @@ public class DTODiaATrabajar {
    
    public void sumarHorasDia(double horasDia){
       this.horasDia += horasDia;
+      this.horasRestantes = this.horasDia;
    }
    
    public void sumarMinutosDescuento(double minutosDescuento){
       this.minutosDescuento += minutosDescuento;
    }
-
-   public boolean isTieneMarcada() {
-      return tieneMarcada;
-   }
-
-   public void setTieneMarcada(boolean tieneMarcada) {
-      this.tieneMarcada = tieneMarcada;
+   
+   public void restarHorasRestantes(double horasRestantes){
+      this.horasRestantes -= horasRestantes;
    }
 } // fin de la clase DTODiaATrabajar
