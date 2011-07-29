@@ -10,9 +10,12 @@ import java.util.Vector;
  */
 public class EstrategiaCalculoTardanzaEntradaSalida implements EstrategiaCalculoTardanza {
    /**
-    * 
-    * @param marcada
-    * @param dtoDAT 
+    * Calcula la tardanza de una marcada y guarda los minutos de descuento en el DTO de días a trabajar.
+    * @param marcada marcada a comprobar la tardanza
+    * @param dtoDAT DTO con los datos del día correspondiente a la marcada
+    * @param vVRT vector de vigencias de los rangos de tardanza
+    * @param diasPerdon días de perdón acumulados en el período
+    * @return los días de perdón restantes
     */
    @Override
    public int calcularTardanza(Marcada marcada, DTODiaATrabajar dtoDAT, Vector vVRT, int diasPerdon){
@@ -27,13 +30,13 @@ public class EstrategiaCalculoTardanzaEntradaSalida implements EstrategiaCalculo
       RangoDeTardanza rangoT = buscarRangoTardanza(vRangoT, minutosTardanza);
       double porcentajeDesc = rangoT.getPorcentajeDescuento();
       
-      if(minutosTardanza > 0 && diasPerdon++ >= rangoT.getCdadDiasPerdon()){
+      if(minutosTardanza > 0 && diasPerdon++ >= rangoT.getCdadDiasPerdon())
          dtoDAT.sumarMinutosDescuento(porcentajeDesc * dtoDAT.getHorasDia() / 100);
-         dtoDAT.restarHorasRestantes(horasHR);
-      }
+      
+      dtoDAT.restarHorasRestantes(horasHR);
       
       return diasPerdon;
-   }
+   } // fin del método calcularTardanza
 
    /**
     * Devuelve la vigencia a la que pertenece la marcada.
