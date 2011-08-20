@@ -19,7 +19,7 @@ public class FabricaEstrategiaCalcularMinutosTardanza {
       return instancia;
    } // fin del método getInstancia
    
-   public EstrategiaCalcularMinutosTardanza getEstrategiaCalculoTardanza(Marcada marcada){
+   public EstrategiaCalcularMinutosTardanza getEstrategiaCalcularMinutosTardanza(Marcada marcada){
       String nombre = marcada.getRegimenAsignado().getTipoCH().getDescripcion();
       
       try {

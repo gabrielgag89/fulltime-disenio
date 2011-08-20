@@ -85,7 +85,7 @@ public class ExpertoCalcularPorcentajeAsistencia {
 
                horasHR = ServiciosTiempo.calcularTiempo(marcada.getHorarioRegimen().getHoraDesde(), marcada.getHorarioRegimen().getHoraHasta());
                
-               estrategia = FabricaEstrategiaCalcularMinutosTardanza.getInstancia().getEstrategiaCalculoTardanza(marcada);
+               estrategia = FabricaEstrategiaCalcularMinutosTardanza.getInstancia().getEstrategiaCalcularMinutosTardanza(marcada);
                
                minutosTardanza = estrategia.calcularMinutosTardanza(marcada);
                
