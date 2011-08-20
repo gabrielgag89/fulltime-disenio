@@ -1,30 +1,30 @@
-// FabricaEstrategiaCalculoTardanza: FabricaEstrategiaCalculoTardanza.java
+// FabricaEstrategiaCalcularMinutosTardanza: FabricaEstrategiaCalcularMinutosTardanza.java
 // 
 
 /**
  *
  * @author Gabriel
  */
-public class FabricaEstrategiaCalculoTardanza {
-   private static FabricaEstrategiaCalculoTardanza instancia;
+public class FabricaEstrategiaCalcularMinutosTardanza {
+   private static FabricaEstrategiaCalcularMinutosTardanza instancia;
    
    /**
     * 
     * @return 
     */
-   public static FabricaEstrategiaCalculoTardanza getInstancia(){
+   public static FabricaEstrategiaCalcularMinutosTardanza getInstancia(){
       if(instancia == null)
-         instancia = new FabricaEstrategiaCalculoTardanza();
+         instancia = new FabricaEstrategiaCalcularMinutosTardanza();
       
       return instancia;
    } // fin del método getInstancia
    
-   public EstrategiaCalculoTardanza getEstrategiaCalculoTardanza(Marcada marcada){
+   public EstrategiaCalcularMinutosTardanza getEstrategiaCalculoTardanza(Marcada marcada){
       String nombre = marcada.getRegimenAsignado().getTipoCH().getDescripcion();
       
       try {
-         String claseInt = "EstrategiaCalculoTardanza"+nombre;
-         return (EstrategiaCalculoTardanza) Class.forName(claseInt).newInstance();
+         String claseInt = "EstrategiaCalcularMinutosTardanza"+nombre;
+         return (EstrategiaCalcularMinutosTardanza) Class.forName(claseInt).newInstance();
       }
       catch (InstantiationException ex) {
          System.out.println("FabricaEstrategiaCalculoTardanza - InstantiationException: "+ex.getMessage());
@@ -39,4 +39,4 @@ public class FabricaEstrategiaCalculoTardanza {
          return null;
       } // fin de try... catch
    } // fin del método getEstrategiaCalculoTardanza
-} // fin de la clase FabricaEstrategiaCalculoTardanza
+} // fin de la clase FabricaEstrategiaCalcularMinutosTardanza

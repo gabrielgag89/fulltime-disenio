@@ -62,11 +62,15 @@ public class ExpertoCalcularPorcentajeAsistencia {
       Vector vMarcadas = (Vector) IndireccionPersistencia.getInstancia().buscar("Marcada", "legajo = " + legajo + " AND validez = 'Válida' ORDER BY ASC");
       Vector vVRT = (Vector)IndireccionPersistencia.getInstancia().buscar("VigenciaRangoTardanza", null);
       
+      Vector vRangoT;
+      VigenciaRangoTardanza vigenciaRT;
       Marcada marcada;
       Date fechaM;
       DTODiaATrabajar dtoDAT;
-      EstrategiaCalculoTardanza estrategia;
+      RangoDeTardanza rangoT;
+      EstrategiaCalcularMinutosTardanza estrategia;
       int diasPerdon = 0;
+      double horasHR, minutosTardanza, porcentajeDesc;
       
       for(int i = 0; i < vMarcadas.size(); i++){
          marcada = (Marcada) vMarcadas.get(i);
@@ -76,8 +80,22 @@ public class ExpertoCalcularPorcentajeAsistencia {
             dtoDAT = buscarDTODiaATrabajar(vDtoDAT, fechaM);
             
             if(dtoDAT != null){
-               estrategia = FabricaEstrategiaCalculoTardanza.getInstancia().getEstrategiaCalculoTardanza(marcada);
-               diasPerdon = estrategia.calcularTardanza(marcada, dtoDAT, vVRT, diasPerdon);
+               vigenciaRT = buscarVigencia(vVRT, marcada.getFecha(), dtoDAT.getHorasDia());
+               vRangoT = vigenciaRT.getRangoDeTardanza();
+
+               horasHR = ServiciosTiempo.calcularTiempo(marcada.getHorarioRegimen().getHoraDesde(), marcada.getHorarioRegimen().getHoraHasta());
+               
+               estrategia = FabricaEstrategiaCalcularMinutosTardanza.getInstancia().getEstrategiaCalculoTardanza(marcada);
+               
+               minutosTardanza = estrategia.calcularMinutosTardanza(marcada);
+               
+               rangoT = buscarRangoTardanza(vRangoT, minutosTardanza);
+               porcentajeDesc = rangoT.getPorcentajeDescuento();
+
+               if(minutosTardanza > 0 && diasPerdon++ >= rangoT.getCdadDiasPerdon())
+                  dtoDAT.sumarMinutosDescuento(porcentajeDesc * dtoDAT.getHorasDia() / 100);
+
+               dtoDAT.restarHorasRestantes(horasHR);
             } // fin de de if
          } // fin de if externo
       } // fin de for
@@ -87,7 +105,6 @@ public class ExpertoCalcularPorcentajeAsistencia {
          
          if(dtoDAT.getHorasRestantes() > 0)
             dtoDAT.setMinutosDescuento(dtoDAT.getHorasRestantes() * 60);
-         
       } // fin de for
       
       return vDtoDAT;
@@ -176,4 +193,49 @@ public class ExpertoCalcularPorcentajeAsistencia {
       
       return null;
    } // fin del método buscarDiaATrabajar
+
+   /**
+    * Devuelve la vigencia a la que pertenece la marcada.
+    * @param vVRT vector que contiene las vigencias
+    * @param fechaM fecha de la marcada
+    * @param horas horas a trabajar para el día
+    * @return la vigencia a la que pertenece la marcada<br>
+    * {@code null} si ninguna coincide con la fecha
+    */
+   private VigenciaRangoTardanza buscarVigencia(Vector vVRT, Date fechaM, double horas) {
+      VigenciaRangoTardanza vigencia;
+      TipoHorasTrabajadas tHT;
+      
+      for(int i = 0; i < vVRT.size(); i++){
+            vigencia = (VigenciaRangoTardanza) vVRT.get(i);
+            tHT = vigencia.getTipoHorasTrabajadas();
+            
+            if(ServiciosTiempo.perteneceRango(vigencia.getFechaDesde(), vigencia.getFechaHasta(), fechaM) &&
+                    ServiciosTiempo.perteneceRango(tHT.getHoraDesde(), tHT.getHoraHasta(), horas))
+               return vigencia;
+            
+      } // fin de for
+      
+      return null;
+   } // fin del método buscarVigencia
+
+   /**
+    * Busca el rango de tardanza correspondiente a los minutos de tardanza recibidos.
+    * @param vRangoT vector de rangos de tardanza
+    * @param minutosTardanza minutos de tardanza
+    * @return el rango de tardanza correspondiente a los minutos de tardanza recibidos
+    */
+   private RangoDeTardanza buscarRangoTardanza(Vector vRangoT, double minutosTardanza) {
+      RangoDeTardanza rangoT;
+      
+      for(int i = 0; i < vRangoT.size(); i++){
+         rangoT = (RangoDeTardanza) vRangoT.get(i);
+         
+         if(ServiciosTiempo.perteneceRango(rangoT.getMinutosDesde(), rangoT.getMinutosHasta(), minutosTardanza))
+            return rangoT;
+         
+      } // fin de for
+      
+      return null;
+   } // fin del método buscarRangoTardanza
 } // fin de la clase ExpertoCalcularPorcentajeAsistencia
