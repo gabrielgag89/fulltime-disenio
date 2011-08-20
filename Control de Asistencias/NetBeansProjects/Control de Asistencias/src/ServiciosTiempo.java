@@ -2,7 +2,6 @@
 // Clase que brinda sarvicios para controlar fechas y horas.
 
 import java.util.Date;
-import java.util.Vector;
 
 /**
  * Clase que brinda sarvicios para controlar fechas y horas.
