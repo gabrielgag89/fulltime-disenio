@@ -16,49 +16,24 @@ public class EstrategiaCalcularMinutosTardanzaEntradaSalida implements Estrategi
     */
    @Override
    public double calcularMinutosTardanza(Marcada marcada){
-      double minutosTardanza = calcularTardanzaEntrada(marcada);
-      minutosTardanza += calcularTardanzaSalida(marcada);
+      HorarioRegimen HR = marcada.getHorarioRegimen();
+      Time horaME, horaMS, horaHRE, horaHRS;
+      double horasTardanza = 0;
+
+      // calcula horas tardanza entrada
+      horaME = marcada.getHoraEntrada();
+      horaHRE = HR.getHoraDesde();
+
+      if(!ServiciosTiempo.isHoraMenorIgual(horaME, horaHRE))
+         horasTardanza = ServiciosTiempo.calcularTiempo(horaHRE, horaME);
+
+      // calcula horas tardanza salida
+      horaMS = marcada.getHoraSalida();
+      horaHRS = HR.getHoraHasta();
+
+      if(!ServiciosTiempo.isHoraMayorIgual(horaMS, horaHRS))
+          horasTardanza += ServiciosTiempo.calcularTiempo(horaMS, horaHRS);
       
-      return minutosTardanza;
+      return horasTardanza * 60;
    } // fin del método calcularMinutosTardanza
-
-   /**
-    * Calcula el tiempo de tardanza a la entrada para la marcada recibida.
-    * @param marcada marcada a calcularle la tardanza
-    * @return el tiempo de tardanza a la entrada para la marcada recibida
-    */
-   private double calcularTardanzaEntrada(Marcada marcada) {
-      HorarioRegimen HR = marcada.getHorarioRegimen();
-      Time horaM, horaHR;
-      
-      horaM = marcada.getHoraEntrada();
-      horaHR = HR.getHoraDesde();
-      
-      if(ServiciosTiempo.isHoraMenorIgual(horaM, horaHR))
-         return 0;
-      
-      double horasTardanza = ServiciosTiempo.calcularTiempo(horaHR, horaM);
-      
-      return horasTardanza * 60;
-   } // fin del método calcularTardanzaEntrada
-
-   /**
-    * Calcula el tiempo de tardanza a la salida para la marcada recibida.
-    * @param marcada marcada a calcularle la tardanza
-    * @return el tiempo de tardanza a la salida para la marcada recibida
-    */
-   private double calcularTardanzaSalida(Marcada marcada) {
-      HorarioRegimen HR = marcada.getHorarioRegimen();
-      Time horaM, horaHR;
-      
-      horaM = marcada.getHoraSalida();
-      horaHR = HR.getHoraHasta();
-      
-      if(ServiciosTiempo.isHoraMayorIgual(horaM, horaHR))
-         return 0;
-      
-      double horasTardanza = ServiciosTiempo.calcularTiempo(horaM, horaHR);
-      
-      return horasTardanza * 60;
-   } // fin del método calcularTardanzaSalida
 } // fin de la clase EstrategiaCalcularMinutosTardanzaEntradaSalida
