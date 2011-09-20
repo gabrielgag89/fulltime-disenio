@@ -1,13 +1,13 @@
 
 
 
-
 public class DtoPaciente {
    
    private String dni;
    private String nombre;
    private String tel;
-
+   private String nombrePlan;
+   
    public String getDni() {
       return dni;
    }
@@ -24,6 +24,14 @@ public class DtoPaciente {
       this.nombre = nombre;
    }
 
+   public String getNombrePlan() {
+      return nombrePlan;
+   }
+
+   public void setNombrePlan(String nombrePlan) {
+      this.nombrePlan = nombrePlan;
+   }
+      
    public String getTel() {
       return tel;
    }

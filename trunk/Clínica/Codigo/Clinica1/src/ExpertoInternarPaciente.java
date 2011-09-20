@@ -12,6 +12,7 @@ public class ExpertoInternarPaciente {
       paciente.setDni(p.getDni());             
       paciente.setNombre(p.getNombre());
       paciente.setTel(p.getTel());
+      paciente.setNombrePlan(p.getPlan().getNombrePlan());
       
       return paciente;        
    }

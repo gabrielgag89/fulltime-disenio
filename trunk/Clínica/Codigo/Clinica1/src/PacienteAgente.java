@@ -8,6 +8,12 @@ public class PacienteAgente implements Paciente {
    private boolean isPlan = false; 
    
    
+   
+   public PacienteAgente() {
+      this.implementacion = new PacienteImplementacion();
+   }
+   
+   
    @Override
    public String getDni() {
       return this.implementacion.getDni();
@@ -42,8 +48,13 @@ public class PacienteAgente implements Paciente {
    public Plan getPlan() {
       if(this.isPlan)
          return this.implementacion.getPlan();
-      else
-         return (Plan) FachadaPersistencia.getInstancia().buscar("Plan", this.oidPlan);
+      else{
+         Plan p =(Plan) FachadaPersistencia.getInstancia().buscar("Plan", this.oidPlan);
+         this.implementacion.setPlan(p);
+         this.isPlan = true;
+         return p;      
+      
+      }
    }
 
    @Override
@@ -67,7 +78,5 @@ public class PacienteAgente implements Paciente {
       this.oidPlan = oidPlan;
    }
   
-   
-   
-   
+     
 }

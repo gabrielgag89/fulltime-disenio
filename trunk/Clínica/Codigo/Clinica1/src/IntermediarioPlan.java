@@ -1,4 +1,8 @@
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+
 /**
  *
  * @author Cristian
@@ -9,13 +13,39 @@ class IntermediarioPlan implements IntermediarioPersistencia {
    }
 
    @Override
-   public Object buscar(String tipo, String valor) {
-      throw new UnsupportedOperationException("Not supported yet.");
+   public Object buscar(String valor) {
+      PlanAgente p = null;
+      String consulta = "SELECT * FROM plan WHERE codigo = "+valor;
+      ResultSet rs;
+      try {
+         rs = FabricaConexiones.getInstancia().getConexion().createStatement().executeQuery(consulta);
+         while(rs.next()){
+            p.setCodigoPlan(rs.getInt("codigo"));
+            p.setNombrePlan(rs.getString("nombre"));
+         }
+      } catch (SQLException ex) {
+         System.err.println("ERROR:"+ex.getMessage());
+      } catch (ClassNotFoundException ex) {
+         System.err.println("ERROR:"+ex.getMessage());
+      }
+      
+      return p;
    }
 
    @Override
-   public void guardar(String tipo, Object objeto) {
-      throw new UnsupportedOperationException("Not supported yet.");
+   public void guardar(Object objeto) {
+      PlanAgente p = (PlanAgente)objeto;
+      String consulta = String.format("INSERT INTO plan VALUES (%d, '%s')", p.getCodigoPlan(), p.getNombrePlan());
+      try{
+         FabricaConexiones.getInstancia().getConexion().createStatement().executeQuery(consulta);
+      }
+      catch(SQLException e){
+         System.err.println("ERROR:"+e.getMessage());
+      }
+      catch(ClassNotFoundException ex ){
+         System.err.println("ERROR:"+ex.getMessage());
+      }
+
    }
    
 }
