@@ -37,6 +37,11 @@ public class IUInternarPaciente extends javax.swing.JFrame {
       });
 
       salir.setText("Salir");
+      salir.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            salirActionPerformed(evt);
+         }
+      });
 
       javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
       getContentPane().setLayout(layout);
@@ -79,12 +84,16 @@ public class IUInternarPaciente extends javax.swing.JFrame {
       try {
          DtoPaciente dto = controlador.buscarPaciente(dni.getText());
          //tenemos que mostrar en pantalla
-         JOptionPane.showMessageDialog(rootPane, "Dni:"+dto.getDni()+"\n"+"Nombre:"
-                 +dto.getNombre()+"\n"+"Telefono:"+dto.getTel());
+         JOptionPane.showMessageDialog(rootPane, "Dni: "+dto.getDni()+"\n"+"Nombre: "
+                 +dto.getNombre()+"\n"+"Telefono: "+dto.getTel()+"\n"+"Plan: "+dto.getNombrePlan());
       } catch (SQLException ex) {
          Logger.getLogger(IUInternarPaciente.class.getName()).log(Level.SEVERE, null, ex);
       }
    }//GEN-LAST:event_buscarActionPerformed
+
+   private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
+      System.exit(0);     
+   }//GEN-LAST:event_salirActionPerformed
 
    /**
     * @param args the command line arguments

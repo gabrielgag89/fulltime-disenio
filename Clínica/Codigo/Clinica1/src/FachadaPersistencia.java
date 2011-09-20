@@ -13,11 +13,11 @@ public class FachadaPersistencia {
    }
    
    public Object buscar(String tipo, String valor){            
-      return FabricaIntermediarios.getInstancia().getIntermediario(tipo).buscar(tipo, valor);
+      return FabricaIntermediarios.getInstancia().getIntermediario(tipo).buscar(valor);
    }
    
    public void guardar(String tipo, Object objeto){
-      FabricaIntermediarios.getInstancia().getIntermediario(tipo).guardar(tipo, objeto);        
+      FabricaIntermediarios.getInstancia().getIntermediario(tipo).guardar(objeto);        
       
    }
 }

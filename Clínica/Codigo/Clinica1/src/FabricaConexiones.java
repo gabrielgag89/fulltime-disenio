@@ -9,10 +9,10 @@ import java.util.logging.Logger;
 
 
 public class FabricaConexiones {
-   private String usuario = "user";
-   private String contrasenia = "pass";
+   private String usuario = "root";
+   private String contrasenia = "root";
    private String db = "clinica";
-   private String url = "jdbc:derby://localhost:1527/clinica";
+   private String url = "jdbc:mysql://localhost:3306/"+db;
    private static Connection con = null;
    private static FabricaConexiones instancia = null;
    

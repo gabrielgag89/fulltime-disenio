@@ -9,12 +9,12 @@ class IntermediarioObraSocial implements IntermediarioPersistencia {
    }
 
    @Override
-   public Object buscar(String tipo, String valor) {
+   public Object buscar(String valor) {
       throw new UnsupportedOperationException("Not supported yet.");
    }
 
    @Override
-   public void guardar(String tipo, Object objeto) {
+   public void guardar(Object objeto) {
       throw new UnsupportedOperationException("Not supported yet.");
    }
    
