@@ -1,8 +1,4 @@
-
-
-
-public class DtoPaciente {
-   
+public class DTOPaciente {
    private String dni;
    private String nombre;
    private String tel;
@@ -23,14 +19,6 @@ public class DtoPaciente {
    public void setNombre(String nombre) {
       this.nombre = nombre;
    }
-
-   public String getNombrePlan() {
-      return nombrePlan;
-   }
-
-   public void setNombrePlan(String nombrePlan) {
-      this.nombrePlan = nombrePlan;
-   }
       
    public String getTel() {
       return tel;
@@ -39,5 +27,12 @@ public class DtoPaciente {
    public void setTel(String tel) {
       this.tel = tel;
    }
-   
+
+   public String getNombrePlan() {
+      return nombrePlan;
+   }
+
+   public void setNombrePlan(String nombrePlan) {
+      this.nombrePlan = nombrePlan;
+   }
 }

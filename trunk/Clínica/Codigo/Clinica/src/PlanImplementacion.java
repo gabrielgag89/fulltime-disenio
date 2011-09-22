@@ -1,12 +1,6 @@
-
-
-
 public class PlanImplementacion implements Plan {
-   
    private int codigoPlan;
    private String nombrePlan;
-
-   
    
    @Override
    public int getCodigoPlan() {
@@ -27,6 +21,4 @@ public class PlanImplementacion implements Plan {
    public void setNombrePlan(String nombrePlan) {
       this.nombrePlan = nombrePlan;
    }
-     
-   
 }

@@ -1,13 +1,10 @@
-
-
-
 import java.sql.SQLException;
 
 public class ExpertoInternarPaciente {
-
-   public DtoPaciente buscarPaciente(String dni) throws SQLException {
-      DtoPaciente paciente = new DtoPaciente();
+   public DTOPaciente buscarPaciente(String dni) throws SQLException {
+      DTOPaciente paciente = new DTOPaciente();
       Paciente p = (Paciente) FachadaPersistencia.getInstancia().buscar("Paciente", dni);
+      
       //lleno el dto con los datos del paciente
       paciente.setDni(p.getDni());             
       paciente.setNombre(p.getNombre());
@@ -16,5 +13,4 @@ public class ExpertoInternarPaciente {
       
       return paciente;        
    }
-   
 }

@@ -1,9 +1,4 @@
-
-
-
-
 public class PacienteImplementacion {
-   
    private String dni;
    private String nombre;
    private String tel;
@@ -40,5 +35,4 @@ public class PacienteImplementacion {
    public void setPlan(Plan plan) {
       this.plan = plan;
    }
-   
 }

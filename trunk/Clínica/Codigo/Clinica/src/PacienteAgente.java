@@ -1,18 +1,11 @@
-
-
-
 public class PacienteAgente implements Paciente {
-
    private PacienteImplementacion implementacion;
    private String oidPlan;
    private boolean isPlan = false; 
    
-   
-   
    public PacienteAgente() {
       this.implementacion = new PacienteImplementacion();
    }
-   
    
    @Override
    public String getDni() {
@@ -77,6 +70,4 @@ public class PacienteAgente implements Paciente {
    public void setOidPlan(String oidPlan) {
       this.oidPlan = oidPlan;
    }
-  
-     
 }

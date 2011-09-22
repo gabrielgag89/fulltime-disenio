@@ -1,10 +1,5 @@
-
-
-
 public class PlanAgente implements Plan {
-   
    private PlanImplementacion implementacion;
-   
     
    @Override
    public int getCodigoPlan() {
@@ -26,6 +21,4 @@ public class PlanAgente implements Plan {
       this.implementacion.setNombrePlan(nombrePlan);
               
    }
-     
-   
 }

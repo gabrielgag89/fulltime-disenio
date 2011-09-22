@@ -1,11 +1,5 @@
-
-
-
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-
 
 public class IUInternarPaciente extends javax.swing.JFrame {
 
@@ -13,7 +7,6 @@ public class IUInternarPaciente extends javax.swing.JFrame {
    public IUInternarPaciente() {
       initComponents();
    }
-
   
    @SuppressWarnings("unchecked")
    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -81,13 +74,14 @@ public class IUInternarPaciente extends javax.swing.JFrame {
 
    private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
       ControladorInternarPaciente controlador = new ControladorInternarPaciente();
+      
       try {
-         DtoPaciente dto = controlador.buscarPaciente(dni.getText());
+         DTOPaciente dto = controlador.buscarPaciente(dni.getText());
          //tenemos que mostrar en pantalla
          JOptionPane.showMessageDialog(rootPane, "Dni: "+dto.getDni()+"\n"+"Nombre: "
                  +dto.getNombre()+"\n"+"Telefono: "+dto.getTel()+"\n"+"Plan: "+dto.getNombrePlan());
       } catch (SQLException ex) {
-         Logger.getLogger(IUInternarPaciente.class.getName()).log(Level.SEVERE, null, ex);
+         
       }
    }//GEN-LAST:event_buscarActionPerformed
 
@@ -107,6 +101,7 @@ public class IUInternarPaciente extends javax.swing.JFrame {
          }
       });
    }
+   
    // Variables declaration - do not modify//GEN-BEGIN:variables
    private javax.swing.JButton buscar;
    private javax.swing.JTextField dni;
