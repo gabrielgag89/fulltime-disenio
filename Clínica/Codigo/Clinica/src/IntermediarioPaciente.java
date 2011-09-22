@@ -16,14 +16,13 @@ public class IntermediarioPaciente implements IntermediarioPersistencia{
             p.setDni(rs.getString("dni"));
             p.setNombre(rs.getString("nombre"));
             p.setTel(rs.getString("telefono"));
-            //p.setOidPlan(rs.getString("oidPlan"));
+            p.setOidPlan(rs.getString("oidPlan"));
          }
       } catch (SQLException ex) {
          System.err.println("ERROR:"+ex.getMessage());
-      } catch (ClassNotFoundException ex) {
-         System.err.println("ERROR:"+ex.getMessage());
-      }
-      
+      } catch (ClassNotFoundException e){
+         System.err.println("ERROR:"+e.getMessage());
+      }     
       return p;
    }
 
@@ -31,15 +30,12 @@ public class IntermediarioPaciente implements IntermediarioPersistencia{
    public void guardar(Object objeto) {      
       PacienteAgente p = (PacienteAgente)objeto;
       String consulta = String.format("INSERT INTO paciente VALUES ('%s', '%s', '%s', '%s')", p.getDni(), p.getNombre(), p.getTel(), p.getOidPlan());
-      
       try{
-         FabricaConexiones.getInstancia().getConexion().createStatement().executeQuery(consulta);
-      }
-      catch(SQLException e){
-         System.err.println("ERROR:"+e.getMessage());
-      }
-      catch(ClassNotFoundException ex ){
+      FabricaConexiones.getInstancia().getConexion().createStatement().executeQuery(consulta);
+      } catch (SQLException ex) {
          System.err.println("ERROR:"+ex.getMessage());
+      } catch (ClassNotFoundException e){
+         System.err.println("ERROR:"+e.getMessage());
       }
    }
 }

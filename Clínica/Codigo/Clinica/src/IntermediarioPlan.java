@@ -7,7 +7,7 @@ class IntermediarioPlan implements IntermediarioPersistencia {
    
    @Override
    public Object buscar(String valor) {
-      PlanAgente p = null;
+      PlanAgente p = new PlanAgente();
       String consulta = "SELECT * FROM plan WHERE codigo = "+valor;
       ResultSet rs;
       

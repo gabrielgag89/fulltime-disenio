@@ -22,6 +22,12 @@ public class IUInternarPaciente extends javax.swing.JFrame {
       jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18));
       jLabel1.setText("Internar Paciente");
 
+      dni.addKeyListener(new java.awt.event.KeyAdapter() {
+         public void keyTyped(java.awt.event.KeyEvent evt) {
+            dniKeyTyped(evt);
+         }
+      });
+
       buscar.setText("Buscar");
       buscar.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,6 +94,14 @@ public class IUInternarPaciente extends javax.swing.JFrame {
    private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
       System.exit(0);     
    }//GEN-LAST:event_salirActionPerformed
+
+   private void dniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dniKeyTyped
+      byte a= (byte) (evt.getKeyChar());
+            if(a==10){
+               java.awt.event.ActionEvent event = null;
+                this.buscarActionPerformed(event);
+            }
+   }//GEN-LAST:event_dniKeyTyped
 
    /**
     * @param args the command line arguments
