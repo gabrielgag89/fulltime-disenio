@@ -1,10 +1,4 @@
-
-/**
- *
- * @author Cristian
- */
 class IntermediarioObraSocial implements IntermediarioPersistencia {
-
    public IntermediarioObraSocial() {
    }
 
@@ -17,5 +11,4 @@ class IntermediarioObraSocial implements IntermediarioPersistencia {
    public void guardar(Object objeto) {
       throw new UnsupportedOperationException("Not supported yet.");
    }
-   
 }

@@ -1,22 +1,16 @@
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
-/**
- *
- * @author Cristian
- */
 class IntermediarioPlan implements IntermediarioPersistencia {
-
    public IntermediarioPlan() {
    }
-
+   
    @Override
    public Object buscar(String valor) {
       PlanAgente p = null;
       String consulta = "SELECT * FROM plan WHERE codigo = "+valor;
       ResultSet rs;
+      
       try {
          rs = FabricaConexiones.getInstancia().getConexion().createStatement().executeQuery(consulta);
          while(rs.next()){
@@ -36,6 +30,7 @@ class IntermediarioPlan implements IntermediarioPersistencia {
    public void guardar(Object objeto) {
       PlanAgente p = (PlanAgente)objeto;
       String consulta = String.format("INSERT INTO plan VALUES (%d, '%s')", p.getCodigoPlan(), p.getNombrePlan());
+      
       try{
          FabricaConexiones.getInstancia().getConexion().createStatement().executeQuery(consulta);
       }
@@ -45,7 +40,5 @@ class IntermediarioPlan implements IntermediarioPersistencia {
       catch(ClassNotFoundException ex ){
          System.err.println("ERROR:"+ex.getMessage());
       }
-
    }
-   
 }

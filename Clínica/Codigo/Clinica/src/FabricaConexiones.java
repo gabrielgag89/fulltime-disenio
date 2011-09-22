@@ -1,12 +1,6 @@
-
-
-
-import com.mysql.jdbc.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
+import java.sql.DriverManager;
+import com.mysql.jdbc.Connection;
 
 public class FabricaConexiones {
    private String usuario = "root";
@@ -21,6 +15,7 @@ public class FabricaConexiones {
          instancia = new FabricaConexiones();
       return instancia;
    }
+   
    public Connection getConexion() throws ClassNotFoundException{
       if(con == null){
          try {
@@ -30,13 +25,13 @@ public class FabricaConexiones {
                System.out.println("conexion a la base de datos "+ url+" :OK..");
             else
                System.out.println("Error al conectarse con la base de datos");
-         } catch (SQLException ex) {
-            Logger.getLogger(FabricaConexiones.class.getName()).log(Level.SEVERE, null, ex);
+         }
+         catch (SQLException ex) {
+            System.err.println("Error: " + ex.getMessage());
          }
       }else 
          System.out.println("Retorno la conexion ya creada..");
       
       return con;
    }
-   
 }

@@ -1,14 +1,10 @@
-
-
-
 public class FachadaPersistencia {
-   
    private static FachadaPersistencia instancia = null;
-
    
    public static FachadaPersistencia getInstancia() {
       if(instancia == null)
          instancia = new FachadaPersistencia();
+      
       return instancia;
    }
    
@@ -17,7 +13,6 @@ public class FachadaPersistencia {
    }
    
    public void guardar(String tipo, Object objeto){
-      FabricaIntermediarios.getInstancia().getIntermediario(tipo).guardar(objeto);        
-      
+      FabricaIntermediarios.getInstancia().getIntermediario(tipo).guardar(objeto);     
    }
 }
