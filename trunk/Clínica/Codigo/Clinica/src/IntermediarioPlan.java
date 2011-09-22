@@ -8,14 +8,16 @@ class IntermediarioPlan implements IntermediarioPersistencia {
    @Override
    public Object buscar(String valor) {
       PlanAgente p = new PlanAgente();
-      String consulta = "SELECT * FROM plan WHERE codigo = "+valor;
+      String consulta = "SELECT * FROM plan WHERE oidplan = "+"'"+valor+"'";
+      System.out.println(consulta);
       ResultSet rs;
       
       try {
          rs = FabricaConexiones.getInstancia().getConexion().createStatement().executeQuery(consulta);
          while(rs.next()){
-            p.setCodigoPlan(rs.getInt("codigo"));
-            p.setNombrePlan(rs.getString("nombre"));
+            p.setCodigoPlan(rs.getInt("codigo_plan"));
+            p.setNombrePlan(rs.getString("descripcion"));
+            
          }
       } catch (SQLException ex) {
          System.err.println("ERROR:"+ex.getMessage());

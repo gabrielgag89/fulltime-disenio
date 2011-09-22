@@ -14,9 +14,9 @@ public class IntermediarioPaciente implements IntermediarioPersistencia{
          p = new PacienteAgente();
          while(rs.next()){
             p.setDni(rs.getString("dni"));
-            p.setNombre(rs.getString("nombre"));
+            p.setNombre(rs.getString("nombre_paciente"));
             p.setTel(rs.getString("telefono"));
-            p.setOidPlan(rs.getString("oidPlan"));
+            p.setOidPlan(rs.getString("oidplan"));
          }
       } catch (SQLException ex) {
          System.err.println("ERROR:"+ex.getMessage());
