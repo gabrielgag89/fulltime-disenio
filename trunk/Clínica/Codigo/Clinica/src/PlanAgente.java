@@ -1,6 +1,13 @@
+
+
 public class PlanAgente implements Plan {
+   
    private PlanImplementacion implementacion;
-    
+   
+   public PlanAgente(){
+      this.implementacion = new PlanImplementacion();
+   }
+   
    @Override
    public int getCodigoPlan() {
       return this.implementacion.getCodigoPlan();
