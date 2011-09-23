@@ -5,7 +5,7 @@ public class IntermediarioPaciente implements IntermediarioPersistencia{
    @Override
    public Object buscar(String valor) {
       PacienteAgente p = null;
-      String consulta = "SELECT * FROM paciente WHERE oidpaciente = '" + valor + "'";
+      String consulta = "SELECT * FROM paciente WHERE dni = '" + valor + "'";
       System.out.println(consulta);
       ResultSet rs;
       
