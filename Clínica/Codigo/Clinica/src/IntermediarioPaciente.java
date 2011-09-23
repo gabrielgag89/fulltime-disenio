@@ -5,13 +5,15 @@ public class IntermediarioPaciente implements IntermediarioPersistencia{
    @Override
    public Object buscar(String valor) {
       PacienteAgente p = null;
-      String consulta = "SELECT * FROM paciente WHERE dni = '"+valor+"'";
+      String consulta = "SELECT * FROM paciente WHERE oidpaciente = '" + valor + "'";
       System.out.println(consulta);
       ResultSet rs;
       
       try {
          rs = FabricaConexiones.getInstancia().getConexion().createStatement().executeQuery(consulta);
+         
          p = new PacienteAgente();
+         
          while(rs.next()){
             p.setDni(rs.getString("dni"));
             p.setNombre(rs.getString("nombre_paciente"));
@@ -19,10 +21,11 @@ public class IntermediarioPaciente implements IntermediarioPersistencia{
             p.setOidPlan(rs.getString("oidplan"));
          }
       } catch (SQLException ex) {
-         System.err.println("ERROR:"+ex.getMessage());
+         System.err.println("ERROR:" +ex.getMessage());
       } catch (ClassNotFoundException e){
-         System.err.println("ERROR:"+e.getMessage());
-      }     
+         System.err.println("ERROR:" +e.getMessage());
+      }
+      
       return p;
    }
 
