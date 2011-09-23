@@ -3,10 +3,12 @@ import java.sql.DriverManager;
 import com.mysql.jdbc.Connection;
 
 public class FabricaConexiones {
-   private String usuario = "root";
-   private String contrasenia = "root";
+   private String usuario = "fulltime";
+   private String contrasenia = "disenio";
    private String db = "clinica";
-   private String url = "jdbc:mysql://localhost:3306/"+db;
+   private static String host = "localhost";
+   private String url = "jdbc:mysql://";
+   private static String driver = "com.mysql.jdbc.Driver";
    private static Connection con = null;
    private static FabricaConexiones instancia = null;
    
@@ -19,10 +21,10 @@ public class FabricaConexiones {
    public Connection getConexion() throws ClassNotFoundException{
       if(con == null){
          try {
-            Class.forName("org.gjt.mm.mysql.Driver");
-            con = (Connection) DriverManager.getConnection(url, usuario, contrasenia);
+            Class.forName(driver);
+            con = (Connection) DriverManager.getConnection(url + host + "/" + db, usuario, contrasenia);
             if(con != null)
-               System.out.println("conexion a la base de datos "+ url+" :OK..");
+               System.out.println("Conexion a la base de datos " + url + host + "/" + db + " :OK..");
             else
                System.out.println("Error al conectarse con la base de datos");
          }
