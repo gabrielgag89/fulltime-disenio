@@ -15,13 +15,13 @@ class IntermediarioPlan implements IntermediarioPersistencia {
       try {
          rs = FabricaConexiones.getInstancia().getConexion().createStatement().executeQuery(consulta);
          
-         p = new PlanAgente();
-         
-         while(rs.next()){
+         if(rs.next()){
+            p = new PlanAgente();
             p.setCodigoPlan(rs.getInt("codigo_plan"));
             p.setNombrePlan(rs.getString("descripcion"));
             
          }
+         FabricaConexiones.getInstancia().cerrarConexion();
       } catch (SQLException ex) {
          System.err.println("ERROR:"+ex.getMessage());
       } catch (ClassNotFoundException ex) {

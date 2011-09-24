@@ -84,8 +84,11 @@ public class IUInternarPaciente extends javax.swing.JFrame {
       try {
          DTOPaciente dto = controlador.buscarPaciente(dni.getText());
          //tenemos que mostrar en pantalla
-         JOptionPane.showMessageDialog(rootPane, "Dni: "+dto.getDni()+"\n"+"Nombre: "
-                 +dto.getNombre()+"\n"+"Telefono: "+dto.getTel()+"\n"+"Plan: "+dto.getNombrePlan());
+         if(dto != null)
+             JOptionPane.showMessageDialog(rootPane, "Dni: "+dto.getDni()+"\n"+"Nombre: "
+                     +dto.getNombre()+"\n"+"Telefono: "+dto.getTel()+"\n"+"Plan: "+dto.getNombrePlan());
+         else
+             JOptionPane.showMessageDialog(rootPane, "No encontrado");
       } catch (SQLException ex) {
          
       }

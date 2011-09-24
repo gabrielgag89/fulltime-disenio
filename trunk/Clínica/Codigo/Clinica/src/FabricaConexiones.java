@@ -3,11 +3,11 @@ import java.sql.DriverManager;
 import com.mysql.jdbc.Connection;
 
 public class FabricaConexiones {
-   private String usuario = "fulltime";
-   private String contrasenia = "disenio";
-   private String db = "clinica";
+   private static String usuario = "fulltime";
+   private static String contrasenia = "disenio";
+   private static String db = "clinica";
    private static String host = "localhost";
-   private String url = "jdbc:mysql://";
+   private static String url = "jdbc:mysql://";
    private static String driver = "com.mysql.jdbc.Driver";
    private static Connection con = null;
    private static FabricaConexiones instancia = null;
@@ -35,5 +35,9 @@ public class FabricaConexiones {
          System.out.println("Retorno la conexion ya creada..");
       
       return con;
+   }
+   
+   public void cerrarConexion(){
+       con = null;
    }
 }
