@@ -2,14 +2,15 @@ import java.sql.SQLException;
 
 public class ExpertoInternarPaciente {
    public DTOPaciente buscarPaciente(String dni) throws SQLException {
-      DTOPaciente paciente = new DTOPaciente();
+      DTOPaciente paciente = null;
       Paciente p = (Paciente) FachadaPersistencia.getInstancia().buscar("Paciente", dni);
-      
-      //lleno el dto con los datos del paciente
-      paciente.setDni(p.getDni());             
-      paciente.setNombre(p.getNombre());
-      paciente.setTel(p.getTel());
-      paciente.setNombrePlan(p.getPlan().getNombrePlan());
+      if(p != null){
+          paciente = new DTOPaciente();
+          paciente.setDni(p.getDni());             
+          paciente.setNombre(p.getNombre());
+          paciente.setTel(p.getTel());
+          paciente.setNombrePlan(p.getPlan().getNombrePlan());
+      } 
       
       return paciente;        
    }

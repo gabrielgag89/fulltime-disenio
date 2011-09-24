@@ -11,20 +11,21 @@ public class IntermediarioPaciente implements IntermediarioPersistencia{
       
       try {
          rs = FabricaConexiones.getInstancia().getConexion().createStatement().executeQuery(consulta);
+         if(rs.next()){
+            p = new PacienteAgente();
          
-         p = new PacienteAgente();
-         
-         while(rs.next()){
             p.setDni(rs.getString("dni"));
             p.setNombre(rs.getString("nombre_paciente"));
             p.setTel(rs.getString("telefono"));
             p.setOidPlan(rs.getString("oidplan"));
          }
+         FabricaConexiones.getInstancia().cerrarConexion();
       } catch (SQLException ex) {
          System.err.println("ERROR:" +ex.getMessage());
       } catch (ClassNotFoundException e){
          System.err.println("ERROR:" +e.getMessage());
-      }
+      }     
+      
       
       return p;
    }
