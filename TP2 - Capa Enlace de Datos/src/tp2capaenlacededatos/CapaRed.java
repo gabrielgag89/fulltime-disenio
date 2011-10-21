@@ -2,6 +2,8 @@
 // 
 package tp2capaenlacededatos;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author gabriel
@@ -114,12 +116,8 @@ public class CapaRed extends javax.swing.JFrame {
        
        paquete = msj.toCharArray();
        CapaEnlace.getInstancia().enviarPaquetes(paquete);
-       CapaEnlace.
+       JOptionPane.showMessageDialog(rootPane, "Mensaje enviado:"+msj);
        
-      
-       
-       
-       /// realizar el entramado y envio
    }//GEN-LAST:event_buttonEnviarActionPerformed
 
    /**
