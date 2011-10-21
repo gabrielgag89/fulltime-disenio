@@ -36,9 +36,9 @@ public class CapaRed extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         comboBoxRxTx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Emisor", "Receptor" }));
-        comboBoxRxTx.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                comboBoxRxTxPropertyChange(evt);
+        comboBoxRxTx.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboBoxRxTxItemStateChanged(evt);
             }
         });
 
@@ -91,20 +91,6 @@ public class CapaRed extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-   private void comboBoxRxTxPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_comboBoxRxTxPropertyChange
-       int tipo; //0 emisor  o 1 receptor       
-       tipo = comboBoxRxTx.getSelectedIndex();
-       
-       if(tipo == 1){
-           textEnvioMsj.setEnabled(false);
-           buttonEnviar.setEnabled(false);
-       }else {
-           textEnvioMsj.setEnabled(true);
-           buttonEnviar.setEnabled(true);
-           textEnvioMsj.requestFocus();
-       }
-   }//GEN-LAST:event_comboBoxRxTxPropertyChange
-
    private void buttonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEnviarActionPerformed
        String msj;
        char []paquete;
@@ -119,6 +105,20 @@ public class CapaRed extends javax.swing.JFrame {
        JOptionPane.showMessageDialog(rootPane, "Mensaje enviado:"+msj);
        
    }//GEN-LAST:event_buttonEnviarActionPerformed
+
+   private void comboBoxRxTxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboBoxRxTxItemStateChanged
+       int tipo; //0 emisor  o 1 receptor       
+       tipo = comboBoxRxTx.getSelectedIndex();
+       
+       if(tipo == 1){
+           textEnvioMsj.setEnabled(false);
+           buttonEnviar.setEnabled(false);
+       }else {
+           textEnvioMsj.setEnabled(true);
+           buttonEnviar.setEnabled(true);
+           textEnvioMsj.requestFocus();
+       }
+   }//GEN-LAST:event_comboBoxRxTxItemStateChanged
 
    /**
     * Método principal de la interfaz.

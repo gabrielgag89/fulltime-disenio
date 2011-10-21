@@ -40,12 +40,16 @@ public class Puerto {
         return puertoSerie;
     }
     
-    public static Com getPuertoCom() throws Exception {        
+    public static Com getPuertoCom(){        
         if(puertoCom == null){
-            Puerto.getPuertoSerie().getFreeSerialPort();
-            Puerto.getParametros().setPort(puertoLibre);
-            Puerto.getParametros().setBaudRate(baudios);
-            puertoCom = new Com(parametros);
+            try {
+                Puerto.getPuertoSerie().getFreeSerialPort();
+                Puerto.getParametros().setPort(puertoLibre);
+                Puerto.getParametros().setBaudRate(baudios);
+                puertoCom = new Com(parametros);
+            } catch (Exception ex) {
+                Logger.getLogger(Puerto.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
         return puertoCom;
