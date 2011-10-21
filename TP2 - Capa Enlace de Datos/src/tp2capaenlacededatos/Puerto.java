@@ -12,7 +12,7 @@ public class Puerto {
     
     private static SerialPort puertoSerie;
     private final String puertoLibre = "COM1";
-    private static Baud baudios = ;
+    private Baud baudios = Baud._1200;//a 1200 baudios por ahora
     private static Parameters parametros;
     
     
@@ -37,7 +37,7 @@ public class Puerto {
     public void configurarParametros(){
         
         Puerto.getParametros().setPort(puertoLibre);
-        Puerto.getParametros().setBaudRate(Baud._1200);
+        Puerto.getParametros().setBaudRate(baudios);
         
     }        
     
