@@ -91,4 +91,8 @@ public class Trama {
    public void setByteFin(char byteFin) {
       this.byteFin = byteFin;
    }
+   
+   public String tramaToString(){
+      return ("" + byteInicio + numSec + msj_ack + dato + sumVerif + byteFin);
+   }
 } // fin de la clase Trama

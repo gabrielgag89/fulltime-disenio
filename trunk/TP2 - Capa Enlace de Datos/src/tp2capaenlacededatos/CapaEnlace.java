@@ -21,8 +21,10 @@ public class CapaEnlace {
    }
    
    public void enviarPaquetes(char[] paquetes){
-      for(char paquete : paquetes){
+      int numSec = 0;
          
+      for(char paquete : paquetes){
+         Trama trama = new Trama();
       }
    }
    
