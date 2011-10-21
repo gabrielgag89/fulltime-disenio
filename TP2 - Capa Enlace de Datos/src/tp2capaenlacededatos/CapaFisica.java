@@ -18,11 +18,15 @@ public class CapaFisica {
        return capaFisica;
     }
     
-    public void enviarTrama(Trama trama){
-       
+    public void enviarTrama(Trama trama) throws Exception{
+       String mensaje = trama.toString();
+       Puerto.getPuertoCom().sendArrayChar(mensaje.toCharArray());
     }
     
     public void recibirTrama(Trama trama){
+       Trama t = new Trama();
+       String paquete = new String();
+       String ck = new String();
        
     }
 }
