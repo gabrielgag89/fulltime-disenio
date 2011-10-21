@@ -20,7 +20,7 @@ public class CapaEnlace {
       return capaEnlace;
    }
    
-   public void enviarPaquete(Trama trama){
+   public void enviarPaquetes(char[] paquetes){
       
    }
    
