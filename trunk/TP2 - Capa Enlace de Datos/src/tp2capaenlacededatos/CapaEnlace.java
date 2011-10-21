@@ -36,8 +36,15 @@ public class CapaEnlace {
          trama.setSumVerif(calcSumVerif(trama));
          
          tramas[numSec] = trama;
-         
-         CapaFisica.getinstancia().enviarTrama(trama);
+         while(true){
+            CapaFisica.getinstancia().enviarTrama(trama);
+            
+            int intentos = 3;
+            
+            if(recibos[numSec] == false)
+               
+            
+         }
          
          numSec++;
       }
