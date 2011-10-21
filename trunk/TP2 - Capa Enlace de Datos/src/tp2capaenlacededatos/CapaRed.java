@@ -41,6 +41,11 @@ public class CapaRed extends javax.swing.JFrame {
         });
 
         buttonEnviar.setText("Enviar");
+        buttonEnviar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonEnviarActionPerformed(evt);
+            }
+        });
 
         textAreaMsjRec.setColumns(20);
         textAreaMsjRec.setRows(5);
@@ -85,8 +90,9 @@ public class CapaRed extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
    private void comboBoxRxTxPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_comboBoxRxTxPropertyChange
-       int tipo; //0 emisor  o 1 receptor
+       int tipo; //0 emisor  o 1 receptor       
        tipo = comboBoxRxTx.getSelectedIndex();
+       
        if(tipo == 1){
            textEnvioMsj.setEnabled(false);
            buttonEnviar.setEnabled(false);
@@ -96,6 +102,16 @@ public class CapaRed extends javax.swing.JFrame {
            textEnvioMsj.requestFocus();
        }
    }//GEN-LAST:event_comboBoxRxTxPropertyChange
+
+   private void buttonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEnviarActionPerformed
+       String msj;
+       if(textEnvioMsj.getText().isEmpty())
+           msj = "mensaje por defecto";
+       else
+           msj = textEnvioMsj.getText();
+       
+       /// realizar el entramado y envio
+   }//GEN-LAST:event_buttonEnviarActionPerformed
 
    /**
     * Método principal de la interfaz.

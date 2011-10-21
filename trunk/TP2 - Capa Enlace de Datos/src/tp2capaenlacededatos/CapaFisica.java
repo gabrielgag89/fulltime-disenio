@@ -10,4 +10,6 @@ package tp2capaenlacededatos;
  */
 public class CapaFisica {
     
+        
+    
 }
