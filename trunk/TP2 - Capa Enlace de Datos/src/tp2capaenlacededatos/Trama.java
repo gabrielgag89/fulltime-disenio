@@ -37,11 +37,10 @@ public class Trama {
       
    }
 
-   public Trama(char numSec, char msj_ack, char dato, char sumVerif){
+   public Trama(char numSec, char msj_ack, char dato){
       this.numSec = numSec;
       this.msj_ack = msj_ack;
       this.dato = dato;
-      this.sumVerif = sumVerif;
    }
    
    public char getByteInicio() {

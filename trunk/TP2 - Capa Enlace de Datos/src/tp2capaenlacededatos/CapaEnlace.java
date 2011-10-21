@@ -24,7 +24,8 @@ public class CapaEnlace {
       int numSec = 0;
          
       for(char paquete : paquetes){
-         Trama trama = new Trama();
+         Trama trama = new Trama((char) numSec, CapaEnlace.esMsj, paquete);
+         trama.setSumVerif(calcSumVerif(trama));
       }
    }
    
