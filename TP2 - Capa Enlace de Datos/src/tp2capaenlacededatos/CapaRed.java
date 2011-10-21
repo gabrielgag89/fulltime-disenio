@@ -105,10 +105,19 @@ public class CapaRed extends javax.swing.JFrame {
 
    private void buttonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEnviarActionPerformed
        String msj;
+       char []paquete;
+       
        if(textEnvioMsj.getText().isEmpty())
            msj = "mensaje por defecto";
        else
            msj = textEnvioMsj.getText();
+       
+       paquete = msj.toCharArray();
+       CapaEnlace.getInstancia().enviarPaquetes(paquete);
+       CapaEnlace.
+       
+      
+       
        
        /// realizar el entramado y envio
    }//GEN-LAST:event_buttonEnviarActionPerformed
