@@ -11,10 +11,25 @@ import java.util.logging.Logger;
 
 public class Puerto {
     
+    /**
+     * puerto de serie, pedimos el que esté libre
+     */
     private static SerialPort puertoSerie;
+    /**
+     * nombre del puerto
+     */
     private final static String puertoLibre = "COM1";
+    /**
+     * velocidas de comunicacion en baudios 
+     */
     private static Baud baudios = Baud._1200;//a 1200 baudios por ahora
+    /**
+     * parametros del puerto
+     */
     private static Parameters parametros;
+    /**
+     * El puerto que se retorna para enviar
+     */
     private static Com puertoCom;
     
     
