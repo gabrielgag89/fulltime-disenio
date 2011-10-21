@@ -9,7 +9,20 @@ package tp2capaenlacededatos;
  * @author Cristian
  */
 public class CapaFisica {
+    private static CapaFisica capaFisica;
     
-        
+    public static CapaFisica getinstancia(){
+       if(capaFisica == null)
+          capaFisica = new CapaFisica();
+       
+       return capaFisica;
+    }
     
+    public void enviarTrama(Trama trama){
+       
+    }
+    
+    public void recibirTrama(Trama trama){
+       
+    }
 }
