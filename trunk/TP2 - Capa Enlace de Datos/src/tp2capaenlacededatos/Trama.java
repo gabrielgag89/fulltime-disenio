@@ -31,7 +31,7 @@ public class Trama {
    /**
     * Bandera de fin.
     */
-   private char byteFin = '\n';
+   private char byteFin = '\t';
    
    public Trama(){
       
