@@ -4,6 +4,9 @@
  */
 package tp2capaenlacededatos;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Cristian
@@ -18,9 +21,13 @@ public class CapaFisica {
        return capaFisica;
     }
     
-    public void enviarTrama(Trama trama) throws Exception{
+    public void enviarTrama(Trama trama){
        String mensaje = trama.tramaToString();
-       Puerto.getPuertoCom().sendArrayChar(mensaje.toCharArray());
+        try {
+            Puerto.getPuertoCom().sendArrayChar(mensaje.toCharArray());
+        } catch (Exception ex) {
+            Logger.getLogger(CapaFisica.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public void recibirTrama(Trama trama){
