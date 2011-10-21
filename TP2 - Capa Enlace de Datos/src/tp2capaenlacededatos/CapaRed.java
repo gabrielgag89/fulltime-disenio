@@ -15,6 +15,7 @@ public class CapaRed extends javax.swing.JFrame {
     */
    public CapaRed() {
       initComponents();
+      textAreaMsjRec.setEnabled(false);
    } // fin de CapaRed
 
    /** This method is called from within the constructor to
