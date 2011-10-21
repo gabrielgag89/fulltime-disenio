@@ -19,14 +19,11 @@ public class CapaFisica {
     }
     
     public void enviarTrama(Trama trama) throws Exception{
-       String mensaje = trama.toString();
+       String mensaje = trama.tramaToString();
        Puerto.getPuertoCom().sendArrayChar(mensaje.toCharArray());
     }
     
     public void recibirTrama(Trama trama){
-       Trama t = new Trama();
-       String paquete = new String();
-       String ck = new String();
-       
+        CapaEnlace.getInstancia().desdeFisica(trama);
     }
 }
