@@ -21,14 +21,16 @@ public class CapaEnlace {
    }
    
    public void enviarPaquetes(char[] paquetes){
-      
+      for(char paquete : paquetes){
+         
+      }
    }
    
    public void desdeFisica(Trama trama){
       
    }
    
-   public char calcSumVerif(Trama t){
+   private char calcSumVerif(Trama t){
       long suma = t.getByteInicio() + t.getNumSec() + t.getDato() + t.getByteFin();
       
       return (char) suma;
