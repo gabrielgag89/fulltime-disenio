@@ -5,52 +5,38 @@ package persistencia.proxy;
  * @version 1.0
  * @created 22-oct-2011 07:16:28 p.m.
  */
-public class CamaImpl {
+public class CamaImpl implements Cama{
+   private int numCama;
+   private Habitacion habitacion;
+   private EstadoCama estadoCama;
 
-	private int n�Cama;
-	public Habitacion m_Habitacion;
-	public EstadoCama m_EstadoCama;
+   @Override
+   public int getNumCama() {
+      return numCama;
+   }
 
-	public Cama(){
+   @Override
+   public void setNumCama(int numCama) {
+      this.numCama = numCama;
+   }
 
-	}
+   @Override
+   public Habitacion getHabitacion() {
+      return habitacion;
+   }
 
-	public void finalize() throws Throwable {
+   @Override
+   public void setHabitacion(Habitacion habitacion) {
+      this.habitacion = habitacion;
+   }
 
-	}
-	public int getN�Cama(){
-		return N�Cama;
-	}
+   @Override
+   public EstadoCama getEstadoCama() {
+      return estadoCama;
+   }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setN�Cama(int newVal){
-		N�Cama = newVal;
-	}
-
-	public EstadoCama getEstadoCama(){
-		return null;
-	}
-
-	/**
-	 * 
-	 * @param estadoCama
-	 */
-	public void setEstadoCama(EstadoCama estadoCama){
-
-	}
-
-	public Habitacion getHabitacion(){
-		return null;
-	}
-
-	/**
-	 * 
-	 * @param h
-	 */
-	public setHabitacion(Habitacion h){
-
-	}
+   @Override
+   public void setEstadoCama(EstadoCama estadoCama) {
+      this.estadoCama = estadoCama;
+   }
 }//end Cama
