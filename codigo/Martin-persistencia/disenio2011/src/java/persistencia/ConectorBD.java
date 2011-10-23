@@ -1,21 +1,20 @@
 package persistencia;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class ConectorBD {
-        private static String bd = "disenio";
+        private static String bd = "clinica";
         private static String login = "root";
         private static String password = "";
-        private static String host = "127.0.0.1";
+        private static String host = "localhost";
         private static String url_bd = "jdbc:mysql://";
         private static String driver = "com.mysql.jdbc.Driver";
         private static Statement instruccion;
 	private static ConectorBD instancia;
 	private static Connection conexionBD = null;
-
-	public ConectorBD(){
-
-	}
 
 	public static ConectorBD getInstance(){
             if (instancia == null) {
@@ -26,7 +25,7 @@ public class ConectorBD {
 
 	public synchronized static void cerrarConexionBD(){
             conexionBD = null;
-            instancia = null;
+            //instancia = null;
 	}
 
         public synchronized void establecerConexion() throws Exception {

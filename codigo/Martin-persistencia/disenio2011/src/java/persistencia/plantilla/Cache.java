@@ -5,37 +5,30 @@ import java.util.HashMap;
 public class Cache {
 
 	private static Cache instancia;
-	private HashMap objetos = new HashMap();
+	private HashMap objetosPersistentes = new HashMap();
 
-	public Cache(){
-
-	}
-
-	public static Cache getInstance(){
+        public static Cache getInstance(){
             if (instancia == null) {
                 instancia = new Cache();
             }
             return instancia;
 	}
 
-	public void agregarEntidad(String id, Object objeto){
-		 objetos.put(id.toString(), objeto);
+	public void agregar(String id, Object objeto){
+		 objetosPersistentes.put(id.toString(), objeto);
 	}
 
-	public boolean existe(String id) {
-            return objetos.containsKey(id.toString());
+	public void quitar(String id) {
+            objetosPersistentes.remove(id.toString());
 	}
 
-	public void quitarEntidad(String id) {
-            objetos.remove(id.toString());
-	}
-
-        public Object enCache(String id){
-            if (existe(id)) {
-                return objetos.get(id.toString());
+        public boolean enCache(String id){
+            if (objetosPersistentes.containsKey(id.toString())) {
+               // return objetosPersistentes.get(id.toString());
+                 return true;
             }
             else {
-                return null;
+                return false;
             }
 	}
 }
