@@ -18,6 +18,7 @@ public class ObjetoPersistente {
     * Indica si el objeto es nuevo o se ha recuperado.
     */
    protected boolean nuevo;
+   protected boolean limpio;
 
    /**
     * Genera y devuelve un identificador de objeto.
@@ -59,4 +60,12 @@ public class ObjetoPersistente {
    public void setNuevo(boolean nuevo){
       this.nuevo = nuevo;
    } // fin del método setNuevo
+
+    public boolean getLimpio(){
+      return limpio;
+   }
+
+   public void setLimpio(boolean limpio){
+      this.limpio = limpio;
+   }
 } // fin de la clase ObjetoPersistente
