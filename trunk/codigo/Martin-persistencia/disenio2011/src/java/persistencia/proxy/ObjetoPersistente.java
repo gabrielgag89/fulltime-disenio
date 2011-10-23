@@ -8,10 +8,6 @@ public class ObjetoPersistente {
 	protected boolean nuevo;
         protected boolean limpio;
 
-	public ObjetoPersistente(){
-
-	}
-
         public String generarOid(){
 		return UUID.randomUUID().toString();
 	}

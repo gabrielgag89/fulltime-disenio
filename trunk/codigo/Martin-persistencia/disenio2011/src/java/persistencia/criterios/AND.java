@@ -2,10 +2,6 @@ package persistencia.criterios;
 
 public class AND extends CriterioCompuesto {
 
-	public AND(){
-
-	}
-
     @Override
         public String getStringCriterio() {
             String registro = null;

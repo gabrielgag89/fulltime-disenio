@@ -6,14 +6,11 @@ import persistencia.criterios.Criterio;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 import java.sql.SQLException;
-import java.util.Vector;
+import java.util.List;
 
 public class FachadaPersistenciaInterna {
-	private static FachadaPersistenciaInterna instancia;
 
-	public FachadaPersistenciaInterna(){
-
-	}
+    private static FachadaPersistenciaInterna instancia;
 
 	public static FachadaPersistenciaInterna getInstance(){
             if (instancia == null) {
@@ -22,7 +19,7 @@ public class FachadaPersistenciaInterna {
             return instancia;
 	}
 
-	public static Connection iniciarTransaccion() throws SQLException, Exception{
+	public static Connection iniTX() throws SQLException, Exception{
             ConectorBD.getInstance().establecerConexion();
             Connection con = (Connection) ConectorBD.getConexion();
             Statement stmt = (Statement) con.createStatement();
@@ -30,7 +27,7 @@ public class FachadaPersistenciaInterna {
             return con;
 	}
 
-	public static void finalizarTransaccion() throws SQLException{
+	public static void finTX() throws SQLException{
             Connection con = (Connection) ConectorBD.getConexion();
 	    Statement stmt = (Statement) con.createStatement();
 	    stmt.execute("COMMIT");
@@ -41,27 +38,32 @@ public class FachadaPersistenciaInterna {
                 return FabricaDeCriterios.getInstance().getCriterio(atributo,operador,valor);
         }
 
-        public Criterio and(Vector c) {
+        public Criterio and(List c) {
                 return FabricaDeCriterios.getInstance().and(c);
         }
 
-	public Criterio and(Criterio c1,Criterio c2){
-		return  FabricaDeCriterios.getInstance().and(c1,c2);
-	}
+        public List buscar(String clase, Criterio cc){
+                return FabricaDeIntermediarios.getInstance().getIntermediario(clase).buscar(cc);
+        }
 
-        public Vector getPorCriterio(String object, Criterio cc){
-                return FabricaDeIntermediarios.getInstance().getIntermediario(object).getPorCriterio(cc);
+         public Object buscar(String clase,String oid){
+                return FabricaDeIntermediarios.getInstance().getIntermediario(clase).buscar(oid);
         }
 
         public Object nuevaEntidad(String entidad){
                 return FabricaDeIntermediarios.getInstance().getIntermediario(entidad).nuevaEntidad();
         }
 
-        public void persistirEntidad(String entidad, Object object){
-                FabricaDeIntermediarios.getInstance().getIntermediario(entidad).persistirEntidad(object);
+        public void guardar(String entidad, Object object){
+                FabricaDeIntermediarios.getInstance().getIntermediario(entidad).guardar(object);
         }
 
-        public Vector getColeccion(String object) {
+        public void guardar(Object object){
+                FabricaDeIntermediarios.getInstance().getIntermediario(object.getClass().getSimpleName()).guardar(object);
+        }
+        
+/*
+        public List getColeccion(String object) {
                 return FabricaDeIntermediarios.getInstance().getIntermediario(object).getColeccion();
         }
 
@@ -72,4 +74,6 @@ public class FachadaPersistenciaInterna {
         public Object obtenerEntidad(String entidad, String idForaneo, String ido){
                 return FabricaDeIntermediarios.getInstance().getIntermediario(entidad).obtenerEntidad(idForaneo, ido);
         }
+ */
+        
 }

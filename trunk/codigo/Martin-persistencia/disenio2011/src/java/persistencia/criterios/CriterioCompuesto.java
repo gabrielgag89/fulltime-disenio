@@ -1,22 +1,18 @@
 package persistencia.criterios;
 
-import java.util.Vector;
+import java.util.List;
 
 public class CriterioCompuesto implements Criterio{
 
-        protected Vector CS= new Vector();
+        protected List CS;
 
-	public CriterioCompuesto(){
-
-	}
-
-        public Criterio setCriterio(Vector c) {
+        public Criterio setCriterio(List c) {
             CS = c;
             return (Criterio) this;
         }
 
         public void setCriterio(Criterio c) {
-            CS.addElement(c);
+            CS.add(c);
         }
         
         public Criterio getCriterio(int index) {
@@ -28,6 +24,6 @@ public class CriterioCompuesto implements Criterio{
         }
 
         public String getStringCriterio() {
-            throw new UnsupportedOperationException("Not supported yet.");
+            throw new UnsupportedOperationException("No es soportado en este nivel");
         }
 }
