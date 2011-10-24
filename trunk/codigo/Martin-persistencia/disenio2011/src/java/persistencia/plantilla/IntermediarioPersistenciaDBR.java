@@ -9,6 +9,29 @@ import persistencia.proxy.ObjetoPersistente;
 
 public abstract class IntermediarioPersistenciaDBR extends IntermediarioPersistencia{
 
+    	public Object materializar(String oid){
+            try {
+                PreparedStatement psm = ConectorBD.getConexion().prepareStatement(SQLSelect(oid));
+                ResultSet rs = ejecutarSQL(psm);
+                Object buscado = (Object) convertirAObjeto(rs);
+                return buscado;
+            } catch (SQLException ex) {
+                System.out.println("IntermediarioPersistenciaDBR-materializar(String oid)-SQLException: "+ex.getMessage());
+                return null;
+            }
+	}
+
+ 	public List materializar(Criterio criterio){
+            try {
+                PreparedStatement psm = ConectorBD.getConexion().prepareStatement(SQLSelect(criterio));
+                ResultSet rs = ejecutarSQL(psm);
+                return (List)convertirAObjeto(rs);
+            } catch (SQLException ex) {
+                System.out.println("IntermediarioPersistenciaDBR-materializar(Criterio criterio)-SQLException: "+ex.getMessage());
+                return null;
+            }
+	}
+
         public void desmaterializar(ObjetoPersistente objeto){
 		if ( objeto.getNuevo() &&  !objeto.getLimpio()) insertar(objeto);
 		else if(!objeto.getNuevo() &&  !objeto.getLimpio()) actualizar(objeto);
@@ -41,30 +64,7 @@ public abstract class IntermediarioPersistenciaDBR extends IntermediarioPersiste
                 return null;
             }
 	}
-
-	public Object materializar(String oid){
-            try {
-                PreparedStatement psm = ConectorBD.getConexion().prepareStatement(SQLSelect(oid));
-                ResultSet rs = ejecutarSQL(psm);
-                Object buscado = (Object) convertirAObjeto(rs);
-                return buscado;
-            } catch (SQLException ex) {
-                System.out.println("IntermediarioPersistenciaDBR-materializar(String id)-SQLException: "+ex.getMessage());
-                return null;
-            }
-	}
-
- 	public List materializar(Criterio criterio){
-            try {
-                PreparedStatement psm = ConectorBD.getConexion().prepareStatement(SQLSelect(criterio));
-                ResultSet rs = ejecutarSQL(psm);
-                return (List)convertirAObjeto(rs);
-            } catch (SQLException ex) {
-                System.out.println("IntermediarioPersistenciaDBR-materializar(Criterio criterio)-SQLException: "+ex.getMessage());
-                return null;
-            }
-	}
-        
+     
 /*
 	public Object materializar(String idForaneo,String id){
             try {

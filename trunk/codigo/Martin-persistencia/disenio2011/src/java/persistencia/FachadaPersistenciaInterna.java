@@ -54,15 +54,16 @@ public class FachadaPersistenciaInterna {
                 return FabricaDeIntermediarios.getInstance().getIntermediario(entidad).nuevaEntidad();
         }
 
-        public void guardar(String entidad, Object object){
-                FabricaDeIntermediarios.getInstance().getIntermediario(entidad).guardar(object);
-        }
-
         public void guardar(Object object){
                 FabricaDeIntermediarios.getInstance().getIntermediario(object.getClass().getSimpleName()).guardar(object);
         }
         
 /*
+
+        public void guardar(String entidad, Object object){
+                FabricaDeIntermediarios.getInstance().getIntermediario(entidad).guardar(object);
+        }
+ *
         public List getColeccion(String object) {
                 return FabricaDeIntermediarios.getInstance().getIntermediario(object).getColeccion();
         }

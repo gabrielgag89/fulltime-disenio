@@ -30,15 +30,15 @@ public class FachadaPersistencia {
 		return FachadaPersistenciaInterna.getInstance().nuevaEntidad(entidad);
 	}
 
-	public void guardar(String entidad , Object object){
-                FachadaPersistenciaInterna.getInstance().guardar(entidad,object);
-	}
-
 	public void guardar(Object object){
              System.out.print("FP");
                 FachadaPersistenciaInterna.getInstance().guardar(object);
 	}
 /*
+	public void guardar(String entidad , Object object){
+                FachadaPersistenciaInterna.getInstance().guardar(entidad,object);
+	}
+ *
         public List getColeccion(String clase) {
                 return FachadaPersistenciaInterna.getInstance().getColeccion(clase);
         }
