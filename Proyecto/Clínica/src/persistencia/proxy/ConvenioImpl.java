@@ -66,4 +66,4 @@ public class ConvenioImpl implements Convenio{
    public void setCoseguro(Coseguro coseguro) {
       this.coseguro = coseguro;
    }
-} // fin de la clase Convenio
+} // fin de la clase ConvenioImpl
