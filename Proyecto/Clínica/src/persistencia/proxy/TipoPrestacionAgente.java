@@ -1,46 +1,39 @@
-
 package persistencia.proxy;
 
+public class TipoPrestacionAgente extends ObjetoPersistente implements TipoPrestacion{
+   private TipoPrestacionImpl impl;
 
-public class TipoPrestacionAgente implements TipoPrestacion extends ObjetoPersistente {
-    
-    private TipoPrestacionImplementacion implementacion;
+   public void setImplementacion(TipoPrestacionImpl impl) {
+      this.impl = impl;
+   }
 
-   
-    
-    public void setImplementacion(TipoPrestacionImplementacion implementacion) {
-        this.implementacion = implementacion;
-    }  
-    
-    
-    @Override
-    public int getCodigoTipoPrestacion() {
-        return this.implementacion.getCodigoTipoPrestacion();
-    }
+   @Override
+   public int getCodigoTipoPrestacion() {
+      return this.impl.getCodigoTipoPrestacion();
+   }
 
-    @Override
-    public void setCodigoTipoPrestacion(int codigoTipoPrestacion) {
-        this.implementacion.setCodigoTipoPrestacion(codigoTipoPrestacion);
-    }
+   @Override
+   public void setCodigoTipoPrestacion(int codigoTipoPrestacion) {
+      this.impl.setCodigoTipoPrestacion(codigoTipoPrestacion);
+   }
 
-    @Override
-    public TipoHabitacion getTipoHabitacion() {
-        return this.implementacion.getTipoHabitacion();
-    }
+   @Override
+   public TipoHabitacion getTipoHabitacion() {
+      return this.impl.getTipoHabitacion();
+   }
 
-    @Override
-    public void setTipoHabitacion(TipoHabitacion mi_TipoHabitacion) {
-        this.implementacion.setTipoHabitacion(mi_TipoHabitacion);
-    }
+   @Override
+   public void setTipoHabitacion(TipoHabitacion mi_TipoHabitacion) {
+      this.impl.setTipoHabitacion(mi_TipoHabitacion);
+   }
 
-    @Override
-    public String getNombreTipoPrestacion() {
-        return this.implementacion.getNombreTipoPrestacion();
-    }
+   @Override
+   public String getNombreTipoPrestacion() {
+      return this.impl.getNombreTipoPrestacion();
+   }
 
-    @Override
-    public void setNombreTipoPrestacion(String nombreTipoPrestacion) {
-        this.implementacion.getNombreTipoPrestacion();
-    }
-   
+   @Override
+   public void setNombreTipoPrestacion(String nombreTipoPrestacion) {
+      this.impl.getNombreTipoPrestacion();
+   }
 }
