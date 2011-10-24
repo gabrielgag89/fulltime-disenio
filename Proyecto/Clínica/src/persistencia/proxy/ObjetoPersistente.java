@@ -13,7 +13,7 @@ public class ObjetoPersistente {
    /**
     * Identificador del objeto.
     */
-   protected String ido;
+   protected String oid;
    /**
     * Indica si el objeto es nuevo o se ha recuperado.
     */
@@ -33,15 +33,16 @@ public class ObjetoPersistente {
     * @return el identificador del objeto
     */
    public String getOid(){
-      return ido;
+      return oid;
    } // fin del método getOid
 
    /**
     * Establece el identificador del objeto.
-    * @param id identificador del objeto a establecer
+    * @param oid identificador del objeto a establecer
     */
-   public void setOid(String ido){
-      this.ido = ido;
+   public void setOid(String oid){
+      this.oid = oid
+              ;
    } // fin del método setOid
 
    /**

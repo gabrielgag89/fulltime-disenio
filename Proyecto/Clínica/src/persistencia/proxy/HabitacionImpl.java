@@ -4,7 +4,6 @@ import Clases.Sector;
 import Clases.TipoHabitacion;
 
 public class HabitacionImpl  implements Habitacion  {
-
     private int nroHabitacion;
     private Sector sector;
     private TipoHabitacion tipoHabitacion;
@@ -38,5 +37,4 @@ public class HabitacionImpl  implements Habitacion  {
     public void setTipoHabitacion(TipoHabitacion tipoHabitacion) {
         this.tipoHabitacion=tipoHabitacion;
     }
-
 }

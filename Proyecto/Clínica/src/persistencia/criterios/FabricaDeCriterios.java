@@ -3,7 +3,8 @@
 
 package persistencia.criterios;
 
-import java.util.Vector;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Fábrica encargada de crear el criterio correspondiente a la solicitud.
@@ -46,7 +47,7 @@ public class FabricaDeCriterios {
     * @param c vector de criterios a unir con OR
     * @return el criterio resultante
     */
-   public Criterio or(Vector c) {
+   public Criterio or(List c) {
       return new OR().setCriterio(c);
    } // fin del método or
 
@@ -55,7 +56,7 @@ public class FabricaDeCriterios {
     * @param c vector de criterios a unir con AND
     * @return el criterio resultante
     */
-   public Criterio and(Vector c) {
+   public Criterio and(List c) {
       return new AND().setCriterio(c);
    } // fin del método and
 
@@ -66,9 +67,9 @@ public class FabricaDeCriterios {
     * @return el criterio 1 y el criterio 2 unidos por un AND
     */
    public Criterio and(Criterio c1, Criterio c2) {
-      Vector V = new Vector();
-      V.addElement(c1);
-      V.addElement(c2);
+      List V = new ArrayList();
+      V.add(c1);
+      V.add(c2);
       
       return this.and(V);
    } // fin del método and

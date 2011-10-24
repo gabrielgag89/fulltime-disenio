@@ -1,69 +1,22 @@
-package Clases;
+// Prestacion: Prestacion.java
+//
+
+package persistencia.proxy;
 
 /**
- * @author Cristian
- * @version 1.0
- * @created 22-oct-2011 07:16:22 p.m.
+ *
+ * @author Gabriel
  */
-public class Prestacion {
+public interface Prestacion {
+   public int getCodigoPrestacion();
 
-	private int codigoPrestacion;
-	private String descripcion;
-	public CostoPrestacion m_CostoPrestacion;
-	public TipoPrestacion m_TipoPrestacion;
+   public void setCodigoPrestacion(int codigoPrestacion);
+   
+   public String getDescripcion();
 
-	public Prestacion(){
+   public void setDescripcion(String descripcion);
 
-	}
-
-	public void finalize() throws Throwable {
-
-	}
-	public int getCodigoPrestacion(){
-		return CodigoPrestacion;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCodigoPrestacion(int newVal){
-		CodigoPrestacion = newVal;
-	}
-
-	public String getDescripcion(){
-		return Descripcion;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDescripcion(String newVal){
-		Descripcion = newVal;
-	}
-
-	public Vector getCosto(){
-		return null;
-	}
-
-	/**
-	 * 
-	 * @param costo
-	 */
-	public void setCosto(Vector costo){
-
-	}
-
-	public TipoPrestacion getTipoPrestacion(){
-		return null;
-	}
-
-	/**
-	 * 
-	 * @param tipoPrestacion
-	 */
-	public void setTipo(TipoPrestacion tipoPrestacion){
-
-	}
-}//end Prestacion
+   public TipoPrestacion getTipoPrestacion();
+   
+   public void setTipoPrestacion(TipoPrestacion tipoPrestacion);
+} // fin de la clase Prestacion

@@ -3,7 +3,7 @@
 
 package persistencia;
 
-import java.util.Vector;
+import java.util.List;
 import java.sql.SQLException;
 import com.mysql.jdbc.Statement;
 import com.mysql.jdbc.Connection;
@@ -77,7 +77,7 @@ public class FachadaPersistenciaInterna {
     * @param objeto nombre de las entidades a recuperar
     * @return un vector que contiene las entidades recuperadas
     */
-   public Vector getColeccion(String objeto) {
+   public List buscar(String objeto) {
       return FabricaDeIntermediarios.getInstancia().getIntermediario(objeto).getColeccion();
    } // fin del método getColeccion
 
@@ -85,35 +85,12 @@ public class FachadaPersistenciaInterna {
     * Solicita al intermediario, correspondiente al objeto a buscar, que obtenga la 
     * entidad solicitada, según su OID.
     * @param entidad nombre de la entidad a buscar
-    * @param ido identificador del objeto que se quiere obtener
+    * @param oid identificador del objeto que se quiere obtener
     * @return la entidad buscada
     */
-   public Object obtenerEntidad(String entidad, String ido){
-      return FabricaDeIntermediarios.getInstancia().getIntermediario(entidad).obtenerEntidad(ido);
+   public Object buscar(String entidad, String oid){
+      return FabricaDeIntermediarios.getInstancia().getIntermediario(entidad).obtenerEntidad(oid);
    } // fin del método obtenerEntidad
-
-   /**
-    * Solicita al intermediario, correspondiente al objeto a buscar, que obtenga la 
-    * entidad solicitada, según un OID externo.
-    * @param entidad nombre de la entidad a buscar
-    * @param idForaneo nombre del atributo que es clave externa
-    * @param ido identificador del objeto externo
-    * @return la entidad buscada
-    */
-   public Object obtenerEntidad(String entidad, String idForaneo, String ido){
-      return FabricaDeIntermediarios.getInstancia().getIntermediario(entidad).obtenerEntidad(idForaneo, ido);
-   } // fin del método obtenerEntidad
-
-   /**
-    * Solicita al intermediario, correspondiente al objeto a buscar, que realice una búsqueda, 
-    * de uno o varios objetos, por criterio.
-    * @param objeto nombre del objeto a buscar
-    * @param cc criterio con el que se realizará la búsqueda del objeto
-    * @return un vector con los objetos buscados
-    */
-   public Vector getPorCriterio(String objeto, Criterio cc){
-      return FabricaDeIntermediarios.getInstancia().getIntermediario(objeto).getPorCriterio(cc);
-   } // fin del método getPorCriterio
 
    /**
     * Solicita al intermediario, correspondiente al objeto a persistir, que guarde el objeto 
@@ -121,7 +98,7 @@ public class FachadaPersistenciaInterna {
     * @param entidad nombre de la entidad a guardar
     * @param objeto objeto a guardar
     */
-   public void persistirEntidad(String entidad, Object objeto){
+   public void guardar(String entidad, Object objeto){
       FabricaDeIntermediarios.getInstancia().getIntermediario(entidad).persistirEntidad(objeto);
    } // fin del método persistirEntidad
    
@@ -131,7 +108,7 @@ public class FachadaPersistenciaInterna {
     * @param entidad nombre de la entidad a borrar
     * @param objeto objeto a borrar
     */
-   public void borrarEntidad(String entidad, Object objeto){
+   public void eliminar(String entidad, Object objeto){
       FabricaDeIntermediarios.getInstancia().getIntermediario(entidad).eliminar(objeto);
    } // fin del método borrarEntidad
 
@@ -151,7 +128,7 @@ public class FachadaPersistenciaInterna {
     * @param c vector de criterios a unir
     * @return un criterio listo para ser enviado a una consulta
     */
-   public Criterio and(Vector c) {
+   public Criterio and(List c) {
       return FabricaDeCriterios.getInstancia().and(c);
    } // fin del método and
 

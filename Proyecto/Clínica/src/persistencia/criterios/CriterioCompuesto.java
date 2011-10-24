@@ -3,7 +3,8 @@
 
 package persistencia.criterios;
 
-import java.util.Vector;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Criterio compuesto para la consulta a la BDR.
@@ -13,7 +14,7 @@ public class CriterioCompuesto implements Criterio{
    /**
     * Vector de criterios.
     */
-   protected Vector CS = new Vector();
+   protected List CS = new ArrayList();
 
    /**
     * Combierte el criterio en un {@code String}.<br>
@@ -39,7 +40,7 @@ public class CriterioCompuesto implements Criterio{
     * @param c vector de criterios
     * @return el criterio resultante
     */
-   public Criterio setCriterio(Vector c) {
+   public Criterio setCriterio(List c) {
       this.CS = c;
       return (Criterio) this;
    } // fin del método setCriterio
@@ -49,7 +50,7 @@ public class CriterioCompuesto implements Criterio{
     * @param c criterio a agregar al vector de criterios.
     */
    public void setCriterio(Criterio c) {
-      this.CS.addElement(c);
+      this.CS.add(c);
    } // fin del método setCriterio
 
    /**
