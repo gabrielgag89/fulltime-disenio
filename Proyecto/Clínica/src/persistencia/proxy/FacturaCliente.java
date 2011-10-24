@@ -1,82 +1,28 @@
-package Clases;
+// FacturaCliente: FacturaCliente.java
+//
+
+package persistencia.proxy;
+
+import java.util.Date;
 
 /**
- * @author Cristian
- * @version 1.0
- * @created 22-oct-2011 07:16:23 p.m.
+ *
+ * @author Gabriel
  */
-public class FacturaCliente {
+public interface FacturaCliente {
+   public int getNumFactura();
 
-	private int n°Factura;
-	private Date fechaEmision;
-	public FichaInternacion m_FichaInternacion;
-	public Recibo m_Recibo;
-	public EstadoFacturaCliente m_EstadoFacturaCliente;
+   public void setNumFactura(int numFactura);
 
-	public FacturaCliente(){
+   public Date getFechaEmision();
 
-	}
+   public void setFechaEmision(Date fechaEmision);
 
-	public void finalize() throws Throwable {
+   public FichaInternacion getFichaInternacion();
 
-	}
-	public int getN°Factura(){
-		return N°Factura;
-	}
+   public void setFichaInternacion(FichaInternacion fichaInternacion);
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setN°Factura(int newVal){
-		N°Factura = newVal;
-	}
+   public EstadoFacturaCliente getEstadoFacturaCliente();
 
-	public Date getFechaEmision(){
-		return FechaEmision;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setFechaEmision(Date newVal){
-		FechaEmision = newVal;
-	}
-
-	public FichaInternacion getFichaInternacion(){
-		return null;
-	}
-
-	/**
-	 * 
-	 * @param fichaInternacion
-	 */
-	public void setFichaInternacion(FichaInternacion fichaInternacion){
-
-	}
-
-	public EstadoFacturaCliente getEstadoFactura(){
-		return null;
-	}
-
-	/**
-	 * 
-	 * @param estadoFactura
-	 */
-	public void setEstadoFactura(EstadoFacturaCliente estadoFactura){
-
-	}
-
-	public Recibo getRecibo(){
-		return null;
-	}
-
-	/**
-	 * 
-	 * @param recibo
-	 */
-	public void setRecibo(Recibo recibo){
-
-	}
-}//end FacturaCliente
+   public void setEstadoFacturaCliente(EstadoFacturaCliente estadoFacturaCliente);
+} // fin de la clase FacturaCliente
