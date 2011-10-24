@@ -3,7 +3,7 @@
 
 package persistencia;
 
-import java.util.Vector;
+import java.util.List;
 import persistencia.criterios.Criterio;
 
 /**
@@ -44,37 +44,17 @@ public class FachadaPersistencia {
     * @param entidad nombre de las entidades a recuperar
     * @return un vector que contiene las entidades recuperadas
     */
-   public Vector getColeccion(String entidad) {
-      return FachadaPersistenciaInterna.getInstancia().getColeccion(entidad);
+   public List buscar(String entidad) {
+      return FachadaPersistenciaInterna.getInstancia().buscar(entidad);
    } // fin del método getColeccion
-   
-   /**
-    * Solicita a la fachada interna que obtenga la entidad solicitada, según su OID.
-    * @param entidad nombre de la entidad a buscar
-    * @param ido identificador del objeto que se quiere obtener
-    * @return la entidad buscada
-    */
-   public Object obtenerEntidad(String entidad, String ido){
-      return FachadaPersistenciaInterna.getInstancia().obtenerEntidad(entidad, ido);
-   } // fin del método obtenerEntidad
-
-   /**
-    * Solicita a la fachada interna que realice una búsqueda, de uno o varios objetos, por criterio.
-    * @param objeto nombre del objeto a buscar
-    * @param cc criterio con el que se realizará la búsqueda del objeto
-    * @return un vector con los objetos buscados
-    */
-   public Vector getPorCriterio(String objeto, Criterio cc){
-      return FachadaPersistenciaInterna.getInstancia().getPorCriterio(objeto,cc);
-   } // fin del método getPorCriterio
 
    /**
     * Solicita a la fachada interna que guarde el objeto recibido como parámetro.
     * @param entidad nombre de la entidad a guardar
     * @param objeto objeto a guardar
     */
-   public void persistirEntidad(String entidad , Object objeto){
-      FachadaPersistenciaInterna.getInstancia().persistirEntidad(entidad,objeto);
+   public void guardar(String entidad , Object objeto){
+      FachadaPersistenciaInterna.getInstancia().guardar(entidad,objeto);
    } // fin del método persistirEntidad
    
    /**
@@ -82,8 +62,8 @@ public class FachadaPersistencia {
     * @param entidad nombre de la entidad a borrar
     * @param object objeto a borrar
     */
-   public void borrarEntidad(String entidad, Object object){
-      FachadaPersistenciaInterna.getInstancia().borrarEntidad(entidad, object);
+   public void eliminar(String entidad, Object object){
+      FachadaPersistenciaInterna.getInstancia().eliminar(entidad, object);
    } // fin del método borrarEntidad
 
    /**
@@ -102,7 +82,7 @@ public class FachadaPersistencia {
     * @param c vector de criterios a unir
     * @return un criterio listo para ser enviado a una consulta
     */
-   public Criterio and(Vector c) {
+   public Criterio and(List c) {
       return FachadaPersistenciaInterna.getInstancia().and(c);
    } // fin del método and
 

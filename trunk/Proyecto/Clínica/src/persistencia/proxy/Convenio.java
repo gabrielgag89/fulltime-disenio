@@ -1,82 +1,32 @@
-package Clases;
+// Convenio: Convenio.java
+//
+
+package persistencia.proxy;
+
+import java.util.Date;
 
 /**
- * @author Cristian
- * @version 1.0
- * @created 22-oct-2011 07:16:34 p.m.
+ *
+ * @author Gabriel
  */
-public class Convenio {
+public interface Convenio {
+   public Date getFechaInicio();
 
-	private Date fechaInicio;
-	private Date fechaFin;
-	public Plan m_Plan;
-	public Coseguro m_Coseguro;
-	public Prestacion m_Prestacion;
+   public void setFechaInicio(Date fechaInicio);
 
-	public Convenio(){
+   public Date getFechaFin();
 
-	}
+   public void setFechaFin(Date fechaFin);
 
-	public void finalize() throws Throwable {
+   public Plan getPlan();
 
-	}
-	public Date getFechaInicio(){
-		return FechaInicio;
-	}
+   public void setPlan(Plan plan);
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setFechaInicio(Date newVal){
-		FechaInicio = newVal;
-	}
+   public Prestacion getPrestacion();
 
-	public Date getFechaFin(){
-		return FechaFin;
-	}
+   public void setPrestacion(Prestacion prestacion);
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setFechaFin(Date newVal){
-		FechaFin = newVal;
-	}
+   public Coseguro getCoseguro();
 
-	public Plan getPlan(){
-		return null;
-	}
-
-	/**
-	 * 
-	 * @param plan
-	 */
-	public void setPlan(Plan plan){
-
-	}
-
-	public Coseguro getCoseguro(){
-		return null;
-	}
-
-	/**
-	 * 
-	 * @param coseguro
-	 */
-	public void setCoseguro(Coseguro coseguro){
-
-	}
-
-	public Prestacion getPrestacion(){
-		return null;
-	}
-
-	/**
-	 * 
-	 * @param prestacion
-	 */
-	public void setPrestacion(Prestacion prestacion){
-
-	}
-}//end Convenio
+   public void setCoseguro(Coseguro coseguro);
+} // fin de la clase Convenio
