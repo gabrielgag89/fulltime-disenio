@@ -1,56 +1,18 @@
-package Clases;
+// ServicioEspecial: ServicioEspecial.java
+//
+
+package persistencia.proxy;
 
 /**
- * @author Cristian
- * @version 1.0
- * @created 22-oct-2011 07:16:29 p.m.
+ *
+ * @author Gabriel
  */
-public class ServicioEspecial {
+public interface ServicioEspecial {
+   public int getCodigoServicio();
 
-	private int codigoServicio;
-	private String nombreServicio;
-	public CostoServicio m_CostoServicio;
+   public void setCodigoServicio(int codigoServicio);
 
-	public ServicioEspecial(){
+   public String getNombreServicio();
 
-	}
-
-	public void finalize() throws Throwable {
-
-	}
-	public int getCodigoServicio(){
-		return CodigoServicio;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCodigoServicio(int newVal){
-		CodigoServicio = newVal;
-	}
-
-	public String getNombreServicio(){
-		return NombreServicio;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNombreServicio(String newVal){
-		NombreServicio = newVal;
-	}
-
-	public CostoServicio getCostoServicio(){
-		return null;
-	}
-
-	/**
-	 * 
-	 * @param costoServicio
-	 */
-	public void setCostoServicio(CostoServicio costoServicio){
-
-	}
-}//end ServicioEspecial
+   public void setNombreServicio(String nombreServicio);
+} // fin de la clase ServicioEspecial

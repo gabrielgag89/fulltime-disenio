@@ -1,4 +1,4 @@
-// AgentePrestacion: AgentePrestacion.java
+// PrestacionAgente: PrestacionAgente.java
 // 
 
 package persistencia.proxy;
@@ -9,7 +9,7 @@ import persistencia.FachadaPersistenciaInterna;
  *
  * @author Gabriel
  */
-public class AgentePrestacion extends ObjetoPersistente implements Prestacion{
+public class PrestacionAgente extends ObjetoPersistente implements Prestacion{
    private PrestacionImpl impl;
    private boolean tipoPrestacion = false;
    private String oidTipoPrestacion;
@@ -60,4 +60,4 @@ public class AgentePrestacion extends ObjetoPersistente implements Prestacion{
    public void setOidTipoPrestacion(String oidTipoPrestacion) {
       this.oidTipoPrestacion = oidTipoPrestacion;
    }
-} // fin de la clase AgentePrestacion
+} // fin de la clase PrestacionAgente

@@ -4,7 +4,7 @@ import Clases.Sector;
 import Clases.TipoHabitacion;
 import persistencia.FachadaPersistenciaInterna;
 
-public class AgenteHabitacion extends ObjetoPersistente implements Habitacion  {
+public class HabitacionAgente extends ObjetoPersistente implements Habitacion  {
    private HabitacionImpl impl;
    private boolean sector = false;
    private boolean tipoHabitacion = false;

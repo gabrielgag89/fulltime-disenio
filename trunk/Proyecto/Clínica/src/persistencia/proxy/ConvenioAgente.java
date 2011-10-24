@@ -1,4 +1,4 @@
-// AgenteConvenio: AgenteConvenio.java
+// ConvenioAgente: ConvenioAgente.java
 // 
 
 package persistencia.proxy;
@@ -10,7 +10,7 @@ import persistencia.FachadaPersistenciaInterna;
  *
  * @author Gabriel
  */
-public class AgenteConvenio extends ObjetoPersistente implements Convenio{
+public class ConvenioAgente extends ObjetoPersistente implements Convenio{
    private ConvenioImpl impl;
    private boolean plan = false;
    private boolean prestacion = false;
@@ -111,4 +111,4 @@ public class AgenteConvenio extends ObjetoPersistente implements Convenio{
    public void setOidCoseguro(String oidCoseguro) {
       this.oidCoseguro = oidCoseguro;
    }
-} // fin de la clase AgenteConvenio
+} // fin de la clase ConvenioAgente
