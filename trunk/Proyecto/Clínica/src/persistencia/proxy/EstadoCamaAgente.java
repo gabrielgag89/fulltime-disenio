@@ -1,24 +1,19 @@
-
 package persistencia.proxy;
 
 public class EstadoCamaAgente extends ObjetoPersistente implements EstadoCama {
+   private EstadoCamaImpl impl;
 
-    EstadoCamaImplementacion implementacion;
+   public void setImplementacion(EstadoCamaImpl impl) {
+      this.impl = impl;
+   }  
 
-    
-    public void setImplementacion(EstadoCamaImplementacion implementacion) {
-        this.implementacion = implementacion;
-    }  
-    
-    @Override
-    public String getNombreEstado() {
-        return this.implementacion.getNombreEstado();
-    }
+   @Override
+   public String getNombreEstado() {
+      return this.impl.getNombreEstado();
+   }
 
-    @Override
-    public void setNombreEstado(String nombreEstado) {
-        this.implementacion.setNombreEstado(nombreEstado);
-    }    
-    
-    
-}//fin EstadoCama Agente
+   @Override
+   public void setNombreEstado(String nombreEstado) {
+      this.impl.setNombreEstado(nombreEstado);
+   }   
+} // fin EstadoCamaAgente

@@ -1,47 +1,67 @@
-
 package persistencia.proxy;
 
 import java.util.Date;
-
+import persistencia.FachadaPersistenciaInterna;
 
 public class CostoPrestacionAgente extends ObjetoPersistente implements CostoPrestacion {
-    
-    private CostoPrestacionImplementacion implementacion;
+   private CostoPrestacionImpl impl;
+   private boolean prestacion = false;
+   private String oidPrestacion;
 
-    
-    public void setImplementacion(CostoPrestacionImplementacion implementacion) {
-        this.implementacion = implementacion;
-    }
-    
-    @Override
-    public Date getFechaFin() {
-        return this.implementacion.getFechaFin();
-    }
+   public void setImplementacion(CostoPrestacionImpl impl) {
+      this.impl = impl;
+   }
 
-    @Override
-    public void setFechaFin(Date fechaFin) {
-        this.implementacion.setFechaFin(fechaFin);
-    }
+   @Override
+   public Date getFechaFin() {
+      return this.impl.getFechaFin();
+   }
 
-    @Override
-    public Date getFechaInicio() {
-        return this.implementacion.getFechaInicio();
-    }
+   @Override
+   public void setFechaFin(Date fechaFin) {
+      this.impl.setFechaFin(fechaFin);
+   }
 
-    @Override
-    public void setFechaInicio(Date fechaInicio) {
-        this.implementacion.setFechaInicio(fechaInicio);
-    }
+   @Override
+   public Date getFechaInicio() {
+      return this.impl.getFechaInicio();
+   }
 
-    @Override
-    public float getMonto() {
-        return this.implementacion.getMonto();
-    }
+   @Override
+   public void setFechaInicio(Date fechaInicio) {
+      this.impl.setFechaInicio(fechaInicio);
+   }
 
-    @Override
-    public void setMonto(float monto) {
-        this.implementacion.setMonto(monto);
-    }
-    
-    
-}//fin CostoPrestacionAgente
+   @Override
+   public float getMonto() {
+      return this.impl.getMonto();
+   }
+
+   @Override
+   public void setMonto(float monto) {
+      this.impl.setMonto(monto);
+   }
+
+   @Override
+   public Prestacion getPrestacion() {
+      if(!this.prestacion){
+         this.impl.setPrestacion((Prestacion) FachadaPersistenciaInterna.getInstancia().buscar("Prestacion", this.oidPrestacion));
+         this.prestacion = true;
+      }
+
+      return this.impl.getPrestacion();
+   }
+
+   @Override
+   public void setPrestacion(Prestacion prestacion) {
+      this.impl.setPrestacion(prestacion);
+   }
+
+   public String getOidPrestacion() {
+      return oidPrestacion;
+   }
+
+   public void setOidPrestacion(String oidPrestacion) {
+      this.oidPrestacion = oidPrestacion;
+   }
+} // fin CostoPrestacionAgente

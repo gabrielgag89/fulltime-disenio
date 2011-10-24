@@ -62,7 +62,7 @@ public class ObjetoPersistente {
       this.nuevo = nuevo;
    } // fin del método setNuevo
 
-    public boolean getLimpio(){
+   public boolean getLimpio(){
       return limpio;
    }
 
