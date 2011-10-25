@@ -6,11 +6,11 @@ import persistencia.FachadaPersistenciaInterna;
 import persistencia.criterios.Criterio;
 
 public class PacienteAgente extends ObjetoPersistente implements Paciente{
-   private PacienteImplementacion implementacion;
+   private PacienteImpl impl;
    boolean heBuscadoPlanes = false;
 
-   public void setImplementacion(PacienteImplementacion implementacion) {
-      this.implementacion = implementacion;
+   public void setImplementacion(PacienteImpl impl) {
+      this.impl = impl;
    }
 
    public boolean isHeBuscadoPlanes() {
@@ -23,85 +23,85 @@ public class PacienteAgente extends ObjetoPersistente implements Paciente{
 
    @Override
    public int getDni() {
-      return this.implementacion.getDni();
+      return this.impl.getDni();
    }
 
    @Override
    public void setDni(int dni) {
-      this.implementacion.setDni(dni);
+      this.impl.setDni(dni);
    }
 
    @Override
    public String getDomicilio() {
-      return this.implementacion.getDomicilio();
+      return this.impl.getDomicilio();
    }
 
    @Override
    public void setDomicilio(String domicilio) {
-      this.implementacion.setDomicilio(domicilio);
+      this.impl.setDomicilio(domicilio);
    }
 
    @Override
    public List<Plan> getPlanes() {
       if(heBuscadoPlanes)
-         return this.implementacion.getPlanes();
+         return this.impl.getPlanes();
       else{
          List<Criterio> criterios = new ArrayList<Criterio>();
          criterios.add(new Criterio("OIDPlan","=",super.getOid()));
 
          for(ObjetoPersistente obj: FachadaPersistenciaInterna.getInstancia().buscar("Plan", criterios)){
             Plan p = (Plan)obj;
-            this.implementacion.addPlan(p);
+            this.impl.addPlan(p);
          }
 
          this.heBuscadoPlanes = true;
 
-         return this.implementacion.getPlanes();
+         return this.impl.getPlanes();
       }
    }
 
    @Override
    public void setPlanes(List<Plan> planes) {
-      this.implementacion.setPlanes(planes);
+      this.impl.setPlanes(planes);
    }
 
    @Override
    public String getNombre() {
-      return this.implementacion.getNombre();
+      return this.impl.getNombre();
    }
 
    @Override
    public void setNombre(String nombreP) {
-      this.implementacion.setNombre(nombreP);
+      this.impl.setNombre(nombreP);
    }
 
    @Override
    public int getNumPaciente() {
-      return this.implementacion.getNumPaciente();
+      return this.impl.getNumPaciente();
    }
 
    @Override
    public void setNumPaciente(int numPaciente) {
-      this.implementacion.setNumPaciente(numPaciente);
+      this.impl.setNumPaciente(numPaciente);
    }
 
    @Override
    public String getTelefono() {
-      return this.implementacion.getTelefono();
+      return this.impl.getTelefono();
    }
 
    @Override
    public void setTelefono(String telefono) {
-      this.implementacion.setTelefono(telefono);
+      this.impl.setTelefono(telefono);
    }
 
    @Override
    public void addPlan(Plan p) {
-      this.implementacion.addPlan(p);
+      this.impl.addPlan(p);
    }
 
    @Override
    public void removerPlan(Plan p) {
-      this.implementacion.removerPlan(p);
+      this.impl.removerPlan(p);
    }
 }//fin paciente agente

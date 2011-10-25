@@ -2,7 +2,7 @@ package persistencia.proxy;
 
 import java.util.List;
 
-public class PacienteImplementacion implements Paciente {
+public class PacienteImpl implements Paciente {
    private int numeroPaciente;
    private String nombrePaciente;
    private int dni;
