@@ -1,14 +1,12 @@
 package persistencia.proxy;
 
-import java.util.List;
-
 public class PacienteImpl implements Paciente {
    private int numeroPaciente;
    private String nombrePaciente;
    private int dni;
    private String domicilio;
    private String telefono;
-   private List<Plan> planes;
+   private Plan plan;
 
    @Override
    public int getDni() {
@@ -31,13 +29,13 @@ public class PacienteImpl implements Paciente {
    }
 
    @Override
-   public List<Plan> getPlanes() {
-      return this.planes;
+   public Plan getPlan() {
+      return this.plan;
    }
 
    @Override
-   public void setPlanes(List<Plan> plans) {
-      this.planes = plans;
+   public void setPlan(Plan plan) {
+      this.plan = plan;
    }
 
    @Override
@@ -69,14 +67,5 @@ public class PacienteImpl implements Paciente {
    public void setTelefono(String telefono) {
       this.telefono = telefono;
    }
-
-   @Override
-   public void addPlan(Plan p) {
-      this.planes.add(p);
-   }
-
-   @Override
-   public void removerPlan(Plan p) {
-      this.planes.remove(p);
-   }
+   
 }//end Paciente
