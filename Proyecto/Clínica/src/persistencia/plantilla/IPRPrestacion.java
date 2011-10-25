@@ -30,17 +30,20 @@ public class IPRPrestacion extends IntermPersistenciaDBR{
    @Override
    public String insertar(Object objeto) {
       PrestacionAgente prest = (PrestacionAgente) objeto;
-      return "INSERT INTO prestacion "
-                  + "VALUES (" + prest.getOid() + prest.getCodigoPrestacion() + prest.getDescripcion() + prest.getOidTipoPrestacion() + ")";
+      return "INSERT INTO prestacion VALUES "
+                  + "('" + prest.getOid() + "', "
+                         + prest.getCodigoPrestacion() + ", '"
+                         + prest.getDescripcion() + "', '"
+                         + prest.getOidTipoPrestacion() + "')";
    } // fin del método insertar
 
    @Override
    public String actualizar(Object objeto) {
       PrestacionAgente prest = (PrestacionAgente) objeto;
       return "UPDATE FROM prestacion WHERE"
-                  + "oidprestacion =  '" + prest.getOid() + "',"
-                  + "codigo_prestacion = " + prest.getCodigoPrestacion() + ","
-                  + "descripcion = '" + prest.getDescripcion() + "',"
+                  + "oidprestacion =  '" + prest.getOid() + "', "
+                  + "codigo_prestacion = " + prest.getCodigoPrestacion() + ", "
+                  + "descripcion = '" + prest.getDescripcion() + "', "
                   + "oidtipo_prestacion = '" + prest.getOidTipoPrestacion() + "'";
    } // fin del método actualizar
 
