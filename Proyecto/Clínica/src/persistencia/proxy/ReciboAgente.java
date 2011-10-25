@@ -13,6 +13,14 @@ public class ReciboAgente extends ObjetoPersistente implements Recibo {
         this.impl = impl;
     }
 
+    public String getOidFacturaCliente() {
+        return oidFacturaCliente;
+    }
+
+    public void setOidFacturaCliente(String oidFacturaCliente) {
+        this.oidFacturaCliente = oidFacturaCliente;
+    }
+
     @Override
     public int getNroRecibo() {
         return this.impl.getNroRecibo();
