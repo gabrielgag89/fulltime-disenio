@@ -1,121 +1,25 @@
-package Clases;
+package persistencia.proxy;
 
-/**
- * @author Cristian
- * @version 1.0
- * @created 22-oct-2011 07:16:24 p.m.
- */
-public class FichaInternacion {
+import java.util.Date;
+import java.util.List;
 
-	private int n°Ficha;
-	private int fechaCreacion;
-	public Cama m_Cama;
-	public Paciente m_Paciente;
-	public Prestacion m_Prestacion;
-	public EstadoFichaInternacion m_EstadoFichaInternacion;
-	public Habitacion m_Habitacion;
-	public DetalleFicha m_DetalleFicha;
-
-	public FichaInternacion(){
-
-	}
-
-	public void finalize() throws Throwable {
-
-	}
-	public int getN°Ficha(){
-		return N°Ficha;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setN°Ficha(int newVal){
-		N°Ficha = newVal;
-	}
-
-	public int getFechaCreacion(){
-		return FechaCreacion;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setFechaCreacion(int newVal){
-		FechaCreacion = newVal;
-	}
-
-	public EstadoFichaInternacion getEstadoFicha(){
-		return null;
-	}
-
-	/**
-	 * 
-	 * @param sstadoFicha
-	 */
-	public void setEstadoFicha(EstadoFichaInternacion sstadoFicha){
-
-	}
-
-	public Cama getCama(){
-		return null;
-	}
-
-	/**
-	 * 
-	 * @param cama
-	 */
-	public void setCama(Cama cama){
-
-	}
-
-	public Paciente getPaciente(){
-		return null;
-	}
-
-	/**
-	 * 
-	 * @param paciente
-	 */
-	public void setPaciente(Paciente paciente){
-
-	}
-
-	public Prestacion getPrestacion(){
-		return null;
-	}
-
-	/**
-	 * 
-	 * @param prestacion
-	 */
-	public void setPrestacion(Prestacion prestacion){
-
-	}
-
-	public Habitacion getHabitacion(){
-		return null;
-	}
-
-	/**
-	 * 
-	 * @param habitacion
-	 */
-	public void setHabitacion(Habitacion habitacion){
-
-	}
-
-	public Prestacion getPrestacion(){
-		return null;
-	}
-
-	/**
-	 * 
-	 * @param prestacion
-	 */
-	public void setPrestacion(Prestacion prestacion){
-
-	}
-}//end FichaInternacion
+public interface FichaInternacion {
+    public Cama getCama();
+    public void setCama(Cama cama);
+    public List<DetalleFicha> getDetalleFicha();
+    public void  setDetalleFicha(List<DetalleFicha> ListaDetalleFicha);
+    public void addDetalleFicha(DetalleFicha detalleFicha);
+    public boolean deleteDetalleFicha(DetalleFicha detalleFicha);
+    public EstadoFichaInternacion getEstadoFichaInternacion();
+    public void setEstadoFichaInternacion(EstadoFichaInternacion estadoFichaInternacion);
+    public Date getFechaCreacion();
+    public void setFechaCreacion(Date fechaCreacion);
+    public Habitacion getHabitacion();
+    public void setHabitacion(Habitacion habitacion);
+    public int getNroFicha();
+    public void setNroFicha(int nroFicha);
+    public Paciente getPaciente();
+    public void setPaciente(Paciente paciente);
+    public Prestacion getPrestacion();
+    public void setPrestacion(Prestacion prestacion);
+}

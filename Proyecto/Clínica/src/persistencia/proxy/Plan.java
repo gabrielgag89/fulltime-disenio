@@ -1,4 +1,4 @@
-package Clases;
+package persistencia.proxy;
 
 /**
  * @author Cristian
