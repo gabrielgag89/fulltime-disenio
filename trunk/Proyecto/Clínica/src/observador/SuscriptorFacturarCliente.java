@@ -1,11 +1,12 @@
 package observador;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SuscriptorFacturarCliente {
     private static SuscriptorFacturarCliente instancia;
     private boolean changed = false;
-    private Vector obs;
+    private List<ObservadorFacturarCliente> obs;
 
     public static SuscriptorFacturarCliente getInstance(){
         if (instancia == null) {
@@ -15,19 +16,19 @@ public class SuscriptorFacturarCliente {
     }
 
     public SuscriptorFacturarCliente() {
-	obs = new Vector();
+	obs = new  ArrayList<ObservadorFacturarCliente>();
     }
 
     public synchronized void agregarObservadorFacturarCliente(ObservadorFacturarCliente o) {
         if (o == null)
             throw new NullPointerException();
 	if (!obs.contains(o)) {
-	    obs.addElement(o);
+	    obs.add(o);
 	}
     }
 
     public synchronized void borrarObservadorFacturarCliente(ObservadorFacturarCliente o) {
-        obs.removeElement(o);
+        obs.remove(o);
     }
 
     public void nitificarObservadoresFacturarCliente() {
@@ -48,7 +49,7 @@ public class SuscriptorFacturarCliente {
     }
 
     public synchronized void borrarObservadoresFacturarCliente() {
-	obs.removeAllElements();
+	obs.removeAll(obs);
     }
 
     public synchronized int cantidadObservadoresFacturarCliente() {
