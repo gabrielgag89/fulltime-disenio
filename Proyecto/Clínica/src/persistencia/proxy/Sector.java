@@ -1,4 +1,4 @@
-package Clases;
+package persistencia.proxy;
 
 /**
  * @author Cristian
@@ -9,7 +9,7 @@ public class Sector {
 
 	private int codigoSector;
 	private String descripcionSector;
-	private int n°Piso;
+	private int nï¿½Piso;
 
 	public Sector(){
 
@@ -42,15 +42,15 @@ public class Sector {
 		DescripcionSector = newVal;
 	}
 
-	public int getN°Piso(){
-		return N°Piso;
+	public int getNï¿½Piso(){
+		return Nï¿½Piso;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setN°Piso(int newVal){
-		N°Piso = newVal;
+	public void setNï¿½Piso(int newVal){
+		Nï¿½Piso = newVal;
 	}
 }//end Sector

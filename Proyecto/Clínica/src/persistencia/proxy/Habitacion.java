@@ -1,8 +1,5 @@
 package persistencia.proxy;
 
-import Clases.Sector;
-import Clases.TipoHabitacion;
-
 public interface Habitacion {
    public int getNroHabitacion();
    

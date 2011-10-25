@@ -1,7 +1,7 @@
 package persistencia.proxy;
 
-import Clases.Sector;
-import Clases.TipoHabitacion;
+import persistencia.proxy.Sector;
+import persistencia.proxy.TipoHabitacion;
 import persistencia.FachadaPersistenciaInterna;
 
 public class HabitacionAgente extends ObjetoPersistente implements Habitacion  {
@@ -27,7 +27,7 @@ public class HabitacionAgente extends ObjetoPersistente implements Habitacion  {
       this.oidTipoHabitacion = oidTipoHabitacion;
    }
 
-   public void setSector(HabitacionImpl implementacion) {
+   public void setImplementacion(HabitacionImpl implementacion) {
       this.impl=implementacion;
    }
 
