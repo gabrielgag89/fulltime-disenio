@@ -8,17 +8,8 @@ package persistencia.plantilla;
  * @author Gabriel
  */
 public class FabricaDeIntermediarios {
-   /**
-    * Instancia de la fábrica de intermediarios.
-    */
    private static FabricaDeIntermediarios instancia;
-
-   /**
-    * Devuelve la instancia almacenada en el atributo {@code instancia}. Si actualmente su valor
-    * es {@code null}, crea una instancia y se la asigna, sino devuelve la referencia a la instancia
-    * ya existente.
-    * @return la instancia almacenada en el atributo {@code instancia}
-    */
+   
    public static FabricaDeIntermediarios getInstancia(){
       // si no contenía una referencia anteriormente, la crea
       if (instancia == null)
@@ -26,13 +17,7 @@ public class FabricaDeIntermediarios {
       
       return instancia;
    } // fin del método getInstancia
-
-   /**
-    * Crea y devuelve el intermediario solicitado, correspondiente al nombre de la entidad recibido 
-    * como parámetro.
-    * @param entidad nombre del intermediario solicitado
-    * @return el intermediario solicitado
-    */
+   
    public IntermediarioPersistencia getIntermediario(String entidad){
       try {
          String claseInt = "persistencia.plantilla.IPR" + entidad;
@@ -51,4 +36,4 @@ public class FabricaDeIntermediarios {
          return null;
       } // fin de try... catch
    } // fin del método getIntermediario
-} // fin de la clase 
+} // fin de la clase FabricaDeIntermediarios
