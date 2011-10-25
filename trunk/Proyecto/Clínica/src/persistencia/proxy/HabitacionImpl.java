@@ -1,8 +1,5 @@
 package persistencia.proxy;
 
-import persistencia.proxy.Sector;
-import persistencia.proxy.TipoHabitacion;
-
 public class HabitacionImpl  implements Habitacion  {
    private int nroHabitacion;
    private Sector sector;

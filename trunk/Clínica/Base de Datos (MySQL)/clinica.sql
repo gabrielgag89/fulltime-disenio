@@ -168,14 +168,11 @@ CREATE TABLE `factura_cliente` (
   `numero_factura_cliente` int(11) NOT NULL,
   `fecha` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   `oidestado_factura_cliente` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `oidrecibo` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `oidficha_internacion` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`oidfactura_cliente`),
   KEY `fk_factura_cliente_estado_factura_cliente1` (`oidestado_factura_cliente`),
-  KEY `fk_factura_cliente_recibo1` (`oidrecibo`),
   KEY `fk_factura_cliente_ficha_internacion1` (`oidficha_internacion`),
   CONSTRAINT `fk_factura_cliente_estado_factura_cliente1` FOREIGN KEY (`oidestado_factura_cliente`) REFERENCES `estado_factura_cliente` (`oidestado_factura_cliente`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_factura_cliente_recibo1` FOREIGN KEY (`oidrecibo`) REFERENCES `recibo` (`oidrecibo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_factura_cliente_ficha_internacion1` FOREIGN KEY (`oidficha_internacion`) REFERENCES `ficha_internacion` (`oidficha_internacion`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -331,7 +328,10 @@ CREATE TABLE `recibo` (
   `oidrecibo` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `numero_recibo` int(11) NOT NULL,
   `fecha` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `oidfactura_cliente` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`oidrecibo`)
+  KEY `fk_factura_cliente` (`oidfactura_cliente`),
+  CONSTRAINT `fk_factura_cliente` FOREIGN KEY (`oidfactura_cliente`) REFERENCES `factura_cliente` (`oidfactura_cliente`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Table structure for table `sector` */

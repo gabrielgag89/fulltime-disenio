@@ -1,7 +1,5 @@
 package persistencia.proxy;
 
-import persistencia.proxy.Sector;
-import persistencia.proxy.TipoHabitacion;
 import persistencia.FachadaPersistenciaInterna;
 
 public class HabitacionAgente extends ObjetoPersistente implements Habitacion  {
@@ -43,14 +41,11 @@ public class HabitacionAgente extends ObjetoPersistente implements Habitacion  {
 
    @Override
    public Sector getSector() {
-      if(sector)
-         return this.impl.getSector();
-      else{
+      if(!sector){
          this.impl.setSector((Sector)FachadaPersistenciaInterna.getInstancia().buscar("Sector",oidSector));
          this.sector=true;
-         
-         return this.impl.getSector();
       }
+      return this.impl.getSector();
    }
 
    @Override
@@ -60,14 +55,11 @@ public class HabitacionAgente extends ObjetoPersistente implements Habitacion  {
 
    @Override
    public TipoHabitacion getTipoHabitacion() {
-      if(tipoHabitacion)
-         return this.impl.getTipoHabitacion();
-      else{
+      if(!tipoHabitacion){
          this.impl.setTipoHabitacion((TipoHabitacion)FachadaPersistenciaInterna.getInstancia().buscar("TipoHabitacion",oidTipoHabitacion));
          this.tipoHabitacion=true;
-         
-         return this.impl.getTipoHabitacion();
       }
+      return this.impl.getTipoHabitacion();
    }
 
    @Override
