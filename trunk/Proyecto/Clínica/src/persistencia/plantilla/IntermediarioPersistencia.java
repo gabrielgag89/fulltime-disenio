@@ -23,7 +23,7 @@ public abstract class IntermediarioPersistencia {
       } // fin de if
       
       return buscados;
-   } // fin del método getPorCriterio
+   } // fin del método buscar
    
    public ObjetoPersistente buscar(String oid){
       ObjetoPersistente buscado = Cache.getInstancia().enCache(oid);
@@ -35,13 +35,13 @@ public abstract class IntermediarioPersistencia {
       } // fin de if
       
       return buscado;
-   } // fin del método obtenerEntidad
+   } // fin del método buscar
    
    public void guardar(Object objeto){
       ObjetoPersistente obj = (ObjetoPersistente) objeto;
       desmaterializar(obj);
       Cache.getInstancia().quitar(obj.getOid());
-   } // fin del método persistirEntidad
+   } // fin del método guardar
    
    public ObjetoPersistente nuevaEntidad(){
       ObjetoPersistente objPers = obtenerNuevaEntidad();
