@@ -1,4 +1,4 @@
-// AgenteCama: AgenteCama.java
+// CamaAgente: CamaAgente.java
 // 
 
 package persistencia.proxy;
@@ -7,7 +7,7 @@ package persistencia.proxy;
  *
  * @author Gabriel
  */
-public class AgenteCama extends ObjetoPersistente implements Cama{
+public class CamaAgente extends ObjetoPersistente implements Cama{
    private CamaImpl impl;
    
    public void setImplementacion(CamaImpl impl){
@@ -44,4 +44,4 @@ public class AgenteCama extends ObjetoPersistente implements Cama{
       throw new UnsupportedOperationException("Not supported yet.");
    }
    
-} // fin de la clase AgenteCama
+} // fin de la clase CamaAgente
