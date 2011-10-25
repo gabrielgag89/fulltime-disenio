@@ -19,7 +19,7 @@ import persistencia.criterios.Criterio;
 public class IPRFacturaCliente extends IntermPersistenciaDBR{
    @Override
    public String select(Criterio criterio) {
-      return "SELECT * FROM factura_cliente WHERE " + criterio;
+      return "SELECT * FROM factura_cliente WHERE " + criterio.getStringCriterio();
    } // fin del método select
 
    @Override
@@ -72,7 +72,7 @@ public class IPRFacturaCliente extends IntermPersistenciaDBR{
             lista.add(fact);
          }
       } catch (SQLException ex) {
-         System.err.println("IPRPrestacion - convertirAObjeto(ResultSet resultado) - " + ex.getMessage());
+         System.err.println("IPRFacturaCliente - convertirAObjeto(ResultSet resultado) - " + ex.getMessage());
       }
       
       return lista;

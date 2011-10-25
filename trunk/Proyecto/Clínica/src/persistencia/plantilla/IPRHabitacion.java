@@ -3,6 +3,7 @@ package persistencia.plantilla;
 import java.util.List;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import persistencia.proxy.ObjetoPersistente;
 import persistencia.proxy.HabitacionAgente;
 import persistencia.proxy.HabitacionImpl;
@@ -33,36 +34,27 @@ public class IPRHabitacion  extends IntermPersistenciaDBR {
 
    @Override
    public List<ObjetoPersistente> convertirAObjeto(ResultSet rs) {
-      List<ObjetoPersistente> ListaHabitaciones = null;
-      
+      List<ObjetoPersistente> ListaHabitaciones =  new ArrayList<ObjetoPersistente>();
       try {
-         if (!rs.next()) {
-            return ListaHabitaciones;
-         }
-         
-         do{
+         while (rs.next()){
             HabitacionAgente HA = new HabitacionAgente();
             HA.setImplementacion(new HabitacionImpl());
             HA.setOid(rs.getString("oidhabitacion"));
             HA.setNroHabitacion(rs.getInt("numero_habitacion"));
             HA.setOidSector(rs.getString("oidsector"));
             HA.setOidTipoHabitacion(rs.getString("oidtipo_habitacion"));
-            ListaHabitaciones.add((ObjetoPersistente)HA);
-         }while (rs.next());
-         
-         return ListaHabitaciones;
+            ListaHabitaciones.add(HA);
+         }
       } catch (SQLException ex) {
          System.out.println("IPRHabitacionn - convertirAObjeto - SQLException: "+ex.getMessage());
-         
-         return null;
       }
+      return ListaHabitaciones;
    } // fin del método convertirAObjeto
 
    @Override
    public ObjetoPersistente nuevo() {
       HabitacionAgente HA = new HabitacionAgente();
       HA.setImplementacion(new HabitacionImpl());
-      
       return (ObjetoPersistente) HA;
    } // fin del método nuevo
 }
