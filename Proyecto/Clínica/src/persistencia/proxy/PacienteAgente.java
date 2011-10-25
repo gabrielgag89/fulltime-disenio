@@ -1,24 +1,14 @@
 package persistencia.proxy;
 
-import java.util.List;
-import java.util.ArrayList;
 import persistencia.FachadaPersistenciaInterna;
-import persistencia.criterios.Criterio;
 
 public class PacienteAgente extends ObjetoPersistente implements Paciente{
    private PacienteImpl impl;
-   boolean heBuscadoPlanes = false;
+   private String oidPlan;
+   private boolean plan = false;
 
    public void setImplementacion(PacienteImpl impl) {
       this.impl = impl;
-   }
-
-   public boolean isHeBuscadoPlanes() {
-      return heBuscadoPlanes;
-   }
-
-   public void setHeBuscadoPlanes(boolean heBuscadoPlanes) {
-      this.heBuscadoPlanes = heBuscadoPlanes;
    }
 
    @Override
@@ -42,24 +32,21 @@ public class PacienteAgente extends ObjetoPersistente implements Paciente{
    }
 
    @Override
-   public List<Plan> getPlanes() {
-      if(heBuscadoPlanes)
-         return this.impl.getPlanes();
+   public Plan getPlan() {
+      if(plan)
+         return this.impl.getPlan();
       else{
-           Criterio criterio = FachadaPersistenciaInterna.getInstancia().getCriterio("OIDPaciente","=",super.getOid());
-           List<Plan> planes = FachadaPersistenciaInterna.getInstancia().buscar("Plan", criterio);
-         for(Plan p: planes )
-            this.impl.addPlan(p);
+           this.impl.setPlan((Plan)FachadaPersistenciaInterna.getInstancia().buscar("Plan", oidPlan));        
          
-         this.heBuscadoPlanes = true;
+         this.plan = true;
          
-         return this.impl.getPlanes();
+         return this.impl.getPlan();
       }
    }
 
    @Override
-   public void setPlanes(List<Plan> planes) {
-      this.impl.setPlanes(planes);
+   public void setPlan(Plan plan) {
+      this.impl.setPlan(plan);
    }
 
    @Override
@@ -92,13 +79,8 @@ public class PacienteAgente extends ObjetoPersistente implements Paciente{
       this.impl.setTelefono(telefono);
    }
 
-   @Override
-   public void addPlan(Plan p) {
-      this.impl.addPlan(p);
-   }
-
-   @Override
-   public void removerPlan(Plan p) {
-      this.impl.removerPlan(p);
-   }
+    public void setOidPlan(String oidPlan) {
+        this.oidPlan = oidPlan;
+    }
+   
 }//fin paciente agente

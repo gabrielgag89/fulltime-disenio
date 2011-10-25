@@ -1,7 +1,5 @@
 package persistencia.proxy;
 
-import java.util.List;
-
 public interface Paciente {
    public int getDni();
    
@@ -11,14 +9,10 @@ public interface Paciente {
    
    public void setDomicilio(String domicilio);
    
-   public List<Plan> getPlanes();
+   public Plan getPlan();
    
-   public void setPlanes(List<Plan> planes );
-   
-   public void addPlan(Plan p);
-   
-   public void removerPlan(Plan p);
-   
+   public void setPlan(Plan plan );
+     
    public String getNombre();
    
    public void setNombre(String nombreP);
