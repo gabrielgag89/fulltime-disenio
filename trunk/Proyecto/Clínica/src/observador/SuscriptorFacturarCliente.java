@@ -6,7 +6,7 @@ import java.util.List;
 public class SuscriptorFacturarCliente {
     private static SuscriptorFacturarCliente instancia;
     private boolean changed = false;
-    private List<ObservadorFacturarCliente> obs;
+    private List<ObservadorFacturarCliente> obs = new  ArrayList<ObservadorFacturarCliente>();
 
     public static SuscriptorFacturarCliente getInstance(){
         if (instancia == null) {
@@ -15,16 +15,11 @@ public class SuscriptorFacturarCliente {
         return instancia;
     }
 
-    public SuscriptorFacturarCliente() {
-	obs = new  ArrayList<ObservadorFacturarCliente>();
-    }
-
     public synchronized void agregarObservadorFacturarCliente(ObservadorFacturarCliente o) {
-        if (o == null)
-            throw new NullPointerException();
-	if (!obs.contains(o)) {
+               
+	if (!obs.contains(o)) 
 	    obs.add(o);
-	}
+	
     }
 
     public synchronized void borrarObservadorFacturarCliente(ObservadorFacturarCliente o) {
@@ -56,7 +51,7 @@ public class SuscriptorFacturarCliente {
 	return obs.size();
     }
 
-        protected synchronized void notificarCambio() {
+    protected synchronized void notificarCambio() {
 	changed = true;
     }
 
