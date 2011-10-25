@@ -46,16 +46,13 @@ public class PacienteAgente extends ObjetoPersistente implements Paciente{
       if(heBuscadoPlanes)
          return this.impl.getPlanes();
       else{
-         List<Criterio> criterios = new ArrayList<Criterio>();
-         criterios.add(new Criterio("OIDPlan","=",super.getOid()));
-
-         for(ObjetoPersistente obj: FachadaPersistenciaInterna.getInstancia().buscar("Plan", criterios)){
-            Plan p = (Plan)obj;
+           Criterio criterio = FachadaPersistenciaInterna.getInstancia().getCriterio("OIDPaciente","=",super.getOid());
+           List<Plan> planes = FachadaPersistenciaInterna.getInstancia().buscar("Plan", criterio);
+         for(Plan p: planes )
             this.impl.addPlan(p);
-         }
-
+         
          this.heBuscadoPlanes = true;
-
+         
          return this.impl.getPlanes();
       }
    }
