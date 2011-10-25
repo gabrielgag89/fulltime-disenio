@@ -25,14 +25,14 @@ public class IPRRecibo  extends IntermPersistenciaDBR {
     public String insertar(Object objeto) {
         ReciboAgente recibo = (ReciboAgente)objeto;
         String fecha = "'" + (recibo.getFecha().getYear() + 1900) + (recibo.getFecha().getMonth() + 1) + recibo.getFecha().getDate() + "'";
-      return "INSERT INTO habitacion (oidrecibo,numero_recibo,fecha,oidfactura_cliente) VALUES ('" + recibo.getOid() + "','" + recibo.getNroRecibo() + "','" + fecha + "','" + recibo.getOidFacturaCliente() + "')";
+      return "INSERT INTO habitacion (oidrecibo,numero_recibo,fecha,oidfactura_cliente) VALUES ('" + recibo.getOid() + "','" + recibo.getNroRecibo() + "'," + fecha + ",'" + recibo.getOidFacturaCliente() + "')";
     }
 
     @Override
     public String actualizar(Object objeto) {
         ReciboAgente recibo = (ReciboAgente)objeto;
         String fecha = "'" + (recibo.getFecha().getYear() + 1900) + (recibo.getFecha().getMonth() + 1) + recibo.getFecha().getDate() + "'";
-        return "UPDATE habitacion SET numero_recibo = '" +  recibo.getNroRecibo() + "', fecha = '" + fecha + "', oidfactura_cliente = '" + recibo.getOidFacturaCliente() + "' WHERE oidrecibo = '" + recibo.getOid() + "'";
+        return "UPDATE habitacion SET numero_recibo = '" +  recibo.getNroRecibo() + "', fecha = " + fecha + ", oidfactura_cliente = '" + recibo.getOidFacturaCliente() + "' WHERE oidrecibo = '" + recibo.getOid() + "'";
     }
 
     @Override

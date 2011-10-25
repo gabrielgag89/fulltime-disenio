@@ -19,7 +19,7 @@ import persistencia.criterios.Criterio;
 public class IPRServicioEspecial extends IntermPersistenciaDBR{
    @Override
    public String select(Criterio criterio) {
-      return "SELECT * FROM servicio_especial WHERE " + criterio;
+      return "SELECT * FROM servicio_especial WHERE " + criterio.getStringCriterio();
    } // fin del método select
 
    @Override
