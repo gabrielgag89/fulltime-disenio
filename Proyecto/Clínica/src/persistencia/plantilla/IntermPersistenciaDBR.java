@@ -73,7 +73,7 @@ public abstract class IntermPersistenciaDBR extends IntermediarioPersistencia{
 
    private ResultSet ejecutarSQL(String sql) throws SQLException{
       return ConectorBD.getConexion().prepareStatement(sql).executeQuery();
-   }
+   } // fin del método ejecutarSQL
    
    public abstract String select(Criterio criterio); // método a implementar
    
@@ -83,7 +83,7 @@ public abstract class IntermPersistenciaDBR extends IntermediarioPersistencia{
    
    public abstract String actualizar(Object objeto); // método a implementar
    
-   public abstract List<ObjetoPersistente> convertirAObjeto(ResultSet filas); // método a implementar
+   public abstract List<ObjetoPersistente> convertirAObjeto(ResultSet resultado); // método a implementar
    
    public abstract ObjetoPersistente nuevo(); // método a implementar
 } // fin de la clase IntermPersistenciaDBR
