@@ -19,8 +19,9 @@ public class FichaInternacionAgente  extends ObjetoPersistente implements FichaI
         private String oidPrestacion;
 	private String oidEstadoFichaInternacion;
 	private String oidHabitacion;
+        private String oidFacturaOS;
         
-    public void setImpl(FichaInternacionImpl impl) {
+    public void setImplementacion(FichaInternacionImpl impl) {
         this.impl = impl;
     }
 
@@ -62,6 +63,14 @@ public class FichaInternacionAgente  extends ObjetoPersistente implements FichaI
 
     public void setOidprestacion(String oidprestacion) {
         this.oidPrestacion = oidprestacion;
+    }
+    
+    public String getOidFacturaOS() {
+        return oidFacturaOS;
+    }
+
+    public void setOidFacturaOS(String oidFacturaOS) {
+        this.oidFacturaOS = oidFacturaOS;
     }
 
     @Override
