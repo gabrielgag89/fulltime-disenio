@@ -59,7 +59,7 @@ public class FacturaClienteAgente extends ObjetoPersistente implements FacturaCl
    @Override
    public EstadoFacturaCliente getEstadoFacturaCliente() {
       if(!this.estadoFacturaCliente){
-         this.impl.setFichaInternacion((EstadoFacturaCliente) FachadaPersistenciaInterna.getInstancia().buscar("EstadoFacturaCliente", this.oidEstadoFacturaCliente));
+         this.impl.setEstadoFacturaCliente((EstadoFacturaCliente) FachadaPersistenciaInterna.getInstancia().buscar("EstadoFacturaCliente", this.oidEstadoFacturaCliente));
          this.estadoFacturaCliente = true;
       }
       
