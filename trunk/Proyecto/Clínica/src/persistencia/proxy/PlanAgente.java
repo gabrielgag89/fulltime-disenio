@@ -3,71 +3,52 @@
  * and open the template in the editor.
  */
 package persistencia.proxy;
-import java.util.ArrayList;
-import java.util.List;
+import persistencia.FachadaPersistenciaInterna;
 
 /**
  *
  * @author Cristian Mesa
  */
-public class PlanAgente implements Plan extends ObjetoPersistente {
+public class PlanAgente extends ObjetoPersistente implements Plan {
      private PlanImplementacion implementacion;
-     boolean heBuscandoObraSocial = false;
-    
+     private boolean obrasocial = false;
+     private String oidObraSocial;
+
     public void setImplementacion(PlanImplementacion implementacion) {
         this.implementacion = implementacion;
-    
-    public boolean isHeBuscandoObraSocial() {
-        return heBuscandoObraSocial;
     }
 
-    public void setHeBuscandoPlanes(boolean heBuscandoObraSocial) {
-        this.heBuscandoObraSocial = heBuscandoObraSocial;
-    
-        
+    @Override
     public int getCodigoPlan() {
         return this.implementacion.getCodigoPlan();
     }
-
     
+    @Override
     public void setCodigoPlan(int codigoPlan) {
         this.implementacion.setCodigoPlan(codigoPlan);
     }
-    public String getDescripcionPlan() {
-        return this.implementacion.getDescripcionPlan();
+
+    @Override
+    public String getDescripcion() {
+        return this.implementacion.getDescripcion();
     }
-    public void setDescripcionPlan(String descripcion) {
-        this.implementacion.setCodigoPlan(descripcion);
-    
+
+    @Override
+    public void setDescripcion(String descripcion) {
+        this.implementacion.setDescripcion(descripcion);
     }
     
-    public List<ObraSocial> getObraSocial() {
-        if(heBuscandoObraSocial)
-            return this.implementacion.getObraSocial();
-        else{
-            List<Criterio> criterios = new ArrayList<Criterio>();
-            criterios.add(new Criterio("OIDObraSocial","=",super.getOid()));
-            for(ObjetoPersistente obj: FachadaInterna.getInstancia().buscar("ObraSocial",criterios)){
-               ObraSocial o = (ObraSocial)obj;
-               this.implementacion.addObraSocial(o);
-            }
-            this.heBuscandoObraSocial = true;
+    @Override
+    public ObraSocial getObraSocial() {
+        if(!obrasocial){
+            this.implementacion.setObraSocial((ObraSocial)FachadaPersistenciaInterna.getInstancia().buscar("ObraSocial",oidObraSocial));
+            this.obrasocial = true;
+        }
             return this.implementacion.getObraSocial();
         }       
-           
-
-   
-    public void setObraSocial(List<ObraSocial> obrasocial) {
+     
+    @Override
+    public void setObraSocial(ObraSocial obrasocial) {
         this.implementacion.setObraSocial(obrasocial);
     }
-          public void addObraSocial(ObraSocial o) {
-        this.implementacion.addObraSocial(o);
-    }
-
-    
-    public void removerObraSocial(ObraSocial o) {
-        this.implementacion.removerObraSocial(o);
-    }    
-    
-    
 }
