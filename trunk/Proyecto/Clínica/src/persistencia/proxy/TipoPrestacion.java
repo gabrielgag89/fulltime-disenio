@@ -7,7 +7,7 @@ public interface TipoPrestacion {
    
    public TipoHabitacion getTipoHabitacion(); 
    
-   public void setTipoHabitacion(TipoHabitacion mi_TipoHabitacion); 
+   public void setTipoHabitacion(TipoHabitacion TipoHabitacion); 
    
    public String getNombreTipoPrestacion(); 
    
