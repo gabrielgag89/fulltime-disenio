@@ -83,15 +83,6 @@ public class PacienteAgente extends ObjetoPersistente implements Paciente{
    public void setTelefono(String telefono) {
       this.impl.setTelefono(telefono);
    }
-
-
-    public void setOidPlan(String oidPlan) {
-        this.oidPlan = oidPlan;
-    }
-
-    public String getOidPlan() {
-        return oidPlan;
-    }
-    
+ 
 
 }//fin paciente agente
