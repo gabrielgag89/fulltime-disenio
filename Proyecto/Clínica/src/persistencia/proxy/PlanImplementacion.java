@@ -10,52 +10,36 @@ public class PlanImplementacion implements Plan {
 
 	private int codigoPlan;
 	private String descripcion;
-	public ObraSocial m_ObraSocial;
-        private List<ObraSocial> ObraSocial;
+	public ObraSocial obraSocial;
 
-    public List<ObraSocial> getObraSocial() {
-        return ObraSocial;
+    @Override
+    public ObraSocial getObraSocial() {
+        return this.obraSocial;
     }
 
-    public void setObraSocial(List<ObraSocial> ObraSocial) {
-        this.ObraSocial = ObraSocial;
+    @Override
+    public void setObraSocial(ObraSocial obraSocial) {
+        this.obraSocial = obraSocial;
     }
-        
-        
+          
+    @Override
     public int getCodigoPlan() {
         return codigoPlan;
     }
 
+    @Override
     public void setCodigoPlan(int codigoPlan) {
         this.codigoPlan = codigoPlan;
     }
 
+    @Override
     public String getDescripcion() {
         return descripcion;
     }
 
+    @Override
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 
-    public ObraSocial getM_ObraSocial() {
-        return m_ObraSocial;
-    }
-
-    public void setM_ObraSocial(ObraSocial m_ObraSocial) {
-        this.m_ObraSocial = m_ObraSocial;
-    }
-   
-    public void addObraSocial(ObraSocial o) {
-        this.ObraSocial.add(o);
-    }
-
-    
-    public void removerObrasocial(ObraSocial o) {
-        this.ObraSocial.remove(o);
-
-	
-
-	
-}
 }
