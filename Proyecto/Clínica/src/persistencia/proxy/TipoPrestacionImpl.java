@@ -21,8 +21,8 @@ public class TipoPrestacionImpl implements TipoPrestacion {
    }
 
    @Override
-   public void setTipoHabitacion(TipoHabitacion mi_TipoHabitacion) {
-      this.tipoHabitacion = mi_TipoHabitacion;
+   public void setTipoHabitacion(TipoHabitacion TipoHabitacion) {
+      this.tipoHabitacion = TipoHabitacion;
    }
 
    @Override

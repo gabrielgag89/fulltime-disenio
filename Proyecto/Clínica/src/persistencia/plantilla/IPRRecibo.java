@@ -25,27 +25,27 @@ public class IPRRecibo  extends IntermPersistenciaDBR {
     public String insertar(Object objeto) {
         ReciboAgente recibo = (ReciboAgente)objeto;
         String fecha = "'" + (recibo.getFecha().getYear() + 1900) + (recibo.getFecha().getMonth() + 1) + recibo.getFecha().getDate() + "'";
-      return "INSERT INTO habitacion (oidrecibo,numero_recibo,fecha,oidfactura_cliente) VALUES ('" + recibo.getOid() + "','" + recibo.getNroRecibo() + "','" + fecha + "','" + recibo.getOidFacturaCliente() + "')";
+        return "INSERT INTO habitacion (oidrecibo,numero_recibo,fecha,oidfactura_cliente) VALUES ('" + recibo.getOid() + "','" + recibo.getNroRecibo() + "'," + fecha + ",'" + recibo.getOidFacturaCliente() + "')";
     }
 
     @Override
     public String actualizar(Object objeto) {
         ReciboAgente recibo = (ReciboAgente)objeto;
         String fecha = "'" + (recibo.getFecha().getYear() + 1900) + (recibo.getFecha().getMonth() + 1) + recibo.getFecha().getDate() + "'";
-        return "UPDATE habitacion SET numero_recibo = '" +  recibo.getNroRecibo() + "', fecha = '" + fecha + "', oidfactura_cliente = '" + recibo.getOidFacturaCliente() + "' WHERE oidrecibo = '" + recibo.getOid() + "'";
+        return "UPDATE habitacion SET numero_recibo = '" +  recibo.getNroRecibo() + "', fecha = " + fecha + ", oidfactura_cliente = '" + recibo.getOidFacturaCliente() + "' WHERE oidrecibo = '" + recibo.getOid() + "'";
     }
 
     @Override
-    public List<ObjetoPersistente> convertirAObjeto(ResultSet rs) {
+    public List<ObjetoPersistente> convertirAObjeto(ResultSet resultado) {
       List<ObjetoPersistente> ListaRecibos =  new ArrayList<ObjetoPersistente>();
       try {
-         while (rs.next()){
+         while (resultado.next()){
             ReciboAgente HA = new ReciboAgente();
             HA.setImplementacion(new ReciboImpl());
-            HA.setOid(rs.getString("oidrecibo"));
-            HA.setNroRecibo(rs.getInt("numero_recibo"));
-            HA.setFecha(rs.getDate("fecha"));
-            HA.setOidFacturaCliente(rs.getString("oidfactura_cliente"));
+            HA.setOid(resultado.getString("oidrecibo"));
+            HA.setNroRecibo(resultado.getInt("numero_recibo"));
+            HA.setFecha(resultado.getDate("fecha"));
+            HA.setOidFacturaCliente(resultado.getString("oidfactura_cliente"));
             ListaRecibos.add(HA);
          }
       } catch (SQLException ex) {
