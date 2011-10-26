@@ -1,56 +1,26 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package persistencia.proxy;
 
 /**
- * @author Cristian
- * @version 1.0
- * @created 22-oct-2011 07:16:20 p.m.
+ *
+ * @author Administrador
  */
-public class Plan {
+public interface Plan {
+    public List<ObraSocial> getObraSocial();
+    public void setObraSocial(List<ObraSocial> ObraSocial);
+    public int getCodigoPlan();
+    public void setCodigoPlan(int codigoPlan);
+    public String getDescripcion();
+    public void setDescripcion(String descripcion);
+    public ObraSocial getM_ObraSocial();
+    public void setM_ObraSocial(ObraSocial m_ObraSocial);       
+    public void addObraSocial(ObraSocial o);
+    public void removerObrasocial(ObraSocial o);
+     }
 
-	private int codigoPlan;
-	private String descripcion;
-	public ObraSocial m_ObraSocial;
 
-	public Plan(){
+    
 
-	}
-
-	public void finalize() throws Throwable {
-
-	}
-	public int getCodigoPlan(){
-		return CodigoPlan;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCodigoPlan(int newVal){
-		CodigoPlan = newVal;
-	}
-
-	public String getDescripcion(){
-		return Descripcion;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDescripcion(String newVal){
-		Descripcion = newVal;
-	}
-
-	public ObraSocial getOSocial(){
-		return null;
-	}
-
-	/**
-	 * 
-	 * @param obras
-	 */
-	public setOSocial(ObraSocial obras){
-
-	}
-}//end Plan
