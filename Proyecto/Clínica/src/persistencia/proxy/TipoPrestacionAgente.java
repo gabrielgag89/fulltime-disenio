@@ -4,8 +4,9 @@ import persistencia.FachadaPersistenciaInterna;
 
 public class TipoPrestacionAgente extends ObjetoPersistente implements TipoPrestacion{
    private TipoPrestacionImpl impl;
-   private boolean tipoHabitacion = false;
    private String oidTipoHabitacion;
+   private boolean tipoHabitacion = false;
+   
 
    public void setImplementacion(TipoPrestacionImpl impl) {
       this.impl = impl;
@@ -31,11 +32,15 @@ public class TipoPrestacionAgente extends ObjetoPersistente implements TipoPrest
 
    @Override
    public TipoHabitacion getTipoHabitacion() {
-      if(!tipoHabitacion){
-         this.impl.setTipoHabitacion((TipoHabitacion)FachadaPersistenciaInterna.getInstancia().buscar("TipoHabitacion",oidTipoHabitacion));
-         this.tipoHabitacion=true;
+
+      if(tipoHabitacion)
+         return this.impl.getTipoHabitacion();
+      else{
+          this.impl.setTipoHabitacion((TipoHabitacion)FachadaPersistenciaInterna
+                  .getInstancia().buscar("TipoHabitacion", this.oidTipoHabitacion));
+          this.tipoHabitacion = true;
+          return this.impl.getTipoHabitacion();
       }
-      return this.impl.getTipoHabitacion();
    }
 
    @Override
@@ -52,4 +57,5 @@ public class TipoPrestacionAgente extends ObjetoPersistente implements TipoPrest
    public void setNombreTipoPrestacion(String nombreTipoPrestacion) {
       this.impl.getNombreTipoPrestacion();
    }
+      
 }
