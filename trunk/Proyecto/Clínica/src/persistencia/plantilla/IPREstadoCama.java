@@ -1,3 +1,4 @@
+
 package persistencia.plantilla;
 
 import java.sql.ResultSet;
@@ -9,7 +10,8 @@ import persistencia.proxy.EstadoCamaAgente;
 import persistencia.proxy.EstadoCamaImpl;
 import persistencia.proxy.ObjetoPersistente;
 
-public class IPREstadoCama extends IntermPersistenciaDBR{
+
+public class IPREstadoCama extends IntermPersistenciaDBR {
 
     @Override
     public String select(Criterio criterio) {
@@ -18,43 +20,53 @@ public class IPREstadoCama extends IntermPersistenciaDBR{
 
     @Override
     public String select(String oid) {
-         return "SELECT * FROM estado_cama WHERE oidestado_cama = '" + oid  + "'";
+        return "SELECT  *  FROM  estado_cama  WHERE oidestado_cama = '" + oid +"'";
     }
 
     @Override
     public String insertar(Object objeto) {
-        EstadoCamaAgente estadoCama = (EstadoCamaAgente)objeto;
-        return "INSERT INTO estado_cama (oidestado_cama,nombre_estado_cama) VALUES ('" + estadoCama.getOid() + "','" + estadoCama.getNombreEstado() + "')";
+        EstadoCamaAgente estadoC = (EstadoCamaAgente)objeto;
+        
+      return "INSERT INTO estado_cama VALUES "
+                  + "('" + estadoC.getOid() + "','"
+                         + estadoC.getNombreEstado()+ "')";
     }
 
     @Override
     public String actualizar(Object objeto) {
-        EstadoCamaAgente estadoCama = (EstadoCamaAgente)objeto;
-        return "UPDATE estado_cama SET nombre_estado_cama = '" + estadoCama.getNombreEstado() + "' WHERE oidestado_cama = '" + estadoCama.getOid() + "'";
+        EstadoCamaAgente estadoC = (EstadoCamaAgente)objeto;
+        return "UPDATE FROM estado_cama WHERE "
+                  + "oidestado_cama = '" + estadoC.getOid() + "', "
+                  + "nombre_estado = '" + estadoC.getNombreEstado() + "'";                            
     }
 
     @Override
     public List<ObjetoPersistente> convertirAObjeto(ResultSet resultado) {
-      List<ObjetoPersistente> ListaEstadosCama =  new ArrayList<ObjetoPersistente>();
+        List<ObjetoPersistente> lista = new ArrayList<ObjetoPersistente>();
+        EstadoCamaAgente estadoC;
+      
       try {
-         while (resultado.next()){
-            EstadoCamaAgente ECA = new EstadoCamaAgente();
-            ECA.setImplementacion(new EstadoCamaImpl());
-            ECA.setOid(resultado.getString("oidestado_cama"));
-            ECA.setNombreEstado(resultado.getString("nombre_estado_cama"));
-            ListaEstadosCama.add(ECA);
+         while(resultado.next()){
+            estadoC = new EstadoCamaAgente();
+            
+            estadoC.setImplementacion(new EstadoCamaImpl());
+            estadoC.setOid(resultado.getString("oidestado_cama"));
+            estadoC.setNombreEstado(resultado.getString("nombre_estado"));
+                                    
+            lista.add(estadoC);
          }
       } catch (SQLException ex) {
-         System.out.println("IPREstadosCama - convertirAObjeto - SQLException: "+ex.getMessage());
+         System.err.println("IPREstadoCama - convertirAObjeto(ResultSet resultado) - " + ex.getMessage());
       }
-      return ListaEstadosCama;
+      
+      return lista;
     }
 
     @Override
     public ObjetoPersistente nuevo() {
-      EstadoCamaAgente ECA = new EstadoCamaAgente();
-      ECA.setImplementacion(new EstadoCamaImpl());
-      return (ObjetoPersistente) ECA;
+        EstadoCamaAgente estadoC = new EstadoCamaAgente();
+        estadoC.setImplementacion(new EstadoCamaImpl());
+        return estadoC;
     }
-
+    
 }

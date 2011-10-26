@@ -1,6 +1,7 @@
 package persistencia.proxy;
 
 public interface TipoPrestacion {
+    
    public int getCodigoTipoPrestacion(); 
    
    public void setCodigoTipoPrestacion(int codigoTipoPrestacion); 
@@ -11,5 +12,6 @@ public interface TipoPrestacion {
    
    public String getNombreTipoPrestacion(); 
    
-   public void setNombreTipoPrestacion(String nombreTipoPrestacion); 
+   public void setNombreTipoPrestacion(String nombreTipoPrestacion);
+   
 }//fin interface TipoPrestacion

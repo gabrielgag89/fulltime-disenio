@@ -13,7 +13,9 @@ public interface CostoPrestacion {
 
    public float getMonto();
 
-   public void setMonto(float monto);  public Prestacion getPrestacion();
+   public void setMonto(float monto); 
+   
+   public Prestacion getPrestacion();
 
    public void setPrestacion(Prestacion prestacion);
 } // fin interface CostoPrestacion
