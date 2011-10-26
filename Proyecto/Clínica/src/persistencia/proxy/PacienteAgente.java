@@ -11,6 +11,14 @@ public class PacienteAgente extends ObjetoPersistente implements Paciente{
       this.impl = impl;
    }
 
+    public String getOidPlan() {
+        return oidPlan;
+    }
+    
+    public void setOidPlan(String oidPlan) {
+        this.oidPlan = oidPlan;
+    }
+
    @Override
    public int getDni() {
       return this.impl.getDni();
@@ -33,15 +41,11 @@ public class PacienteAgente extends ObjetoPersistente implements Paciente{
 
    @Override
    public Plan getPlan() {
-      if(plan)
-         return this.impl.getPlan();
-      else{
+      if(!plan){
            this.impl.setPlan((Plan)FachadaPersistenciaInterna.getInstancia().buscar("Plan", oidPlan));        
-         
-         this.plan = true;
-         
-         return this.impl.getPlan();
+           this.plan = true;
       }
+       return this.impl.getPlan();
    }
 
    @Override
@@ -79,8 +83,4 @@ public class PacienteAgente extends ObjetoPersistente implements Paciente{
       this.impl.setTelefono(telefono);
    }
 
-    public void setOidPlan(String oidPlan) {
-        this.oidPlan = oidPlan;
-    }
-   
 }//fin paciente agente

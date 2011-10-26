@@ -47,7 +47,7 @@ public class IPRTipoPrestacion extends IntermPersistenciaDBR{
             ListaTipoPrestaciones.add(TPA);
          }
       } catch (SQLException ex) {
-         System.out.println("IPRRecibo - convertirAObjeto - SQLException: "+ex.getMessage());
+         System.out.println("IPRTipoPrestacion - convertirAObjeto - SQLException: "+ex.getMessage());
       }
       return ListaTipoPrestaciones;
     }
