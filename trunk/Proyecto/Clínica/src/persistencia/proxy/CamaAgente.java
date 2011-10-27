@@ -9,7 +9,11 @@ package persistencia.proxy;
  */
 public class CamaAgente extends ObjetoPersistente implements Cama{
    private CamaImpl impl;
-   
+   private boolean habitacion;
+   private boolean estadoCama;
+   private String oidHabitacion;
+   private String oidEstadoCama;
+
    public void setImplementacion(CamaImpl impl){
       this.impl = impl;
    }

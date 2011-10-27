@@ -14,11 +14,11 @@ public class CriterioCompuesto implements Criterio{
    /**
     * Vector de criterios.
     */
-   protected List CS = new ArrayList();
+   protected List<Criterio> CS = new ArrayList<Criterio>();
 
    /**
     * Combierte el criterio en un {@code String}.<br>
-    * ¡¡¡NO IMPLEMENTADO AÚN!!!
+    * ¡¡¡NO IMPLEMENTADO AÚN!!! <- Gabriel, se usa en un nivel mas abajo
     * @return el criterio combertido a {@code String}
     */
    @Override
@@ -40,7 +40,7 @@ public class CriterioCompuesto implements Criterio{
     * @param c vector de criterios
     * @return el criterio resultante
     */
-   public Criterio setCriterio(List c) {
+   public Criterio setCriterio(List<Criterio> c) {
       this.CS = c;
       return (Criterio) this;
    } // fin del método setCriterio
