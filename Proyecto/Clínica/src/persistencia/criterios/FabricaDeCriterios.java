@@ -47,7 +47,7 @@ public class FabricaDeCriterios {
     * @param c vector de criterios a unir con OR
     * @return el criterio resultante
     */
-   public Criterio or(List c) {
+   public Criterio or(List<Criterio> c) {
       return new OR().setCriterio(c);
    } // fin del método or
 
@@ -56,7 +56,7 @@ public class FabricaDeCriterios {
     * @param c vector de criterios a unir con AND
     * @return el criterio resultante
     */
-   public Criterio and(List c) {
+   public Criterio and(List<Criterio> c) {
       return new AND().setCriterio(c);
    } // fin del método and
 
@@ -70,7 +70,6 @@ public class FabricaDeCriterios {
       List V = new ArrayList();
       V.add(c1);
       V.add(c2);
-      
       return this.and(V);
    } // fin del método and
 } // fin de la clase FabricaDeCriterios
