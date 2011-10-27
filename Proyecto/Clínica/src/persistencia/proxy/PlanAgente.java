@@ -51,4 +51,10 @@ public class PlanAgente extends ObjetoPersistente implements Plan {
     public void setObraSocial(ObraSocial obrasocial) {
         this.implementacion.setObraSocial(obrasocial);
     }
+    public String getOidObraSocial() {
+      return oidObraSocial;
 }
+    public void setOidObraSocial(String oidObraSocial) {
+      this.oidObraSocial = oidObraSocial;
+}
+    }
