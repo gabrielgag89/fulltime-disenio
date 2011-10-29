@@ -8,19 +8,20 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 <%@page  import="persistencia.FachadaPersistenciaInterna" %>
+<%
+request.setAttribute("s_numero_ficha_internacion","");
+%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>PRUEBA</title>
     </head>
     <body>
-        <%
-                                FachadaPersistenciaInterna FPI = new FachadaPersistenciaInterna();
-                                Object o1=FPI;
-                                Object o2=(Object)o1;
-                                Object o3=o2;
-                                String s="prueba: "+o3.getClass().getSimpleName();
-                    %>
-        <h1><%= s%></h1>
+        <table border="1" width="100%">
+          <tr>
+            <td align="center"><a href="facturarCliente.jsp?s_numero_ficha_internacion=">Facturar Cliente</a></td>
+            <td align="center"><a href="cobrarCliente.jsp">Cobrar Cliente</a></td>
+          </tr>
+        </table>
     </body>
 </html>
