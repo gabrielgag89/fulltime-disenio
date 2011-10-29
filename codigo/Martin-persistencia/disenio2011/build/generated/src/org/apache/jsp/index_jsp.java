@@ -3,7 +3,6 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
-import persistencia.FachadaPersistenciaInterna;
 
 public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -52,29 +51,23 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_out = out;
 
       out.write("\n");
-      out.write("\n");
-      out.write("\n");
       out.write("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\n");
       out.write("   \"http://www.w3.org/TR/html4/loose.dtd\">\n");
-      out.write("\n");
       out.write("<html>\n");
       out.write("    <head>\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
       out.write("        <title>PRUEBA</title>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
-      out.write("        ");
-
-                                FachadaPersistenciaInterna FPI = new FachadaPersistenciaInterna();
-                                Object o1=FPI;
-                                Object o2=(Object)o1;
-                                Object o3=o2;
-                                String s="prueba: "+o3.getClass().getSimpleName();
-                    
+      out.write("        <table border=\"1\" width=\"100%\">\n");
+      out.write("          <tr>\n");
+      out.write("             ");
+ session.setAttribute("s_numero_ficha_internacion", "0");
       out.write("\n");
-      out.write("        <h1>");
-      out.print( s);
-      out.write("</h1>\n");
+      out.write("            <td align=\"center\"><a href=\"facturarCliente.jsp\">Facturar Cliente</a></td>\n");
+      out.write("            <td align=\"center\"><a href=\"cobrarCliente.jsp\">Cobrar Cliente</a></td>\n");
+      out.write("          </tr>\n");
+      out.write("        </table>\n");
       out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {
