@@ -13,6 +13,7 @@ public class CapaEnlace {
    private static final char esMsj = 10;
    private static final char esAck = 20;
    private boolean[] recibos;
+   private  static char tramaEsperada = '0';
    
    public static CapaEnlace getInstancia(){
       if(capaEnlace == null)
@@ -20,7 +21,7 @@ public class CapaEnlace {
       
       return capaEnlace;
    }
-   
+
    public void enviarPaquetes(char[] paquetes){
       this.recibos = new boolean[paquetes.length];
       
@@ -63,13 +64,25 @@ public class CapaEnlace {
       }
    }
    
-   public void desdeFisica(Trama trama){
-      
-   }
+   public void desdeFisica(Trama trama) {
+              
+       if(trama.getMsj_ack() == CapaEnlace.esMsj){//recibo datos
+          if(trama.getNumSec() == tramaEsperada){//es la trama esperada
+             if(trama.getSumVerif() == this.calcSumVerif(trama)){//cumple suma verif
+                 //muestra en la capa de red
+                 CapaRed.getCapa().recibirPaquete(trama.tramaToString().toCharArray());
+                 Trama t = new Trama((char)tramaEsperada, CapaEnlace.esAck, '1');
+                 CapaFisica.getinstancia().enviarTrama(t);//envio confirmacion
+                 tramaEsperada = (char)((int)tramaEsperada + 1);
+             } 
+          } 
+       }else {// es ack
+           recibos[(int)tramaEsperada] = true;
+       }
+   }//fin desde fisica
    
    private char calcSumVerif(Trama t){
-      long suma = t.getByteInicio() + t.getNumSec() + t.getDato() + t.getByteFin();
-      
+      long suma = t.getByteInicio() + t.getNumSec() + t.getDato() + t.getByteFin();      
       return (char) suma;
    }
 } // fin de la clase CapaEnlace

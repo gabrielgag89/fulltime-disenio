@@ -2,15 +2,18 @@
 package tp2capaenlacededatos;
 
 import giovynet.nativelink.SerialPort;
+import giovynet.serial.ActionListenerReadPort;
 import giovynet.serial.Baud;
+import giovynet.serial.Buffer;
+import giovynet.serial.Buffer.BufferException;
 import giovynet.serial.Com;
+import giovynet.serial.Com.ActionListenerReadPortException;
 import giovynet.serial.Parameters;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-public class Puerto {
-    
+public class Puerto extends Thread implements ActionListenerReadPort{
     /**
      * puerto de serie, pedimos el que esté libre
      */
@@ -46,7 +49,8 @@ public class Puerto {
                 Puerto.getPuertoSerie().getFreeSerialPort();
                 Puerto.getParametros().setPort(puertoLibre);
                 Puerto.getParametros().setBaudRate(baudios);
-                puertoCom = new Com(parametros);
+                puertoCom = new Com(parametros);    
+                
             } catch (Exception ex) {
                 Logger.getLogger(Puerto.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -54,7 +58,6 @@ public class Puerto {
         
         return puertoCom;
     }
-    
     
     private static Parameters getParametros() {        
         if(parametros == null)
@@ -65,6 +68,38 @@ public class Puerto {
         }        
         return parametros;
     }
-   
     
+    public void inicializarPuerto(){
+        try {            
+            Puerto.getPuertoCom().addActionListenerReadPort(this);
+            Thread lecturaP = new Thread(this);
+            lecturaP.start();            
+        } catch (ActionListenerReadPortException ex) {
+            Logger.getLogger(Puerto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
+    @Override
+    public void run() {
+        try {
+            Thread.sleep(1000);
+                        
+        } catch (InterruptedException e) {
+            System.err.println("Error en el método run:"+e.getMessage());
+        }
+    }
+
+    public void tryActionPerformed(Buffer buffer) {
+        try {
+            CapaFisica.getinstancia().recibirTrama(buffer.getBufferInCharArray());     
+        } catch (BufferException ex) {
+            Logger.getLogger(Puerto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void catchActionPerformed(Exception e) {
+        System.err.println("Error evento en el puerto:"+e.getMessage());
+    }
+       
 }

@@ -1,16 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package tp2capaenlacededatos;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-/**
- *
- * @author Cristian
- */
 public class CapaFisica {
     private static CapaFisica capaFisica;
     
@@ -23,14 +13,22 @@ public class CapaFisica {
     
     public void enviarTrama(Trama trama){
        String mensaje = trama.tramaToString();
-        try {
+       try {
             Puerto.getPuertoCom().sendArrayChar(mensaje.toCharArray());
         } catch (Exception ex) {
-            Logger.getLogger(CapaFisica.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("Error al enviar un paquete al puerto:"+ex.getMessage());
         }
     }
     
-    public void recibirTrama(Trama trama){
+    public void recibirTrama(char[] paquete){
+        Trama trama = new Trama();
+        trama.setByteInicio(paquete[0]);
+        trama.setNumSec(paquete[1]);
+        trama.setMsj_ack(paquete[2]);
+        trama.setDato(paquete[3]);
+        trama.setSumVerif(paquete[4]);
+        trama.setByteFin(paquete[5]);
+        
         CapaEnlace.getInstancia().desdeFisica(trama);
     }
 }
