@@ -1,6 +1,6 @@
 package persistencia.proxy;
 
-public class EstadoFichaInternacionAgente implements EstadoFichaInternacion {
+public class EstadoFichaInternacionAgente extends ObjetoPersistente implements EstadoFichaInternacion {
    private EstadoFichaInternacionImpl impl;
 
    public void setImplementacion(EstadoFichaInternacionImpl impl){
@@ -15,5 +15,5 @@ public class EstadoFichaInternacionAgente implements EstadoFichaInternacion {
    @Override
    public void setNombreEstado(String nombreEstado) {
       this.impl.setNombreEstado(nombreEstado);
-   }    
+   }
 }
