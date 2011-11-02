@@ -12,10 +12,7 @@ import persistencia.proxy.PlanAgente;
 import persistencia.proxy.PlanImplementacion;
 import persistencia.criterios.Criterio;
 
-/**
- *
- * @author Cristian Mesa
- */
+
 public class IPRPlan extends IntermPersistenciaDBR {
     
 
