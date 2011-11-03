@@ -1,5 +1,0 @@
-mysql -h localhost -u root -p
-USE mysql;
-create user 'fulltime'@'localhost' identified by 'disenio';
-grant select, insert, update, delete, create, drop, references, execute on *.* to 'fulltime'@'localhost';
-exit
