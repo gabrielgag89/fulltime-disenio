@@ -22,12 +22,12 @@ public class CamaAgente extends ObjetoPersistente implements Cama{
 
    @Override
    public int getNumCama() {
-      throw new UnsupportedOperationException("Not supported yet.");
+      return this.impl.getNumCama();
    }
 
    @Override
    public void setNumCama(int numCama) {
-      throw new UnsupportedOperationException("Not supported yet.");
+      this.impl.setNumCama(numCama);
    }
 
    @Override
