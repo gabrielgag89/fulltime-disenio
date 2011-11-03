@@ -1,56 +1,23 @@
 package persistencia.proxy;
 
-/**
- * @author Cristian
- * @version 1.0
- * @created 22-oct-2011 07:16:30 p.m.
- */
-public class CostoServicio {
+import java.util.Date;
 
-	private Date fechaInicio;
-	private Date fechaFin;
-	private float monto;
+public interface CostoServicio {
+    
+   public Date getFechaInicio();
 
-	public CostoServicio(){
+   public void setFechaInicio(Date fechaInicio);
 
-	}
+   public Date getFechaFin();
 
-	public void finalize() throws Throwable {
+   public void setFechaFin(Date fechaFin);
+   
+   public float getMonto();
 
-	}
-	public Date getFechaInicio(){
-		return FechaInicio;
-	}
+   public void setMonto(float monto); 
+   
+   public ServicioEspecial getServicioEspecial();
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setFechaInicio(Date newVal){
-		FechaInicio = newVal;
-	}
-
-	public float getMonto(){
-		return Monto;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMonto(float newVal){
-		Monto = newVal;
-	}
-
-	public Date getFechaFin(){
-		return FechaFin;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setFechaFin(Date newVal){
-		FechaFin = newVal;
-	}
-}//end CostoServicio
+   public void setServicioEspecial (ServicioEspecial servicioEspecial);
+   
+}
