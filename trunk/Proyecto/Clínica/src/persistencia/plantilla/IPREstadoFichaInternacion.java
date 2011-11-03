@@ -13,12 +13,12 @@ public class IPREstadoFichaInternacion extends IntermPersistenciaDBR{
 
     @Override
     public String select(Criterio criterio) {
-        return "SELECT * FROM estado_ficha_prestacion WHERE " + criterio.getStringCriterio();
+        return "SELECT * FROM estado_ficha_internacion WHERE " + criterio.getStringCriterio();
     }
 
     @Override
     public String select(String oid) {
-return "SELECT  *  FROM  estado_ficha_prestacion  WHERE oidestado_ficha_prestacion ='" + oid +"'";
+return "SELECT  *  FROM  estado_ficha_internacion  WHERE oidestado_ficha_prestacion ='" + oid +"'";
     }
 
     @Override
