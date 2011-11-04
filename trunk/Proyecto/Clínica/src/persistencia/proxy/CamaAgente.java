@@ -11,8 +11,8 @@ import persistencia.FachadaPersistenciaInterna;
  */
 public class CamaAgente extends ObjetoPersistente implements Cama{
    private CamaImpl impl;
-   private boolean habitacion;
-   private boolean estadoCama;
+   private boolean habitacion=false;
+   private boolean estadoCama=false;
    private String oidHabitacion;
    private String oidEstadoCama;
 
@@ -34,6 +34,7 @@ public class CamaAgente extends ObjetoPersistente implements Cama{
    public Habitacion getHabitacion() {
       if(!this.habitacion){
            this.impl.setHabitacion((Habitacion) FachadaPersistenciaInterna.getInstancia().buscar("Habitacion", this.oidHabitacion));
+           this.habitacion=true;
        }
        return this.impl.getHabitacion();
    }
@@ -55,6 +56,7 @@ public class CamaAgente extends ObjetoPersistente implements Cama{
    public EstadoCama getEstadoCama() {
        if(!this.estadoCama){
            this.impl.setEstadoCama((EstadoCama) FachadaPersistenciaInterna.getInstancia().buscar("EstadoCama", this.oidEstadoCama));
+           this.estadoCama = true;
        }
        return this.impl.getEstadoCama();
    }
