@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * Criterio compuesto para la consulta a la BDR.
  * @author Gabriel
  */
-public class CriterioCompuesto implements Criterio{
+public abstract class CriterioCompuesto implements Criterio{
    /**
     * Vector de criterios.
     */
@@ -22,9 +22,8 @@ public class CriterioCompuesto implements Criterio{
     * @return el criterio combertido a {@code String}
     */
    @Override
-   public String getStringCriterio() {
-      throw new UnsupportedOperationException("Not supported yet.");
-   } // fin del método getStringCriterio
+   public abstract String getStringCriterio();
+   // fin del método getStringCriterio
         
    /**
     * Recupera el criterio correspondiente a la posición indicada.
