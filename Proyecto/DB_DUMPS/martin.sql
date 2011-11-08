@@ -12,7 +12,7 @@ CREATE TABLE `tipo_habitacion` (
 insert  into `tipo_habitacion`(`oidtipo_habitacion`,`codigo_tipo_habitacion`,`nombre_tipo_habitacion`) values ('0f770e39-b317-4406-96f7-1bfde02ea537',11,'Roja');
 insert  into `tipo_habitacion`(`oidtipo_habitacion`,`codigo_tipo_habitacion`,`nombre_tipo_habitacion`) values ('89fee1ef-a5ed-4963-bb6b-b80f08f885dd',44,'Azul');
 insert  into `tipo_habitacion`(`oidtipo_habitacion`,`codigo_tipo_habitacion`,`nombre_tipo_habitacion`) values ('c2768c57-a66b-448d-87ad-d52ffba4a95c',33,'Rosa');
-insert  into `tipo_habitacion`(`oidtipo_habitacion`,`codigo_tipo_habitacion`,`nombre_tipo_habitacion`) values ('c3b8f327-1efc-4da1-89da-93f6896cbdbf',44,'Naranja');
+insert  into `tipo_habitacion`(`oidtipo_habitacion`,`codigo_tipo_habitacion`,`nombre_tipo_habitacion`) values ('c3b8f327-1efc-4da1-89da-93f6896cbdbf',22,'Naranja');
 insert  into `tipo_habitacion`(`oidtipo_habitacion`,`codigo_tipo_habitacion`,`nombre_tipo_habitacion`) values ('faf93d7a-6b6a-4fe1-a85e-8385669493f8',55,'Amarilla');
 
 DROP TABLE IF EXISTS `tipo_prestacion`;
