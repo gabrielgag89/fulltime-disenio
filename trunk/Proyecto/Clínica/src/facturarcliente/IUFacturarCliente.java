@@ -46,6 +46,11 @@ public class IUFacturarCliente extends javax.swing.JFrame {
         jLabel1.setText("Paciente :");
 
         JButtonBuscar.setText("Buscar Ficha");
+        JButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JButtonBuscarActionPerformed(evt);
+            }
+        });
 
         JTableFicha.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -142,6 +147,11 @@ public class IUFacturarCliente extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void JButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonBuscarActionPerformed
+        ControladorFacturarCliente CFC = new ControladorFacturarCliente();
+        List<DTOFichaInternacion> dtoficha= CFC.buscarFichaInternacion(JComboboxPacientes.getSelectedIndex());
+    }//GEN-LAST:event_JButtonBuscarActionPerformed
 
     /**
     * @param args the command line arguments

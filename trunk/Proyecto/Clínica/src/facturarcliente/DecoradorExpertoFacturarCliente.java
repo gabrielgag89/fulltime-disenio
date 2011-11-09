@@ -22,6 +22,22 @@ public class DecoradorExpertoFacturarCliente extends ExpertoFacturarCliente {
             }
 	}
 
+    @Override
+        public List<DTOFichaInternacion> buscarFichaInternacion(int OIDPaciente){
+            try {
+                FachadaPersistenciaInterna.iniciarTransaccion();
+                List<DTOFichaInternacion> vectorDTOFichas = super.buscarFichaInternacion(OIDPaciente);
+                return vectorDTOFichas;
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+                return null;
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+                return null;
+            }
+        }
+    
+    
        @Override
         public void facturar(Object objeto){
             try {
