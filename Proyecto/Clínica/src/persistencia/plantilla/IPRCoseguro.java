@@ -73,6 +73,13 @@ CoseguroAgente coseguro = (CoseguroAgente) objeto;
       
       return coseguro;
     }
+
+    @Override
+    public String select() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    
     
 }
     

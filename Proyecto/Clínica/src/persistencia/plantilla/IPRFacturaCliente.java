@@ -85,4 +85,11 @@ public class IPRFacturaCliente extends IntermPersistenciaDBR{
       
       return fact;
    } // fin del método nuevo
+
+    
+
+    @Override
+    public String select() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 } // fin de la clase IPRFacturaCliente

@@ -1,6 +1,8 @@
 
 package persistencia.plantilla;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -74,5 +76,13 @@ public class IPRTipoPrestacion extends IntermPersistenciaDBR {
         tipoP.setImplementacion(new TipoPrestacionImpl());
         return tipoP;
     }
+
+  
+
+    @Override
+    public String select() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
     
 }

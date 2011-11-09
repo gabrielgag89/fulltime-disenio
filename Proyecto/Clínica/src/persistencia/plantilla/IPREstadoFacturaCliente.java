@@ -65,5 +65,15 @@ EstadoFacturaClienteAgente estado_factura = (EstadoFacturaClienteAgente) objeto;
       
       return estado_factura;
     }
+
+    @Override
+    public ObjetoPersistente materializar() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public String select() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
     
 }

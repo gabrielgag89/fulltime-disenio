@@ -75,4 +75,11 @@ public class IPRServicioEspecial extends IntermPersistenciaDBR{
       
       return serv;
    } // fin del método nuevo
+
+  
+
+    @Override
+    public String select() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 } // fin de la clase IPRServicioEspecial

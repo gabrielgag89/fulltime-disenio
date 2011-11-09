@@ -69,4 +69,8 @@ public class FachadaPersistenciaInterna {
    public Criterio and(Criterio c1,Criterio c2){
       return  FabricaDeCriterios.getInstancia().and(c1,c2);
    } // fin del método and
+   
+   public List getColeccion(String object) {
+                return FabricaDeIntermediarios.getInstancia().getIntermediario(object).getColeccion();
+        }
 } // fin de la clase FachadaPersistenciaInterna

@@ -65,5 +65,11 @@ EstadoFichaInternacionAgente estadoFicha = (EstadoFichaInternacionAgente) objeto
       
       return estado_ficha;
     }
+
+   
+    @Override
+    public String select() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
     
 }

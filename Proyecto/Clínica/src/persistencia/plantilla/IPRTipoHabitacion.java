@@ -82,7 +82,14 @@ public class IPRTipoHabitacion extends IntermPersistenciaDBR{
       tiph.setImplementacion(new TipoHabitacionImplementacion());
       
       return tiph;
-   } 
+   }
+
+   
+
+    @Override
+    public String select() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 } 
 
     

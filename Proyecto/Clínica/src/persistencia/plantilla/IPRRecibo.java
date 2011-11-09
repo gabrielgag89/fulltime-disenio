@@ -61,4 +61,11 @@ public class IPRRecibo  extends IntermPersistenciaDBR {
       return (ObjetoPersistente) RA;
     }
 
+    
+
+    @Override
+    public String select() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
 }

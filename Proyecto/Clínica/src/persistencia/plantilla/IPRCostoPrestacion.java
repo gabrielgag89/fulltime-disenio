@@ -78,5 +78,15 @@ public class IPRCostoPrestacion extends IntermPersistenciaDBR {
         costo.setImplementacion(new CostoPrestacionImpl());
         return costo;
     }
+
+    @Override
+    public ObjetoPersistente materializar() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public String select() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
     
 }
