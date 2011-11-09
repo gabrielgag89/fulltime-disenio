@@ -22,13 +22,13 @@ import persistencia.ConectorBD;
 public abstract class IntermPersistenciaDBR extends IntermediarioPersistencia{
     
     @Override
-   public ObjetoPersistente materializar(){
+   public List<ObjetoPersistente> materializar(){
       try {
          String sql = select();
          ResultSet resultado = ejecutarSQL(sql);
          List<ObjetoPersistente> buscado = convertirAObjeto(resultado);
          
-         return buscado.get(0);
+         return buscado;
       }
       catch (SQLException ex) {
          System.out.println("IntermPersistenciaDBR-materializar() - SQLException: " + ex.getMessage());

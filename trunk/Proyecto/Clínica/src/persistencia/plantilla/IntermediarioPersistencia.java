@@ -55,7 +55,7 @@ public abstract class IntermediarioPersistencia {
    
    public abstract ObjetoPersistente obtenerNuevaEntidad(); // método a implementar
    
-   public abstract ObjetoPersistente materializar();
+   public abstract List<ObjetoPersistente> materializar();
    
    public abstract ObjetoPersistente materializar(String oid); // método a implementar
    
