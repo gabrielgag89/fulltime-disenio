@@ -17,9 +17,15 @@ import persistencia.proxy.ConvenioImpl;
  * @author Gabriel
  */
 public class IPRConvenio extends IntermPersistenciaDBR{
+
+    @Override
+    public String select() {
+        return "SELECT * FROM convenio";
+    }
+
    @Override
    public String select(Criterio criterio) {
-      return "SELECT * FROM convenio WHERE " + criterio;
+      return "SELECT * FROM convenio WHERE " + criterio.getStringCriterio();
    } // fin del método select
 
    @Override
@@ -87,18 +93,7 @@ public class IPRConvenio extends IntermPersistenciaDBR{
    public ObjetoPersistente nuevo() {
       ConvenioAgente conv = new ConvenioAgente();
       conv.setImplementacion(new ConvenioImpl());
-      
       return conv;
    } // fin del método nuevo
-
-    @Override
-    public List<ObjetoPersistente> materializar() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public String select() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
 } // fin de la clase IPRConvenio

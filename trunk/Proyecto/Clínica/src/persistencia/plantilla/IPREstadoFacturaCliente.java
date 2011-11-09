@@ -12,6 +12,11 @@ import persistencia.criterios.Criterio;
 public class IPREstadoFacturaCliente extends IntermPersistenciaDBR{
 
     @Override
+    public String select() {
+        return "SELECT * FROM estado_factura";
+    }
+
+    @Override
     public String select(Criterio criterio) {
         return "SELECT * FROM estado_factura WHERE " + criterio.getStringCriterio();
     }
@@ -66,14 +71,4 @@ EstadoFacturaClienteAgente estado_factura = (EstadoFacturaClienteAgente) objeto;
       return estado_factura;
     }
 
-    @Override
-    public List<ObjetoPersistente> materializar() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public String select() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-    
 }

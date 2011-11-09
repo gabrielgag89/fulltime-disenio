@@ -5,7 +5,7 @@ package persistencia;
 
 import java.util.List;
 import persistencia.criterios.Criterio;
-import persistencia.FachadaPersistenciaInterna;
+//import persistencia.FachadaPersistenciaInterna;
 
 /**
  * Primer intermediario para no acoplar los expertos con la persistencia en la BDR.
@@ -47,10 +47,6 @@ public class FachadaPersistencia {
    } // fin del método and
    
    public List getColeccion(String clase) {
-       
-                FachadaPersistenciaInterna FPI =FachadaPersistenciaInterna.getInstancia();
-                List i = FPI.getColeccion(clase);
-                return i;
-                
-        }
+                return FachadaPersistenciaInterna.getInstancia().getColeccion(clase);
+  }
 } // fin de la clase FachadaPersistencia
