@@ -68,5 +68,12 @@ public class IPREstadoCama extends IntermPersistenciaDBR {
         estadoC.setImplementacion(new EstadoCamaImpl());
         return estadoC;
     }
+
+    
+
+    @Override
+    public String select() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
     
 }

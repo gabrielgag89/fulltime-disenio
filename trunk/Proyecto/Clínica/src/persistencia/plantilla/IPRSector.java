@@ -79,5 +79,11 @@ public class IPRSector extends IntermPersistenciaDBR {
       sect.setImplementacion(new SectorImplementacion());
       
       return sect;
-   } 
+   }
+
+
+    @Override
+    public String select() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 } 

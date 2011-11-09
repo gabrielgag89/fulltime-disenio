@@ -4,6 +4,9 @@
 
 package persistencia.plantilla;
 
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.List;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,6 +20,22 @@ import persistencia.ConectorBD;
  * @author Gabriel
  */
 public abstract class IntermPersistenciaDBR extends IntermediarioPersistencia{
+    
+    @Override
+   public ObjetoPersistente materializar(){
+      try {
+         String sql = select();
+         ResultSet resultado = ejecutarSQL(sql);
+         List<ObjetoPersistente> buscado = convertirAObjeto(resultado);
+         
+         return buscado.get(0);
+      }
+      catch (SQLException ex) {
+         System.out.println("IntermPersistenciaDBR-materializar() - SQLException: " + ex.getMessage());
+         return null;
+      } // fin de try... catch
+   } // fin del método materializar
+   
    @Override
    public ObjetoPersistente materializar(String oid){
       try {
@@ -79,6 +98,8 @@ public abstract class IntermPersistenciaDBR extends IntermediarioPersistencia{
    
    public abstract String select(String oid); // método a implementar
    
+   public abstract String select(); // método a implementar
+   
    public abstract String insertar(Object objeto); // método a implementar
    
    public abstract String actualizar(Object objeto); // método a implementar
@@ -86,4 +107,6 @@ public abstract class IntermPersistenciaDBR extends IntermediarioPersistencia{
    public abstract List<ObjetoPersistente> convertirAObjeto(ResultSet resultado); // método a implementar
    
    public abstract ObjetoPersistente nuevo(); // método a implementar
+   
+
 } // fin de la clase IntermPersistenciaDBR

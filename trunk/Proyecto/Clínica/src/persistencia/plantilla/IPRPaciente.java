@@ -1,5 +1,7 @@
 package persistencia.plantilla;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -15,6 +17,11 @@ public class IPRPaciente extends IntermPersistenciaDBR {
     @Override
     public String select(Criterio criterio) {
         return "SELECT  *  FROM  paciente  WHERE " + criterio.getStringCriterio();
+    }
+    
+    @Override
+    public String select() {
+        return "SELECT  *  FROM  paciente";
     }
 
     @Override
@@ -82,5 +89,7 @@ public class IPRPaciente extends IntermPersistenciaDBR {
         paciente.setImplementacion(new PacienteImpl());
         return paciente;
     }
+
+  
     
 }

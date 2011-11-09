@@ -66,4 +66,11 @@ public class IPRFichaInternacion extends IntermPersistenciaDBR{
       return (ObjetoPersistente) FIA;
     }
 
+   
+
+    @Override
+    public String select() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
 }

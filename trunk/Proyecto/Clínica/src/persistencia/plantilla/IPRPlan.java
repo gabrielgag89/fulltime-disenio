@@ -76,5 +76,11 @@ public class IPRPlan extends IntermPersistenciaDBR {
       plant.setImplementacion(new PlanImplementacion());
       
       return plant;
-   } 
+   }
+
+
+    @Override
+    public String select() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 } 

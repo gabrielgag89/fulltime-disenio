@@ -55,9 +55,27 @@ public abstract class IntermediarioPersistencia {
    
    public abstract ObjetoPersistente obtenerNuevaEntidad(); // método a implementar
    
+   public abstract ObjetoPersistente materializar();
+   
    public abstract ObjetoPersistente materializar(String oid); // método a implementar
    
    public abstract List<ObjetoPersistente> materializar(Criterio criterio); // método a implementar
    
    public abstract void desmaterializar(ObjetoPersistente objeto); // método a implementar
+   
+   public List getColeccion(){
+        List buscados = (List) materializar();
+        if(buscados.isEmpty()) return buscados;
+        if (buscados.size()>1){
+            Object[] arreglo = buscados.toArray();
+            for(int i =0; i < arreglo.length;i++){
+                Cache.getInstancia().agregar(((ObjetoPersistente)arreglo[i]).getOid(),arreglo[i]);
+                ((ObjetoPersistente)arreglo[i]).setNuevo(false);
+            }
+        }else{
+            Cache.getInstancia().agregar(((ObjetoPersistente)buscados.get(0)).getOid(),buscados.get(0));
+            ((ObjetoPersistente)buscados.get(0)).setNuevo(false);
+        }
+        return buscados ;
+    }
 } // fin de la clase IntermediarioPersistencia
