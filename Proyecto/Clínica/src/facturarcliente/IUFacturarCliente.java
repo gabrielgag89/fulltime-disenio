@@ -1,6 +1,8 @@
 package facturarcliente;
 
-import java.util.Vector;
+import java.util.List;
+import persistencia.proxy.Paciente;
+
 
 public class IUFacturarCliente extends javax.swing.JFrame {
 
@@ -13,8 +15,12 @@ public class IUFacturarCliente extends javax.swing.JFrame {
     // NO LO HE PUESTO EN LA SECUENCIA
     private void cargarCombo()
     {
-        new ControladorFacturarCliente().buscarPacientes();
+       List<Paciente> pacientes = new ControladorFacturarCliente().buscarPacientes();
   
+       for ( int i=0;i<pacientes.size();i++)
+       {
+       JComboboxPacientes.addItem(pacientes.get(i).getNombre().toString());
+       }
     }
 
     /** This method is called from within the constructor to
@@ -27,7 +33,7 @@ public class IUFacturarCliente extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        JComboboxPaciente = new javax.swing.JComboBox();
+        JComboboxPacientes = new javax.swing.JComboBox();
         JButtonBuscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         JTableFicha = new javax.swing.JTable();
@@ -38,8 +44,6 @@ public class IUFacturarCliente extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Paciente :");
-
-        JComboboxPaciente.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         JButtonBuscar.setText("Buscar Ficha");
 
@@ -64,7 +68,7 @@ public class IUFacturarCliente extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(JTableFicha);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14));
         jLabel2.setText("IMPORTE TOTAL:");
 
         JTextImporteTotal.setEditable(false);
@@ -74,7 +78,7 @@ public class IUFacturarCliente extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14));
         jButton2.setText("Generar Factura");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,7 +108,7 @@ public class IUFacturarCliente extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(JComboboxPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(JComboboxPacientes, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(59, 59, 59)
                                 .addComponent(JButtonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(161, Short.MAX_VALUE))
@@ -116,7 +120,7 @@ public class IUFacturarCliente extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(JButtonBuscar)
-                    .addComponent(JComboboxPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JComboboxPacientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -145,7 +149,7 @@ public class IUFacturarCliente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JButtonBuscar;
-    private javax.swing.JComboBox JComboboxPaciente;
+    private javax.swing.JComboBox JComboboxPacientes;
     private javax.swing.JTable JTableFicha;
     private javax.swing.JTextField JTextImporteTotal;
     private javax.swing.JButton jButton2;

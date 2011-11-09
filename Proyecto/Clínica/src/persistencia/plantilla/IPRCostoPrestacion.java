@@ -80,7 +80,7 @@ public class IPRCostoPrestacion extends IntermPersistenciaDBR {
     }
 
     @Override
-    public ObjetoPersistente materializar() {
+    public List<ObjetoPersistente> materializar() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

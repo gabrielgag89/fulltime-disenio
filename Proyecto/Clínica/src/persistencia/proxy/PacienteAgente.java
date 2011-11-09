@@ -7,6 +7,12 @@ public class PacienteAgente extends ObjetoPersistente implements Paciente{
    private String oidPlan;
    private boolean plan = false;
 
+   
+   public PacienteImpl getEntidad(){
+        return this.impl;
+    }
+
+    
    public void setImplementacion(PacienteImpl impl) {
       this.impl = impl;
    }

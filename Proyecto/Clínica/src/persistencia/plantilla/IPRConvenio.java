@@ -92,7 +92,7 @@ public class IPRConvenio extends IntermPersistenciaDBR{
    } // fin del método nuevo
 
     @Override
-    public ObjetoPersistente materializar() {
+    public List<ObjetoPersistente> materializar() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -100,4 +100,5 @@ public class IPRConvenio extends IntermPersistenciaDBR{
     public String select() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
 } // fin de la clase IPRConvenio
