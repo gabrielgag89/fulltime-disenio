@@ -8,5 +8,12 @@ public class ControladorFacturarCliente {
         DecoradorExpertoFacturarCliente DEFC = (DecoradorExpertoFacturarCliente) FabricaExpertoFacturarCliente.getInstancia().obtenerExperto("ExpertoFacturarCliente");
         return DEFC.buscarPacientes();   
     }
+    
+    public List<DTOFichaInternacion> buscarFichaInternacion(int OIDPaciente){     
+        DecoradorExpertoFacturarCliente DEFC = (DecoradorExpertoFacturarCliente) FabricaExpertoFacturarCliente.getInstancia().obtenerExperto("ExpertoFacturarCliente");
+        return DEFC.buscarFichaInternacion(OIDPaciente);   
+    }
+    
+    
 }
 
