@@ -1,13 +1,9 @@
 package facturarcliente;
 
 import java.util.List;
-import java.util.Vector;
 import persistencia.FachadaPersistencia;
 
 public class ExpertoFacturarCliente {
-
-    
-    public ExpertoFacturarCliente(){}
     
     // NO LO HE PUESTO EN LA SECUENCIA
     public List buscarPacientes()          
@@ -17,5 +13,8 @@ public class ExpertoFacturarCliente {
         return pacientes;
         
     }
-    
+
+        public void facturar(Object objeto){
+
+     }
 }
