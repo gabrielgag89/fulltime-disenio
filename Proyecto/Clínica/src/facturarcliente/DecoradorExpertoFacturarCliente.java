@@ -2,32 +2,33 @@ package facturarcliente;
 
 import java.sql.SQLException;
 import java.util.List;
-import persistencia.*;
+import persistencia.FachadaPersistenciaInterna;
+
 
 public class DecoradorExpertoFacturarCliente extends ExpertoFacturarCliente {
 
-    public DecoradorExpertoFacturarCliente(){
-
-    }
-
-       @Override
+    @Override
     public List buscarPacientes(){
             try {
-                FachadaPersistenciaInterna.getInstancia().iniciarTransaccion();
+                FachadaPersistenciaInterna.iniciarTransaccion();
+                List pacientes = super.buscarPacientes();
+                return pacientes;
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
+                return null;
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
+                return null;
             }
-            List pacientes = super.buscarPacientes();
-                    
+	}
+
+       @Override
+        public void facturar(Object objeto){
             try {
+                super.facturar(objeto);
                 FachadaPersistenciaInterna.finalizarTransaccion();
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
             }
-            return pacientes;
-	}
-    
-    
+        }
 }
