@@ -14,6 +14,11 @@ import persistencia.proxy.ObjetoPersistente;
 public class IPRCostoPrestacion extends IntermPersistenciaDBR {
 
     @Override
+    public String select() {
+        return "SELECT  *  FROM  costo_prestacion";
+    }
+
+    @Override
     public String select(Criterio criterio) {
         return "SELECT  *  FROM  costo_prestacion  WHERE " + criterio.getStringCriterio();
     }
@@ -78,15 +83,5 @@ public class IPRCostoPrestacion extends IntermPersistenciaDBR {
         costo.setImplementacion(new CostoPrestacionImpl());
         return costo;
     }
-
-    @Override
-    public List<ObjetoPersistente> materializar() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public String select() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-    
+   
 }

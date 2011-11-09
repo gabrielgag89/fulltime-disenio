@@ -5,8 +5,8 @@
 package persistencia.plantilla;
 
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+//import java.sql.Connection;
+//import java.sql.PreparedStatement;
 import java.util.List;
 import java.sql.ResultSet;
 import java.sql.SQLException;
