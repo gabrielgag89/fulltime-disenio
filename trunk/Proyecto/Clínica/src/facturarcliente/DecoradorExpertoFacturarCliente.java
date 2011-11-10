@@ -1,5 +1,6 @@
 package facturarcliente;
 
+import facturarcliente.DTOFichaInternacion;
 import java.sql.SQLException;
 import java.util.List;
 import persistencia.FachadaPersistenciaInterna;
@@ -23,14 +24,12 @@ public class DecoradorExpertoFacturarCliente extends ExpertoFacturarCliente {
 	}
 
     @Override
-        public List<DTOFichaInternacion> buscarFichaInternacion(int OIDPaciente){
+        public DTOFichaInternacion buscarFichaInternacion(int numPaciente){
             try {
-                FachadaPersistenciaInterna.iniciarTransaccion();
-                List<DTOFichaInternacion> vectorDTOFichas = super.buscarFichaInternacion(OIDPaciente);
-                return vectorDTOFichas;
-            } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
-                return null;
+                
+                DTOFichaInternacion dtoficha = super.buscarFichaInternacion(numPaciente);
+                return dtoficha;
+                
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
                 return null;
@@ -38,13 +37,14 @@ public class DecoradorExpertoFacturarCliente extends ExpertoFacturarCliente {
         }
     
     
-       @Override
-        public void facturar(Object objeto){
+@Override
+ public void GenerarFactura(DTOFichaInternacion dtoficha) {
             try {
-                super.facturar(objeto);
+                super.GenerarFactura(dtoficha);
                 FachadaPersistenciaInterna.finalizarTransaccion();
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
             }
         }
+
 }
