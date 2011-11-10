@@ -18,7 +18,7 @@ public class ExpertoFacturarCliente {
         
     }
     
-    public List<DTOFichaInternacion> buscarFichaInternacion(int NumPaciente)
+    public DTOFichaInternacion buscarFichaInternacion(int NumPaciente)
             
     {
        
@@ -33,6 +33,8 @@ public class ExpertoFacturarCliente {
             dtofichainternacion.setNroFicha(fichainternacion.getNroFicha());
             dtofichainternacion.setFechaIngreso(fichainternacion.getFechaCreacion());
             //dtofichainternacion.setFechaEgreso(fichainternacion.getFechaEgreso());
+            
+            //agregar fecha egreso y ademas no se puede continuar hasta que se cree detalle servicio y detalle prestacion en la ficha
             
             
             
@@ -53,7 +55,9 @@ public class ExpertoFacturarCliente {
     
     }
 
-        public void facturar(Object objeto){
+        public void GenerarFactura(DTOFichaInternacion dtoficha)
+        
+     {
 
      }
 }

@@ -6,6 +6,8 @@ import persistencia.proxy.Paciente;
 
 public class IUFacturarCliente extends javax.swing.JFrame {
 
+    DTOFichaInternacion dtoficha;
+            
     /** Creates new form IUFacturarCliente */
     public IUFacturarCliente() {
         initComponents();
@@ -145,12 +147,13 @@ public class IUFacturarCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_JTextImporteTotalActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        ControladorFacturarCliente CFC = new ControladorFacturarCliente();
+        CFC.GenerarFactura(dtoficha);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void JButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonBuscarActionPerformed
         ControladorFacturarCliente CFC = new ControladorFacturarCliente();
-        List<DTOFichaInternacion> dtoficha= CFC.buscarFichaInternacion(JComboboxPacientes.getSelectedIndex());
+        dtoficha= CFC.buscarFichaInternacion(JComboboxPacientes.getSelectedIndex());
     }//GEN-LAST:event_JButtonBuscarActionPerformed
 
     /**
