@@ -9,10 +9,10 @@ import persistencia.FachadaPersistenciaInterna;
 public class DecoradorExpertoFacturarCliente extends ExpertoFacturarCliente {
 
     @Override
-    public List buscarPacientes(){
+    public List<DTOPaciente> buscarPacientes(){
             try {
                 FachadaPersistenciaInterna.iniciarTransaccion();
-                List pacientes = super.buscarPacientes();
+                List<DTOPaciente> pacientes = super.buscarPacientes();
                 return pacientes;
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());

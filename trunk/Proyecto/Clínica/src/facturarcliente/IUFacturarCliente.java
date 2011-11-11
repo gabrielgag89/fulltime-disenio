@@ -17,11 +17,12 @@ public class IUFacturarCliente extends javax.swing.JFrame {
     // NO LO HE PUESTO EN LA SECUENCIA
     private void cargarCombo()
     {
-       List<Paciente> pacientes = new ControladorFacturarCliente().buscarPacientes();
+       List<DTOPaciente> pacientes = new ControladorFacturarCliente().buscarPacientes();
+       
   
        for ( int i=0;i<pacientes.size();i++)
        {
-       JComboboxPacientes.addItem(pacientes.get(i).getNombre().toString());
+       JComboboxPacientes.addItem(pacientes.get(i).getNombrePaciente().toString());
        }
     }
 

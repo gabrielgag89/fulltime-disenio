@@ -1,5 +1,6 @@
 package facturarcliente;
 
+import java.util.ArrayList;
 import java.util.List;
 import persistencia.FachadaPersistencia;
 import persistencia.criterios.Criterio;
@@ -8,13 +9,34 @@ import persistencia.proxy.*;
 public class ExpertoFacturarCliente {
     
     private DTOFichaInternacion dtofichainternacion;
+    private DTOPaciente dtopaciente;
+    List<DTOPaciente> listapacientes;
     
     // NO LO HE PUESTO EN LA SECUENCIA
-    public List buscarPacientes()          
+    public List<DTOPaciente> buscarPacientes()          
     {
+        
+        try {
+   
         FachadaPersistencia FP = FachadaPersistencia.getInstancia();
-        List pacientes = FP.getColeccion("Paciente");
-        return pacientes;
+        List<Paciente> pacientes = FP.getColeccion("Paciente");
+        
+        listapacientes=new ArrayList<DTOPaciente>();
+        
+        for (int i=0; i<pacientes.size();i++)
+        {          
+           dtopaciente= new DTOPaciente();
+           dtopaciente.setNumPaciente(pacientes.get(i).getNumPaciente());
+           dtopaciente.setNombrePaciente(pacientes.get(i).getNombre().toString());
+           listapacientes.add(dtopaciente);
+        }   
+            
+        return listapacientes;
+        
+        } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+                return null;
+        }
         
     }
     
@@ -58,6 +80,14 @@ public class ExpertoFacturarCliente {
         public void GenerarFactura(DTOFichaInternacion dtoficha)
         
      {
+         
+         int numFicha= dtoficha.getNroFicha();
+         FachadaPersistencia FP= FachadaPersistencia.getInstancia();
+         Criterio C1= FP.getCriterio("numero_ficha_internacion", "=", Integer.toString(numFicha));
+         FichaInternacion fichainternacion=(FichaInternacion) FP.buscar("ficha_internacion", C1);
+         
+                 
+                 
          
          
          
