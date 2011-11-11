@@ -58,6 +58,12 @@ public class ExpertoFacturarCliente {
         public void GenerarFactura(DTOFichaInternacion dtoficha)
         
      {
+         
+         
+         
+         
+         
+         
 
      }
 }
