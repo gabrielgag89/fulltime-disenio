@@ -37,36 +37,29 @@ insert into `clinica`.`recibo`(`oidrecibo`,`numero_recibo`,`fecha`,`oidfactura_c
 ( '56d72f4e-2e5a-4006-a57c-7f5d92daf71d','4','22-10-2011','79a6da2e-8ada-4a87-9863-64e440278d2a'),
 ( 'a0e6aec6-2af9-4df5-9a5c-305cc74c7f97','5','25-10-2011','be1a60d0-95e9-414c-bce8-ea27d94a2ce7');
 
-//MATI
-/*
-//	TIPO HABITACION
-
-INSERT INTO `clinica`.`tipo_habitacion`(`oidtipo_habitacion`,`codigo_tipo_habitacion`,`nombre_tipo_habitacion`) VALUES ( '0f770e39-b317-4406-96f7-1bfde02ea537','1','Comun'),
-( 'c3b8f327-1efc-4da1-89da-93f6896cbdbf','2','Especial'),
-( 'c2768c57-a66b-448d-87ad-d52ffba4a95c','3','Otro tipo');
-
-
+/*	
 //	PRESTACION: NECESITA DATOS TIPO PRESTACION CARGADOS
+*/
 
 insert into `clinica`.`prestacion`(`oidprestacion`,`codigo_prestacion`,`descripcion`,`oidtipo_prestacion`) values ( '4821103d-5b08-496f-822e-014dfc16b950','1','Prestacion 1','cd2ef33f-1374-47e0-a52f-bfbd20ba1fff'),
 ( '2ea9a442-8309-4b15-8600-2f89ad28f471','2','Prestacion 2','cd2ef33f-1374-47e0-a52f-bfbd20ba1fff'),
 ( 'e2d33617-687f-466b-b1d7-0a7ac9d1fedf','3','Prestacion 3','a872eb3d-ee7c-4f85-817d-f2f15466e38a'),
 ( '09b0a617-7924-448e-8bc1-8a9fbe186279','4','Prestacion 4','6df7f190-37ca-4758-ba62-6edfd516f30d');
 
-
+/*	
 //	COSTO PRESTACION: NECESITA PRESTACIONES CARGADAS
+*/
 
 insert into `clinica`.`costo_prestacion`(`oidcosto_prestacion`,`fecha_inicio`,`fecha_fin`,`monto`,`oidprestacion`) values ( 'e20fc1bc-28a7-436b-81e1-79149591f08c','17-10-2011','17-6-2011','98.5','4821103d-5b08-496f-822e-014dfc16b950'),
-( '3efc1521-753e-4b0c-8ca2-ca89593f0df7','1-10-2011','17-6-2012','98.5','2ea9a442-8309-4b15-8600-2f89ad28f471'),
-( '94cc9d4a-9e27-47b0-822e-6648d7564318','1-1-2011','17-6-2011','40.5','e2d33617-687f-466b-b1d7-0a7ac9d1fedf'),
-( '7a05efd6-392f-4e38-b52a-05c9d790da43','1-8-2011','17-6-2011','65','09b0a617-7924-448e-8bc1-8a9fbe186279');
+( '3efc1521-753e-4b0c-8ca2-ca89593f0df7','1-10-2011','17-6-2012','398.5','2ea9a442-8309-4b15-8600-2f89ad28f471'),
+( '94cc9d4a-9e27-47b0-822e-6648d7564318','1-1-2011','17-6-2011','440.5','e2d33617-687f-466b-b1d7-0a7ac9d1fedf'),
+( '7a05efd6-392f-4e38-b52a-05c9d790da43','1-8-2011','17-6-2011','465.0','09b0a617-7924-448e-8bc1-8a9fbe186279');
 
-*/
 
-//CRISTIAN
-/*
+/*//CRISTIAN
 	SECTOR
 */
+
 INSERT INTO `clinica`.`sector`(`oidsector`,`codigo_sector`,`descripcion_sector`,`numero_piso`) VALUES ( '8709775c-1a62-426a-b826-8dcade143718','1','Sector 1','1'),
 ( '14d37ac9-d357-4294-a173-081cb76ceaf0','2','Sector 2','2'),
 ( 'e13c6d44-1092-4434-951e-e6a98a162122','3','Sector 3','1'),
