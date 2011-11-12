@@ -19,7 +19,7 @@ public class CriterioSimple implements Criterio {
    /**
     * valor que se comparará.
     */
-   private String valor;
+   private Object valor;
 
    /**
     * Constructor que inicializa los valores de {@code valor}, {@code operador} y {@code atributo}.
@@ -27,7 +27,7 @@ public class CriterioSimple implements Criterio {
     * @param operador operador a utilizar en la comparación
     * @param valor valor que se comparará
     */
-   public CriterioSimple(String atributo,String operador,String valor){
+   public CriterioSimple(String atributo, String operador, Object valor){
       this.atributo = atributo;
       this.operador = operador;
       this.valor = valor;
@@ -41,14 +41,6 @@ public class CriterioSimple implements Criterio {
    public String getStringCriterio(){
       return atributo + " " + operador + " '" + valor + "'";
    } // fin del método getStringCriterio
-
-   /**
-    * Establece el valor que se comparará.
-    * @param valor valor que se comparará
-    */
-   public void setValor(String valor){
-      this.valor = valor;
-   } // fin del método setvalor
 
    /**
     * Establece el operador a utilizar en la comparación.
@@ -65,4 +57,12 @@ public class CriterioSimple implements Criterio {
    public void setAtributo(String atributo){
       this.atributo = atributo;
    } // fin del método setatributo
+
+   /**
+    * Establece el valor que se comparará.
+    * @param valor valor que se comparará
+    */
+   public void setValor(Object valor){
+      this.valor = valor;
+   } // fin del método setvalor
 } // fin de la clase CriterioSimple

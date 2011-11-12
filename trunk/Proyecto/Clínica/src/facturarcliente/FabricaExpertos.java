@@ -1,12 +1,12 @@
 package facturarcliente;
 
-public class FabricaExpertoFacturarCliente {
+public class FabricaExpertos {
 
-	private static FabricaExpertoFacturarCliente instancia;
+	private static FabricaExpertos instancia;
 
-	public static FabricaExpertoFacturarCliente getInstancia(){
+	public static FabricaExpertos getInstancia(){
             if (instancia == null) {
-                instancia = new FabricaExpertoFacturarCliente();
+                instancia = new FabricaExpertos();
             }
             return instancia;
 	}

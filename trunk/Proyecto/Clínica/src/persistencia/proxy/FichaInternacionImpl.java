@@ -4,14 +4,14 @@ import java.util.Date;
 import java.util.List;
 
 public class FichaInternacionImpl implements FichaInternacion {
-	private int nroFicha;
-	private Date fechaCreacion;
-	private Cama cama;
-	private Paciente paciente;
-	private Prestacion prestacion;
-	private EstadoFichaInternacion estadoFichaInternacion;
-	private Habitacion habitacion;
-	private List<DetalleFicha> detalleFicha;
+    private int nroFicha;
+    private Date fechaCreacion;
+    private Cama cama;
+    private Paciente paciente;
+    private Prestacion prestacion;
+    private EstadoFichaInternacion estadoFichaInternacion;
+    private Habitacion habitacion;
+    private List<DetalleFicha> detalleFicha;
 
     @Override
     public Cama getCama() {
@@ -39,7 +39,7 @@ public class FichaInternacionImpl implements FichaInternacion {
     }
 
     @Override
-     public boolean deleteDetalleFicha(DetalleFicha detalleFicha) {
+    public boolean deleteDetalleFicha(DetalleFicha detalleFicha) {
         return this.detalleFicha.remove(detalleFicha);
     }
 
@@ -102,5 +102,4 @@ public class FichaInternacionImpl implements FichaInternacion {
     public void setPrestacion(Prestacion prestacion) {
         this.prestacion = prestacion;
     }
-
 }//end FichaInternacionImpl

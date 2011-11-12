@@ -4,7 +4,6 @@ package persistencia.proxy;
  * @author Matías
  */
 public class DetalleFichaImpl implements DetalleFicha {
-    
     private FichaInternacion fichaInternacion;
     private ServicioEspecial servicioEspecial;
 
@@ -27,5 +26,4 @@ public class DetalleFichaImpl implements DetalleFicha {
     public void setServicioEspecial(ServicioEspecial servicioEspecial) {
         this.servicioEspecial = servicioEspecial;
     }
-    
 }

@@ -4,43 +4,20 @@
  */
 package facturarcliente;
 
-import java.util.Date;
 import java.util.List;
+import java.util.Calendar;
 
 /**
  *
  * @author Fede
  */
 public class DTOFichaInternacion {
-    
     private int nroFicha;
-    private Date fechaIngreso;
-    private Date fechaEgreso;
-    private List DTODetalleFichaInternacion;
-
-    public List getDTODetalleFichaInternacion() {
-        return DTODetalleFichaInternacion;
-    }
-
-    public void setDTODetalleFichaInternacion(List DTODetalleFichaInternacion) {
-        this.DTODetalleFichaInternacion = DTODetalleFichaInternacion;
-    }
-
-    public Date getFechaEgreso() {
-        return fechaEgreso;
-    }
-
-    public void setFechaEgreso(Date fechaEgreso) {
-        this.fechaEgreso = fechaEgreso;
-    }
-
-    public Date getFechaIngreso() {
-        return fechaIngreso;
-    }
-
-    public void setFechaIngreso(Date fechaIngreso) {
-        this.fechaIngreso = fechaIngreso;
-    }
+    private int numPaciente;
+    private String nombrePaciente;
+    private Calendar fechaIngreso;
+    private Calendar fechaEgreso;
+    private List<DTODetalleServicio> dtoDetalle;
 
     public int getNroFicha() {
         return nroFicha;
@@ -49,10 +26,44 @@ public class DTOFichaInternacion {
     public void setNroFicha(int nroFicha) {
         this.nroFicha = nroFicha;
     }
-    
-    
-    
-    
-    
-    
+
+    public int getNumPaciente() {
+        return numPaciente;
+    }
+
+    public void setNumPaciente(int numPaciente) {
+        this.numPaciente = numPaciente;
+    }
+
+    public String getNombrePaciente() {
+        return nombrePaciente;
+    }
+
+    public void setNombrePaciente(String nombrePaciente) {
+        this.nombrePaciente = nombrePaciente;
+    }
+
+    public Calendar getFechaIngreso() {
+        return fechaIngreso;
+    }
+
+    public void setFechaIngreso(Calendar fechaIngreso) {
+        this.fechaIngreso = fechaIngreso;
+    }
+
+    public Calendar getFechaEgreso() {
+        return fechaEgreso;
+    }
+
+    public void setFechaEgreso(Calendar fechaEgreso) {
+        this.fechaEgreso = fechaEgreso;
+    }
+
+    public List<DTODetalleServicio> getDtoDetalle() {
+        return dtoDetalle;
+    }
+
+    public void setDtoDetalle(List<DTODetalleServicio> dtoDetalle) {
+        this.dtoDetalle = dtoDetalle;
+    }
 }
