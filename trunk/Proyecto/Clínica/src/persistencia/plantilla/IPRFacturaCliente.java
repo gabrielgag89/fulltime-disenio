@@ -18,6 +18,11 @@ import persistencia.criterios.Criterio;
  */
 public class IPRFacturaCliente extends IntermPersistenciaDBR{
    @Override
+   public String select() {
+      return "SELECT * FROM factura_cliente";
+   } // fin del método select
+
+   @Override
    public String select(Criterio criterio) {
       return "SELECT * FROM factura_cliente WHERE " + criterio.getStringCriterio();
    } // fin del método select

@@ -18,6 +18,11 @@ import persistencia.proxy.ConvenioImpl;
  */
 public class IPRConvenio extends IntermPersistenciaDBR{
    @Override
+   public String select() {
+      return "SELECT * FROM convenio";
+   } // fin del método select
+
+   @Override
    public String select(Criterio criterio) {
       return "SELECT * FROM convenio WHERE " + criterio;
    } // fin del método select

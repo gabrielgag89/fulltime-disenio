@@ -11,6 +11,11 @@ import persistencia.criterios.Criterio;
 
 public class IPRHabitacion  extends IntermPersistenciaDBR {
    @Override
+   public String select() {
+      return "SELECT  *  FROM  habitacion";
+   } // fin del método select
+
+   @Override
    public String select(Criterio criterio) {
       return "SELECT  *  FROM  habitacion  WHERE " + criterio.getStringCriterio();
    } // fin del método select

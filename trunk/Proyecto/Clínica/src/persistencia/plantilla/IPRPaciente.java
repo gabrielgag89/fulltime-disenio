@@ -9,8 +9,11 @@ import persistencia.proxy.ObjetoPersistente;
 import persistencia.proxy.PacienteAgente;
 import persistencia.proxy.PacienteImpl;
 
-
 public class IPRPaciente extends IntermPersistenciaDBR {
+    @Override
+    public String select() {
+        return "SELECT  *  FROM  paciente";
+    }
 
     @Override
     public String select(Criterio criterio) {

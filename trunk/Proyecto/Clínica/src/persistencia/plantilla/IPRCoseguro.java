@@ -14,6 +14,10 @@ import persistencia.proxy.CoseguroAgente;
 import persistencia.proxy.CoseguroImpl;
 
 public class IPRCoseguro extends IntermPersistenciaDBR{
+    @Override
+    public String select() {
+        return "SELECT * FROM coseguro";
+    }
 
     @Override
     public String select(Criterio criterio) {

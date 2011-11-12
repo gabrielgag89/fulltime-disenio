@@ -10,6 +10,10 @@ import persistencia.proxy.EstadoFacturaClienteImpl;
 import persistencia.criterios.Criterio;
 
 public class IPREstadoFacturaCliente extends IntermPersistenciaDBR{
+    @Override
+    public String select() {
+        return "SELECT * FROM estado_factura";
+    }
 
     @Override
     public String select(Criterio criterio) {

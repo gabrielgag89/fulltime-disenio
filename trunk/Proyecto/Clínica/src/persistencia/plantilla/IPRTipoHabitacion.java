@@ -19,7 +19,10 @@ import persistencia.proxy.ObjetoPersistente;
  * @author Cristian Mesa
  */
 public class IPRTipoHabitacion extends IntermPersistenciaDBR{
- 
+ @Override
+   public String select() {
+      return "SELECT * FROM tipo_habitacion";
+   } 
 
 @Override
    public String select(Criterio criterio) {

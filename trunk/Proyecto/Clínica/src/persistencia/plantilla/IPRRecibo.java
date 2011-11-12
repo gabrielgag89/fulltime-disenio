@@ -10,6 +10,10 @@ import persistencia.proxy.ReciboAgente;
 import persistencia.proxy.ReciboImpl;
 
 public class IPRRecibo  extends IntermPersistenciaDBR {
+    @Override
+    public String select() {
+        return "SELECT  *  FROM  recibo";
+    }
 
     @Override
     public String select(Criterio criterio) {

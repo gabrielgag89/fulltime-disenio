@@ -10,6 +10,10 @@ import persistencia.proxy.FichaInternacionImpl;
 import persistencia.proxy.ObjetoPersistente;
 
 public class IPRFichaInternacion extends IntermPersistenciaDBR{
+    @Override
+    public String select() {
+        return "SELECT  *  FROM  ficha_internacion";
+    }
 
     @Override
     public String select(Criterio criterio) {
