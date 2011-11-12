@@ -46,6 +46,10 @@ public class FachadaPersistenciaInterna {
       return FabricaDeIntermediarios.getInstancia().getIntermediario(entidad).nuevaEntidad();
    } // fin del método nuevaEntidad
    
+   public List buscar(String entidad){
+       return FabricaDeIntermediarios.getInstancia().getIntermediario(entidad).buscar();
+   }
+   
    public List buscar(String objeto, Criterio cc) {
       return FabricaDeIntermediarios.getInstancia().getIntermediario(objeto).buscar(cc);
    } // fin del método getColeccion

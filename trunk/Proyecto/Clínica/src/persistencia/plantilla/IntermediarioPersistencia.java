@@ -12,6 +12,19 @@ import persistencia.criterios.Criterio;
  * @author Gabriel
  */
 public abstract class IntermediarioPersistencia {
+   public List<ObjetoPersistente> buscar(){
+       List<ObjetoPersistente> buscados = materializar(criterio);
+      
+      if(!buscados.isEmpty()){
+         for(ObjetoPersistente objeto : buscados){
+            Cache.getInstancia().agregar(objeto.getOid(), objeto);
+            objeto.setNuevo(false);
+         } // fin de for
+      } // fin de if
+      
+      return buscados;
+   } // fin del método buscar
+   
    public List<ObjetoPersistente> buscar(Criterio criterio){
       List<ObjetoPersistente> buscados = materializar(criterio);
       

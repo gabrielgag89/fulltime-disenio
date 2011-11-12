@@ -25,13 +25,17 @@ public class FachadaPersistencia {
       return FachadaPersistenciaInterna.getInstancia().nuevaEntidad(entidad);
    } // fin del método nuevaEntidad
    
+   public List buscar(String entidad){
+       return FachadaPersistenciaInterna.getInstancia().buscar(entidad);
+   } // fin del método 
+   
    public List buscar(String entidad, Criterio cc) {
       return FachadaPersistenciaInterna.getInstancia().buscar(entidad, cc);
-   } // fin del método getColeccion
+   } // fin del método buscar
    
    public void guardar(String entidad , Object objeto){
       FachadaPersistenciaInterna.getInstancia().guardar(entidad,objeto);
-   } // fin del método persistirEntidad
+   } // fin del método guardar
    
    public Criterio getCriterio(String atributo, String operador, String valor){
       return  FachadaPersistenciaInterna.getInstancia().getCriterio(atributo,operador,valor);
