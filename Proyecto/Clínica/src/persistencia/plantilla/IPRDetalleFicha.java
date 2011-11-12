@@ -10,12 +10,6 @@ import persistencia.proxy.DetalleFichaImpl;
 import persistencia.proxy.ObjetoPersistente;
 
 public class IPRDetalleFicha extends IntermPersistenciaDBR {
-
-    @Override
-    public String select() {
-       return "SELECT * FROM detalle_ficha";
-    }
-
    @Override
    public String select(Criterio criterio) {
       return "SELECT * FROM detalle_ficha WHERE " + criterio.getStringCriterio();
