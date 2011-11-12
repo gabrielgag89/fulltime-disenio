@@ -3,26 +3,26 @@ package observador;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SuscriptorFacturarCliente {
-    private static SuscriptorFacturarCliente instancia;
+public class SuscriptorGenerarFacturaPaciente {
+    private static SuscriptorGenerarFacturaPaciente instancia;
     private boolean changed = false;
-    private List<ObservadorFacturarCliente> obs = new  ArrayList<ObservadorFacturarCliente>();
+    private List<ObservadorGenerarFacturaPaciente> obs = new  ArrayList<ObservadorGenerarFacturaPaciente>();
 
-    public static SuscriptorFacturarCliente getInstance(){
+    public static SuscriptorGenerarFacturaPaciente getInstance(){
         if (instancia == null) {
-            instancia = new SuscriptorFacturarCliente();
+            instancia = new SuscriptorGenerarFacturaPaciente();
         }
         return instancia;
     }
 
-    public synchronized void agregarObservadorFacturarCliente(ObservadorFacturarCliente o) {
+    public synchronized void agregarObservadorGenerarFacturaPaciente(ObservadorGenerarFacturaPaciente o) {
                
 	if (!obs.contains(o)) 
 	    obs.add(o);
 	
     }
 
-    public synchronized void borrarObservadorFacturarCliente(ObservadorFacturarCliente o) {
+    public synchronized void borrarObservadorFacturarCliente(ObservadorGenerarFacturaPaciente o) {
         obs.remove(o);
     }
 
@@ -40,7 +40,7 @@ public class SuscriptorFacturarCliente {
         }
 
         for (int i = arrLocal.length-1; i>=0; i--)
-            ((ObservadorFacturarCliente)arrLocal[i]).actualizar(this, arg);
+            ((ObservadorGenerarFacturaPaciente)arrLocal[i]).actualizar(this, arg);
     }
 
     public synchronized void borrarObservadoresFacturarCliente() {

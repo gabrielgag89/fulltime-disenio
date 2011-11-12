@@ -11,9 +11,9 @@ public interface CostoPrestacion {
 
    public void setFechaFin(Date fechaFin);
 
-   public float getMonto();
+   public double getMonto();
 
-   public void setMonto(float monto); 
+   public void setMonto(double monto); 
    
    public Prestacion getPrestacion();
 

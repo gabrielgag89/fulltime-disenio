@@ -7,7 +7,7 @@ public class ReciboImpl implements Recibo{
     private int nroRecibo;
     private Date fecha;
     private FacturaCliente facturacliente;
-    private List<Monto> montos;
+    private double monto;
 
     @Override
     public int getNroRecibo() {
@@ -20,18 +20,13 @@ public class ReciboImpl implements Recibo{
     }
 
     @Override
-    public List<Monto> getMonto() {
-        return this.montos;
+    public double getMonto() {
+        return this.monto;
     }
 
     @Override
-    public void setMonto(List<Monto> montos){
-        this.montos = montos;
-    }
-    
-    @Override
-    public void addMonto(Monto monto) {
-        this.montos.add(monto);
+    public void setMonto(double monto){
+        this.monto = monto;
     }
 
     @Override
@@ -53,5 +48,4 @@ public class ReciboImpl implements Recibo{
     public void setFacturaCliente(FacturaCliente facturacliente) {
         this.facturacliente = facturacliente;
     }
-
 }

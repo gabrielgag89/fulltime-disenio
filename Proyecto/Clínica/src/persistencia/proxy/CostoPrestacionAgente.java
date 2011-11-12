@@ -33,12 +33,12 @@ public class CostoPrestacionAgente extends ObjetoPersistente implements CostoPre
    }
 
    @Override
-   public float getMonto() {
+   public double getMonto() {
       return this.impl.getMonto();
    }
 
    @Override
-   public void setMonto(float monto) {
+   public void setMonto(double monto) {
       this.impl.setMonto(monto);
    }
 

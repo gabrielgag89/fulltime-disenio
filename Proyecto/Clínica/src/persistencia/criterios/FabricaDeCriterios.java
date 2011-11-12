@@ -38,7 +38,7 @@ public class FabricaDeCriterios {
     * @param valor valor a comparar
     * @return el criterio resultante
     */
-   public Criterio getCriterio(String atributo, String operador, String valor) {
+   public Criterio getCriterio(String atributo, String operador, Object valor) {
       return new CriterioSimple(atributo, operador, valor);
    } // fin del método getCriterio
 
