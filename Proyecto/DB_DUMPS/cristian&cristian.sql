@@ -32,10 +32,10 @@ insert into `clinica`.`paciente`(`oidpaciente`,`numero_paciente`,`nombre_pacient
 */
 
 insert into `clinica`.`recibo`(`oidrecibo`,`numero_recibo`,`fecha`,`oidfactura_cliente`) values ( '54caa72d-748d-44e7-8bf9-c8598df00ac8','1','17-09-2011','33dd1998-3c4a-43b1-b5cf-b7472e6e5cce'),
-( '51a66f9a-b62f-466a-825f-a489f0ba6f2b','2','20-10-2011','445a5a16-edd1-4d83-966a-b54549f32f77'),
-( '5aa9711d-f3c1-4a6d-b83b-611cd2771828','3','21-10-2011','c68d97c1-de44-459c-b073-13e383424a14'),
-( '56d72f4e-2e5a-4006-a57c-7f5d92daf71d','4','22-10-2011','79a6da2e-8ada-4a87-9863-64e440278d2a'),
-( 'a0e6aec6-2af9-4df5-9a5c-305cc74c7f97','5','25-10-2011','be1a60d0-95e9-414c-bce8-ea27d94a2ce7');
+( '51a66f9a-b62f-466a-825f-a489f0ba6f2b','2','2010-10-10','445a5a16-edd1-4d83-966a-b54549f32f77'),
+( '5aa9711d-f3c1-4a6d-b83b-611cd2771828','3','2010-11-10','c68d97c1-de44-459c-b073-13e383424a14'),
+( '56d72f4e-2e5a-4006-a57c-7f5d92daf71d','4','2011-22-10','79a6da2e-8ada-4a87-9863-64e440278d2a'),
+( 'a0e6aec6-2af9-4df5-9a5c-305cc74c7f97','5','2012-10-10','be1a60d0-95e9-414c-bce8-ea27d94a2ce7');
 
 /*	
 //	PRESTACION: NECESITA DATOS TIPO PRESTACION CARGADOS
@@ -50,10 +50,10 @@ insert into `clinica`.`prestacion`(`oidprestacion`,`codigo_prestacion`,`descripc
 //	COSTO PRESTACION: NECESITA PRESTACIONES CARGADAS
 */
 
-insert into `clinica`.`costo_prestacion`(`oidcosto_prestacion`,`fecha_inicio`,`fecha_fin`,`monto`,`oidprestacion`) values ( 'e20fc1bc-28a7-436b-81e1-79149591f08c','17-10-2011','17-6-2011','98.5','4821103d-5b08-496f-822e-014dfc16b950'),
-( '3efc1521-753e-4b0c-8ca2-ca89593f0df7','1-10-2011','17-6-2012','398.5','2ea9a442-8309-4b15-8600-2f89ad28f471'),
-( '94cc9d4a-9e27-47b0-822e-6648d7564318','1-1-2011','17-6-2011','440.5','e2d33617-687f-466b-b1d7-0a7ac9d1fedf'),
-( '7a05efd6-392f-4e38-b52a-05c9d790da43','1-8-2011','17-6-2011','465.0','09b0a617-7924-448e-8bc1-8a9fbe186279');
+insert into `clinica`.`costo_prestacion`(`oidcosto_prestacion`,`fecha_inicio`,`fecha_fin`,`monto`,`oidprestacion`) values ( 'e20fc1bc-28a7-436b-81e1-79149591f08c','2011-11-10','2011-6-8','98.5','4821103d-5b08-496f-822e-014dfc16b950'),
+( '3efc1521-753e-4b0c-8ca2-ca89593f0df7','2011-01-10','2011-11-06','398.5','2ea9a442-8309-4b15-8600-2f89ad28f471'),
+( '94cc9d4a-9e27-47b0-822e-6648d7564318','2011-01-01','2011-12-06','440.5','e2d33617-687f-466b-b1d7-0a7ac9d1fedf'),
+( '7a05efd6-392f-4e38-b52a-05c9d790da43','2011-01-08','2011-12-06','465.0','09b0a617-7924-448e-8bc1-8a9fbe186279');
 
 
 /*//CRISTIAN
@@ -78,10 +78,10 @@ INSERT INTO `clinica`.`servicio_especial`(`oidservicio_especial`,`codigo_servici
 	COSTO SERVICIO	
 */
 
-INSERT INTO `clinica`.`costo_servicio`(`oidcosto_servicio`,`fecha_inicio`,`fecha_fin`,`monto`,`oidservicio_especial`) VALUES ( '6d22350f-126a-4815-b64b-a7617eb8a1d3','1-10-2011','31-12-2011','150','94e6ebf4-3ff8-4e53-8c22-f52f771b44d8'), 
-( '301778a7-b8c4-4592-b1f2-2725eb9dbbd1','1-6-2011','31-12-2011','80','72d72728-dc4f-4160-9f3c-e14c4e55aa64'),
-( '5568d6b4-c1ab-4d9a-bd56-84ce1f354b2d','1-1-2012','31-6-2012','95','72d72728-dc4f-4160-9f3c-e14c4e55aa64'),
-( '26f09abf-b9e7-419a-b466-fa533931aaa0','1-1-2012','31-6-2012','55','16292845-dbc6-4393-ae9d-13f6eb55fea0');
+INSERT INTO `clinica`.`costo_servicio`(`oidcosto_servicio`,`fecha_inicio`,`fecha_fin`,`monto`,`oidservicio_especial`) VALUES ( '6d22350f-126a-4815-b64b-a7617eb8a1d3','2011-11-10','2011-1-12','150','94e6ebf4-3ff8-4e53-8c22-f52f771b44d8'), 
+( '301778a7-b8c4-4592-b1f2-2725eb9dbbd1','2011-01-15','2011-11-12','80','72d72728-dc4f-4160-9f3c-e14c4e55aa64'),
+( '5568d6b4-c1ab-4d9a-bd56-84ce1f354b2d','2012-01-11','2012-11-21','95','72d72728-dc4f-4160-9f3c-e14c4e55aa64'),
+( '26f09abf-b9e7-419a-b466-fa533931aaa0','2012-12-26','2012-12-31','55','16292845-dbc6-4393-ae9d-13f6eb55fea0');
 
 
 
