@@ -12,6 +12,10 @@ import persistencia.proxy.TipoPrestacionImpl;
 
 
 public class IPRTipoPrestacion extends IntermPersistenciaDBR {
+    @Override
+    public String select() {
+        return "SELECT  *  FROM  tipo_prestacion";
+    }
 
     @Override
     public String select(Criterio criterio) {

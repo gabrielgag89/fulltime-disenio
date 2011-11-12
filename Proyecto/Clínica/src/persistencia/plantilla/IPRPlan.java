@@ -14,7 +14,10 @@ import persistencia.criterios.Criterio;
 
 
 public class IPRPlan extends IntermPersistenciaDBR {
-    
+   @Override
+   public String select() {
+      return "SELECT * FROM plan";
+   } 
 
    @Override
    public String select(Criterio criterio) {

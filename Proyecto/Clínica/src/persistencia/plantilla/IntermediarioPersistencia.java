@@ -13,7 +13,7 @@ import persistencia.criterios.Criterio;
  */
 public abstract class IntermediarioPersistencia {
    public List<ObjetoPersistente> buscar(){
-       List<ObjetoPersistente> buscados = materializar(criterio);
+       List<ObjetoPersistente> buscados = materializar();
       
       if(!buscados.isEmpty()){
          for(ObjetoPersistente objeto : buscados){
@@ -67,6 +67,8 @@ public abstract class IntermediarioPersistencia {
    } // fin del método nuevaEntidad
    
    public abstract ObjetoPersistente obtenerNuevaEntidad(); // método a implementar
+   
+   public abstract List<ObjetoPersistente> materializar(); // método a implementar
    
    public abstract ObjetoPersistente materializar(String oid); // método a implementar
    

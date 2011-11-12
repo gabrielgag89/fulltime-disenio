@@ -18,6 +18,20 @@ import persistencia.ConectorBD;
  */
 public abstract class IntermPersistenciaDBR extends IntermediarioPersistencia{
    @Override
+   public List<ObjetoPersistente> materializar(){
+      try {
+         String sql = select();
+         ResultSet resultado = ejecutarSQL(sql);
+         
+         return convertirAObjeto(resultado);
+      }
+      catch (SQLException ex) {
+         System.out.println("IntermPersistenciaDBR-materializar() - SQLException: " + ex.getMessage());
+         return null;
+      } // fin de try... catch
+   } // fin del método materializar
+   
+   @Override
    public ObjetoPersistente materializar(String oid){
       try {
          String sql = select(oid);
@@ -74,6 +88,8 @@ public abstract class IntermPersistenciaDBR extends IntermediarioPersistencia{
    private ResultSet ejecutarSQL(String sql) throws SQLException{
       return ConectorBD.getConexion().prepareStatement(sql).executeQuery();
    } // fin del método ejecutarSQL
+   
+   public abstract String select(); // método a implementar
    
    public abstract String select(Criterio criterio); // método a implementar
    

@@ -14,6 +14,11 @@ import persistencia.proxy.ObjetoPersistente;
 public class IPRCostoPrestacion extends IntermPersistenciaDBR {
 
     @Override
+    public String select() {
+        return "SELECT  *  FROM  costo_prestacion";
+    }
+
+    @Override
     public String select(Criterio criterio) {
         return "SELECT  *  FROM  costo_prestacion  WHERE " + criterio.getStringCriterio();
     }

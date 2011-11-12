@@ -11,6 +11,11 @@ import persistencia.proxy.ObjetoPersistente;
 
 public class IPRCama extends IntermPersistenciaDBR {
    @Override
+   public String select() {
+      return "SELECT * FROM cama";
+   }
+   
+   @Override
    public String select(Criterio criterio) {
       return "SELECT * FROM cama WHERE " + criterio.getStringCriterio();
    }

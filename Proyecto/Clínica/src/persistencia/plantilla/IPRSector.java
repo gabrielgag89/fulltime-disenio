@@ -17,8 +17,12 @@ import persistencia.proxy.ObjetoPersistente;
  * @author Cristian Mesa
  */
 public class IPRSector extends IntermPersistenciaDBR {
+   @Override
+   public String select() {
+      return "SELECT * FROM sector";
+   } 
     
-@Override
+   @Override
    public String select(Criterio criterio) {
       return "SELECT * FROM sector WHERE " + criterio.getStringCriterio();
    } 
