@@ -5,7 +5,7 @@ import java.util.Date;
 public class CostoPrestacionImpl implements CostoPrestacion {
    private Date fechaInicio;
    private Date fechaFin;
-   private float monto;
+   private double monto;
    private Prestacion prestacion;
 
    @Override
@@ -29,12 +29,12 @@ public class CostoPrestacionImpl implements CostoPrestacion {
    }
 
    @Override
-   public float getMonto() {
+   public double getMonto() {
       return monto;
    }
 
    @Override
-      public void setMonto(float monto) {
+      public void setMonto(double monto) {
    this.monto = monto;
    }
 

@@ -32,18 +32,13 @@ public class ReciboAgente extends ObjetoPersistente implements Recibo {
     }
 
     @Override
-    public List<Monto> getMonto() {
+    public double getMonto() {
         return  this.impl.getMonto();
     }
 
     @Override
-    public void setMonto(List<Monto> montos) {
+    public void setMonto(double montos) {
          this.impl.setMonto(montos);
-    }
-
-    @Override
-    public void addMonto(Monto monto) {
-         this.impl.addMonto(monto);
     }
 
     @Override
