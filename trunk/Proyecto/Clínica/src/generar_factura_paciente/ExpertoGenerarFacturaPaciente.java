@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
 import persistencia.FachadaPersistencia;
 import persistencia.criterios.Criterio;
 import persistencia.proxy.*;
@@ -82,7 +83,9 @@ public class ExpertoGenerarFacturaPaciente {
         public void GenerarFactura(DTOFichaInternacion dtoficha)
         
      {
-         
+         try
+         {
+             
          int numFicha= dtoficha.getNroFicha();
          FachadaPersistencia FP= FachadaPersistencia.getInstancia();
          Criterio C1= FP.getCriterio("numero_ficha_internacion", "=", Integer.toString(numFicha));
@@ -136,15 +139,28 @@ public class ExpertoGenerarFacturaPaciente {
          
          totalfactura-= dtofichainternacion.getDescuento();
          
-         
-                 
-                 
-         
+         Criterio C8= FP.getCriterio("nombreEstado", "=", "Creada");
+         List listaEstadoFactura = FP.buscar("EstadoFacturaCliente", C8);
          
          
+         EstadoFacturaCliente estadofactura= (EstadoFacturaCliente) listaEstadoFactura.get(0);
          
          
+         factura.setFichaInternacion(fichainternacion);
+         factura.setEstadoFacturaCliente(estadofactura);
+         factura.setFechaEmision(fecha);
+         factura.setNumFactura(0);
          
+         FP.guardar("facturaCliente", factura);      
+         JOptionPane.showMessageDialog(null,"La factura se ha guardado correctamente","Generar Factura",JOptionPane.INFORMATION_MESSAGE);
+                        
+         
+         }  catch (Exception ex) {
+             
+             JOptionPane.showMessageDialog(null,"Problema al generar la factura","Generar Factura",JOptionPane.ERROR_MESSAGE);
+             System.out.println(ex.getMessage());
+               
+        }
 
      }
 }
