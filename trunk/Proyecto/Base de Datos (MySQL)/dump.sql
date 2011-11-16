@@ -30,11 +30,11 @@ insert  into `coseguro`(`oidcoseguro`,`codigo_coseguro`,`porcentaje`) values ('1
 
 /*Data for the table `costo_prestacion` */
 
-insert  into `costo_prestacion`(`oidcosto_prestacion`,`fecha_inicio`,`fecha_fin`,`monto`,`oidprestacion`) values ('3efc1521-753e-4b0c-8ca2-ca89593f0df7','2011-01-10','2011-11-06',398.5,'2ea9a442-8309-4b15-8600-2f89ad28f471'),('7a05efd6-392f-4e38-b52a-05c9d790da43','2011-01-08','2011-12-06',465,'09b0a617-7924-448e-8bc1-8a9fbe186279'),('94cc9d4a-9e27-47b0-822e-6648d7564318','2011-01-01','2011-12-06',440.5,'e2d33617-687f-466b-b1d7-0a7ac9d1fedf'),('e20fc1bc-28a7-436b-81e1-79149591f08c','2011-11-10','2011-6-8',98.5,'4821103d-5b08-496f-822e-014dfc16b950');
+insert  into `costo_prestacion`(`oidcosto_prestacion`,`fecha_inicio`,`fecha_fin`,`monto`,`oidprestacion`) values ('3efc1521-753e-4b0c-8ca2-ca89593f0df7','2011-01-10','2011-11-06',398.5,'2ea9a442-8309-4b15-8600-2f89ad28f471'),('7a05efd6-392f-4e38-b52a-05c9d790da43','2011-01-08','2011-12-06',465,'09b0a617-7924-448e-8bc1-8a9fbe186279'),('94cc9d4a-9e27-47b0-822e-6648d7564318','2011-01-01','2011-12-06',440.5,'e2d33617-687f-466b-b1d7-0a7ac9d1fedf'),('e20fc1bc-28a7-436b-81e1-79149591f08c','2011-11-10','2012-06-08',98.5,'4821103d-5b08-496f-822e-014dfc16b950');
 
 /*Data for the table `costo_servicio` */
 
-insert  into `costo_servicio`(`oidcosto_servicio`,`fecha_inicio`,`fecha_fin`,`monto`,`oidservicio_especial`) values ('26f09abf-b9e7-419a-b466-fa533931aaa0','2012-12-26','2012-12-31',55,'16292845-dbc6-4393-ae9d-13f6eb55fea0'),('301778a7-b8c4-4592-b1f2-2725eb9dbbd1','2011-01-15','2011-11-12',80,'72d72728-dc4f-4160-9f3c-e14c4e55aa64'),('5568d6b4-c1ab-4d9a-bd56-84ce1f354b2d','2012-01-11','2012-11-21',95,'72d72728-dc4f-4160-9f3c-e14c4e55aa64'),('6d22350f-126a-4815-b64b-a7617eb8a1d3','2011-11-10','2011-1-12',150,'94e6ebf4-3ff8-4e53-8c22-f52f771b44d8');
+insert  into `costo_servicio`(`oidcosto_servicio`,`fecha_inicio`,`fecha_fin`,`monto`,`oidservicio_especial`) values ('26f09abf-b9e7-419a-b466-fa533931aaa0','2012-12-26','2012-12-31',55,'16292845-dbc6-4393-ae9d-13f6eb55fea0'),('301778a7-b8c4-4592-b1f2-2725eb9dbbd1','2011-01-15','2011-11-12',80,'72d72728-dc4f-4160-9f3c-e14c4e55aa64'),('5568d6b4-c1ab-4d9a-bd56-84ce1f354b2d','2012-01-11','2012-11-21',95,'72d72728-dc4f-4160-9f3c-e14c4e55aa64'),('6d22350f-126a-4815-b64b-a7617eb8a1d3','2011-11-10','2012-11-10',150,'94e6ebf4-3ff8-4e53-8c22-f52f771b44d8');
 
 /*Data for the table `detalle_ficha` */
 
