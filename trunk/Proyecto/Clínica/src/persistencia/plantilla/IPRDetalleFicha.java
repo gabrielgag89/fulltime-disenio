@@ -30,7 +30,8 @@ public class IPRDetalleFicha extends IntermPersistenciaDBR {
       DetalleFichaAgente detalleficha = (DetalleFichaAgente) objeto;
       return "INSERT INTO detalle_ficha VALUES "
                   + "('" + detalleficha.getOid() + "', "
-                         + detalleficha.getOidFichaInternacion() + ", '"
+                         + detalleficha.getCantidad() + ", '"
+                         + detalleficha.getOidFichaInternacion() + "', '"
                          + detalleficha.getOidServicioEspecial() + "')";
    }
 
@@ -39,6 +40,7 @@ public class IPRDetalleFicha extends IntermPersistenciaDBR {
       DetalleFichaAgente detalleficha = (DetalleFichaAgente) objeto;
       return "UPDATE FROM detalle_ficha WHERE"
                   + "oiddetalle_ficha =  '" + detalleficha.getOid() + "', "
+                  + "cantidad = " + detalleficha.getCantidad() + ", "
                   + "oidficha_internacion = " + detalleficha.getOidFichaInternacion() + ", "
                   + "oidservicio_especial = '" + detalleficha.getOidServicioEspecial() + "'";
    }

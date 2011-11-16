@@ -26,7 +26,7 @@ public class FachadaPersistenciaInterna {
       return instancia;
    } // fin del método getInstancia
    
-   public static Connection iniciarTransaccion() throws SQLException, Exception{
+   public Connection iniciarTransaccion() throws SQLException, Exception{
       ConectorBD.getInstancia().establecerConexion();
       Connection con = (Connection) ConectorBD.getConexion();
       Statement stmt = (Statement) con.createStatement();
@@ -35,7 +35,7 @@ public class FachadaPersistenciaInterna {
       return con;
    } // fin del método iniciarTransaccion
    
-   public static void finalizarTransaccion() throws SQLException{
+   public void finalizarTransaccion() throws SQLException{
       Connection con = (Connection) ConectorBD.getConexion();
       Statement stmt = (Statement) con.createStatement();
       stmt.execute("COMMIT");

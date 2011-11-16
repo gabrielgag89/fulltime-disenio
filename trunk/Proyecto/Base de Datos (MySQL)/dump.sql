@@ -1,4 +1,4 @@
-/*
+﻿/*
 SQLyog Ultimate v9.02 
 MySQL - 5.5.17 : Database - clinica
 *********************************************************************
@@ -38,7 +38,7 @@ insert  into `costo_servicio`(`oidcosto_servicio`,`fecha_inicio`,`fecha_fin`,`mo
 
 /*Data for the table `detalle_ficha` */
 
-insert  into `detalle_ficha`(`oiddetalle_ficha`,`oidficha_internacion`,`oidservicio_especial`) values ('2a6b2018-37ed-4c1c-8cad-5c40ca614447','e05cdfcd-0db4-4f06-b601-343d2903810a','94e6ebf4-3ff8-4e53-8c22-f52f771b44d8'),('2ae50428-9afb-400f-9c24-104d94d9b5bd','37c9d93e-15c2-4152-bf48-be8e0025734a','1f4393c4-3fdd-4d07-915f-d70fa8cea023'),('35aee673-1e1b-439b-9b00-c6630d62e46d','37c9d93e-15c2-4152-bf48-be8e0025734a','72d72728-dc4f-4160-9f3c-e14c4e55aa64'),('cfb41eda-5d50-4ac8-aa22-83bc84acd515','e05cdfcd-0db4-4f06-b601-343d2903810a','16292845-dbc6-4393-ae9d-13f6eb55fea0'),('d51b7a5b-810d-469f-9031-de9630889b29','37c9d93e-15c2-4152-bf48-be8e0025734a','94e6ebf4-3ff8-4e53-8c22-f52f771b44d8');
+insert  into `detalle_ficha`(`oiddetalle_ficha`,`cantidad`,`oidficha_internacion`,`oidservicio_especial`) values ('2a6b2018-37ed-4c1c-8cad-5c40ca614447',3,'e05cdfcd-0db4-4f06-b601-343d2903810a','94e6ebf4-3ff8-4e53-8c22-f52f771b44d8'),('2ae50428-9afb-400f-9c24-104d94d9b5bd',1,'37c9d93e-15c2-4152-bf48-be8e0025734a','1f4393c4-3fdd-4d07-915f-d70fa8cea023'),('35aee673-1e1b-439b-9b00-c6630d62e46d',2,'37c9d93e-15c2-4152-bf48-be8e0025734a','72d72728-dc4f-4160-9f3c-e14c4e55aa64'),('cfb41eda-5d50-4ac8-aa22-83bc84acd515',1,'e05cdfcd-0db4-4f06-b601-343d2903810a','16292845-dbc6-4393-ae9d-13f6eb55fea0'),('d51b7a5b-810d-469f-9031-de9630889b29',2,'37c9d93e-15c2-4152-bf48-be8e0025734a','94e6ebf4-3ff8-4e53-8c22-f52f771b44d8');
 
 /*Data for the table `estado_cama` */
 
@@ -46,11 +46,11 @@ insert  into `estado_cama`(`oidestado_cama`,`nombre_estado_cama`) values ('6f21d
 
 /*Data for the table `estado_factura_cliente` */
 
-insert  into `estado_factura_cliente`(`oidestado_factura_cliente`,`nombre_estado_factura_cliente`) values ('0d046148-9172-4274-a6f4-2a35c32ddb97','emitida'),('19388d8d-a9c8-4e44-895d-66a47329cc67','pagada');
+insert  into `estado_factura_cliente`(`oidestado_factura_cliente`,`nombre_estado_factura_cliente`) values ('0d046148-9172-4274-a6f4-2a35c32ddb97','Emitida'),('19388d8d-a9c8-4e44-895d-66a47329cc67','Pagada');
 
 /*Data for the table `estado_ficha_internacion` */
 
-insert  into `estado_ficha_internacion`(`oidestado_ficha_internacion`,`nombre_estado_ficha_internacion`) values ('7fff7879-7808-4ac4-8e48-56e1fe3f4da5','facturada'),('af48fee7-69f6-4d85-9f19-57e54a8997a4','creada');
+insert  into `estado_ficha_internacion`(`oidestado_ficha_internacion`,`nombre_estado_ficha_internacion`) values ('7fff7879-7808-4ac4-8e48-56e1fe3f4da5','Facturada'),('af48fee7-69f6-4d85-9f19-57e54a8997a4','Creada');
 
 /*Data for the table `factura_cliente` */
 
