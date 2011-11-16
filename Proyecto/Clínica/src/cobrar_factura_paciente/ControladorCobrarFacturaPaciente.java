@@ -21,6 +21,10 @@ public class ControladorCobrarFacturaPaciente implements ObservadorGenerarFactur
       
       experto = (ExpertoCobrarFacturaPaciente) FabricaExpertos.getinstancia().getExperto("ExpertoCobrarFacturaPaciente");
       
-      return null;
+      return experto.buscarFacturasPendientes();
+   }
+   
+   public boolean cobrarFactura(int numFactura){
+      return false;
    }
 }
