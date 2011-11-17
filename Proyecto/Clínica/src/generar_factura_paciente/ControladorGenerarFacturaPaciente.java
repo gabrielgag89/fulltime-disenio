@@ -1,21 +1,19 @@
 package generar_factura_paciente;
 
+import fabricaExpertos.FabricaExpertos;
 import java.util.List;
 
 public class ControladorGenerarFacturaPaciente {
     // NO LO HE PUESTO EN LA SECUENCIA
-    public List<DTOPaciente> buscarPacientes(){     
-        DecoradorExpertoGenerarFacturaPaciente DEFC = (DecoradorExpertoGenerarFacturaPaciente) FabricaExpertos.getInstancia().obtenerExperto("ExpertoFacturarCliente");
-        return DEFC.buscarPacientes();   
-    }
     
-    public DTOFichaInternacion buscarFichaInternacion(int numPaciente){     
-        DecoradorExpertoGenerarFacturaPaciente DEFC = (DecoradorExpertoGenerarFacturaPaciente) FabricaExpertos.getInstancia().obtenerExperto("ExpertoFacturarCliente");
-        return DEFC.buscarFichaInternacion(numPaciente);   
+    
+    public DTOFichaInternacion buscarFichaInternacion(int numFicha){     
+        DecoradorExpertoGenerarFacturaPaciente DEFC = (DecoradorExpertoGenerarFacturaPaciente) FabricaExpertos.getinstancia().getExperto("ExpertoFacturarCliente");
+        return DEFC.buscarFichaInternacion(numFicha);   
     }
 
     void GenerarFactura(DTOFichaInternacion dtoficha) {
-        DecoradorExpertoGenerarFacturaPaciente DEFC = (DecoradorExpertoGenerarFacturaPaciente) FabricaExpertos.getInstancia().obtenerExperto("ExpertoFacturarCliente");
+        DecoradorExpertoGenerarFacturaPaciente DEFC = (DecoradorExpertoGenerarFacturaPaciente) FabricaExpertos.getinstancia().getExperto("ExpertoFacturarCliente");
         DEFC.GenerarFactura(dtoficha);  
     }
     
