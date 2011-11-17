@@ -2,6 +2,7 @@ package generar_factura_paciente;
 
 import java.util.List;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  *
@@ -14,7 +15,7 @@ public class DTOFichaInternacion {
     private String nombrePrestacion;
     private double costoPrestacion;
     private double descuento;
-    private Calendar fecha;
+    private Date fecha;
     private List<DTODetalleServicio> dtoDetalle;
 
     public int getNroFicha() {
@@ -65,11 +66,11 @@ public class DTOFichaInternacion {
         this.descuento = descuento;
     }
 
-    public Calendar getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(Calendar fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 

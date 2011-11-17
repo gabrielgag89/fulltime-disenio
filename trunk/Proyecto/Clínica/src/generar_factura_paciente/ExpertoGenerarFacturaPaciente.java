@@ -15,35 +15,8 @@ public class ExpertoGenerarFacturaPaciente {
     List c;
     double totalfactura;
     
-    // NO LO HE PUESTO EN LA SECUENCIA
-    public List<DTOPaciente> buscarPacientes()          
-    {
-        
-        try {
-   
-        FachadaPersistencia FP = FachadaPersistencia.getInstancia();
-        List<Paciente> pacientes = FP.getColeccion("Paciente");
-        
-        listapacientes=new ArrayList<DTOPaciente>();
-        
-        for (int i=0; i<pacientes.size();i++)
-        {          
-           dtopaciente= new DTOPaciente();
-           dtopaciente.setNumPaciente(pacientes.get(i).getNumPaciente());
-           dtopaciente.setNombrePaciente(pacientes.get(i).getNombre().toString());
-           listapacientes.add(dtopaciente);
-        }   
-            
-        return listapacientes;
-        
-        } catch (Exception ex) {
-                System.out.println(ex.getMessage());
-                return null;
-        }
-        
-    }
-    
-    public DTOFichaInternacion buscarFichaInternacion(int NumPaciente)
+
+    public DTOFichaInternacion buscarFichaInternacion(int numFicha)
             
     {
        
@@ -51,34 +24,85 @@ public class ExpertoGenerarFacturaPaciente {
             
             
             FachadaPersistencia FP = FachadaPersistencia.getInstancia();
-            Criterio C1 = FP.getCriterio("oidpaciente ", "=", Integer.toString(NumPaciente));
+            Criterio C1 = FP.getCriterio("numero_ficha_internacion", "=", Integer.toString(numFicha));
             FichaInternacion fichainternacion = (FichaInternacion)  FP.buscar("ficha_internacion", C1).get(0);
+            String estado= fichainternacion.getEstadoFichaInternacion().getNombreEstado().toString();
             
-            dtofichainternacion = new DTOFichaInternacion();
-            dtofichainternacion.setNroFicha(fichainternacion.getNroFicha());
-            dtofichainternacion.setFechaIngreso(fichainternacion.getFechaCreacion());
-            //dtofichainternacion.setFechaEgreso(fichainternacion.getFechaEgreso());
+            if (estado.equals("Creada"))
+                
+            {
+                
+                dtofichainternacion= new DTOFichaInternacion();
+                dtofichainternacion.setNroFicha(fichainternacion.getNroFicha());
+                dtofichainternacion.setFecha(fichainternacion.getFechaCreacion());
+                
+                Date fecha=new Date();
+                SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+                String fechaActual = formato.format(fecha);
+         
+                 Criterio C2= FP.getCriterio("fecha_inicio", "<", fechaActual.toString());
+                 c.add(C2);
+                 Criterio C3= FP.getCriterio("fecha_fin", ">", fechaActual.toString());
+                 c.add(C3);  
+                 Criterio C4= FP.getCriterio("codigo_prestacion", "=", Integer.toString(fichainternacion.getPrestacion().getCodigoPrestacion()));
+                 c.add(C4);  
+
+                 Criterio CC= FP.and(c);
+                 List L = FP.buscar("costo_prestacion", CC);
+                 CostoPrestacion costoprestacion=(CostoPrestacion) L.get(0);
+                 c.clear();
+
+                dtofichainternacion.setCostoPrestacion(costoprestacion.getMonto());
+                
+                Paciente paciente=fichainternacion.getPaciente();
+                
+                dtofichainternacion.setNombrePaciente(paciente.getNombre().toString());
+                
+                if (paciente.getPlan() != null)
+                {
+                    
+                 Criterio C5= FP.getCriterio("fecha_inicio", "<", fechaActual.toString());
+                 c.add(C2);
+                 Criterio C6= FP.getCriterio("fecha_fin", ">", fechaActual.toString());
+                 c.add(C3);  
+                 Criterio C7= FP.getCriterio("codigo_plan", "=", Integer.toString(paciente.getPlan().getCodigoPlan()));
+                 c.add(C4);  
+
+                 Criterio CC1= FP.and(c);
+                 List L1 = FP.buscar("convenio", CC1);
+                 Convenio convenio=(Convenio) L.get(0);
+                    
+                    
+                    
+                    
+                }
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            }
             
-            //agregar fecha egreso y ademas no se puede continuar hasta que se cree detalle servicio y detalle prestacion en la ficha
             
             
             
             
-            
-            
-            
-                return null;
+                  return null;
             }  catch (Exception ex) {
                 System.out.println(ex.getMessage());
                 return null;
             }
     
-    
-    
-    
-    
-    
     }
+    
+    
+    
 
         public void GenerarFactura(DTOFichaInternacion dtoficha)
         

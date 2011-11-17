@@ -8,25 +8,13 @@ import persistencia.FachadaPersistenciaInterna;
 
 public class DecoradorExpertoGenerarFacturaPaciente extends ExpertoGenerarFacturaPaciente {
 
-    @Override
-    public List<DTOPaciente> buscarPacientes(){
-            try {
-                FachadaPersistenciaInterna.iniciarTransaccion();
-                List<DTOPaciente> pacientes = super.buscarPacientes();
-                return pacientes;
-            } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
-                return null;
-            } catch (Exception ex) {
-                System.out.println(ex.getMessage());
-                return null;
-            }
-	}
+   
 
     @Override
         public DTOFichaInternacion buscarFichaInternacion(int numPaciente){
             try {
                 
+                FachadaPersistenciaInterna.getInstancia().iniciarTransaccion();
                 DTOFichaInternacion dtoficha = super.buscarFichaInternacion(numPaciente);
                 return dtoficha;
                 
@@ -41,7 +29,7 @@ public class DecoradorExpertoGenerarFacturaPaciente extends ExpertoGenerarFactur
  public void GenerarFactura(DTOFichaInternacion dtoficha) {
             try {
                 super.GenerarFactura(dtoficha);
-                FachadaPersistenciaInterna.finalizarTransaccion();
+                FachadaPersistenciaInterna.getInstancia().finalizarTransaccion();
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
             }
