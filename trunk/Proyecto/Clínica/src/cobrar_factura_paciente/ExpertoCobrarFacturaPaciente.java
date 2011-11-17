@@ -4,14 +4,17 @@
  */
 package cobrar_factura_paciente;
 
+import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
+import persistencia.proxy.EstadoFacturaCliente;
 import persistencia.proxy.CostoPrestacion;
 import persistencia.proxy.FacturaCliente;
 import persistencia.FachadaPersistencia;
-import persistencia.criterios.Criterio;
 import persistencia.proxy.CostoServicio;
 import persistencia.proxy.DetalleFicha;
+import persistencia.criterios.Criterio;
+import persistencia.proxy.Recibo;
 import util.ServiciosTiempo;
 
 /**
@@ -19,9 +22,11 @@ import util.ServiciosTiempo;
  * @author gabriel
  */
 public class ExpertoCobrarFacturaPaciente {
+   private List<DTOFacturaPaciente> listaDtoFacturas;
+   
    public List<DTOFacturaPaciente> buscarFacturasPendientes() {
       List<FacturaCliente> listaFacturas = FachadaPersistencia.getInstancia().buscar("FacturaCliente");
-      List<DTOFacturaPaciente> listaDtoFacturas = new ArrayList<DTOFacturaPaciente>();
+      listaDtoFacturas = new ArrayList<DTOFacturaPaciente>();
       DTOFacturaPaciente dtoFactura;
       List<CostoPrestacion> listaCostosPrestaciones;
       List<DetalleFicha> listaDetalle;
@@ -83,5 +88,52 @@ public class ExpertoCobrarFacturaPaciente {
       }
       
       return listaDtoFacturas;
+   }
+   
+   public DTORecibo cobrarFactura(int numFactura){
+      Criterio c1 = FachadaPersistencia.getInstancia().getCriterio("numero_factura_cliente", "=", numFactura + "");
+      FacturaCliente factura = (FacturaCliente) FachadaPersistencia.getInstancia().buscar("FacturaCliente", c1).get(0);
+      
+      Recibo recibo = (Recibo) FachadaPersistencia.getInstancia().nuevaEntidad("Recibo");
+      
+      recibo.setFacturaCliente(factura);
+      recibo.setFecha(new Date());
+      recibo.setNroRecibo(numFactura);
+      
+      DTOFacturaPaciente dtoFactura = buscarDtoFactura(numFactura);
+      
+      double monto = 0.0;
+      
+      if(dtoFactura.getDescuento() != 0.0)
+         monto += dtoFactura.getCostoPrestacion() - (dtoFactura.getCostoPrestacion() * dtoFactura.getDescuento());
+      else
+         monto += dtoFactura.getCostoPrestacion();
+      
+      for(DTODetalle dtoDetalle : dtoFactura.getDtoDetalle())
+         monto += dtoDetalle.getSubtotal();
+      
+      recibo.setMonto(monto);
+      
+      DTORecibo dtoRecibo = new DTORecibo();
+      dtoRecibo.setNroRecibo(recibo.getNroRecibo());
+      dtoRecibo.setNumFactura(recibo.getFacturaCliente().getNumFactura());
+      dtoRecibo.setFecha(recibo.getFecha());
+      dtoRecibo.setMonto(recibo.getMonto());
+      
+      Criterio c2 = FachadaPersistencia.getInstancia().getCriterio("nombre_estado_factura_cliente", "=", "'Pagada'");
+      EstadoFacturaCliente estadoFactura = (EstadoFacturaCliente) FachadaPersistencia.getInstancia().buscar("EstadoFacturaCliente", c2).get(0);
+      
+      factura.setEstadoFacturaCliente(estadoFactura);
+      
+      return dtoRecibo;
+   }
+   
+   private DTOFacturaPaciente buscarDtoFactura(int numFactura){
+      for(DTOFacturaPaciente dtoFactura : listaDtoFacturas){
+         if(dtoFactura.getNumFactura() == numFactura)
+            return dtoFactura;
+      }
+      
+      return null;
    }
 }
