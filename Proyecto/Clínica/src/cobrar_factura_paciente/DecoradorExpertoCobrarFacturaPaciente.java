@@ -4,10 +4,8 @@
  */
 package cobrar_factura_paciente;
 
-import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.sql.SQLException;
 import persistencia.FachadaPersistenciaInterna;
 
 /**
@@ -28,5 +26,17 @@ public class DecoradorExpertoCobrarFacturaPaciente extends ExpertoCobrarFacturaP
       }
       
       return this.buscarFacturasPendientes();
+   }
+   
+   @Override
+   public DTORecibo cobrarFactura(int numFactura){
+      DTORecibo dtoRecibo = super.cobrarFactura(numFactura);
+      try {
+         FachadaPersistenciaInterna.getInstancia().finalizarTransaccion();
+      } catch (SQLException ex) {
+         System.err.println("SQLException en cobrarFactura: " + ex.getMessage());
+      }
+      
+      return dtoRecibo;
    }
 }
