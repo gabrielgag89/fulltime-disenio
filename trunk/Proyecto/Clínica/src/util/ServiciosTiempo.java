@@ -252,8 +252,18 @@ public final class ServiciosTiempo {
       anio = fecha.getYear() + 1900;
       
       return ((anio < 10 ? "000" : (anio < 100 ? "00" : (anio < 1000 ? "0" : ""))) + anio +
-                  "/" + (mes < 10 ? "0" : "") + mes + "/" + (dia < 10 ? "0" : "") + dia);
+                  "-" + (mes < 10 ? "0" : "") + mes + "-" + (dia < 10 ? "0" : "") + dia);
    } // fin del método dateToString
+   
+   public static String dateToStringDDMMAAAA(Date fecha){
+      int dia, mes, anio;
+      dia = fecha.getDate();
+      mes = fecha.getMonth() + 1;
+      anio = fecha.getYear() + 1900;
+      
+      return ((dia < 10 ? "0" : "") + dia) + "-" + (mes < 10 ? "0" : "") + mes + "-" +
+              (anio < 10 ? "000" : (anio < 100 ? "00" : (anio < 1000 ? "0" : ""))) + anio;
+   } // fin del método dateToStringDDMMAAAA
    
    public static Date stringToDate(String fechaS){
       Date fechaD = new Date();
@@ -263,11 +273,11 @@ public final class ServiciosTiempo {
       char fecha[] = fechaS.toCharArray();
       
       for(int i = 0; i < fecha.length; i++){
-         if(fecha[i] != '/' && j == 0)
+         if(fecha[i] != '-' && j == 0)
             anioS += fecha[i];
-         else if(fecha[i] != '/' && j == 1)
+         else if(fecha[i] != '-' && j == 1)
             mesS += fecha[i];
-         else if(fecha[i] != '/' && j == 2)
+         else if(fecha[i] != '-' && j == 2)
             diaS += fecha[i];
          else
             j++;

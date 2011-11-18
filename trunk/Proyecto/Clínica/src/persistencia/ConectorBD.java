@@ -10,7 +10,7 @@ import java.sql.*;
  * @author Gabriel
  */
 public class ConectorBD {
-   private static String bd = "agendav10";
+   private static String bd = "clinica";
    private static String login = "fulltime";
    private static String password = "disenio";
    private static String host = "localhost";
