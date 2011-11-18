@@ -26,7 +26,7 @@ public class DecoradorExpertoCobrarFacturaPaciente extends ExpertoCobrarFacturaP
       }
       
       return super.buscarFacturasPendientes();
-   }
+   } // fin del método buscarFacturasPendientes
    
    @Override
    public DTORecibo cobrarFactura(int numFactura){
@@ -38,5 +38,5 @@ public class DecoradorExpertoCobrarFacturaPaciente extends ExpertoCobrarFacturaP
       }
       
       return dtoRecibo;
-   }
-}
+   } // fin del método cobrarFactura
+} // fin de la clase DecoradorExpertoCobrarFacturaPaciente

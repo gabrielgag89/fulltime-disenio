@@ -24,12 +24,16 @@ public class IUCobrarFacturaPaciente extends javax.swing.JFrame {
 
    /** Creates new form IUCobrarFacturaPaciente */
    public IUCobrarFacturaPaciente() {
+      // crea la tabla personalizada
       tablaFacturas = new DefaultTableModel();
       initComponents();
+      // guarda la referencia al controlador
       controlador = new ControladorCobrarFacturaPaciente();
+      // arma la tabla
       armarTablaFacturas();
+      // carga la tabla
       cargarFacturas();
-   }
+   } // fin del constructor
 
    /** This method is called from within the constructor to
     * initialize the form.
@@ -64,7 +68,7 @@ public class IUCobrarFacturaPaciente extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrollPaneTablaFacturas, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(scrollPaneTablaFacturas, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonCobrar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -84,14 +88,30 @@ public class IUCobrarFacturaPaciente extends javax.swing.JFrame {
    private void botonCobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCobrarActionPerformed
       // TODO add your handling code here:
    }//GEN-LAST:event_botonCobrarActionPerformed
-
+   // fin del método botonCobrarActionPerformed
+   
    private void armarTablaFacturas(){
+      // configura la cabecera de las columnas
       tablaFacturas.addColumn("Nº Factura");
       tablaFacturas.addColumn("Fecha");
       tablaFacturas.addColumn("Nº Ficha");
       tablaFacturas.addColumn("Paciente");
       tablaFacturas.addColumn("Prestación");
       tablaFacturas.addColumn("Monto");
+      
+      // configura el ancho de las columnas
+      tablaFacturasExterna.getColumnModel().getColumn(0).setMinWidth(75);
+      tablaFacturasExterna.getColumnModel().getColumn(0).setMaxWidth(75);
+      tablaFacturasExterna.getColumnModel().getColumn(1).setMinWidth(75);
+      tablaFacturasExterna.getColumnModel().getColumn(1).setMaxWidth(75);
+      tablaFacturasExterna.getColumnModel().getColumn(2).setMinWidth(75);
+      tablaFacturasExterna.getColumnModel().getColumn(2).setMaxWidth(75);
+      tablaFacturasExterna.getColumnModel().getColumn(3).setMinWidth(150);
+      tablaFacturasExterna.getColumnModel().getColumn(3).setMaxWidth(150);
+      tablaFacturasExterna.getColumnModel().getColumn(4).setMinWidth(150);
+      tablaFacturasExterna.getColumnModel().getColumn(4).setMaxWidth(150);
+      tablaFacturasExterna.getColumnModel().getColumn(5).setMinWidth(75);
+      tablaFacturasExterna.getColumnModel().getColumn(5).setMaxWidth(75);
    } // fin del método armarTablaFacturas
    
    private void cargarFacturas(){
@@ -146,7 +166,7 @@ public class IUCobrarFacturaPaciente extends javax.swing.JFrame {
             new IUCobrarFacturaPaciente().setVisible(true);
          }
       });
-   }
+   } // fin del método main
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonCobrar;
