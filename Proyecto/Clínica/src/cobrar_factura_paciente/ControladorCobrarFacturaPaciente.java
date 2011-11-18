@@ -16,10 +16,10 @@ public class ControladorCobrarFacturaPaciente implements ObservadorGenerarFactur
       throw new UnsupportedOperationException("Not supported yet.");
    } // fin del método actualizar
    
-   public List<DTOFacturaPaciente> cobrarFacturaPaciente(){
+   public List<DTOFacturaPaciente> buscarFacturasPacientes(){
       SuscriptorGenerarFacturaPaciente.getInstance().agregarObservadorGenerarFacturaPaciente(this);
       
-      experto = (ExpertoCobrarFacturaPaciente) FabricaExpertos.getinstancia().getExperto("ExpertoCobrarFacturaPaciente");
+      experto = (ExpertoCobrarFacturaPaciente) FabricaExpertos.getInstancia().getExperto("ExpertoCobrarFacturaPaciente");
       
       return experto.buscarFacturasPendientes();
    } // fin del método cobrarFacturaPaciente

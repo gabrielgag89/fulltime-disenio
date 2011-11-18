@@ -25,7 +25,7 @@ public class DecoradorExpertoCobrarFacturaPaciente extends ExpertoCobrarFacturaP
          System.err.println("Exception en buscarFacturasPendientes: " + ex.getMessage());
       }
       
-      return this.buscarFacturasPendientes();
+      return super.buscarFacturasPendientes();
    }
    
    @Override

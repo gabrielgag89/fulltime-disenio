@@ -16,6 +16,7 @@ public class DTOFacturaPaciente {
    private double costoPrestacion;
    private double descuento;
    private List<DTODetalle> dtoDetalle;
+   private double monto;
 
    public int getNumFactura() {
       return numFactura;
@@ -79,5 +80,13 @@ public class DTOFacturaPaciente {
 
    public void setDtoDetalle(List<DTODetalle> dtoDetalle) {
       this.dtoDetalle = dtoDetalle;
+   }
+
+   public double getMonto() {
+      return monto;
+   }
+
+   public void setMonto(double monto) {
+      this.monto = monto;
    }
 }

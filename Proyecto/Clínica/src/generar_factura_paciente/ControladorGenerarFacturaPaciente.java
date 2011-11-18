@@ -8,12 +8,12 @@ public class ControladorGenerarFacturaPaciente {
     
     
     public DTOFichaInternacion buscarFichaInternacion(int numFicha){     
-        DecoradorExpertoGenerarFacturaPaciente DEFC = (DecoradorExpertoGenerarFacturaPaciente) FabricaExpertos.getinstancia().getExperto("ExpertoFacturarCliente");
+        DecoradorExpertoGenerarFacturaPaciente DEFC = (DecoradorExpertoGenerarFacturaPaciente) FabricaExpertos.getInstancia().getExperto("ExpertoFacturarCliente");
         return DEFC.buscarFichaInternacion(numFicha);   
     }
 
     void GenerarFactura(DTOFichaInternacion dtoficha) {
-        DecoradorExpertoGenerarFacturaPaciente DEFC = (DecoradorExpertoGenerarFacturaPaciente) FabricaExpertos.getinstancia().getExperto("ExpertoFacturarCliente");
+        DecoradorExpertoGenerarFacturaPaciente DEFC = (DecoradorExpertoGenerarFacturaPaciente) FabricaExpertos.getInstancia().getExperto("ExpertoFacturarCliente");
         DEFC.GenerarFactura(dtoficha);  
     }
     
