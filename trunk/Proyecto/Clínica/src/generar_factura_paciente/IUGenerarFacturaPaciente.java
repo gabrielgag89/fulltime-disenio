@@ -4,12 +4,12 @@ import java.util.List;
 import persistencia.proxy.Paciente;
 
 
-public class IUFacturarCliente extends javax.swing.JFrame {
+public class IUGenerarFacturaPaciente extends javax.swing.JFrame {
 
     DTOFichaInternacion dtoficha;
             
-    /** Creates new form IUFacturarCliente */
-    public IUFacturarCliente() {
+    /** Creates new form IUGenerarFacturaPaciente */
+    public IUGenerarFacturaPaciente() {
         initComponents();
         cargarCombo();
     }

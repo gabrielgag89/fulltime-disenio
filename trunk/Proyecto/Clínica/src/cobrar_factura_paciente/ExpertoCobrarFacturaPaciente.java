@@ -88,7 +88,7 @@ public class ExpertoCobrarFacturaPaciente {
       }
       
       return listaDtoFacturas;
-   }
+   } // fin del método buscarFacturasPendientes
    
    public DTORecibo cobrarFactura(int numFactura){
       Criterio c1 = FachadaPersistencia.getInstancia().getCriterio("numero_factura_cliente", "=", numFactura + "");
@@ -126,7 +126,7 @@ public class ExpertoCobrarFacturaPaciente {
       factura.setEstadoFacturaCliente(estadoFactura);
       
       return dtoRecibo;
-   }
+   } // fin del método cobrarFactura
    
    private DTOFacturaPaciente buscarDtoFactura(int numFactura){
       for(DTOFacturaPaciente dtoFactura : listaDtoFacturas){
@@ -135,5 +135,5 @@ public class ExpertoCobrarFacturaPaciente {
       }
       
       return null;
-   }
-}
+   } // fin del método buscarDtoFactura
+} // fin de la clase ExpertoCobrarFacturaPaciente
