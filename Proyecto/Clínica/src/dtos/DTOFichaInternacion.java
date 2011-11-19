@@ -3,10 +3,6 @@ package dtos;
 import java.util.List;
 import java.util.Date;
 
-/**
- *
- * @author Fede
- */
 public class DTOFichaInternacion {
     private int nroFicha;
     private int numPaciente;
