@@ -13,7 +13,8 @@ import java.util.Date;
 public class FacturaClienteImpl implements FacturaCliente{
    private int numFactura;
    private Date fechaEmision;
-   public FichaInternacionImpl fichaInternacion;
+   private double monto;
+   public FichaInternacion fichaInternacion;
    public EstadoFacturaCliente estadoFacturaCliente;
 
    @Override
@@ -36,13 +37,21 @@ public class FacturaClienteImpl implements FacturaCliente{
       this.fechaEmision = fechaEmision;
    }
 
+   public double getMonto() {
+      return monto;
+   }
+
+   public void setMonto(double monto) {
+      this.monto = monto;
+   }
+
    @Override
-   public FichaInternacionImpl getFichaInternacion() {
+   public FichaInternacion getFichaInternacion() {
       return fichaInternacion;
    }
 
    @Override
-   public void setFichaInternacion(FichaInternacionImpl fichaInternacion) {
+   public void setFichaInternacion(FichaInternacion fichaInternacion) {
       this.fichaInternacion = fichaInternacion;
    }
 

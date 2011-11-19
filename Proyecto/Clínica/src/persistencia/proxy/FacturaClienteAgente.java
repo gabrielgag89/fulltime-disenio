@@ -42,9 +42,19 @@ public class FacturaClienteAgente extends ObjetoPersistente implements FacturaCl
    }
 
    @Override
-   public FichaInternacionImpl getFichaInternacion() {
+   public double getMonto() {
+      return this.impl.getMonto();
+   }
+
+   @Override
+   public void setMonto(double monto) {
+      this.impl.setMonto(monto);
+   }
+
+   @Override
+   public FichaInternacion getFichaInternacion() {
       if(!this.fichaInternacion){
-         this.impl.setFichaInternacion((FichaInternacionImpl) FachadaPersistenciaInterna.getInstancia().buscar("FichaInternacion", this.oidFichaInternacion));
+         this.impl.setFichaInternacion((FichaInternacion) FachadaPersistenciaInterna.getInstancia().buscar("FichaInternacion", this.oidFichaInternacion));
          this.fichaInternacion = true;
       }
       
@@ -52,7 +62,7 @@ public class FacturaClienteAgente extends ObjetoPersistente implements FacturaCl
    }
 
    @Override
-   public void setFichaInternacion(FichaInternacionImpl fichaInternacion) {
+   public void setFichaInternacion(FichaInternacion fichaInternacion) {
       this.impl.setFichaInternacion(fichaInternacion);
    }
 

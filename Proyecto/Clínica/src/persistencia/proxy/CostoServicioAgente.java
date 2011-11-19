@@ -47,7 +47,7 @@ public class CostoServicioAgente extends ObjetoPersistente implements CostoServi
         @Override
         public ServicioEspecial getServicioEspecial() {
             if(!this.servicioEspecial){
-                this.impl.setServicioEspecial((ServicioEspecial) FachadaPersistenciaInterna.getInstancia().buscar("ServicoEspecial", this.oidServicioEspecial));
+                this.impl.setServicioEspecial((ServicioEspecial) FachadaPersistenciaInterna.getInstancia().buscar("ServicioEspecial", this.oidServicioEspecial));
                 this.servicioEspecial = true;
             }
             return this.impl.getServicioEspecial();
