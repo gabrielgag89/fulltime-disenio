@@ -40,7 +40,6 @@ public class ControladorCobrarFacturaPaciente implements ObservadorGenerarFactur
    
    @Override
    public void actualizar(DTOFacturaPaciente dtoFactura) {
-      System.out.print("ControladorCobrarFacturaPaciente.actualizar\n");
       this.iuCobrar.actualizar(dtoFactura);
    } // fin del método actualizar
 } // fin de la clase ControladorCobrarFacturaPaciente

@@ -164,7 +164,6 @@ public class IUCobrarFacturaPaciente extends javax.swing.JFrame {
    } // fin del método cargarFacturas
    
    public void actualizar(DTOFacturaPaciente dtoFactura){
-      System.out.print("IUCobrarFacturaPaciente.actualizar\n");
       Vector fila = new Vector();
       fila.add(dtoFactura.getNumFactura());
       fila.add(ServiciosTiempo.getInstancia().dateToStringDDMMAAAA(dtoFactura.getFecha()));

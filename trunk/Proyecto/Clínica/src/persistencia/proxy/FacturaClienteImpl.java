@@ -37,10 +37,12 @@ public class FacturaClienteImpl implements FacturaCliente{
       this.fechaEmision = fechaEmision;
    }
 
+   @Override
    public double getMonto() {
       return monto;
    }
 
+   @Override
    public void setMonto(double monto) {
       this.monto = monto;
    }
