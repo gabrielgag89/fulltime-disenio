@@ -2,7 +2,6 @@ package generar_factura_paciente;
 
 import dtos.DTOFichaInternacion;
 import fabricaExpertos.FabricaExpertos;
-import java.util.List;
 
 public class ControladorGenerarFacturaPaciente {
    private ExpertoGenerarFacturaPaciente experto;

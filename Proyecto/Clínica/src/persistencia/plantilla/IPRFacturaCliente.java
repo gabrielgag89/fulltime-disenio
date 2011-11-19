@@ -37,12 +37,13 @@ public class IPRFacturaCliente extends IntermPersistenciaDBR{
    public String insertar(Object objeto) {
       FacturaClienteAgente fact = (FacturaClienteAgente) objeto;
       
-      return "INSERT INTO factura_cliente VALUES "
-                  + "('" + fact.getOid() + "', "
-                         + fact.getNumFactura() + ", "
-                         + ServiciosTiempo.getInstancia().dateToString(fact.getFechaEmision()) + ", '"
-                         + fact.getOidEstadoFacturaCliente() + "', '"
-                         + fact.getOidFichaInternacion() + "')";
+      return "INSERT INTO factura_cliente (oidfactura_cliente, numero_factura_cliente, fecha, monto, oidestado_factura_cliente, oidficha_internacion) "
+                  + "VALUES ('" + fact.getOid() + "', "
+                                + fact.getNumFactura() + ", '"
+                                + ServiciosTiempo.getInstancia().dateToString(fact.getFechaEmision()) + "', "
+                                + fact.getMonto() + ", '"
+                                + fact.getOidEstadoFacturaCliente() + "', '"
+                                + fact.getOidFichaInternacion() + "')";
    } // fin del método insertar
 
    @Override

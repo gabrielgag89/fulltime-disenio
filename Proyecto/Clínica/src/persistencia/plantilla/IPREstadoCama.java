@@ -55,7 +55,7 @@ public class IPREstadoCama extends IntermPersistenciaDBR {
             
             estadoC.setImplementacion(new EstadoCamaImpl());
             estadoC.setOid(resultado.getString("oidestado_cama"));
-            estadoC.setNombreEstado(resultado.getString("nombre_estado"));
+            estadoC.setNombreEstado(resultado.getString("nombre_estado_cama"));
                                     
             lista.add(estadoC);
          }

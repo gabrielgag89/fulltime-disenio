@@ -59,7 +59,7 @@ CoseguroAgente coseguro = (CoseguroAgente) objeto;
             
             coseguro.setImplementacion(new CoseguroImpl());
             coseguro.setOid(resultado.getString("oidcoseguro"));
-            coseguro.setCodigoCoseguro(resultado.getInt("CodigoCoseguro"));
+            coseguro.setCodigoCoseguro(resultado.getInt("codigo_coseguro"));
             coseguro.setPorcentaje(resultado.getFloat("porcentaje"));
             
             lista.add(coseguro);

@@ -15,15 +15,18 @@ public class SuscriptorGenerarFacturaPaciente {
       return instancia;
    } // fin del método getInstancia
 
-   public synchronized void agregarObservador(ObservadorGenerarFacturaPaciente o) {
+   public  void suscribirse(ObservadorGenerarFacturaPaciente o) {
       this.observadores.add(o);
+      System.out.print("SuscriptorGenerarFacturaPaciente.suscribirse\n");
    } // fin del método agregarObservador
 
-   public synchronized void quitarObservador(ObservadorGenerarFacturaPaciente o) {
+   public void quitarObservador(ObservadorGenerarFacturaPaciente o) {
       this.observadores.remove(o);
    } // fin del método quitarObservador
 
    public void notificar(DTOFacturaPaciente dtoFactura){
-      
+      System.out.print("SuscriptorGenerarFacturaPaciente.notificar\n");
+      for(ObservadorGenerarFacturaPaciente obs : observadores)
+         obs.actualizar(dtoFactura);
    } // fin del método notificar
 } // fin de la clase SuscriptorGenerarFacturaPaciente

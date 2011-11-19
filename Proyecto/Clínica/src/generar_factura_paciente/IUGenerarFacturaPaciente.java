@@ -15,8 +15,9 @@ public class IUGenerarFacturaPaciente extends javax.swing.JFrame {
       this.tablaFichas = new DefaultTableModel();
       initComponents();
       this.setLocationRelativeTo(null);
-      disableControls();
+      this.controlador = new ControladorGenerarFacturaPaciente();
       armarTabla();
+      disableControls();
    } // fin del constructor
 
    /** This method is called from within the constructor to
@@ -221,7 +222,8 @@ public class IUGenerarFacturaPaciente extends javax.swing.JFrame {
    private void botonGenerarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGenerarFacturaActionPerformed
       this.controlador.generarFactura();
    }//GEN-LAST:event_botonGenerarFacturaActionPerformed
-
+   // fin del método botonGenerarFacturaActionPerformed
+   
     private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_botonVolverActionPerformed
@@ -290,6 +292,8 @@ public class IUGenerarFacturaPaciente extends javax.swing.JFrame {
       this.campoTextoCoseguro.setText(fichaInt.getDescuento() + "");
 
       List<DTODetalleServicio> listaDetalle = fichaInt.getDtoDetalle();
+      
+      this.tablaFichas.setRowCount(listaDetalle.size());
 
       for(DTODetalleServicio dtoDetalle : listaDetalle){
          col = 0;

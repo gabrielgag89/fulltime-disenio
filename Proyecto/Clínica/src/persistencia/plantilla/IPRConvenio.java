@@ -25,7 +25,7 @@ public class IPRConvenio extends IntermPersistenciaDBR{
 
    @Override
    public String select(Criterio criterio) {
-      return "SELECT * FROM convenio WHERE " + criterio;
+      return "SELECT * FROM convenio WHERE " + criterio.getStringCriterio();
    } // fin del método select
 
    @Override

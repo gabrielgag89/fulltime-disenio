@@ -7,19 +7,19 @@ import persistencia.FachadaPersistenciaInterna;
 import persistencia.criterios.Criterio;
 
 public class FichaInternacionAgente  extends ObjetoPersistente implements FichaInternacion{
-        private FichaInternacionImpl impl;
-        private boolean cama=false;
-	private boolean paciente=false;
-	private boolean prestacion=false;
-	private boolean estadoFichaInternacion=false;
-	private boolean habitacion=false;
-	private boolean detalleFicha=false;
-        private String oidCama;
-	private String oidPaciente;
-        private String oidPrestacion;
-	private String oidEstadoFichaInternacion;
-	private String oidHabitacion;
-        private String oidFacturaOS;
+   private FichaInternacionImpl impl;
+   private boolean cama=false;
+   private boolean paciente=false;
+   private boolean prestacion=false;
+   private boolean estadoFichaInternacion=false;
+   private boolean habitacion=false;
+   private boolean detalleFicha=false;
+   private String oidCama;
+   private String oidPaciente;
+   private String oidPrestacion;
+   private String oidEstadoFichaInternacion;
+   private String oidHabitacion;
+   private String oidFacturaOS;
         
     public void setImplementacion(FichaInternacionImpl impl) {
         this.impl = impl;
@@ -126,6 +126,7 @@ public class FichaInternacionAgente  extends ObjetoPersistente implements FichaI
     @Override
     public void setEstadoFichaInternacion(EstadoFichaInternacion estadoFichaInternacion) {
         this.impl.setEstadoFichaInternacion(estadoFichaInternacion);
+        this.oidEstadoFichaInternacion = ((ObjetoPersistente) estadoFichaInternacion).getOid();
     }
 
     @Override
@@ -150,6 +151,7 @@ public class FichaInternacionAgente  extends ObjetoPersistente implements FichaI
     @Override
     public void setHabitacion(Habitacion habitacion) {
         this.impl.setHabitacion(habitacion);
+        this.oidHabitacion = ((ObjetoPersistente) habitacion).getOid();
     }
 
     @Override
@@ -174,6 +176,7 @@ public class FichaInternacionAgente  extends ObjetoPersistente implements FichaI
     @Override
     public void setPaciente(Paciente paciente) {
         this.impl.setPaciente(paciente);
+        this.oidPaciente = ((ObjetoPersistente) paciente).getOid();
     }
 
     @Override
@@ -188,6 +191,6 @@ public class FichaInternacionAgente  extends ObjetoPersistente implements FichaI
     @Override
     public void setPrestacion(Prestacion prestacion) {
         this.impl.setPrestacion(prestacion);
+        this.oidPrestacion = ((ObjetoPersistente) prestacion).getOid();
     }
-
 }
