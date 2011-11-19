@@ -10,10 +10,10 @@ public class ControladorGenerarFacturaPaciente {
    public DTOFichaInternacion buscarFicha(int numFicha){     
       this.experto = (ExpertoGenerarFacturaPaciente) FabricaExpertos.getInstancia().getExperto("GenerarFacturarPaciente");
       
-      return experto.buscarFichaInternacion(numFicha);   
+      return this.experto.buscarFichaInternacion(numFicha);   
    } // fin del método buscarFichaInternacion
 
-   public void generarFactura(int numFicha) {
-      
+   public void generarFactura(){
+      this.experto.generarFactura();
    } // fin del método GenerarFactura
 } // fin de la clase ControladorGenerarFacturaPaciente
