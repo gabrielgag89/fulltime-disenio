@@ -5,19 +5,15 @@ import fabricaExpertos.FabricaExpertos;
 import java.util.List;
 
 public class ControladorGenerarFacturaPaciente {
-    // NO LO HE PUESTO EN LA SECUENCIA
-    
-    
-    public DTOFichaInternacion buscarFichaInternacion(int numFicha){     
-        DecoradorExpertoGenerarFacturaPaciente DEFC = (DecoradorExpertoGenerarFacturaPaciente) FabricaExpertos.getInstancia().getExperto("ExpertoFacturarCliente");
-        return DEFC.buscarFichaInternacion(numFicha);   
-    }
+   private ExpertoGenerarFacturaPaciente experto;
+   
+   public DTOFichaInternacion buscarFicha(int numFicha){     
+      this.experto = (ExpertoGenerarFacturaPaciente) FabricaExpertos.getInstancia().getExperto("ExpertoGenerarFacturarPaciente");
+      
+      return experto.buscarFichaInternacion(numFicha);   
+   } // fin del método buscarFichaInternacion
 
-    void GenerarFactura(DTOFichaInternacion dtoficha) {
-        DecoradorExpertoGenerarFacturaPaciente DEFC = (DecoradorExpertoGenerarFacturaPaciente) FabricaExpertos.getInstancia().getExperto("ExpertoFacturarCliente");
-        DEFC.GenerarFactura(dtoficha);  
-    }
-    
-    
-}
-
+   public void generarFactura(int numFicha) {
+      
+   } // fin del método GenerarFactura
+} // fin de la clase ControladorGenerarFacturaPaciente
