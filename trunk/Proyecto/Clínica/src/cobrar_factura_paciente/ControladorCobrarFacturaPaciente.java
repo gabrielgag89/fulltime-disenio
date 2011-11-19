@@ -19,7 +19,7 @@ public class ControladorCobrarFacturaPaciente implements ObservadorGenerarFactur
       
       SuscriptorGenerarFacturaPaciente.getInstancia().agregarObservador(this);
       
-      experto = (ExpertoCobrarFacturaPaciente) FabricaExpertos.getInstancia().getExperto("ExpertoCobrarFacturaPaciente");
+      experto = (ExpertoCobrarFacturaPaciente) FabricaExpertos.getInstancia().getExperto("CobrarFacturaPaciente");
       
       return experto.buscarFacturasPendientes();
    } // fin del método cobrarFacturaPaciente

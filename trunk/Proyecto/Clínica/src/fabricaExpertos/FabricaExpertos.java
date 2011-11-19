@@ -18,9 +18,9 @@ public class FabricaExpertos {
    } // fin del método getInstancia
 
    public Object getExperto(String nombre){
-      if(nombre.equals("ExpertoGenerarFacturarPaciente"))
+      if(nombre.equals("GenerarFacturarPaciente"))
          return new DecoradorExpertoGenerarFacturaPaciente();
-      else if(nombre.equals("ExpertoCobrarFacturaPaciente"))
+      else if(nombre.equals("CobrarFacturaPaciente"))
          return new DecoradorExpertoCobrarFacturaPaciente();
       else
          return null;
