@@ -40,7 +40,7 @@ public class IPRFacturaCliente extends IntermPersistenciaDBR{
       return "INSERT INTO factura_cliente VALUES "
                   + "('" + fact.getOid() + "', "
                          + fact.getNumFactura() + ", "
-                         + ServiciosTiempo.dateToString(fact.getFechaEmision()) + ", '"
+                         + ServiciosTiempo.getInstancia().dateToString(fact.getFechaEmision()) + ", '"
                          + fact.getOidEstadoFacturaCliente() + "', '"
                          + fact.getOidFichaInternacion() + "')";
    } // fin del método insertar
@@ -51,7 +51,7 @@ public class IPRFacturaCliente extends IntermPersistenciaDBR{
       
       return "UPDATE factura_cliente SET "
                   + "numero_factura_cliente = " + fact.getNumFactura() + ", "
-                  + "fecha = '" + ServiciosTiempo.dateToString(fact.getFechaEmision()) + "', "
+                  + "fecha = '" + ServiciosTiempo.getInstancia().dateToString(fact.getFechaEmision()) + "', "
                   + "oidestado_factura_cliente = '" + fact.getOidEstadoFacturaCliente() + "', "
                   + "oidficha_internacion = '" + fact.getOidFichaInternacion() + "' "
                   + "WHERE oidfactura_cliente =  '" + fact.getOid() + "'";

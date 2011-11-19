@@ -145,7 +145,7 @@ public class IUCobrarFacturaPaciente extends javax.swing.JFrame {
       for(DTOFacturaPaciente dtoFactura : listaFacturas){
          col = 0;
          this.tablaFacturas.setValueAt(dtoFactura.getNumFactura(), fila, col++);
-         this.tablaFacturas.setValueAt(ServiciosTiempo.dateToStringDDMMAAAA(dtoFactura.getFecha()), fila, col++);
+         this.tablaFacturas.setValueAt(ServiciosTiempo.getInstancia().dateToStringDDMMAAAA(dtoFactura.getFecha()), fila, col++);
          this.tablaFacturas.setValueAt(dtoFactura.getNroFicha(), fila, col++);
          this.tablaFacturas.setValueAt(dtoFactura.getNombrePaciente(), fila, col++);
          this.tablaFacturas.setValueAt(dtoFactura.getNombrePrestacion(), fila, col++);
@@ -168,7 +168,7 @@ public class IUCobrarFacturaPaciente extends javax.swing.JFrame {
       fila = tablaFacturas.getRowCount();
       
       tablaFacturas.setValueAt(dtoFactura.getNumFactura(), fila, col++);
-      tablaFacturas.setValueAt(ServiciosTiempo.dateToStringDDMMAAAA(dtoFactura.getFecha()), fila, col++);
+      tablaFacturas.setValueAt(ServiciosTiempo.getInstancia().dateToStringDDMMAAAA(dtoFactura.getFecha()), fila, col++);
       tablaFacturas.setValueAt(dtoFactura.getNroFicha(), fila, col++);
       tablaFacturas.setValueAt(dtoFactura.getNombrePaciente(), fila, col++);
       tablaFacturas.setValueAt(dtoFactura.getNombrePrestacion(), fila, col++);

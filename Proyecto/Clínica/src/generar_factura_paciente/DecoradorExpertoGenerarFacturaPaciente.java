@@ -14,10 +14,10 @@ public class DecoradorExpertoGenerarFacturaPaciente extends ExpertoGenerarFactur
          FachadaPersistenciaInterna.getInstancia().iniciarTransaccion();
       }
       catch (SQLException ex) {
-         
+         System.err.println("SQLException en buscarFichaInternacion: " + ex.getMessage());
       }
       catch (Exception ex) {
-         
+         System.err.println("Exception en buscarFacturasPendientes: " + ex.getMessage());
       }
       
       return null;

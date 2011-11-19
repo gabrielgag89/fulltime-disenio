@@ -33,7 +33,7 @@ public class IPRFichaInternacion extends IntermPersistenciaDBR{
       return "INSERT INTO ficha_internacion (oidficha_internacion,numero_ficha_internacion,fecha,oidprestacion,oidestado_ficha_internacion,oidcama,oidpaciente,oidfactura_os) " +
                      "VALUES ('" + fichaInternacion.getOid() + "', '"
                                  + fichaInternacion.getNroFicha() + "', '"
-                                 + ServiciosTiempo.dateToString(fichaInternacion.getFechaCreacion()) + "', '"
+                                 + ServiciosTiempo.getInstancia().dateToString(fichaInternacion.getFechaCreacion()) + "', '"
                                  + fichaInternacion.getOidprestacion() + "', '"
                                  + fichaInternacion.getOidestadoFichaInternacion() + "', '"
                                  + fichaInternacion.getOidcama() + "', '"
@@ -47,7 +47,7 @@ public class IPRFichaInternacion extends IntermPersistenciaDBR{
 
       return "UPDATE ficha_internacion SET "
                      + "numero_ficha_internacion = '" + fichaInternacion.getNroFicha() + "', "
-                     + "fecha = '" + ServiciosTiempo.dateToString(fichaInternacion.getFechaCreacion()) + "', "
+                     + "fecha = '" + ServiciosTiempo.getInstancia().dateToString(fichaInternacion.getFechaCreacion()) + "', "
                      + "oidprestacion = '" + fichaInternacion.getOidprestacion() + "', "
                      + "oidestado_ficha_internacion = '" + fichaInternacion.getOidestadoFichaInternacion() + "', "
                      + "oidcama = '" + fichaInternacion.getOidcama() + "', "

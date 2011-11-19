@@ -42,8 +42,8 @@ public class ExpertoCobrarFacturaPaciente {
             dtoFactura.setNombrePaciente(f.getFichaInternacion().getPaciente().getNombre());
             dtoFactura.setNombrePrestacion(f.getFichaInternacion().getPrestacion().getDescripcion());
             
-            Criterio c1 = FachadaPersistencia.getInstancia().getCriterio("fecha_inicio", "<=", ServiciosTiempo.dateToString(dtoFactura.getFecha()));
-            Criterio c2 = FachadaPersistencia.getInstancia().getCriterio("fecha_fin", ">=", ServiciosTiempo.dateToString(dtoFactura.getFecha()));
+            Criterio c1 = FachadaPersistencia.getInstancia().getCriterio("fecha_inicio", "<=", ServiciosTiempo.getInstancia().dateToString(dtoFactura.getFecha()));
+            Criterio c2 = FachadaPersistencia.getInstancia().getCriterio("fecha_fin", ">=", ServiciosTiempo.getInstancia().dateToString(dtoFactura.getFecha()));
             Criterio cc = FachadaPersistencia.getInstancia().and(c1, c2);
             
             listaCostosPrestaciones = FachadaPersistencia.getInstancia().buscar("CostoPrestacion", cc);

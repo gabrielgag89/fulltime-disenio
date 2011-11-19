@@ -39,8 +39,8 @@ public class IPRConvenio extends IntermPersistenciaDBR{
       
       return "INSERT INTO convenio VALUES "
                   + "('" + conv.getOid() + "', "
-                         + ServiciosTiempo.dateToString(conv.getFechaInicio()) + ", "
-                         + ServiciosTiempo.dateToString(conv.getFechaFin()) + ", '"
+                         + ServiciosTiempo.getInstancia().dateToString(conv.getFechaInicio()) + ", "
+                         + ServiciosTiempo.getInstancia().dateToString(conv.getFechaFin()) + ", '"
                          + conv.getOidPlan() + "', '"
                          + conv.getOidPrestacion() + "', '"
                          + conv.getOidCoseguro() + "')";
@@ -51,8 +51,8 @@ public class IPRConvenio extends IntermPersistenciaDBR{
       ConvenioAgente conv = (ConvenioAgente) objeto;
       
       return "UPDATE convenio SET "
-                  + "fecha_inicio = " + ServiciosTiempo.dateToString(conv.getFechaInicio()) + ", "
-                  + "fecha_fin = " + ServiciosTiempo.dateToString(conv.getFechaFin()) + ", "
+                  + "fecha_inicio = " + ServiciosTiempo.getInstancia().dateToString(conv.getFechaInicio()) + ", "
+                  + "fecha_fin = " + ServiciosTiempo.getInstancia().dateToString(conv.getFechaFin()) + ", "
                   + "oidplan = '" + conv.getOidPlan() + "', "
                   + "oidprestacion = '" + conv.getOidPrestacion() + "', "
                   + "oidcoseguro = '" + conv.getOidCoseguro() + "' "
