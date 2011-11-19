@@ -27,7 +27,7 @@ INSERT  INTO `convenio`(`oidconvenio`,`fecha_inicio`,`fecha_fin`,`oidplan`,`oidp
 
 /*Data for the table `coseguro` */
 
-INSERT  INTO `coseguro`(`oidcoseguro`,`codigo_coseguro`,`porcentaje`) VALUES ('1c48dd3a-5d12-4575-99ef-2c1aafc92f1a',1,0.2),('70aa8f21-528e-4ef6-99b8-2b553e6afbc2',2,0.25),('7e3f668b-9a8a-401b-8bd6-e363b09041d9',5,0.3),('88906a40-22dc-4327-b2a3-8f576af1aba0',4,0.15),('bc653ab1-f2ec-4282-a6d3-de5343d16b00',3,0.2);
+INSERT  INTO `coseguro`(`oidcoseguro`,`codigo_coseguro`,`porcentaje`) VALUES ('1c48dd3a-5d12-4575-99ef-2c1aafc92f1a',1, 0.2),('70aa8f21-528e-4ef6-99b8-2b553e6afbc2',2,0.25),('7e3f668b-9a8a-401b-8bd6-e363b09041d9',5,0.3),('88906a40-22dc-4327-b2a3-8f576af1aba0',4,0.15),('bc653ab1-f2ec-4282-a6d3-de5343d16b00',3,0.2);
 
 /*Data for the table `costo_prestacion` */
 
