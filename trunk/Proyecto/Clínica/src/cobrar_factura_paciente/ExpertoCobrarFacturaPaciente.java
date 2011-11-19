@@ -55,24 +55,20 @@ public class ExpertoCobrarFacturaPaciente {
                }
             }
             
-            listaDetalle = FachadaPersistencia.getInstancia().buscar("DetalleFicha");
+            listaDetalle = f.getFichaInternacion().getDetalleFicha();
             listaCostosServicios = FachadaPersistencia.getInstancia().buscar("CostoServicio", cc);
-            
-            
             listaDtoDetalle = new ArrayList<DTODetalleServicio>();
             
             for(DetalleFicha df : listaDetalle){
-               if(df.getFichaInternacion().getNroFicha() == f.getFichaInternacion().getNroFicha()){
-                  for(CostoServicio c : listaCostosServicios){
-                     if(c.getServicioEspecial().getCodigoServicio() == df.getServicioEspecial().getCodigoServicio()){
-                        dtoDetalle = new DTODetalleServicio();
-                        dtoDetalle.setNombreServicio(c.getServicioEspecial().getNombreServicio());
-                        dtoDetalle.setMonto(c.getMonto());
-                        dtoDetalle.setCantidad(df.getCantidad());
-                        dtoDetalle.setSubtotal(dtoDetalle.getMonto() * dtoDetalle.getCantidad());
-                        
-                        listaDtoDetalle.add(dtoDetalle);
-                     }
+               for(CostoServicio c : listaCostosServicios){
+                  if(c.getServicioEspecial().getCodigoServicio() == df.getServicioEspecial().getCodigoServicio()){
+                     dtoDetalle = new DTODetalleServicio();
+                     dtoDetalle.setNombreServicio(c.getServicioEspecial().getNombreServicio());
+                     dtoDetalle.setMonto(c.getMonto());
+                     dtoDetalle.setCantidad(df.getCantidad());
+                     dtoDetalle.setSubtotal(dtoDetalle.getMonto() * dtoDetalle.getCantidad());
+
+                     listaDtoDetalle.add(dtoDetalle);
                   }
                }
             }
