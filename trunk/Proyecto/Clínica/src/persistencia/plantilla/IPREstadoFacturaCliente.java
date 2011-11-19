@@ -30,17 +30,17 @@ public class IPREstadoFacturaCliente extends IntermPersistenciaDBR{
       EstadoFacturaClienteAgente estado_factura = (EstadoFacturaClienteAgente) objeto;
       
       return "INSERT INTO estado_factura_cliente VALUES "
-                        + "('" + estado_factura.getOid() + "', "
-                        + estado_factura.getNombreEstado() + ", '";
+                        + "('" + estado_factura.getOid() + "', '"
+                               + estado_factura.getNombreEstado() + "'";
    }
 
    @Override
    public String actualizar(Object objeto) {
       EstadoFacturaClienteAgente estado_factura = (EstadoFacturaClienteAgente)objeto;
       
-      return "UPDATE FROM estado_factura_cliente WHERE "
-                        + "oidestado_factura_cliente = '" + estado_factura.getOid() + "', "
-                        + "nombre_estado_factura_cliente = '" + estado_factura.getNombreEstado() + "'," ;
+      return "UPDATE estado_factura_cliente SET "
+                        + "nombre_estado_factura_cliente = '" + estado_factura.getNombreEstado() + "' "
+                        + "WHERE oidestado_factura_cliente = '" + estado_factura.getOid() + "'";
    }
 
    @Override

@@ -42,11 +42,11 @@ public class IPRPlan extends IntermPersistenciaDBR {
    @Override
    public String actualizar(Object objeto) {
       PlanAgente plant = (PlanAgente) objeto;
-      return "UPDATE FROM plan WHERE"
-                  + "oidplan =  '" + plant.getOid() + "', "
+      return "UPDATE plan SET "
                   + "codigo_plan = " + plant.getCodigoPlan() + ", "
                   + "descripcion = '" + plant.getDescripcion() + "', "
-                  + "oidobra_social = '" + plant.getOidObraSocial() + "'";
+                  + "oidobra_social = '" + plant.getOidObraSocial() + "' "
+                  + "WHERE oidplan =  '" + plant.getOid() + "'";
    } 
 
    @Override

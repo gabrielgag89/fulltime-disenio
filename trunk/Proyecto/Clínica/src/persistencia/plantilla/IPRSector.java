@@ -38,18 +38,18 @@ public class IPRSector extends IntermPersistenciaDBR {
       return "INSERT INTO sector VALUES "
                   + "('" + sect.getOid() + "', "
                          + sect.getCodigoSector() + ", '"
-                         + sect.getDescripcionSector() + "',"
+                         + sect.getDescripcionSector() + "', "
                          + sect.getNumeroPisoSector() + ")";
    } 
 
    @Override
    public String actualizar(Object objeto) {
       SectorAgente sect = (SectorAgente) objeto;
-      return "UPDATE FROM sector WHERE"
-                  + "oidsector =  '" + sect.getOid() + "', "
+      return "UPDATE sector SET "
                   + "codigo_sector = " + sect.getCodigoSector() + ", "
                   + "descripcion_sector = '" + sect.getDescripcionSector() + "', "
-                  + "numero_piso = " + sect.getNumeroPisoSector();
+                  + "numero_piso = " + sect.getNumeroPisoSector() + " "
+                  + "WHERE oidsector =  '" + sect.getOid() + "'";
    } 
 
    @Override

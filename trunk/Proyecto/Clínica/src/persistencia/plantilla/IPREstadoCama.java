@@ -39,9 +39,9 @@ public class IPREstadoCama extends IntermPersistenciaDBR {
     @Override
     public String actualizar(Object objeto) {
         EstadoCamaAgente estadoC = (EstadoCamaAgente)objeto;
-        return "UPDATE FROM estado_cama WHERE "
-                  + "oidestado_cama = '" + estadoC.getOid() + "', "
-                  + "nombre_estado = '" + estadoC.getNombreEstado() + "'";                            
+        return "UPDATE estado_cama SET "
+                  + "nombre_estado = '" + estadoC.getNombreEstado() + "' "
+                  + "WHERE oidestado_cama = '" + estadoC.getOid() + "'";                            
     }
 
     @Override

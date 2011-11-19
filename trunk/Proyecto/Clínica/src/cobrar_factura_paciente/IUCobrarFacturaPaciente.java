@@ -94,7 +94,9 @@ public class IUCobrarFacturaPaciente extends javax.swing.JFrame {
          JOptionPane.showMessageDialog(null, "Debe seleccionar una factura");
       }
       else{
+         System.out.println("Fila: " + seleccion + "\n");
          int numFactura = Integer.parseInt(this.tablaFacturas.getValueAt(seleccion, 0).toString());
+         System.out.println("Factura: " + numFactura + "\n");
          this.controlador.cobrarFactura(numFactura);
       }
    }//GEN-LAST:event_botonCobrarActionPerformed

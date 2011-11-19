@@ -8,41 +8,58 @@ import persistencia.criterios.Criterio;
 import persistencia.proxy.FichaInternacionAgente;
 import persistencia.proxy.FichaInternacionImpl;
 import persistencia.proxy.ObjetoPersistente;
+import util.ServiciosTiempo;
 
 public class IPRFichaInternacion extends IntermPersistenciaDBR{
-    @Override
-    public String select() {
-        return "SELECT  *  FROM  ficha_internacion";
-    }
+   @Override
+   public String select() {
+   return "SELECT  *  FROM  ficha_internacion";
+   }
 
-    @Override
-    public String select(Criterio criterio) {
-        return "SELECT  *  FROM  ficha_internacion  WHERE " + criterio.getStringCriterio();
-    }
+   @Override
+   public String select(Criterio criterio) {
+   return "SELECT  *  FROM  ficha_internacion  WHERE " + criterio.getStringCriterio();
+   }
 
-    @Override
-    public String select(String oid) {
-        return "SELECT * FROM ficha_internacion WHERE oidficha_internacion = '" + oid  + "'";
-    }
+   @Override
+   public String select(String oid) {
+   return "SELECT * FROM ficha_internacion WHERE oidficha_internacion = '" + oid  + "'";
+   }
 
-    @Override
-    public String insertar(Object objeto) {
-        FichaInternacionAgente fichaInternacion = (FichaInternacionAgente)objeto;
-        String fecha = "'" + (fichaInternacion.getFechaCreacion().getYear() + 1900) + (fichaInternacion.getFechaCreacion().getMonth() + 1) + fichaInternacion.getFechaCreacion().getDate() + "'";
-       return "INSERT INTO ficha_internacion (oidficha_internacion,numero_ficha_internacion,fecha,oidprestacion,oidestado_ficha_internacion,oidcama,oidpaciente,oidfactura_os) " +
-               "VALUES ('" + fichaInternacion.getOid() + "','" + fichaInternacion.getNroFicha() + "'," + fecha + ",'" + fichaInternacion.getOidprestacion() + "','" + fichaInternacion.getOidestadoFichaInternacion() + "','" + fichaInternacion.getOidcama() + "','" + fichaInternacion.getOidpaciente() + "','" + fichaInternacion.getOidFacturaOS() + "')";
-     }
+   @Override
+   public String insertar(Object objeto) {
+      FichaInternacionAgente fichaInternacion = (FichaInternacionAgente)objeto;
+      
+      return "INSERT INTO ficha_internacion (oidficha_internacion,numero_ficha_internacion,fecha,oidprestacion,oidestado_ficha_internacion,oidcama,oidpaciente,oidfactura_os) " +
+                     "VALUES ('" + fichaInternacion.getOid() + "', '"
+                                 + fichaInternacion.getNroFicha() + "', '"
+                                 + ServiciosTiempo.dateToString(fichaInternacion.getFechaCreacion()) + "', '"
+                                 + fichaInternacion.getOidprestacion() + "', '"
+                                 + fichaInternacion.getOidestadoFichaInternacion() + "', '"
+                                 + fichaInternacion.getOidcama() + "', '"
+                                 + fichaInternacion.getOidpaciente() + "', '"
+                                 + fichaInternacion.getOidFacturaOS() + "')";
+   }
 
-    @Override
-    public String actualizar(Object objeto) {
-        FichaInternacionAgente fichaInternacion = (FichaInternacionAgente)objeto;
-        String fecha = "'" + (fichaInternacion.getFechaCreacion().getYear() + 1900) + (fichaInternacion.getFechaCreacion().getMonth() + 1) + fichaInternacion.getFechaCreacion().getDate() + "'";
-       return "UPDATE ficha_internacion SET numero_ficha_internacion = '" + fichaInternacion.getNroFicha() + "', fecha = " + fecha + ", oidprestacion = '" + fichaInternacion.getOidprestacion() + "', oidestado_ficha_internacion = '" + fichaInternacion.getOidestadoFichaInternacion() + "', oidcama = '" + fichaInternacion.getOidcama() + "', oidpaciente = '" + fichaInternacion.getOidpaciente() + "', oidfactura_os = '" + fichaInternacion.getOidFacturaOS() + "' WHERE oidficha_internacion = '" + fichaInternacion.getOid() + "'";
-     }
+   @Override
+   public String actualizar(Object objeto) {
+      FichaInternacionAgente fichaInternacion = (FichaInternacionAgente)objeto;
 
-    @Override
-    public List<ObjetoPersistente> convertirAObjeto(ResultSet resultado) {
+      return "UPDATE ficha_internacion SET "
+                     + "numero_ficha_internacion = '" + fichaInternacion.getNroFicha() + "', "
+                     + "fecha = '" + ServiciosTiempo.dateToString(fichaInternacion.getFechaCreacion()) + "', "
+                     + "oidprestacion = '" + fichaInternacion.getOidprestacion() + "', "
+                     + "oidestado_ficha_internacion = '" + fichaInternacion.getOidestadoFichaInternacion() + "', "
+                     + "oidcama = '" + fichaInternacion.getOidcama() + "', "
+                     + "oidpaciente = '" + fichaInternacion.getOidpaciente() + "', "
+                     + "oidfactura_os = '" + fichaInternacion.getOidFacturaOS() + "' "
+                     + "WHERE oidficha_internacion = '" + fichaInternacion.getOid() + "'";
+   }
+
+   @Override
+   public List<ObjetoPersistente> convertirAObjeto(ResultSet resultado) {
       List<ObjetoPersistente> ListaFichaInternaciones =  new ArrayList<ObjetoPersistente>();
+      
       try {
          while (resultado.next()){
             FichaInternacionAgente FIA = new FichaInternacionAgente();
@@ -55,19 +72,22 @@ public class IPRFichaInternacion extends IntermPersistenciaDBR{
             FIA.setOidcama(resultado.getString("oidcama"));
             FIA.setOidpaciente(resultado.getString("oidpaciente"));
             FIA.setOidFacturaOS(resultado.getString("oidfactura_os"));
+            
             ListaFichaInternaciones.add(FIA);
          }
-      } catch (SQLException ex) {
+      }
+      catch (SQLException ex) {
          System.out.println("IPRFichaInternacion - convertirAObjeto - SQLException: "+ex.getMessage());
       }
+      
       return ListaFichaInternaciones;
-    }
+   }
 
-    @Override
-    public ObjetoPersistente nuevo() {
+   @Override
+   public ObjetoPersistente nuevo() {
       FichaInternacionAgente FIA = new FichaInternacionAgente();
       FIA.setImplementacion(new FichaInternacionImpl());
-      return (ObjetoPersistente) FIA;
-    }
 
+      return (ObjetoPersistente) FIA;
+   }
 }

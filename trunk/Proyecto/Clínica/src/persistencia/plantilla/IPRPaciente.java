@@ -31,25 +31,25 @@ public class IPRPaciente extends IntermPersistenciaDBR {
         
       return "INSERT INTO paciente VALUES "
                   + "('" + paciente.getOid() + "', "
-                         + paciente.getNumPaciente() + ",'"                            
-                         + paciente.getNombre() + "',"
-                         + paciente.getDni() + ",'"
-                         + paciente.getDomicilio() + "','"
-                         + paciente.getTelefono() +"','"
+                         + paciente.getNumPaciente() + ", '"                            
+                         + paciente.getNombre() + "', "
+                         + paciente.getDni() + ", '"
+                         + paciente.getDomicilio() + "', '"
+                         + paciente.getTelefono() +"', '"
                          + paciente.getOidPlan()+ "')";
     }
 
     @Override
     public String actualizar(Object objeto) {
         PacienteAgente paciente = (PacienteAgente)objeto;
-        return "UPDATE FROM paciente WHERE "
-                  + "oidpaciente = '" + paciente.getOid() + "', "
-                  + "numero_paciente = " + paciente.getNumPaciente() + ","                            
-                  + "nombre_paciente = '" + paciente.getNombre() + "',"
+        return "UPDATE paciente SET "
+                  + "numero_paciente = " + paciente.getNumPaciente() + ", "                            
+                  + "nombre_paciente = '" + paciente.getNombre() + "', "
                   + "dni = " + paciente.getDni() + ", "
-                  + "domicilio = '"+ paciente.getDomicilio() + "',"
-                  + "telefono = '" + paciente.getTelefono() +"'," // el telefono lo puse como string
-                  + "oidplan = '"+ paciente.getOidPlan()+ "'";
+                  + "domicilio = '"+ paciente.getDomicilio() + "', "
+                  + "telefono = '" + paciente.getTelefono() + "', "
+                  + "oidplan = '"+ paciente.getOidPlan()+ "' "
+                  + "WHERE oidpaciente = '" + paciente.getOid() + "'";
     }
 
     @Override
@@ -85,5 +85,4 @@ public class IPRPaciente extends IntermPersistenciaDBR {
         paciente.setImplementacion(new PacienteImpl());
         return paciente;
     }
-    
 }

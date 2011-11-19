@@ -28,13 +28,21 @@ public class IPRHabitacion  extends IntermPersistenciaDBR {
    @Override
    public String insertar(Object objeto) {
       HabitacionAgente habitacion = (HabitacionAgente)objeto;
-      return "INSERT INTO habitacion (oidhabitacion,numero_habitacion,oidsector,oidtipo_habitacion) VALUES ('" + habitacion.getOid() + "','" + habitacion.getNroHabitacion() + "','" + habitacion.getOidSector() + "','" + habitacion.getOidTipoHabitacion() + "')";
+      return "INSERT INTO habitacion (oidhabitacion,numero_habitacion,oidsector,oidtipo_habitacion) "
+                     + "VALUES ('" + habitacion.getOid() + "', "
+                                   + habitacion.getNroHabitacion() + ", '"
+                                   + habitacion.getOidSector() + "', '"
+                                   + habitacion.getOidTipoHabitacion() + "')";
    } // fin del método insertar
 
    @Override
    public String actualizar(Object objeto) {
       HabitacionAgente habitacion = (HabitacionAgente)objeto;
-      return "UPDATE habitacion SET numero_habitacion = '" + habitacion.getNroHabitacion() + "', oidsector = '" + habitacion.getOidSector() + "', oidtipo_habitacion = '" + habitacion.getOidTipoHabitacion() + "' WHERE oidhabitacion = '" + habitacion.getOid() + "'";
+      return "UPDATE habitacion SET "
+                     + "numero_habitacion = " + habitacion.getNroHabitacion() + ", "
+                     + "oidsector = '" + habitacion.getOidSector() + "', "
+                     + "oidtipo_habitacion = '" + habitacion.getOidTipoHabitacion() + "' "
+                     + "WHERE oidhabitacion = '" + habitacion.getOid() + "'";
    } // fin del método actualizar
 
    @Override

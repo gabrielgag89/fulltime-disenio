@@ -8,16 +8,17 @@ import persistencia.criterios.Criterio;
 import persistencia.proxy.ObjetoPersistente;
 import persistencia.proxy.ReciboAgente;
 import persistencia.proxy.ReciboImpl;
+import util.ServiciosTiempo;
 
 public class IPRRecibo  extends IntermPersistenciaDBR {
     @Override
     public String select() {
-        return "SELECT  *  FROM  recibo";
+        return "SELECT * FROM  recibo";
     }
 
     @Override
     public String select(Criterio criterio) {
-        return "SELECT  *  FROM  recibo  WHERE " + criterio.getStringCriterio();
+        return "SELECT * FROM  recibo  WHERE " + criterio.getStringCriterio();
     }
 
     @Override
@@ -28,15 +29,21 @@ public class IPRRecibo  extends IntermPersistenciaDBR {
     @Override
     public String insertar(Object objeto) {
         ReciboAgente recibo = (ReciboAgente)objeto;
-        String fecha = "'" + (recibo.getFecha().getYear() + 1900) + (recibo.getFecha().getMonth() + 1) + recibo.getFecha().getDate() + "'";
-        return "INSERT INTO habitacion (oidrecibo,numero_recibo,fecha,oidfactura_cliente) VALUES ('" + recibo.getOid() + "','" + recibo.getNroRecibo() + "'," + fecha + ",'" + recibo.getOidFacturaCliente() + "')";
+        return "INSERT INTO recibo (oidrecibo, numero_recibo, fecha, oidfactura_cliente) "
+                           + "VALUES ('" + recibo.getOid() + "', "
+                                         + recibo.getNroRecibo() + ", '"
+                                         + ServiciosTiempo.dateToString(recibo.getFecha()) + "', '"
+                                         + recibo.getOidFacturaCliente() + "')";
     }
 
     @Override
     public String actualizar(Object objeto) {
         ReciboAgente recibo = (ReciboAgente)objeto;
-        String fecha = "'" + (recibo.getFecha().getYear() + 1900) + (recibo.getFecha().getMonth() + 1) + recibo.getFecha().getDate() + "'";
-        return "UPDATE habitacion SET numero_recibo = '" +  recibo.getNroRecibo() + "', fecha = " + fecha + ", oidfactura_cliente = '" + recibo.getOidFacturaCliente() + "' WHERE oidrecibo = '" + recibo.getOid() + "'";
+        return "UPDATE recibo SET "
+                + "numero_recibo = " +  recibo.getNroRecibo() + ", "
+                + "fecha = '" + ServiciosTiempo.dateToString(recibo.getFecha()) + ", "
+                + "oidfactura_cliente = '" + recibo.getOidFacturaCliente() + "' "
+                + "WHERE oidrecibo = '" + recibo.getOid() + "'";
     }
 
     @Override

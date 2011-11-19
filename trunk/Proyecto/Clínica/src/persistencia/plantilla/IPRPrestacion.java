@@ -45,11 +45,11 @@ public class IPRPrestacion extends IntermPersistenciaDBR{
    @Override
    public String actualizar(Object objeto) {
       PrestacionAgente prest = (PrestacionAgente) objeto;
-      return "UPDATE FROM prestacion WHERE"
-                  + "oidprestacion =  '" + prest.getOid() + "', "
+      return "UPDATE prestacion SET "
                   + "codigo_prestacion = " + prest.getCodigoPrestacion() + ", "
                   + "descripcion = '" + prest.getDescripcion() + "', "
-                  + "oidtipo_prestacion = '" + prest.getOidTipoPrestacion() + "'";
+                  + "oidtipo_prestacion = '" + prest.getOidTipoPrestacion() + "' "
+                  + "WHERE oidprestacion =  '" + prest.getOid() + "'";
    } // fin del método actualizar
 
    @Override

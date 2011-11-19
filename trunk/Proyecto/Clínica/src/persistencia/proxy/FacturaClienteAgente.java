@@ -64,6 +64,7 @@ public class FacturaClienteAgente extends ObjetoPersistente implements FacturaCl
    @Override
    public void setFichaInternacion(FichaInternacion fichaInternacion) {
       this.impl.setFichaInternacion(fichaInternacion);
+      this.oidFichaInternacion = ((ObjetoPersistente) fichaInternacion).getOid();
    }
 
    @Override
@@ -79,6 +80,7 @@ public class FacturaClienteAgente extends ObjetoPersistente implements FacturaCl
    @Override
    public void setEstadoFacturaCliente(EstadoFacturaCliente estadoFacturaCliente) {
       this.impl.setEstadoFacturaCliente(estadoFacturaCliente);
+      this.oidEstadoFacturaCliente = ((ObjetoPersistente) estadoFacturaCliente).getOid();
    }
 
    public String getOidFichaInternacion() {

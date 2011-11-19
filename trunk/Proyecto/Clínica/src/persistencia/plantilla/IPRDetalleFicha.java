@@ -38,11 +38,11 @@ public class IPRDetalleFicha extends IntermPersistenciaDBR {
    @Override
    public String actualizar(Object objeto) {
       DetalleFichaAgente detalleficha = (DetalleFichaAgente) objeto;
-      return "UPDATE FROM detalle_ficha WHERE"
-                  + "oiddetalle_ficha =  '" + detalleficha.getOid() + "', "
+      return "UPDATE detalle_ficha SET "
                   + "cantidad = " + detalleficha.getCantidad() + ", "
-                  + "oidficha_internacion = " + detalleficha.getOidFichaInternacion() + ", "
-                  + "oidservicio_especial = '" + detalleficha.getOidServicioEspecial() + "'";
+                  + "oidficha_internacion = '" + detalleficha.getOidFichaInternacion() + "', "
+                  + "oidservicio_especial = '" + detalleficha.getOidServicioEspecial() + "' "
+                  + "WHERE oiddetalle_ficha = '" + detalleficha.getOid() + "'";
    }
 
    @Override
