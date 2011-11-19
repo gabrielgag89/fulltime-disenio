@@ -32,7 +32,7 @@ public class IPRRecibo  extends IntermPersistenciaDBR {
         return "INSERT INTO recibo (oidrecibo, numero_recibo, fecha, oidfactura_cliente) "
                            + "VALUES ('" + recibo.getOid() + "', "
                                          + recibo.getNroRecibo() + ", '"
-                                         + ServiciosTiempo.dateToString(recibo.getFecha()) + "', '"
+                                         + ServiciosTiempo.getInstancia().dateToString(recibo.getFecha()) + "', '"
                                          + recibo.getOidFacturaCliente() + "')";
     }
 
@@ -41,7 +41,7 @@ public class IPRRecibo  extends IntermPersistenciaDBR {
         ReciboAgente recibo = (ReciboAgente)objeto;
         return "UPDATE recibo SET "
                 + "numero_recibo = " +  recibo.getNroRecibo() + ", "
-                + "fecha = '" + ServiciosTiempo.dateToString(recibo.getFecha()) + ", "
+                + "fecha = '" + ServiciosTiempo.getInstancia().dateToString(recibo.getFecha()) + ", "
                 + "oidfactura_cliente = '" + recibo.getOidFacturaCliente() + "' "
                 + "WHERE oidrecibo = '" + recibo.getOid() + "'";
     }

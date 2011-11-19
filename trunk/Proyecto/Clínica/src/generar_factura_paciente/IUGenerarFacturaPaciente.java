@@ -282,7 +282,7 @@ public class IUGenerarFacturaPaciente extends javax.swing.JFrame {
    private void cargarCampos(DTOFichaInternacion fichaInt){
       int fila = 0, col;
 
-      this.campoTextoFecha.setText(ServiciosTiempo.dateToStringDDMMAAAA(fichaInt.getFecha()));
+      this.campoTextoFecha.setText(ServiciosTiempo.getInstancia().dateToStringDDMMAAAA(fichaInt.getFecha()));
       this.campoTextoNumPaciente.setText(fichaInt.getNumPaciente() + "");
       this.campoTextoNombrePaciente.setText(fichaInt.getNombrePaciente());
       this.campoTextoNombrePrestacion.setText(fichaInt.getNombrePrestacion());

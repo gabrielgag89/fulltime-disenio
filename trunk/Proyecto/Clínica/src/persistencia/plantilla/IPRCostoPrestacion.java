@@ -35,8 +35,8 @@ public class IPRCostoPrestacion extends IntermPersistenciaDBR {
 
       return "INSERT INTO costo_prestacion VALUES "
                         + "('" + costo.getOid() + "', '"
-                               + ServiciosTiempo.dateToString(costo.getFechaInicio()) + "', '"                            
-                               + ServiciosTiempo.dateToString(costo.getFechaFin()) + "', "
+                               + ServiciosTiempo.getInstancia().dateToString(costo.getFechaInicio()) + "', '"                            
+                               + ServiciosTiempo.getInstancia().dateToString(costo.getFechaFin()) + "', "
                                + costo.getMonto() + ", '"
                                + costo.getOidPrestacion()+ "')";
    }
@@ -46,8 +46,8 @@ public class IPRCostoPrestacion extends IntermPersistenciaDBR {
       CostoPrestacionAgente costo = (CostoPrestacionAgente)objeto;
       
       return "UPDATE costo_prestacion SET "
-                     + "fecha_inicio = '" + ServiciosTiempo.dateToString(costo.getFechaInicio()) + "', "                            
-                     + "fecha_fin  = '" + ServiciosTiempo.dateToString(costo.getFechaFin()) + "', "
+                     + "fecha_inicio = '" + ServiciosTiempo.getInstancia().dateToString(costo.getFechaInicio()) + "', "                            
+                     + "fecha_fin  = '" + ServiciosTiempo.getInstancia().dateToString(costo.getFechaFin()) + "', "
                      + "monto = " + costo.getMonto() + ", "
                      + "oidprestacion = '"+ costo.getOidPrestacion()+ "' "
                      + "WHERE oidcosto_prestacion = '" + costo.getOid() + "'";
