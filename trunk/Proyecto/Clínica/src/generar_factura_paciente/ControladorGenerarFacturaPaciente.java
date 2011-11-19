@@ -1,7 +1,8 @@
 package generar_factura_paciente;
 
-import dtos.DTOFichaInternacion;
 import fabricaExpertos.FabricaExpertos;
+import dtos.DTOFichaInternacion;
+import dtos.DTOFacturaPaciente;
 
 public class ControladorGenerarFacturaPaciente {
    private ExpertoGenerarFacturaPaciente experto;
@@ -13,6 +14,10 @@ public class ControladorGenerarFacturaPaciente {
    } // fin del método buscarFichaInternacion
 
    public void generarFactura(){
-      this.experto.generarFactura();
-   } // fin del método GenerarFactura
+      DTOFacturaPaciente dtoFactura = this.experto.generarFactura();
+      
+      IUMonstrarFactura iuMostrFact = new IUMonstrarFactura();
+      iuMostrFact.cargarCampos(dtoFactura);
+      iuMostrFact.setVisible(true);
+   } // fin del método generarFactura
 } // fin de la clase ControladorGenerarFacturaPaciente

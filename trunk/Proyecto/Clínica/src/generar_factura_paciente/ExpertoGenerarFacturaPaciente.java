@@ -82,7 +82,7 @@ public class ExpertoGenerarFacturaPaciente {
                for(CostoServicio costo : listaCostosServicios){
                   if(detalle.getServicioEspecial().getCodigoServicio() == costo.getServicioEspecial().getCodigoServicio()){
                      dtoDetalle.setMonto(costo.getMonto());
-                     dtoDetalle.setSubtotal(costo.getMonto());
+                     dtoDetalle.setSubtotal(costo.getMonto() * detalle.getCantidad());
                      break;
                   } // fin de if de búsqueda del costo del servicio
                } // fin de for de búsqueda del costo del servicio
@@ -137,6 +137,7 @@ public class ExpertoGenerarFacturaPaciente {
       } // fin de for 
       
       factura.setMonto(monto);
+      dtoFactura.setMonto(monto);
       
       FachadaPersistencia.getInstancia().guardar("FacturaCliente", factura);
       FachadaPersistencia.getInstancia().guardar("Cama", this.fichaInternacion.getCama());
