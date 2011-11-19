@@ -1,5 +1,7 @@
 package cobrar_factura_paciente;
 
+import dtos.DTORecibo;
+import dtos.DTOFacturaPaciente;
 import java.util.List;
 import fabricaExpertos.FabricaExpertos;
 import observador.*;

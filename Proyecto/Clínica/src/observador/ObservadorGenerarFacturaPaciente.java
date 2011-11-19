@@ -1,6 +1,6 @@
 package observador;
 
-import cobrar_factura_paciente.DTOFacturaPaciente;
+import dtos.DTOFacturaPaciente;
 
 public interface ObservadorGenerarFacturaPaciente {
     void actualizar(DTOFacturaPaciente dtoFactura);

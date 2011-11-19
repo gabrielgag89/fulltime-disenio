@@ -2,7 +2,7 @@ package observador;
 
 import java.util.List;
 import java.util.ArrayList;
-import cobrar_factura_paciente.DTOFacturaPaciente;
+import dtos.DTOFacturaPaciente;
 
 public class SuscriptorGenerarFacturaPaciente {
    private static SuscriptorGenerarFacturaPaciente instancia;

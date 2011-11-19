@@ -1,4 +1,4 @@
-package cobrar_factura_paciente;
+package dtos;
 
 import java.util.Date;
 import java.util.List;

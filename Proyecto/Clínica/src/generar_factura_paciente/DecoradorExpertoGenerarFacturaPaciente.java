@@ -1,6 +1,6 @@
 package generar_factura_paciente;
 
-import generar_factura_paciente.DTOFichaInternacion;
+import dtos.DTOFichaInternacion;
 import java.sql.SQLException;
 import java.util.List;
 import persistencia.FachadaPersistenciaInterna;
