@@ -17,7 +17,6 @@ public class SuscriptorGenerarFacturaPaciente {
 
    public  void suscribirse(ObservadorGenerarFacturaPaciente o) {
       this.observadores.add(o);
-      System.out.print("SuscriptorGenerarFacturaPaciente.suscribirse\n");
    } // fin del método agregarObservador
 
    public void quitarObservador(ObservadorGenerarFacturaPaciente o) {
@@ -25,7 +24,6 @@ public class SuscriptorGenerarFacturaPaciente {
    } // fin del método quitarObservador
 
    public void notificar(DTOFacturaPaciente dtoFactura){
-      System.out.print("SuscriptorGenerarFacturaPaciente.notificar\n");
       for(ObservadorGenerarFacturaPaciente obs : observadores)
          obs.actualizar(dtoFactura);
    } // fin del método notificar

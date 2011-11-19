@@ -53,6 +53,7 @@ public class IPRFacturaCliente extends IntermPersistenciaDBR{
       return "UPDATE factura_cliente SET "
                   + "numero_factura_cliente = " + fact.getNumFactura() + ", "
                   + "fecha = '" + ServiciosTiempo.getInstancia().dateToString(fact.getFechaEmision()) + "', "
+                  + "monto = " + fact.getMonto() + ", "
                   + "oidestado_factura_cliente = '" + fact.getOidEstadoFacturaCliente() + "', "
                   + "oidficha_internacion = '" + fact.getOidFichaInternacion() + "' "
                   + "WHERE oidfactura_cliente =  '" + fact.getOid() + "'";
