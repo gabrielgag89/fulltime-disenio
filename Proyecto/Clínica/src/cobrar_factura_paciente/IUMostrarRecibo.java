@@ -19,6 +19,7 @@ public class IUMostrarRecibo extends javax.swing.JFrame {
    /** Creates new form IUMostrarRecibo */
    public IUMostrarRecibo() {
       initComponents();
+      this.setLocationRelativeTo(null);
    } // fin del constructor
 
    /** This method is called from within the constructor to
