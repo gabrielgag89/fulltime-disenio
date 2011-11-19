@@ -16,17 +16,6 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`clinica` /*!40100 DEFAULT CHARACTER SET
 
 USE `clinica`;
 
-/*Table structure for table `banco` */
-
-DROP TABLE IF EXISTS `banco`;
-
-CREATE TABLE `banco` (
-  `oidbanco` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `codigo_banco` int(11) NOT NULL,
-  `nombre_banco` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`oidbanco`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
 /*Table structure for table `cama` */
 
 DROP TABLE IF EXISTS `cama`;
@@ -168,6 +157,7 @@ CREATE TABLE `factura_cliente` (
   `oidfactura_cliente` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `numero_factura_cliente` int(11) NOT NULL,
   `fecha` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `monto` double NOT NULL,
   `oidestado_factura_cliente` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `oidficha_internacion` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`oidfactura_cliente`),
@@ -220,16 +210,6 @@ CREATE TABLE `ficha_internacion` (
   CONSTRAINT `fk_ficha_internacion_factura_os1` FOREIGN KEY (`oidfactura_os`) REFERENCES `factura_os` (`oidfactura_os`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*Table structure for table `forma_pago` */
-
-DROP TABLE IF EXISTS `forma_pago`;
-
-CREATE TABLE `forma_pago` (
-  `oidforma_pago` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `nombre_forma_pago` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`oidforma_pago`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
 /*Table structure for table `habitacion` */
 
 DROP TABLE IF EXISTS `habitacion`;
@@ -244,25 +224,6 @@ CREATE TABLE `habitacion` (
   KEY `fk_habitacion_tipo_habitacion1` (`oidtipo_habitacion`),
   CONSTRAINT `fk_habitacion_sector1` FOREIGN KEY (`oidsector`) REFERENCES `sector` (`oidsector`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_habitacion_tipo_habitacion1` FOREIGN KEY (`oidtipo_habitacion`) REFERENCES `tipo_habitacion` (`oidtipo_habitacion`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-/*Table structure for table `monto` */
-
-DROP TABLE IF EXISTS `monto`;
-
-CREATE TABLE `monto` (
-  `oidmonto` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `monto` double NOT NULL,
-  `oidrecibo` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `oidforma_pago` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `oidtarjeta_aceptada` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`oidmonto`),
-  KEY `fk_monto_recibo1` (`oidrecibo`),
-  KEY `fk_monto_forma_pago1` (`oidforma_pago`),
-  KEY `fk_monto_tarjeta_aceptada1` (`oidtarjeta_aceptada`),
-  CONSTRAINT `fk_monto_recibo1` FOREIGN KEY (`oidrecibo`) REFERENCES `recibo` (`oidrecibo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_monto_forma_pago1` FOREIGN KEY (`oidforma_pago`) REFERENCES `forma_pago` (`oidforma_pago`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_monto_tarjeta_aceptada1` FOREIGN KEY (`oidtarjeta_aceptada`) REFERENCES `tarjeta_aceptada` (`oidtarjeta_aceptada`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Table structure for table `obra_social` */
@@ -358,20 +319,6 @@ CREATE TABLE `servicio_especial` (
   PRIMARY KEY (`oidservicio_especial`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*Table structure for table `tarjeta_aceptada` */
-
-DROP TABLE IF EXISTS `tarjeta_aceptada`;
-
-CREATE TABLE `tarjeta_aceptada` (
-  `oidtarjeta_aceptada` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `codigo_tarjeta_aceptada` int(11) NOT NULL,
-  `nombre_tarjeta_aceptada` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `oidbanco` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`oidtarjeta_aceptada`),
-  KEY `fk_tarjeta_aceptada_banco1` (`oidbanco`),
-  CONSTRAINT `fk_tarjeta_aceptada_banco1` FOREIGN KEY (`oidbanco`) REFERENCES `banco` (`oidbanco`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
 /*Table structure for table `tipo_habitacion` */
 
 DROP TABLE IF EXISTS `tipo_habitacion`;
@@ -395,20 +342,6 @@ CREATE TABLE `tipo_prestacion` (
   PRIMARY KEY (`oidtipo_prestacion`),
   KEY `fk_tipo_prestacion_tipo_habitacion1` (`oidtipo_habitacion`),
   CONSTRAINT `fk_tipo_prestacion_tipo_habitacion1` FOREIGN KEY (`oidtipo_habitacion`) REFERENCES `tipo_habitacion` (`oidtipo_habitacion`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-/*Table structure for table `vigencia_tarjeta` */
-
-DROP TABLE IF EXISTS `vigencia_tarjeta`;
-
-CREATE TABLE `vigencia_tarjeta` (
-  `oidvigencia_tarjeta` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `fecha_inicio` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
-  `fecha_fin` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
-  `oidtarjeta_aceptada` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`oidvigencia_tarjeta`),
-  KEY `fk_vigencia_tarjeta_tarjeta_aceptada1` (`oidtarjeta_aceptada`),
-  CONSTRAINT `fk_vigencia_tarjeta_tarjeta_aceptada1` FOREIGN KEY (`oidtarjeta_aceptada`) REFERENCES `tarjeta_aceptada` (`oidtarjeta_aceptada`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
