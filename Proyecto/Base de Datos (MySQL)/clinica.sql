@@ -1,6 +1,6 @@
 /*
-SQLyog Ultimate v9.02 
-MySQL - 5.5.17 : Database - clinica
+SQLyog Ultimate - MySQL GUI v8.22 
+MySQL - 6.0.10-alpha-community : Database - clinica
 *********************************************************************
 */
 
@@ -129,16 +129,6 @@ CREATE TABLE `estado_factura_cliente` (
   PRIMARY KEY (`oidestado_factura_cliente`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*Table structure for table `estado_factura_os` */
-
-DROP TABLE IF EXISTS `estado_factura_os`;
-
-CREATE TABLE `estado_factura_os` (
-  `oidestado_factura_os` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `nombre_estado_factura_os` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`oidestado_factura_os`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
 /*Table structure for table `estado_ficha_internacion` */
 
 DROP TABLE IF EXISTS `estado_ficha_internacion`;
@@ -167,23 +157,6 @@ CREATE TABLE `factura_cliente` (
   CONSTRAINT `fk_factura_cliente_ficha_internacion1` FOREIGN KEY (`oidficha_internacion`) REFERENCES `ficha_internacion` (`oidficha_internacion`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*Table structure for table `factura_os` */
-
-DROP TABLE IF EXISTS `factura_os`;
-
-CREATE TABLE `factura_os` (
-  `oidfactura_os` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `numero_factura_os` int(11) NOT NULL,
-  `fecha_emision` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
-  `oidestado_factura_os` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `oidobra_social` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`oidfactura_os`),
-  KEY `fk_factura_os_estado_factura_os` (`oidestado_factura_os`),
-  KEY `fk_factura_os_obra_social1` (`oidobra_social`),
-  CONSTRAINT `fk_factura_os_estado_factura_os` FOREIGN KEY (`oidestado_factura_os`) REFERENCES `estado_factura_os` (`oidestado_factura_os`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_factura_os_obra_social1` FOREIGN KEY (`oidobra_social`) REFERENCES `obra_social` (`oidobra_social`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
 /*Table structure for table `ficha_internacion` */
 
 DROP TABLE IF EXISTS `ficha_internacion`;
@@ -196,18 +169,15 @@ CREATE TABLE `ficha_internacion` (
   `oidestado_ficha_internacion` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `oidcama` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `oidpaciente` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `oidfactura_os` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`oidficha_internacion`),
   KEY `fk_ficha_internacion_prestacion1` (`oidprestacion`),
   KEY `fk_ficha_internacion_estado_ficha_internacion1` (`oidestado_ficha_internacion`),
   KEY `fk_ficha_internacion_cama1` (`oidcama`),
   KEY `fk_ficha_internacion_paciente1` (`oidpaciente`),
-  KEY `fk_ficha_internacion_factura_os1` (`oidfactura_os`),
   CONSTRAINT `fk_ficha_internacion_prestacion1` FOREIGN KEY (`oidprestacion`) REFERENCES `prestacion` (`oidprestacion`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_ficha_internacion_estado_ficha_internacion1` FOREIGN KEY (`oidestado_ficha_internacion`) REFERENCES `estado_ficha_internacion` (`oidestado_ficha_internacion`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_ficha_internacion_cama1` FOREIGN KEY (`oidcama`) REFERENCES `cama` (`oidcama`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_ficha_internacion_paciente1` FOREIGN KEY (`oidpaciente`) REFERENCES `paciente` (`oidpaciente`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_ficha_internacion_factura_os1` FOREIGN KEY (`oidfactura_os`) REFERENCES `factura_os` (`oidfactura_os`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_ficha_internacion_paciente1` FOREIGN KEY (`oidpaciente`) REFERENCES `paciente` (`oidpaciente`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Table structure for table `habitacion` */
