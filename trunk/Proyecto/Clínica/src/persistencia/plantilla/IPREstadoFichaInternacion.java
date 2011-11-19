@@ -22,7 +22,7 @@ public class IPREstadoFichaInternacion extends IntermPersistenciaDBR{
 
     @Override
     public String select(String oid) {
-return "SELECT  *  FROM  estado_ficha_internacion  WHERE oidestado_ficha_prestacion ='" + oid +"'";
+      return "SELECT  *  FROM  estado_ficha_internacion  WHERE oidestado_ficha_internacion = '" + oid + "'";
     }
 
     @Override
@@ -44,7 +44,7 @@ EstadoFichaInternacionAgente estadoFicha = (EstadoFichaInternacionAgente) objeto
 
     @Override
     public List<ObjetoPersistente> convertirAObjeto(ResultSet resultado) {
- List<ObjetoPersistente> lista = new ArrayList<ObjetoPersistente>();
+      List<ObjetoPersistente> lista = new ArrayList<ObjetoPersistente>();
       EstadoFichaInternacionAgente estado_ficha;
       
       try {
@@ -52,8 +52,8 @@ EstadoFichaInternacionAgente estadoFicha = (EstadoFichaInternacionAgente) objeto
             estado_ficha = new EstadoFichaInternacionAgente();
             
             estado_ficha.setImplementacion(new EstadoFichaInternacionImpl());
-            estado_ficha.setOid(resultado.getString("oidestado_ficha"));
-            estado_ficha.setNombreEstado(resultado.getString("nombre_estado"));
+            estado_ficha.setOid(resultado.getString("oidestado_ficha_internacion"));
+            estado_ficha.setNombreEstado(resultado.getString("nombre_estado_ficha_internacion"));
             
             lista.add(estado_ficha);
          }

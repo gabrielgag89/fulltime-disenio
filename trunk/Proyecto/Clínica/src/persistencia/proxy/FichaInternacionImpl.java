@@ -4,14 +4,14 @@ import java.util.Date;
 import java.util.List;
 
 public class FichaInternacionImpl implements FichaInternacion {
-	private int nroFicha;
-	private Date fechaCreacion;
-	private Cama cama;
-	private Paciente paciente;
-	private Prestacion prestacion;
-	private EstadoFichaInternacion estadoFichaInternacion;
-	private Habitacion habitacion;
-	private List<DetalleFicha> detalleFicha;
+   private int nroFicha;
+   private Date fechaCreacion;
+   private Cama cama;
+   private Paciente paciente;
+   private Prestacion prestacion;
+   private EstadoFichaInternacion estadoFichaInternacion;
+   private Habitacion habitacion;
+   private List<DetalleFicha> detalleFicha;
 
     @Override
     public Cama getCama() {

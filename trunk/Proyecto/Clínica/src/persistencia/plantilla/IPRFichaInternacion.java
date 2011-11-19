@@ -30,15 +30,14 @@ public class IPRFichaInternacion extends IntermPersistenciaDBR{
    public String insertar(Object objeto) {
       FichaInternacionAgente fichaInternacion = (FichaInternacionAgente)objeto;
       
-      return "INSERT INTO ficha_internacion (oidficha_internacion,numero_ficha_internacion,fecha,oidprestacion,oidestado_ficha_internacion,oidcama,oidpaciente,oidfactura_os) " +
+      return "INSERT INTO ficha_internacion (oidficha_internacion,numero_ficha_internacion,fecha,oidprestacion,oidestado_ficha_internacion,oidcama,oidpaciente) " +
                      "VALUES ('" + fichaInternacion.getOid() + "', '"
                                  + fichaInternacion.getNroFicha() + "', '"
                                  + ServiciosTiempo.getInstancia().dateToString(fichaInternacion.getFechaCreacion()) + "', '"
                                  + fichaInternacion.getOidprestacion() + "', '"
                                  + fichaInternacion.getOidestadoFichaInternacion() + "', '"
                                  + fichaInternacion.getOidcama() + "', '"
-                                 + fichaInternacion.getOidpaciente() + "', '"
-                                 + fichaInternacion.getOidFacturaOS() + "')";
+                                 + fichaInternacion.getOidpaciente() + "')";
    }
 
    @Override
@@ -51,8 +50,7 @@ public class IPRFichaInternacion extends IntermPersistenciaDBR{
                      + "oidprestacion = '" + fichaInternacion.getOidprestacion() + "', "
                      + "oidestado_ficha_internacion = '" + fichaInternacion.getOidestadoFichaInternacion() + "', "
                      + "oidcama = '" + fichaInternacion.getOidcama() + "', "
-                     + "oidpaciente = '" + fichaInternacion.getOidpaciente() + "', "
-                     + "oidfactura_os = '" + fichaInternacion.getOidFacturaOS() + "' "
+                     + "oidpaciente = '" + fichaInternacion.getOidpaciente() + "' "
                      + "WHERE oidficha_internacion = '" + fichaInternacion.getOid() + "'";
    }
 
@@ -71,7 +69,6 @@ public class IPRFichaInternacion extends IntermPersistenciaDBR{
             FIA.setOidestadoFichaInternacion(resultado.getString("oidestado_ficha_internacion"));
             FIA.setOidcama(resultado.getString("oidcama"));
             FIA.setOidpaciente(resultado.getString("oidpaciente"));
-            FIA.setOidFacturaOS(resultado.getString("oidfactura_os"));
             
             ListaFichaInternaciones.add(FIA);
          }

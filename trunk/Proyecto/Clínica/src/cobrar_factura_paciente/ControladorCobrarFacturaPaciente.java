@@ -17,7 +17,7 @@ public class ControladorCobrarFacturaPaciente implements ObservadorGenerarFactur
    public List<DTOFacturaPaciente> buscarFacturasPacientes(IUCobrarFacturaPaciente iuCobrar){
       this.iuCobrar = iuCobrar;
       
-      SuscriptorGenerarFacturaPaciente.getInstancia().agregarObservador(this);
+      SuscriptorGenerarFacturaPaciente.getInstancia().suscribirse(this);
       
       experto = (ExpertoCobrarFacturaPaciente) FabricaExpertos.getInstancia().getExperto("CobrarFacturaPaciente");
       
@@ -40,6 +40,7 @@ public class ControladorCobrarFacturaPaciente implements ObservadorGenerarFactur
    
    @Override
    public void actualizar(DTOFacturaPaciente dtoFactura) {
+      System.out.print("ControladorCobrarFacturaPaciente.actualizar\n");
       this.iuCobrar.actualizar(dtoFactura);
    } // fin del método actualizar
 } // fin de la clase ControladorCobrarFacturaPaciente

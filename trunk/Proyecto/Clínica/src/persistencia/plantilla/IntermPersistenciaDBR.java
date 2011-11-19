@@ -47,15 +47,12 @@ public abstract class IntermPersistenciaDBR extends IntermediarioPersistencia{
    public void desmaterializar(ObjetoPersistente objeto){
       String sql;
       
-      if(objeto.getNuevo()){
+      if(objeto.getNuevo())
          sql = insertar(objeto);
-         ejecutarSQLSave(sql);
-      }
-      else{
+      else
          sql = actualizar(objeto);
-         ejecutarSQLSave(sql);
-      }
-          
+         
+      ejecutarSQLSave(sql);
    } // fin del método desmaterializar
    
    @Override
@@ -68,7 +65,6 @@ public abstract class IntermPersistenciaDBR extends IntermediarioPersistencia{
 
    private void ejecutarSQLSave(String sql){
       try{
-         System.out.println(sql);
          PreparedStatement consulta = ConectorBD.getConexion().prepareStatement(sql);
 
          consulta.execute();
@@ -80,7 +76,6 @@ public abstract class IntermPersistenciaDBR extends IntermediarioPersistencia{
 
    private ResultSet ejecutarSQL(String sql){
       try{
-         System.out.println(sql);
          PreparedStatement consulta = ConectorBD.getConexion().prepareStatement(sql);
 
          return consulta.executeQuery(sql);

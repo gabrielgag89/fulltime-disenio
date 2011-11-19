@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
 import javax.swing.table.DefaultTableModel;
 import dtos.DTOFacturaPaciente;
+import java.util.Vector;
 import util.ServiciosTiempo;
 
 /**
@@ -163,16 +164,16 @@ public class IUCobrarFacturaPaciente extends javax.swing.JFrame {
    } // fin del método cargarFacturas
    
    public void actualizar(DTOFacturaPaciente dtoFactura){
-      int fila, col = 0;
+      System.out.print("IUCobrarFacturaPaciente.actualizar\n");
+      Vector fila = new Vector();
+      fila.add(dtoFactura.getNumFactura());
+      fila.add(ServiciosTiempo.getInstancia().dateToStringDDMMAAAA(dtoFactura.getFecha()));
+      fila.add(dtoFactura.getNroFicha());
+      fila.add(dtoFactura.getNombrePaciente());
+      fila.add(dtoFactura.getNombrePrestacion());
+      fila.add(dtoFactura.getMonto());
       
-      fila = tablaFacturas.getRowCount();
-      
-      tablaFacturas.setValueAt(dtoFactura.getNumFactura(), fila, col++);
-      tablaFacturas.setValueAt(ServiciosTiempo.getInstancia().dateToStringDDMMAAAA(dtoFactura.getFecha()), fila, col++);
-      tablaFacturas.setValueAt(dtoFactura.getNroFicha(), fila, col++);
-      tablaFacturas.setValueAt(dtoFactura.getNombrePaciente(), fila, col++);
-      tablaFacturas.setValueAt(dtoFactura.getNombrePrestacion(), fila, col++);
-      tablaFacturas.setValueAt(dtoFactura.getMonto(), fila, col++);
+      tablaFacturas.addRow(fila);
    } // fin del método actualizar
    
    /**
