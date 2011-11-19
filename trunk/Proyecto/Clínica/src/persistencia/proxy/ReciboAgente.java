@@ -5,64 +5,54 @@ import java.util.List;
 import persistencia.FachadaPersistenciaInterna;
 
 public class ReciboAgente extends ObjetoPersistente implements Recibo {
-    private ReciboImpl impl;
-    private String oidFacturaCliente;
-    private boolean facturacliente = false;
+   private ReciboImpl impl;
+   private String oidFacturaCliente;
+   private boolean facturacliente = false;
 
-    public void setImplementacion(ReciboImpl impl) {
-        this.impl = impl;
-    }
+   public void setImplementacion(ReciboImpl impl) {
+      this.impl = impl;
+   }
 
-    public String getOidFacturaCliente() {
-        return oidFacturaCliente;
-    }
+   public String getOidFacturaCliente() {
+      return oidFacturaCliente;
+   }
 
-    public void setOidFacturaCliente(String oidFacturaCliente) {
-        this.oidFacturaCliente = oidFacturaCliente;
-    }
+   public void setOidFacturaCliente(String oidFacturaCliente) {
+      this.oidFacturaCliente = oidFacturaCliente;
+   }
 
-    @Override
-    public int getNroRecibo() {
-        return this.impl.getNroRecibo();
-    }
+   @Override
+   public int getNroRecibo() {
+      return this.impl.getNroRecibo();
+   }
 
-    @Override
-    public void setNroRecibo(int nroRecibo) {
-         this.impl.setNroRecibo(nroRecibo);
-    }
+   @Override
+   public void setNroRecibo(int nroRecibo) {
+      this.impl.setNroRecibo(nroRecibo);
+   }
 
-    @Override
-    public double getMonto() {
-        return  this.impl.getMonto();
-    }
+   @Override
+   public Date getFecha() {
+      return  this.impl.getFecha();
+   }
 
-    @Override
-    public void setMonto(double montos) {
-         this.impl.setMonto(montos);
-    }
+   @Override
+   public void setFecha(Date fecha) {
+      this.impl.setFecha(fecha);
+   }
 
-    @Override
-    public Date getFecha() {
-        return  this.impl.getFecha();
-    }
-
-    @Override
-    public void setFecha(Date fecha) {
-         this.impl.setFecha(fecha);
-    }
-
-    @Override
-    public FacturaCliente getFacturaCliente() {
+   @Override
+   public FacturaCliente getFacturaCliente() {
       if(!facturacliente){
          this.impl.setFacturaCliente((FacturaCliente)FachadaPersistenciaInterna.getInstancia().buscar("FacturaCliente",oidFacturaCliente));
          this.facturacliente=true;
       }
+      
       return this.impl.getFacturaCliente();
-    }
+   }
 
-    @Override
-    public void setFacturaCliente(FacturaCliente facturacliente) {
-         this.impl.setFacturaCliente(facturacliente);
-    }
-
+   @Override
+   public void setFacturaCliente(FacturaCliente facturacliente) {
+      this.impl.setFacturaCliente(facturacliente);
+   }
 }

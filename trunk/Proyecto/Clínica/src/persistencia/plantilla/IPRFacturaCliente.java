@@ -71,6 +71,7 @@ public class IPRFacturaCliente extends IntermPersistenciaDBR{
             fact.setOid(resultado.getString("oidfactura_cliente"));
             fact.setNumFactura(resultado.getInt("numero_factura_cliente"));
             fact.setFechaEmision(resultado.getDate("fecha"));
+            fact.setMonto(resultado.getDouble("monto"));
             fact.setOidEstadoFacturaCliente(resultado.getString("oidestado_factura_cliente"));
             fact.setOidFichaInternacion(resultado.getString("oidficha_internacion"));
             

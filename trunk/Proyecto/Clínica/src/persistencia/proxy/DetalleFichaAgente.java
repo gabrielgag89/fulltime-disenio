@@ -16,7 +16,7 @@ public class DetalleFichaAgente extends ObjetoPersistente implements DetalleFich
    @Override
    public ServicioEspecial getServicioEspecial(){
       if(!this.servicioEspecial)
-         this.impl.setServicioEspecial((ServicioEspecial)FachadaPersistenciaInterna.getInstancia().buscar("ServicoEspecial", this.oidServicioEspecial));
+         this.impl.setServicioEspecial((ServicioEspecial)FachadaPersistenciaInterna.getInstancia().buscar("ServicioEspecial", this.oidServicioEspecial));
       
       return this.impl.getServicioEspecial();
    }

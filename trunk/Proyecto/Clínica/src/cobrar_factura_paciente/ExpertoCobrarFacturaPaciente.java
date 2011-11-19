@@ -63,10 +63,7 @@ public class ExpertoCobrarFacturaPaciente {
             listaDtoDetalle = new ArrayList<DTODetalle>();
             
             for(DetalleFicha df : listaDetalle){
-               if(df.getFichaInternacion().getNroFicha() != f.getFichaInternacion().getNroFicha()){
-                  listaDetalle.remove(df);
-               }
-               else{
+               if(df.getFichaInternacion().getNroFicha() == f.getFichaInternacion().getNroFicha()){
                   for(CostoServicio c : listaCostosServicios){
                      if(c.getServicioEspecial().getCodigoServicio() == df.getServicioEspecial().getCodigoServicio()){
                         dtoDetalle = new DTODetalle();
@@ -80,7 +77,7 @@ public class ExpertoCobrarFacturaPaciente {
                   }
                }
             }
-            
+            dtoFactura.setMonto(f.getMonto());
             dtoFactura.setDtoDetalle(listaDtoDetalle);
             
             listaDtoFacturas.add(dtoFactura);
@@ -100,25 +97,11 @@ public class ExpertoCobrarFacturaPaciente {
       recibo.setFecha(new Date());
       recibo.setNroRecibo(numFactura);
       
-      DTOFacturaPaciente dtoFactura = buscarDtoFactura(numFactura);
-      
-      double monto = 0.0;
-      
-      if(dtoFactura.getDescuento() != 0.0)
-         monto += dtoFactura.getCostoPrestacion() - (dtoFactura.getCostoPrestacion() * dtoFactura.getDescuento());
-      else
-         monto += dtoFactura.getCostoPrestacion();
-      
-      for(DTODetalle dtoDetalle : dtoFactura.getDtoDetalle())
-         monto += dtoDetalle.getSubtotal();
-      
-      recibo.setMonto(monto);
-      
       DTORecibo dtoRecibo = new DTORecibo();
       dtoRecibo.setNroRecibo(recibo.getNroRecibo());
       dtoRecibo.setNumFactura(recibo.getFacturaCliente().getNumFactura());
       dtoRecibo.setFecha(recibo.getFecha());
-      dtoRecibo.setMonto(recibo.getMonto());
+      dtoRecibo.setMonto(factura.getMonto());
       
       Criterio c2 = FachadaPersistencia.getInstancia().getCriterio("nombre_estado_factura_cliente", "=", "'Pagada'");
       EstadoFacturaCliente estadoFactura = (EstadoFacturaCliente) FachadaPersistencia.getInstancia().buscar("EstadoFacturaCliente", c2).get(0);

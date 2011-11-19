@@ -18,9 +18,13 @@ public interface FacturaCliente {
 
    public void setFechaEmision(Date fechaEmision);
 
-   public FichaInternacionImpl getFichaInternacion();
+   public double getMonto();
 
-   public void setFichaInternacion(FichaInternacionImpl fichaInternacion);
+   public void setMonto(double monto);
+
+   public FichaInternacion getFichaInternacion();
+
+   public void setFichaInternacion(FichaInternacion fichaInternacion);
 
    public EstadoFacturaCliente getEstadoFacturaCliente();
 
