@@ -8,7 +8,7 @@ public class ControladorGenerarFacturaPaciente {
    private ExpertoGenerarFacturaPaciente experto;
    
    public DTOFichaInternacion buscarFicha(int numFicha){     
-      this.experto = (ExpertoGenerarFacturaPaciente) FabricaExpertos.getInstancia().getExperto("ExpertoGenerarFacturarPaciente");
+      this.experto = (ExpertoGenerarFacturaPaciente) FabricaExpertos.getInstancia().getExperto("GenerarFacturarPaciente");
       
       return experto.buscarFichaInternacion(numFicha);   
    } // fin del método buscarFichaInternacion
