@@ -32,7 +32,7 @@ public class ControladorCobrarFacturaPaciente implements ObservadorGenerarFactur
    } // fin del método cobrarFactura
 
    public void volver() {
-      this.iuCobrar.recargar();
+      this.iuCobrar.cargarFacturas();
       this.iuCobrar.setVisible(true);
    } // fin del método volver
    

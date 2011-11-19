@@ -24,7 +24,7 @@ import util.ServiciosTiempo;
 public class IUCobrarFacturaPaciente extends javax.swing.JFrame {
    private DefaultTableModel tablaFacturas;
    private ControladorCobrarFacturaPaciente controlador;
-   private int seleccion = -1;
+   private int seleccion;
 
    /** Creates new form IUCobrarFacturaPaciente */
    public IUCobrarFacturaPaciente() {
@@ -126,10 +126,10 @@ public class IUCobrarFacturaPaciente extends javax.swing.JFrame {
       this.tablaFacturasExterna.getColumnModel().getColumn(5).setMaxWidth(75);
    } // fin del método armarTablaFacturas
    
-   private void cargarFacturas(){
+   public void cargarFacturas(){
       List<DTOFacturaPaciente> listaFacturas = this.controlador.buscarFacturasPacientes(this);
       int fila = 0, col;
-      
+      this.seleccion = -1;
       this.tablaFacturas.setRowCount(listaFacturas.size());
       
       for(DTOFacturaPaciente dtoFactura : listaFacturas){
@@ -151,10 +151,6 @@ public class IUCobrarFacturaPaciente extends javax.swing.JFrame {
          } // fin del método mouseClicked
       });
    } // fin del método cargarFacturas
-   
-   public void recargar(){
-      cargarFacturas();
-   } // fin del método recargar
    
    public void actualizar(DTOFacturaPaciente dtoFactura){
       int fila, col = 0;
