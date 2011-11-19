@@ -7,6 +7,7 @@ package persistencia.plantilla;
 import java.util.List;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.PreparedStatement;
 import persistencia.proxy.ObjetoPersistente;
 import persistencia.criterios.Criterio;
 import persistencia.ConectorBD;
@@ -19,62 +20,42 @@ import persistencia.ConectorBD;
 public abstract class IntermPersistenciaDBR extends IntermediarioPersistencia{
    @Override
    public List<ObjetoPersistente> materializar(){
-      try {
-         String sql = select();
-         ResultSet resultado = ejecutarSQL(sql);
-         
-         return convertirAObjeto(resultado);
-      }
-      catch (SQLException ex) {
-         System.out.println("IntermPersistenciaDBR-materializar() - SQLException: " + ex.getMessage());
-         return null;
-      } // fin de try... catch
+      String sql = select();
+      ResultSet resultado = ejecutarSQL(sql);
+
+      return convertirAObjeto(resultado);
    } // fin del método materializar
    
    @Override
    public ObjetoPersistente materializar(String oid){
-      try {
-         String sql = select(oid);
-         ResultSet resultado = ejecutarSQL(sql);
-         List<ObjetoPersistente> buscado = convertirAObjeto(resultado);
-         
-         return buscado.get(0);
-      }
-      catch (SQLException ex) {
-         System.out.println("IntermPersistenciaDBR-materializar(String oid) - SQLException: " + ex.getMessage());
-         return null;
-      } // fin de try... catch
+      String sql = select(oid);
+      ResultSet resultado = ejecutarSQL(sql);
+      List<ObjetoPersistente> buscado = convertirAObjeto(resultado);
+
+      return buscado.get(0);
    } // fin del método materializar
    
    @Override
    public List<ObjetoPersistente> materializar(Criterio criterio){
-      try {
-         String sql = select(criterio);
-         ResultSet resultado = ejecutarSQL(sql);
-         
-         return convertirAObjeto(resultado);
-      }
-      catch (SQLException ex) {
-         System.out.println("IntermPersistenciaDBR-materializar(Criterio criterio) - SQLException: " + ex.getMessage());
-         return null;
-      } // fin de try... catch
+      String sql = select(criterio);
+      ResultSet resultado = ejecutarSQL(sql);
+
+      return convertirAObjeto(resultado);
    } // fin del método materializar
    
    @Override
    public void desmaterializar(ObjetoPersistente objeto){
       String sql;
       
-      if(objeto.getNuevo())
+      if(objeto.getNuevo()){
          sql = insertar(objeto);
-      else
+         ejecutarSQLSave(sql);
+      }
+      else{
          sql = actualizar(objeto);
-      
-      try {
-         ejecutarSQL(sql);
+         ejecutarSQLSave(sql);
       }
-      catch (SQLException ex) {
-         System.out.println("IntermPersistenciaDBR-desmaterializar(ObjetoPersistente objeto) - SQLException: " + ex.getMessage());
-      }
+          
    } // fin del método desmaterializar
    
    @Override
@@ -85,8 +66,29 @@ public abstract class IntermPersistenciaDBR extends IntermediarioPersistencia{
       return objPers;
    } // fin del método obtenerNuevaEntidad
 
-   private ResultSet ejecutarSQL(String sql) throws SQLException{
-      return ConectorBD.getConexion().prepareStatement(sql).executeQuery();
+   private void ejecutarSQLSave(String sql){
+      try{
+         System.out.println(sql);
+         PreparedStatement consulta = ConectorBD.getConexion().prepareStatement(sql);
+
+         consulta.execute();
+      }
+      catch (SQLException ex) {
+         System.out.println("IntermPersistenciaDBR-ejecutarSQL(String sql) - SQLException: " + ex.getMessage());
+      }
+   } // fin del método ejecutarSQLSave
+
+   private ResultSet ejecutarSQL(String sql){
+      try{
+         System.out.println(sql);
+         PreparedStatement consulta = ConectorBD.getConexion().prepareStatement(sql);
+
+         return consulta.executeQuery(sql);
+      }
+      catch (SQLException ex) {
+         System.out.println("IntermPersistenciaDBR-ejecutarSQL(String sql) - SQLException: " + ex.getMessage());
+         return null;
+      }
    } // fin del método ejecutarSQL
    
    public abstract String select(); // método a implementar

@@ -29,17 +29,18 @@ return "SELECT  *  FROM  estado_ficha_internacion  WHERE oidestado_ficha_prestac
     public String insertar(Object objeto) {
 EstadoFichaInternacionAgente estadoFicha = (EstadoFichaInternacionAgente) objeto;
       return "INSERT INTO estado_ficha VALUES "
-                  + "('" + estadoFicha.getOid() + "', "
-                         + estadoFicha.getNombreEstado() + ", '";
+                  + "('" + estadoFicha.getOid() + "', '"
+                         + estadoFicha.getNombreEstado() + "')";
     }
 
     @Override
     public String actualizar(Object objeto) {
 
         EstadoFichaInternacionAgente estadoFicha = (EstadoFichaInternacionAgente)objeto;
-        return "UPDATE FROM estado_ficha WHERE "
-                  + "oidestado_ficha = '" + estadoFicha.getOid() + "', "
-                  + "nombre_estado = '" + estadoFicha.getNombreEstado() + "'," ;    }
+        return "UPDATE estado_ficha SET "
+                  + "nombre_estado = '" + estadoFicha.getNombreEstado() + "' " 
+                  + "WHERE oidestado_ficha = '" + estadoFicha.getOid() + "'";
+    }
 
     @Override
     public List<ObjetoPersistente> convertirAObjeto(ResultSet resultado) {
@@ -69,5 +70,4 @@ EstadoFichaInternacionAgente estadoFicha = (EstadoFichaInternacionAgente) objeto
       
       return estado_ficha;
     }
-    
 }

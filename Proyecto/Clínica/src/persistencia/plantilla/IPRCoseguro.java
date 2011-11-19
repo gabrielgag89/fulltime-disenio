@@ -34,18 +34,18 @@ return "SELECT  *  FROM  coseguro  WHERE oidcoseguro ='" + oid +"'";
 CoseguroAgente coseguro = (CoseguroAgente) objeto;
       return "INSERT INTO coseguro VALUES "
                   + "('" + coseguro.getOid() + "', "
-                         + coseguro.getCodigoCoseguro() + ", '"
-                  + coseguro.getPorcentaje() + ", '";
+                         + coseguro.getCodigoCoseguro() + ", "
+                         + coseguro.getPorcentaje();
     }
 
     @Override
     public String actualizar(Object objeto) {
 
         CoseguroAgente coseguro = (CoseguroAgente)objeto;
-        return "UPDATE FROM coseguro WHERE "
-                  + "oidcoseguro = '" + coseguro.getOid() + "', "
-                  + "codigo = '" + coseguro.getCodigoCoseguro() + "',"  
-                 + "porcentaje = '" + coseguro.getPorcentaje() + "'," ;  
+        return "UPDATE coseguro SET "
+                  + "codigo = '" + coseguro.getCodigoCoseguro() + "', "  
+                  + "porcentaje = " + coseguro.getPorcentaje() + " "
+                  + "WHERE oidcoseguro = '" + coseguro.getOid() + "'";  
     }
 
     @Override

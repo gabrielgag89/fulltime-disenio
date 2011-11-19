@@ -31,6 +31,7 @@ public class DecoradorExpertoCobrarFacturaPaciente extends ExpertoCobrarFacturaP
    @Override
    public DTORecibo cobrarFactura(int numFactura){
       DTORecibo dtoRecibo = super.cobrarFactura(numFactura);
+      
       try {
          FachadaPersistenciaInterna.getInstancia().finalizarTransaccion();
       } catch (SQLException ex) {

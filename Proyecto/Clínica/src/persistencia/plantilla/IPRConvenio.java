@@ -11,6 +11,7 @@ import persistencia.criterios.Criterio;
 import persistencia.proxy.ObjetoPersistente;
 import persistencia.proxy.ConvenioAgente;
 import persistencia.proxy.ConvenioImpl;
+import util.ServiciosTiempo;
 
 /**
  *
@@ -35,13 +36,11 @@ public class IPRConvenio extends IntermPersistenciaDBR{
    @Override
    public String insertar(Object objeto) {
       ConvenioAgente conv = (ConvenioAgente) objeto;
-      String fInicio = "'" + (conv.getFechaInicio().getYear() + 1900) + (conv.getFechaInicio().getMonth() + 1) + conv.getFechaInicio().getDate() + "'";
-      String fFin = "'" + (conv.getFechaFin().getYear() + 1900) + (conv.getFechaFin().getMonth() + 1) + conv.getFechaFin().getDate() + "'";
       
       return "INSERT INTO convenio VALUES "
                   + "('" + conv.getOid() + "', "
-                         + fInicio + ", "
-                         + fFin + ", '"
+                         + ServiciosTiempo.dateToString(conv.getFechaInicio()) + ", "
+                         + ServiciosTiempo.dateToString(conv.getFechaFin()) + ", '"
                          + conv.getOidPlan() + "', '"
                          + conv.getOidPrestacion() + "', '"
                          + conv.getOidCoseguro() + "')";
@@ -50,16 +49,14 @@ public class IPRConvenio extends IntermPersistenciaDBR{
    @Override
    public String actualizar(Object objeto) {
       ConvenioAgente conv = (ConvenioAgente) objeto;
-      String fInicio = "'" + (conv.getFechaInicio().getYear() + 1900) + (conv.getFechaInicio().getMonth() + 1) + conv.getFechaInicio().getDate() + "'";
-      String fFin = "'" + (conv.getFechaFin().getYear() + 1900) + (conv.getFechaFin().getMonth() + 1) + conv.getFechaFin().getDate() + "'";
       
-      return "UPDATE FROM convenio WHERE"
-                  + "oidconvenio =  '" + conv.getOid() + "', "
-                  + "fecha_inicio = " + fInicio + ", "
-                  + "fecha_fin = " + fFin + ", "
+      return "UPDATE convenio SET "
+                  + "fecha_inicio = " + ServiciosTiempo.dateToString(conv.getFechaInicio()) + ", "
+                  + "fecha_fin = " + ServiciosTiempo.dateToString(conv.getFechaFin()) + ", "
                   + "oidplan = '" + conv.getOidPlan() + "', "
                   + "oidprestacion = '" + conv.getOidPrestacion() + "', "
-                  + "oidcoseguro = '" + conv.getOidCoseguro() + "'";
+                  + "oidcoseguro = '" + conv.getOidCoseguro() + "' "
+                  + "WHERE oidconvenio =  '" + conv.getOid() + "'";
    } // fin del método actualizar
 
    @Override

@@ -11,6 +11,7 @@ import persistencia.proxy.FacturaClienteAgente;
 import persistencia.proxy.FacturaClienteImpl;
 import persistencia.proxy.ObjetoPersistente;
 import persistencia.criterios.Criterio;
+import util.ServiciosTiempo;
 
 /**
  *
@@ -35,12 +36,11 @@ public class IPRFacturaCliente extends IntermPersistenciaDBR{
    @Override
    public String insertar(Object objeto) {
       FacturaClienteAgente fact = (FacturaClienteAgente) objeto;
-      String fecha = "'" + (fact.getFechaEmision().getYear() + 1900) + (fact.getFechaEmision().getMonth() + 1) + fact.getFechaEmision().getDate() + "'";
       
       return "INSERT INTO factura_cliente VALUES "
                   + "('" + fact.getOid() + "', "
                          + fact.getNumFactura() + ", "
-                         + fecha + ", '"
+                         + ServiciosTiempo.dateToString(fact.getFechaEmision()) + ", '"
                          + fact.getOidEstadoFacturaCliente() + "', '"
                          + fact.getOidFichaInternacion() + "')";
    } // fin del método insertar
@@ -48,14 +48,13 @@ public class IPRFacturaCliente extends IntermPersistenciaDBR{
    @Override
    public String actualizar(Object objeto) {
       FacturaClienteAgente fact = (FacturaClienteAgente) objeto;
-      String fecha = "'" + (fact.getFechaEmision().getYear() + 1900) + (fact.getFechaEmision().getMonth() + 1) + fact.getFechaEmision().getDate() + "'";
       
-      return "UPDATE FROM factura_cliente WHERE"
-                  + "oidfactura_cliente =  '" + fact.getOid() + "', "
+      return "UPDATE factura_cliente SET "
                   + "numero_factura_cliente = " + fact.getNumFactura() + ", "
-                  + "fecha = " + fecha + ", "
+                  + "fecha = '" + ServiciosTiempo.dateToString(fact.getFechaEmision()) + "', "
                   + "oidestado_factura_cliente = '" + fact.getOidEstadoFacturaCliente() + "', "
-                  + "oidficha_internacion = '" + fact.getOidFichaInternacion() + "'";
+                  + "oidficha_internacion = '" + fact.getOidFichaInternacion() + "' "
+                  + "WHERE oidfactura_cliente =  '" + fact.getOid() + "'";
    } // fin del método actualizar
 
    @Override

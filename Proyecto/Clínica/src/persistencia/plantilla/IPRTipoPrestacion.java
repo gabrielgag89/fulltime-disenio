@@ -33,19 +33,19 @@ public class IPRTipoPrestacion extends IntermPersistenciaDBR {
         
       return "INSERT INTO tipo_prestacion VALUES "
                   + "('" + tipoP.getOid() + "', "
-                         + tipoP.getCodigoTipoPrestacion() + ",'"                            
-                         + tipoP.getNombreTipoPrestacion() + "','"
+                         + tipoP.getCodigoTipoPrestacion() + ", '"                            
+                         + tipoP.getNombreTipoPrestacion() + "', '"
                          + tipoP.getOidTipoHabitacion()+ "')";
     }
 
     @Override
     public String actualizar(Object objeto) {
         TipoPrestacionAgente tipoP = (TipoPrestacionAgente)objeto;
-        return "UPDATE FROM tipo_prestacion WHERE "
-                  + "oidtipo_prestacion = '" + tipoP.getOid() + "', "
-                  + "codigo_tipo_prestacion = " + tipoP.getCodigoTipoPrestacion() + ","                            
-                  + "nombre_tipo_prestacion = '" + tipoP.getNombreTipoPrestacion() + "',"
-                  + "oidtipo_habitacion = '"+ tipoP.getOidTipoHabitacion()+ "'";
+        return "UPDATE tipo_prestacion SET "
+                  + "codigo_tipo_prestacion = " + tipoP.getCodigoTipoPrestacion() + ", "                            
+                  + "nombre_tipo_prestacion = '" + tipoP.getNombreTipoPrestacion() + "', "
+                  + "oidtipo_habitacion = '"+ tipoP.getOidTipoHabitacion()+ "' "
+                  + "WHERE oidtipo_prestacion = '" + tipoP.getOid() + "'";
     }
 
     @Override

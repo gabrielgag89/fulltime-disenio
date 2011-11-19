@@ -47,10 +47,10 @@ public class IPRTipoHabitacion extends IntermPersistenciaDBR{
    @Override
    public String actualizar(Object objeto) {
       TipoHabitacionAgente tiph = (TipoHabitacionAgente) objeto;
-      return "UPDATE FROM tipohabitacion WHERE"
-                  + "oidtipo_habitacion =  '" + tiph.getOid() + "', "
+      return "UPDATE tipohabitacion SET "
                   + "codigo_tipo_habitacion = " + tiph.getCodigoTipoHabitacion() + ", "
-                  + "nombre_tipo_habitacion = '" + tiph.getNombreTipo() + "') ";
+                  + "nombre_tipo_habitacion = '" + tiph.getNombreTipo() + "' "
+                  + "WHERE oidtipo_habitacion =  '" + tiph.getOid() + "'";
                   
    } 
 

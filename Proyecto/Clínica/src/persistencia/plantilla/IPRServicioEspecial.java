@@ -44,10 +44,10 @@ public class IPRServicioEspecial extends IntermPersistenciaDBR{
    @Override
    public String actualizar(Object objeto) {
       ServicioEspecialAgente serv = (ServicioEspecialAgente) objeto;
-      return "UPDATE FROM servicio_especial WHERE"
-                  + "oidservicio_especial =  '" + serv.getOid() + "', "
+      return "UPDATE servicio_especial SET "
                   + "codigo_servicio_especial = " + serv.getCodigoServicio() + ", "
-                  + "nombre_servicio_especial = '" + serv.getNombreServicio() +"'";
+                  + "nombre_servicio_especial = '" + serv.getNombreServicio() + "' "
+                  + "WHERE oidservicio_especial =  '" + serv.getOid() + "'";
    } // fin del método actualizar
 
    @Override

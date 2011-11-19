@@ -38,11 +38,11 @@ public class IPRCama extends IntermPersistenciaDBR {
    @Override
    public String actualizar(Object objeto) {
       CamaAgente cama = (CamaAgente) objeto;
-      return "UPDATE FROM cama WHERE"
-                  + "oidcama =  '" + cama.getOid() + "', "
+      return "UPDATE cama SET "
                   + "numero_cama = " + cama.getNumCama() + ", "
                   + "oidhabitacion = '" + cama.getOidHabitacion() + "', "
-                  + "oidestado_cama = '" + cama.getOidEstadoCama() + "'";
+                  + "oidestado_cama = '" + cama.getOidEstadoCama() + "' "
+                  + "WHERE oidcama = '" + cama.getOid() + "'";
    }
 
    @Override

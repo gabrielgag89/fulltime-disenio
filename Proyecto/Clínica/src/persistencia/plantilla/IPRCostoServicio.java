@@ -8,6 +8,7 @@ import persistencia.criterios.Criterio;
 import persistencia.proxy.CostoServicioAgente;
 import persistencia.proxy.CostoServicioImpl;
 import persistencia.proxy.ObjetoPersistente;
+import util.ServiciosTiempo;
 
 public class IPRCostoServicio extends IntermPersistenciaDBR {
    @Override
@@ -29,22 +30,23 @@ public class IPRCostoServicio extends IntermPersistenciaDBR {
    public String insertar(Object objeto) {
       CostoServicioAgente costoservicio = (CostoServicioAgente) objeto;
       return "INSERT INTO costo_servicio VALUES "
-                  + "('" + costoservicio.getOid() + "', "
-                         + costoservicio.getFechaInicio().getDay()+"-"+ costoservicio.getFechaInicio().getMonth() +"-"+costoservicio.getFechaInicio().getYear()+ ", '"
-                         + costoservicio.getFechaFin().getDay()+"-"+ costoservicio.getFechaFin().getMonth() +"-"+costoservicio.getFechaFin().getYear()+"', '"
-                         + costoservicio.getMonto()+ "', '"
+                  + "('" + costoservicio.getOid() + "', '"
+                         + ServiciosTiempo.dateToString(costoservicio.getFechaInicio()) + "', '"
+                         + ServiciosTiempo.dateToString(costoservicio.getFechaFin()) + "', "
+                         + costoservicio.getMonto()+ ", '"
                          + costoservicio.getOidServicioEspecial() + "')";
    }
 
    @Override
    public String actualizar(Object objeto) {
       CostoServicioAgente costoservicio = (CostoServicioAgente) objeto;
-      return "UPDATE FROM costo_servicio WHERE"
-                  + "oidcosto_servicio =  '" + costoservicio.getOid() + "', "
-                  + "fecha_inicio = "+ costoservicio.getFechaInicio().getDay()+"-"+ costoservicio.getFechaInicio().getMonth() +"-"+costoservicio.getFechaInicio().getYear()+  ", "
-                  + "fecha_fin = '"  + costoservicio.getFechaFin().getDay()+"-"+ costoservicio.getFechaFin().getMonth() +"-"+costoservicio.getFechaFin().getYear()+"', "
-                  + "monto = '" + costoservicio.getMonto() + "', "
-                  + "oidservicio_especial = '" + costoservicio.getOidServicioEspecial() + "'";
+      
+      return "UPDATE costo_servicio SET "
+                  + "fecha_inicio = '"+ ServiciosTiempo.dateToString(costoservicio.getFechaInicio()) + "', "
+                  + "fecha_fin = '" + ServiciosTiempo.dateToString(costoservicio.getFechaFin()) + "', "
+                  + "monto = " + costoservicio.getMonto() + ", "
+                  + "oidservicio_especial = '" + costoservicio.getOidServicioEspecial() + "' "
+                  + "WHERE oidcosto_servicio =  '" + costoservicio.getOid() + "'";
    }
 
    @Override

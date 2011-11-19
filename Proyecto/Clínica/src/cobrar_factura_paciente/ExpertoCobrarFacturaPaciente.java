@@ -101,10 +101,13 @@ public class ExpertoCobrarFacturaPaciente {
       dtoRecibo.setFecha(recibo.getFecha());
       dtoRecibo.setMonto(factura.getMonto());
       
-      Criterio c2 = FachadaPersistencia.getInstancia().getCriterio("nombre_estado_factura_cliente", "=", "'Pagada'");
+      Criterio c2 = FachadaPersistencia.getInstancia().getCriterio("nombre_estado_factura_cliente", "=", "Pagada");
       EstadoFacturaCliente estadoFactura = (EstadoFacturaCliente) FachadaPersistencia.getInstancia().buscar("EstadoFacturaCliente", c2).get(0);
       
       factura.setEstadoFacturaCliente(estadoFactura);
+      
+      FachadaPersistencia.getInstancia().guardar("FacturaCliente", factura);
+      FachadaPersistencia.getInstancia().guardar("Recibo", recibo);
       
       return dtoRecibo;
    } // fin del método cobrarFactura
