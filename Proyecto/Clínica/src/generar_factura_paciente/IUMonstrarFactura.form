@@ -1,0 +1,255 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="panelDatosFicha" alignment="0" max="32767" attributes="1"/>
+                  <Component id="scrollPaneServiciosEspeciales" alignment="1" pref="500" max="32767" attributes="1"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="botonVolver" min="-2" pref="90" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="187" max="-2" attributes="0"/>
+                      <Component id="etiquetaTotal" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="campoTextoTotal" min="-2" pref="171" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="panelDatosFicha" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="scrollPaneServiciosEspeciales" min="-2" pref="140" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="campoTextoTotal" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="etiquetaTotal" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="botonVolver" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JButton" name="botonVolver">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Volver"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonVolverActionPerformed"/>
+      </Events>
+    </Component>
+    <Container class="javax.swing.JScrollPane" name="scrollPaneServiciosEspeciales">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+            <TitledBorder title="Servicios Especiales"/>
+          </Border>
+        </Property>
+      </Properties>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTable" name="tablaFacturasExterna">
+          <Properties>
+            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="tablaFacturas" type="code"/>
+            </Property>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="panelDatosFicha">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+            <TitledBorder title="Datos Ficha"/>
+          </Border>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace pref="59" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="1">
+                                  <Component id="etiquetaNumFactura" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="campoTextoNumFactura" pref="327" max="32767" attributes="1"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="etiquetaFecha" min="-2" max="-2" attributes="0"/>
+                                      <Component id="etiquetaNumFicha" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="campoTextoNumFicha" alignment="1" max="32767" attributes="1"/>
+                                      <Component id="campoTextoFecha" alignment="1" pref="327" max="32767" attributes="1"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="etiquetaNombrePrestacion" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="etiquetaNombrePaciente" alignment="1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="campoTextoNombrePrestacion" alignment="0" pref="327" max="32767" attributes="1"/>
+                              <Component id="campoTextoNombrePaciente" alignment="0" pref="327" max="32767" attributes="1"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace pref="15" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="etiquetaCoseguro" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="etiquetaCostoPrestacion" alignment="1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="campoTextoCoseguro" alignment="0" pref="327" max="32767" attributes="1"/>
+                              <Component id="campoTextoCostoPrestacion" alignment="0" min="-2" pref="327" max="-2" attributes="1"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="campoTextoNumFactura" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="etiquetaNumFactura" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="campoTextoFecha" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="etiquetaFecha" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="campoTextoNumFicha" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="etiquetaNumFicha" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="etiquetaNombrePaciente" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="campoTextoNombrePaciente" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="etiquetaNombrePrestacion" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="campoTextoNombrePrestacion" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="etiquetaCostoPrestacion" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="campoTextoCostoPrestacion" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="etiquetaCoseguro" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="campoTextoCoseguro" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="etiquetaNumFactura">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="N&#xba; Factura:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="etiquetaNombrePaciente">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Nombre Paciente:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="etiquetaNombrePrestacion">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Prestaci&#xf3;n:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="etiquetaCostoPrestacion">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Costo Prestaci&#xf3;n:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="etiquetaCoseguro">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Coseguro:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="etiquetaFecha">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Fecha:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="campoTextoFecha">
+        </Component>
+        <Component class="javax.swing.JTextField" name="campoTextoNumFactura">
+        </Component>
+        <Component class="javax.swing.JTextField" name="campoTextoNombrePaciente">
+        </Component>
+        <Component class="javax.swing.JTextField" name="campoTextoNombrePrestacion">
+        </Component>
+        <Component class="javax.swing.JTextField" name="campoTextoCostoPrestacion">
+        </Component>
+        <Component class="javax.swing.JTextField" name="campoTextoCoseguro">
+        </Component>
+        <Component class="javax.swing.JTextField" name="campoTextoNumFicha">
+        </Component>
+        <Component class="javax.swing.JLabel" name="etiquetaNumFicha">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="N&#xba; Ficha:"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JLabel" name="etiquetaTotal">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Total:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="campoTextoTotal">
+    </Component>
+  </SubComponents>
+</Form>
