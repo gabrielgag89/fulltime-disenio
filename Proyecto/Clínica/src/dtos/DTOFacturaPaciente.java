@@ -15,7 +15,7 @@ public class DTOFacturaPaciente {
    private String nombrePrestacion;
    private double costoPrestacion;
    private double descuento;
-   private List<DTODetalle> dtoDetalle;
+   private List<DTODetalleServicio> dtoDetalle;
    private double monto;
 
    public int getNumFactura() {
@@ -74,11 +74,11 @@ public class DTOFacturaPaciente {
       this.descuento = descuento;
    }
 
-   public List<DTODetalle> getDtoDetalle() {
+   public List<DTODetalleServicio> getDtoDetalle() {
       return dtoDetalle;
    }
 
-   public void setDtoDetalle(List<DTODetalle> dtoDetalle) {
+   public void setDtoDetalle(List<DTODetalleServicio> dtoDetalle) {
       this.dtoDetalle = dtoDetalle;
    }
 

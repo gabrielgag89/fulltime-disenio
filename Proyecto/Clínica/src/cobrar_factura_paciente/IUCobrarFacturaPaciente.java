@@ -1,21 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * IUCobrarFacturaPaciente.java
- *
- * Created on Nov 18, 2011, 7:12:59 PM
- */
 package cobrar_factura_paciente;
 
-import dtos.DTOFacturaPaciente;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseAdapter;
 import javax.swing.table.DefaultTableModel;
+import dtos.DTOFacturaPaciente;
 import util.ServiciosTiempo;
 
 /**

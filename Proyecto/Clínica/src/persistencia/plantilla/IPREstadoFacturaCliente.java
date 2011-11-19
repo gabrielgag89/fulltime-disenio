@@ -22,7 +22,7 @@ public class IPREstadoFacturaCliente extends IntermPersistenciaDBR{
 
    @Override
    public String select(String oid) {
-      return "SELECT  *  FROM  estado_factura_cliente  WHERE oidestado_factura_cliente ='" + oid +"'";
+      return "SELECT * FROM  estado_factura_cliente  WHERE oidestado_factura_cliente = '" + oid +"'";
    }
 
    @Override

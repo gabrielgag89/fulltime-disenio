@@ -4,9 +4,6 @@
  */
 package cobrar_factura_paciente;
 
-import dtos.DTODetalle;
-import dtos.DTORecibo;
-import dtos.DTOFacturaPaciente;
 import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
@@ -19,6 +16,7 @@ import persistencia.proxy.DetalleFicha;
 import persistencia.criterios.Criterio;
 import persistencia.proxy.Recibo;
 import util.ServiciosTiempo;
+import dtos.*;
 
 /**
  *
@@ -31,8 +29,8 @@ public class ExpertoCobrarFacturaPaciente {
       DTOFacturaPaciente dtoFactura;
       List<CostoPrestacion> listaCostosPrestaciones;
       List<DetalleFicha> listaDetalle;
-      List<DTODetalle> listaDtoDetalle;
-      DTODetalle dtoDetalle;
+      List<DTODetalleServicio> listaDtoDetalle;
+      DTODetalleServicio dtoDetalle;
       List<CostoServicio> listaCostosServicios;
       
       for(FacturaCliente f : listaFacturas){
@@ -61,13 +59,13 @@ public class ExpertoCobrarFacturaPaciente {
             listaCostosServicios = FachadaPersistencia.getInstancia().buscar("CostoServicio", cc);
             
             
-            listaDtoDetalle = new ArrayList<DTODetalle>();
+            listaDtoDetalle = new ArrayList<DTODetalleServicio>();
             
             for(DetalleFicha df : listaDetalle){
                if(df.getFichaInternacion().getNroFicha() == f.getFichaInternacion().getNroFicha()){
                   for(CostoServicio c : listaCostosServicios){
                      if(c.getServicioEspecial().getCodigoServicio() == df.getServicioEspecial().getCodigoServicio()){
-                        dtoDetalle = new DTODetalle();
+                        dtoDetalle = new DTODetalleServicio();
                         dtoDetalle.setNombreServicio(c.getServicioEspecial().getNombreServicio());
                         dtoDetalle.setMonto(c.getMonto());
                         dtoDetalle.setCantidad(df.getCantidad());
