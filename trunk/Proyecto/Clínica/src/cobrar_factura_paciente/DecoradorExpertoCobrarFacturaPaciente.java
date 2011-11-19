@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package cobrar_factura_paciente;
 
 import dtos.DTORecibo;
@@ -19,13 +15,13 @@ public class DecoradorExpertoCobrarFacturaPaciente extends ExpertoCobrarFacturaP
    public List<DTOFacturaPaciente> buscarFacturasPendientes() {
       try {
          FachadaPersistenciaInterna.getInstancia().iniciarTransaccion();
-      }
+      } // fin de try de inicio de transacción
       catch (SQLException ex) {
          System.err.println("SQLException en buscarFacturasPendientes: " + ex.getMessage());
-      }
+      } // fin de catch de SQLException
       catch (Exception ex) {
          System.err.println("Exception en buscarFacturasPendientes: " + ex.getMessage());
-      }
+      } // fin de catch de Exception
       
       return super.buscarFacturasPendientes();
    } // fin del método buscarFacturasPendientes
@@ -36,9 +32,10 @@ public class DecoradorExpertoCobrarFacturaPaciente extends ExpertoCobrarFacturaP
       
       try {
          FachadaPersistenciaInterna.getInstancia().finalizarTransaccion();
-      } catch (SQLException ex) {
+      } // fin de try de fin de transacción
+      catch (SQLException ex) {
          System.err.println("SQLException en cobrarFactura: " + ex.getMessage());
-      }
+      } // fin de catch de SQLException
       
       return dtoRecibo;
    } // fin del método cobrarFactura

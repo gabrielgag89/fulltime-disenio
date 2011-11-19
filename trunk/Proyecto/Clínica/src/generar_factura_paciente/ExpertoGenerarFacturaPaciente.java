@@ -8,6 +8,8 @@ public class ExpertoGenerarFacturaPaciente {
    private FichaInternacion fichaInternacion;
 
    public DTOFichaInternacion buscarFichaInternacion(int numFicha){
+      
+      
       return null;
    } // findel método buscarFichaInternacion
    
