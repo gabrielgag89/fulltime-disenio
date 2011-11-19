@@ -22,6 +22,7 @@ public class IUCobrarFacturaPaciente extends javax.swing.JFrame {
       // crea la tabla personalizada
       tablaFacturas = new DefaultTableModel();
       initComponents();
+      this.setLocationRelativeTo(null);
       // guarda la referencia al controlador
       controlador = new ControladorCobrarFacturaPaciente();
       // arma la tabla
@@ -42,8 +43,8 @@ public class IUCobrarFacturaPaciente extends javax.swing.JFrame {
         scrollPaneTablaFacturas = new javax.swing.JScrollPane();
         tablaFacturasExterna = new javax.swing.JTable();
         botonCobrar = new javax.swing.JButton();
+        botonVolver = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Facturas a Cobrar");
 
         tablaFacturasExterna.setModel(tablaFacturas);
@@ -56,16 +57,27 @@ public class IUCobrarFacturaPaciente extends javax.swing.JFrame {
             }
         });
 
+        botonVolver.setText("Volver");
+        botonVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonVolverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrollPaneTablaFacturas, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonCobrar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(scrollPaneTablaFacturas, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(botonVolver)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 396, Short.MAX_VALUE)
+                .addComponent(botonCobrar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -73,7 +85,9 @@ public class IUCobrarFacturaPaciente extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(scrollPaneTablaFacturas, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonCobrar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonCobrar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonVolver))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -91,6 +105,10 @@ public class IUCobrarFacturaPaciente extends javax.swing.JFrame {
          this.controlador.cobrarFactura(numFactura);
       }
    }//GEN-LAST:event_botonCobrarActionPerformed
+
+    private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed
+
+        this.hide();     }//GEN-LAST:event_botonVolverActionPerformed
    // fin del método botonCobrarActionPerformed
    
    private void armarTablaFacturas(){
@@ -194,6 +212,7 @@ public class IUCobrarFacturaPaciente extends javax.swing.JFrame {
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonCobrar;
+    private javax.swing.JButton botonVolver;
     private javax.swing.JScrollPane scrollPaneTablaFacturas;
     private javax.swing.JTable tablaFacturasExterna;
     // End of variables declaration//GEN-END:variables
