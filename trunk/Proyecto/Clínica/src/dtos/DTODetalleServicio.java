@@ -1,10 +1,10 @@
-package cobrar_factura_paciente;
+package dtos;
 
 /**
  *
  * @author Fede
  */
-public class DTODetalle {
+public class DTODetalleServicio {
     private String nombreServicio;
     private int cantidad;
     private double monto;

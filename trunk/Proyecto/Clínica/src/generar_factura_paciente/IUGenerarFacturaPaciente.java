@@ -1,5 +1,6 @@
 package generar_factura_paciente;
 
+import dtos.DTOFichaInternacion;
 import java.util.List;
 import persistencia.proxy.Paciente;
 

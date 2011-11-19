@@ -4,6 +4,8 @@
  */
 package cobrar_factura_paciente;
 
+import dtos.DTORecibo;
+import dtos.DTOFacturaPaciente;
 import java.util.List;
 import java.sql.SQLException;
 import persistencia.FachadaPersistenciaInterna;

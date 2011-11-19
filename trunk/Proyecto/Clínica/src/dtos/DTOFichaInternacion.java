@@ -1,4 +1,4 @@
-package generar_factura_paciente;
+package dtos;
 
 import java.util.List;
 import java.util.Calendar;

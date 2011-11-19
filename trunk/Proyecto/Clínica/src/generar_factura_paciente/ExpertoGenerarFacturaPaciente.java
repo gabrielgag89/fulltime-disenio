@@ -1,5 +1,6 @@
 package generar_factura_paciente;
 
+import dtos.DTOFichaInternacion;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;

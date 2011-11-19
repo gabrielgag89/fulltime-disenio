@@ -6,6 +6,7 @@
  */
 package cobrar_factura_paciente;
 
+import dtos.DTORecibo;
 import util.ServiciosTiempo;
 
 /**
