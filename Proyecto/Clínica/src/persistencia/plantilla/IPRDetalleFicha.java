@@ -54,6 +54,7 @@ public class IPRDetalleFicha extends IntermPersistenciaDBR {
             detalleficha = new DetalleFichaAgente();
             detalleficha.setImplementacion(new DetalleFichaImpl());
             detalleficha.setOid(resultado.getString("oiddetalle_ficha"));
+            detalleficha.setCantidad(resultado.getInt("cantidad"));
             detalleficha.setOidFichaInterncaion(resultado.getString("oidficha_internacion"));
             detalleficha.setOidServicioEspecial(resultado.getString("oidservicio_especial"));
             lista.add(detalleficha);
