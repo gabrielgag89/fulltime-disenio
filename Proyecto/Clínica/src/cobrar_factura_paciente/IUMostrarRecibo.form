@@ -96,21 +96,21 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="etiquetaReciboNum" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="campoTextoReciboNum" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="campoTextoReciboNum" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="etiquetaFecha" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="campoTextoFecha" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                      <Component id="campoTextoFecha" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="etiquetaFacturaNum" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="campoTextoFacturaNum" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="campoTextoFacturaNum" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="campoTextoMonto" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="campoTextoMonto" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                       <Component id="etiquetaMonto" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
