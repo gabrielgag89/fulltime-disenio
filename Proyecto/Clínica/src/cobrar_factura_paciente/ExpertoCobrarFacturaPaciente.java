@@ -22,11 +22,9 @@ import util.ServiciosTiempo;
  * @author gabriel
  */
 public class ExpertoCobrarFacturaPaciente {
-   private List<DTOFacturaPaciente> listaDtoFacturas;
-   
    public List<DTOFacturaPaciente> buscarFacturasPendientes() {
       List<FacturaCliente> listaFacturas = FachadaPersistencia.getInstancia().buscar("FacturaCliente");
-      listaDtoFacturas = new ArrayList<DTOFacturaPaciente>();
+      List<DTOFacturaPaciente> listaDtoFacturas = new ArrayList<DTOFacturaPaciente>();
       DTOFacturaPaciente dtoFactura;
       List<CostoPrestacion> listaCostosPrestaciones;
       List<DetalleFicha> listaDetalle;
@@ -110,13 +108,4 @@ public class ExpertoCobrarFacturaPaciente {
       
       return dtoRecibo;
    } // fin del método cobrarFactura
-   
-   private DTOFacturaPaciente buscarDtoFactura(int numFactura){
-      for(DTOFacturaPaciente dtoFactura : listaDtoFacturas){
-         if(dtoFactura.getNumFactura() == numFactura)
-            return dtoFactura;
-      }
-      
-      return null;
-   } // fin del método buscarDtoFactura
 } // fin de la clase ExpertoCobrarFacturaPaciente

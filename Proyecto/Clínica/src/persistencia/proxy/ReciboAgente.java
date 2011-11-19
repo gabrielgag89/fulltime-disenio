@@ -44,8 +44,8 @@ public class ReciboAgente extends ObjetoPersistente implements Recibo {
    @Override
    public FacturaCliente getFacturaCliente() {
       if(!facturacliente){
-         this.impl.setFacturaCliente((FacturaCliente)FachadaPersistenciaInterna.getInstancia().buscar("FacturaCliente",oidFacturaCliente));
-         this.facturacliente=true;
+         this.impl.setFacturaCliente((FacturaCliente) FachadaPersistenciaInterna.getInstancia().buscar("FacturaCliente", oidFacturaCliente));
+         this.facturacliente = true;
       }
       
       return this.impl.getFacturaCliente();

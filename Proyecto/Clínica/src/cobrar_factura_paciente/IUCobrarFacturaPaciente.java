@@ -10,7 +10,10 @@
  */
 package cobrar_factura_paciente;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import util.ServiciosTiempo;
 
@@ -21,6 +24,7 @@ import util.ServiciosTiempo;
 public class IUCobrarFacturaPaciente extends javax.swing.JFrame {
    private DefaultTableModel tablaFacturas;
    private ControladorCobrarFacturaPaciente controlador;
+   private int seleccion = -1;
 
    /** Creates new form IUCobrarFacturaPaciente */
    public IUCobrarFacturaPaciente() {
@@ -86,51 +90,82 @@ public class IUCobrarFacturaPaciente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
    private void botonCobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCobrarActionPerformed
-      // TODO add your handling code here:
+      if(this.seleccion == -1 || this.seleccion >= this.tablaFacturas.getRowCount()){
+         JOptionPane.showMessageDialog(null, "Debe seleccionar una factura");
+      }
+      else{
+         int numFactura = Integer.parseInt(this.tablaFacturas.getValueAt(seleccion, 0).toString());
+         this.controlador.cobrarFactura(numFactura);
+      }
    }//GEN-LAST:event_botonCobrarActionPerformed
    // fin del método botonCobrarActionPerformed
    
    private void armarTablaFacturas(){
       // configura la cabecera de las columnas
-      tablaFacturas.addColumn("Nº Factura");
-      tablaFacturas.addColumn("Fecha");
-      tablaFacturas.addColumn("Nº Ficha");
-      tablaFacturas.addColumn("Paciente");
-      tablaFacturas.addColumn("Prestación");
-      tablaFacturas.addColumn("Monto");
+      this.tablaFacturas.addColumn("Nº Factura");
+      this.tablaFacturas.addColumn("Fecha");
+      this.tablaFacturas.addColumn("Nº Ficha");
+      this.tablaFacturas.addColumn("Paciente");
+      this.tablaFacturas.addColumn("Prestación");
+      this.tablaFacturas.addColumn("Monto");
       
       // configura el ancho de las columnas
-      tablaFacturasExterna.getColumnModel().getColumn(0).setMinWidth(75);
-      tablaFacturasExterna.getColumnModel().getColumn(0).setMaxWidth(75);
-      tablaFacturasExterna.getColumnModel().getColumn(1).setMinWidth(75);
-      tablaFacturasExterna.getColumnModel().getColumn(1).setMaxWidth(75);
-      tablaFacturasExterna.getColumnModel().getColumn(2).setMinWidth(75);
-      tablaFacturasExterna.getColumnModel().getColumn(2).setMaxWidth(75);
-      tablaFacturasExterna.getColumnModel().getColumn(3).setMinWidth(150);
-      tablaFacturasExterna.getColumnModel().getColumn(3).setMaxWidth(150);
-      tablaFacturasExterna.getColumnModel().getColumn(4).setMinWidth(150);
-      tablaFacturasExterna.getColumnModel().getColumn(4).setMaxWidth(150);
-      tablaFacturasExterna.getColumnModel().getColumn(5).setMinWidth(75);
-      tablaFacturasExterna.getColumnModel().getColumn(5).setMaxWidth(75);
+      this.tablaFacturasExterna.getColumnModel().getColumn(0).setMinWidth(75);
+      this.tablaFacturasExterna.getColumnModel().getColumn(0).setMaxWidth(75);
+      this.tablaFacturasExterna.getColumnModel().getColumn(1).setMinWidth(75);
+      this.tablaFacturasExterna.getColumnModel().getColumn(1).setMaxWidth(75);
+      this.tablaFacturasExterna.getColumnModel().getColumn(2).setMinWidth(75);
+      this.tablaFacturasExterna.getColumnModel().getColumn(2).setMaxWidth(75);
+      this.tablaFacturasExterna.getColumnModel().getColumn(3).setMinWidth(150);
+      this.tablaFacturasExterna.getColumnModel().getColumn(3).setMaxWidth(150);
+      this.tablaFacturasExterna.getColumnModel().getColumn(4).setMinWidth(150);
+      this.tablaFacturasExterna.getColumnModel().getColumn(4).setMaxWidth(150);
+      this.tablaFacturasExterna.getColumnModel().getColumn(5).setMinWidth(75);
+      this.tablaFacturasExterna.getColumnModel().getColumn(5).setMaxWidth(75);
    } // fin del método armarTablaFacturas
    
    private void cargarFacturas(){
-      List<DTOFacturaPaciente> listaFacturas = controlador.buscarFacturasPacientes();
+      List<DTOFacturaPaciente> listaFacturas = this.controlador.buscarFacturasPacientes(this);
       int fila = 0, col;
       
-      tablaFacturas.setRowCount(listaFacturas.size());
+      this.tablaFacturas.setRowCount(listaFacturas.size());
       
       for(DTOFacturaPaciente dtoFactura : listaFacturas){
          col = 0;
-         tablaFacturas.setValueAt(dtoFactura.getNumFactura(), fila, col++);
-         tablaFacturas.setValueAt(ServiciosTiempo.dateToStringDDMMAAAA(dtoFactura.getFecha()), fila, col++);
-         tablaFacturas.setValueAt(dtoFactura.getNroFicha(), fila, col++);
-         tablaFacturas.setValueAt(dtoFactura.getNombrePaciente(), fila, col++);
-         tablaFacturas.setValueAt(dtoFactura.getNombrePrestacion(), fila, col++);
-         tablaFacturas.setValueAt(dtoFactura.getMonto(), fila, col++);
+         this.tablaFacturas.setValueAt(dtoFactura.getNumFactura(), fila, col++);
+         this.tablaFacturas.setValueAt(ServiciosTiempo.dateToStringDDMMAAAA(dtoFactura.getFecha()), fila, col++);
+         this.tablaFacturas.setValueAt(dtoFactura.getNroFicha(), fila, col++);
+         this.tablaFacturas.setValueAt(dtoFactura.getNombrePaciente(), fila, col++);
+         this.tablaFacturas.setValueAt(dtoFactura.getNombrePrestacion(), fila, col++);
+         this.tablaFacturas.setValueAt(dtoFactura.getMonto(), fila, col++);
          fila++;
       } // fin de for de llenado de la tabla de facturas
+      
+      this.tablaFacturasExterna.addMouseListener(new MouseAdapter(){
+         @Override
+         public void mouseClicked(MouseEvent e){
+            seleccion = tablaFacturasExterna.rowAtPoint(e.getPoint());
+            tablaFacturas.isCellEditable(seleccion, 0);
+         } // fin del método mouseClicked
+      });
    } // fin del método cargarFacturas
+   
+   public void recargar(){
+      cargarFacturas();
+   } // fin del método recargar
+   
+   public void actualizar(DTOFacturaPaciente dtoFactura){
+      int fila, col = 0;
+      
+      fila = tablaFacturas.getRowCount();
+      
+      tablaFacturas.setValueAt(dtoFactura.getNumFactura(), fila, col++);
+      tablaFacturas.setValueAt(ServiciosTiempo.dateToStringDDMMAAAA(dtoFactura.getFecha()), fila, col++);
+      tablaFacturas.setValueAt(dtoFactura.getNroFicha(), fila, col++);
+      tablaFacturas.setValueAt(dtoFactura.getNombrePaciente(), fila, col++);
+      tablaFacturas.setValueAt(dtoFactura.getNombrePrestacion(), fila, col++);
+      tablaFacturas.setValueAt(dtoFactura.getMonto(), fila, col++);
+   } // fin del método actualizar
    
    /**
     * @param args the command line arguments

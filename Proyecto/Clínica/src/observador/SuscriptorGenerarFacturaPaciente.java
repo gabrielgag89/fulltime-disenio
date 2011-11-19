@@ -1,65 +1,29 @@
 package observador;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
+import cobrar_factura_paciente.DTOFacturaPaciente;
 
 public class SuscriptorGenerarFacturaPaciente {
-    private static SuscriptorGenerarFacturaPaciente instancia;
-    private boolean changed = false;
-    private List<ObservadorGenerarFacturaPaciente> obs = new  ArrayList<ObservadorGenerarFacturaPaciente>();
+   private static SuscriptorGenerarFacturaPaciente instancia;
+   private List<ObservadorGenerarFacturaPaciente> observadores = new  ArrayList<ObservadorGenerarFacturaPaciente>();
 
-    public static SuscriptorGenerarFacturaPaciente getInstance(){
-        if (instancia == null) {
-            instancia = new SuscriptorGenerarFacturaPaciente();
-        }
-        return instancia;
-    }
+   public static SuscriptorGenerarFacturaPaciente getInstancia(){
+      if (instancia == null) 
+         instancia = new SuscriptorGenerarFacturaPaciente();
 
-    public synchronized void agregarObservadorGenerarFacturaPaciente(ObservadorGenerarFacturaPaciente o) {
-               
-	if (!obs.contains(o)) 
-	    obs.add(o);
-	
-    }
+      return instancia;
+   } // fin del método getInstancia
 
-    public synchronized void borrarObservadorFacturarCliente(ObservadorGenerarFacturaPaciente o) {
-        obs.remove(o);
-    }
+   public synchronized void agregarObservador(ObservadorGenerarFacturaPaciente o) {
+      this.observadores.add(o);
+   } // fin del método agregarObservador
 
-    public void nitificarObservadoresFacturarCliente() {
-	notificarObservadoresFacturarCliente(null);
-    }
+   public synchronized void quitarObservador(ObservadorGenerarFacturaPaciente o) {
+      this.observadores.remove(o);
+   } // fin del método quitarObservador
 
-    public void notificarObservadoresFacturarCliente(Object arg) {
-        Object[] arrLocal;
-
-	synchronized (this) {
-	    if (!changed) return;
-            arrLocal = obs.toArray();
-            limpiarCambio();
-        }
-
-        for (int i = arrLocal.length-1; i>=0; i--)
-            ((ObservadorGenerarFacturaPaciente)arrLocal[i]).actualizar(this, arg);
-    }
-
-    public synchronized void borrarObservadoresFacturarCliente() {
-	obs.removeAll(obs);
-    }
-
-    public synchronized int cantidadObservadoresFacturarCliente() {
-	return obs.size();
-    }
-
-    protected synchronized void notificarCambio() {
-	changed = true;
-    }
-
-    protected synchronized void limpiarCambio() {
-	changed = false;
-    }
-
-    public synchronized boolean aCambiado() {
-	return changed;
-    }
-}
+   public void notificar(DTOFacturaPaciente dtoFactura){
+      
+   } // fin del método notificar
+} // fin de la clase SuscriptorGenerarFacturaPaciente
