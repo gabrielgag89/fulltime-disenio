@@ -23,11 +23,30 @@ public class DecoradorExpertoCobrarFacturaPaciente extends ExpertoCobrarFacturaP
          System.err.println("Exception en buscarFacturasPendientes: " + ex.getMessage());
       } // fin de catch de Exception
       
-      return super.buscarFacturasPendientes();
+      List<DTOFacturaPaciente> listaDtoFacturas = super.buscarFacturasPendientes();
+      
+      try {
+         FachadaPersistenciaInterna.getInstancia().finalizarTransaccion();
+      } // fin de try de fin de transacción
+      catch (SQLException ex) {
+         System.err.println("SQLException en cobrarFactura: " + ex.getMessage());
+      } // fin de catch de SQLException
+      
+      return listaDtoFacturas;
    } // fin del método buscarFacturasPendientes
    
    @Override
    public DTORecibo cobrarFactura(int numFactura){
+      try {
+         FachadaPersistenciaInterna.getInstancia().iniciarTransaccion();
+      } // fin de try de inicio de transacción
+      catch (SQLException ex) {
+         System.err.println("SQLException en buscarFacturasPendientes: " + ex.getMessage());
+      } // fin de catch de SQLException
+      catch (Exception ex) {
+         System.err.println("Exception en buscarFacturasPendientes: " + ex.getMessage());
+      } // fin de catch de Exception
+      
       DTORecibo dtoRecibo = super.cobrarFactura(numFactura);
       
       try {

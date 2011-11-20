@@ -42,16 +42,23 @@ public class IUMostrarRecibo extends javax.swing.JFrame {
         etiquetaReciboNum = new javax.swing.JLabel();
         botonVolver = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Recibo");
 
         panelDatosRecibo.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos Recibo"));
 
+        campoTextoFecha.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
         etiquetaFecha.setText("Fecha:");
+
+        campoTextoFacturaNum.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         etiquetaFacturaNum.setText("Factura Nº:");
 
         etiquetaMonto.setText("Monto:");
+
+        campoTextoReciboNum.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        campoTextoMonto.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         etiquetaReciboNum.setText("Recibo Nº:");
 
@@ -116,9 +123,9 @@ public class IUMostrarRecibo extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(panelDatosRecibo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(64, Short.MAX_VALUE)
+                .addContainerGap(100, Short.MAX_VALUE)
                 .addComponent(botonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(63, 63, 63))
         );
@@ -151,42 +158,6 @@ public class IUMostrarRecibo extends javax.swing.JFrame {
       campoTextoFacturaNum.setText(dtoRecibo.getNumFactura() + "");
       campoTextoMonto.setText(dtoRecibo.getMonto() + "");
    } // fin del método cargarCampos
-   
-   /**
-    * @param args the command line arguments
-    */
-   public static void main(String args[]) {
-      /* Set the Nimbus look and feel */
-      //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-       * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-       */
-      try {
-         for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-            if ("Nimbus".equals(info.getName())) {
-               javax.swing.UIManager.setLookAndFeel(info.getClassName());
-               break;
-            }
-         }
-      } catch (ClassNotFoundException ex) {
-         java.util.logging.Logger.getLogger(IUMostrarRecibo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-      } catch (InstantiationException ex) {
-         java.util.logging.Logger.getLogger(IUMostrarRecibo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-      } catch (IllegalAccessException ex) {
-         java.util.logging.Logger.getLogger(IUMostrarRecibo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-      } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-         java.util.logging.Logger.getLogger(IUMostrarRecibo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-      }
-      //</editor-fold>
-
-      /* Create and display the form */
-      java.awt.EventQueue.invokeLater(new Runnable() {
-
-         public void run() {
-            new IUMostrarRecibo().setVisible(true);
-         }
-      });
-   } // fin del método main
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonVolver;
