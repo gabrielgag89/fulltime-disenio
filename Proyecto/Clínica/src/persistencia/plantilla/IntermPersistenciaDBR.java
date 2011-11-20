@@ -64,6 +64,8 @@ public abstract class IntermPersistenciaDBR extends IntermediarioPersistencia{
    } // fin del método obtenerNuevaEntidad
 
    private void ejecutarSQLSave(String sql){
+      System.out.println(sql);
+      
       try{
          PreparedStatement consulta = ConectorBD.getConexion().prepareStatement(sql);
 
@@ -75,6 +77,8 @@ public abstract class IntermPersistenciaDBR extends IntermediarioPersistencia{
    } // fin del método ejecutarSQLSave
 
    private ResultSet ejecutarSQL(String sql){
+      System.out.println(sql);
+      
       try{
          PreparedStatement consulta = ConectorBD.getConexion().prepareStatement(sql);
 

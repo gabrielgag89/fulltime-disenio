@@ -18,11 +18,30 @@ public class DecoradorExpertoGenerarFacturaPaciente extends ExpertoGenerarFactur
          System.err.println("Exception en buscarFacturasPendientes: " + ex.getMessage());
       } // fin de catch de Exception
       
-      return super.buscarFichaInternacion(numPaciente);
+      DTOFichaInternacion dtoDetalle = super.buscarFichaInternacion(numPaciente);
+      
+      try {
+         FachadaPersistenciaInterna.getInstancia().finalizarTransaccion();
+      } // fin de try de fin de transacción
+      catch (SQLException ex) {
+         System.err.println("SQLException en generarFactura: " + ex.getMessage());
+      } // fin de catch de SQLException
+      
+      return dtoDetalle;
    } // fin del método buscarFichaInternacion
 
    @Override
    public DTOFacturaPaciente generarFactura() {
+      try {
+         FachadaPersistenciaInterna.getInstancia().iniciarTransaccion();
+      } // fin de try de inicio de transacción
+      catch (SQLException ex) {
+         System.err.println("SQLException en buscarFichaInternacion: " + ex.getMessage());
+      } // fin de catch de SQLException
+      catch (Exception ex) {
+         System.err.println("Exception en buscarFacturasPendientes: " + ex.getMessage());
+      } // fin de catch de Exception
+      
       DTOFacturaPaciente dtoFactura = super.generarFactura();
       
       try {
