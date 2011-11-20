@@ -1,9 +1,8 @@
-/*
+﻿/*
 SQLyog Ultimate v9.02 
-MySQL - 5.1.54-1ubuntu4 : Database - clinica
+MySQL - 5.5.17 : Database - clinica
 *********************************************************************
-*/
-
+*/
 
 /*!40101 SET NAMES utf8 */;
 
@@ -23,7 +22,7 @@ insert  into `cama`(`oidcama`,`numero_cama`,`oidhabitacion`,`oidestado_cama`) va
 
 /*Data for the table `convenio` */
 
-insert  into `convenio`(`oidconvenio`,`fecha_inicio`,`fecha_fin`,`oidplan`,`oidprestacion`,`oidcoseguro`) values ('25776786-bb91-44e2-a7e8-3ccdf9c81f4d','2010-20-03','2012-20-03','d2f64d1d-59f8-46b8-b56c-2847c0d47107','2ea9a442-8309-4b15-8600-2f89ad28f471','70aa8f21-528e-4ef6-99b8-2b553e6afbc2'),('2e916f45-a72c-4c4f-9001-44bdd40f4804','2010-01-01','2011-31-12','aa17b277-60e9-45d3-b909-537f7754cb51','4821103d-5b08-496f-822e-014dfc16b950','1c48dd3a-5d12-4575-99ef-2c1aafc92f1a'),('7ac498aa-b63e-4b5c-8daf-38d197dcd8aa','2010-10-05','2011-15-12','9b3ee0ac-3d71-48cb-99b2-3d5c5568ddfa','09b0a617-7924-448e-8bc1-8a9fbe186279','7e3f668b-9a8a-401b-8bd6-e363b09041d9');
+insert  into `convenio`(`oidconvenio`,`fecha_inicio`,`fecha_fin`,`oidplan`,`oidprestacion`,`oidcoseguro`) values ('25776786-bb91-44e2-a7e8-3ccdf9c81f4d','2010-03-20','2012-03-20','d2f64d1d-59f8-46b8-b56c-2847c0d47107','2ea9a442-8309-4b15-8600-2f89ad28f471','70aa8f21-528e-4ef6-99b8-2b553e6afbc2'),('2e916f45-a72c-4c4f-9001-44bdd40f4804','2010-01-01','2011-12-31','aa17b277-60e9-45d3-b909-537f7754cb51','4821103d-5b08-496f-822e-014dfc16b950','1c48dd3a-5d12-4575-99ef-2c1aafc92f1a'),('7ac498aa-b63e-4b5c-8daf-38d197dcd8aa','2010-10-05','2011-12-15','9b3ee0ac-3d71-48cb-99b2-3d5c5568ddfa','09b0a617-7924-448e-8bc1-8a9fbe186279','7e3f668b-9a8a-401b-8bd6-e363b09041d9');
 
 /*Data for the table `coseguro` */
 
@@ -31,11 +30,11 @@ insert  into `coseguro`(`oidcoseguro`,`codigo_coseguro`,`porcentaje`) values ('1
 
 /*Data for the table `costo_prestacion` */
 
-insert  into `costo_prestacion`(`oidcosto_prestacion`,`fecha_inicio`,`fecha_fin`,`monto`,`oidprestacion`) values ('3efc1521-753e-4b0c-8ca2-ca89593f0df7','2011-01-10','2011-11-06',398.5,'2ea9a442-8309-4b15-8600-2f89ad28f471'),('7a05efd6-392f-4e38-b52a-05c9d790da43','2011-01-08','2011-12-06',465,'09b0a617-7924-448e-8bc1-8a9fbe186279'),('94cc9d4a-9e27-47b0-822e-6648d7564318','2011-01-01','2011-12-06',440.5,'e2d33617-687f-466b-b1d7-0a7ac9d1fedf'),('e20fc1bc-28a7-436b-81e1-79149591f08c','2011-11-10','2012-06-08',98.5,'4821103d-5b08-496f-822e-014dfc16b950');
+insert  into `costo_prestacion`(`oidcosto_prestacion`,`fecha_inicio`,`fecha_fin`,`monto`,`oidprestacion`) values ('3efc1521-753e-4b0c-8ca2-ca89593f0df7','2011-01-10','2011-12-06',398.5,'2ea9a442-8309-4b15-8600-2f89ad28f471'),('7a05efd6-392f-4e38-b52a-05c9d790da43','2011-01-08','2011-12-06',465,'09b0a617-7924-448e-8bc1-8a9fbe186279'),('94cc9d4a-9e27-47b0-822e-6648d7564318','2011-01-01','2011-12-06',440.5,'e2d33617-687f-466b-b1d7-0a7ac9d1fedf'),('e20fc1bc-28a7-436b-81e1-79149591f08c','2011-11-10','2012-06-08',98.5,'4821103d-5b08-496f-822e-014dfc16b950');
 
 /*Data for the table `costo_servicio` */
 
-insert  into `costo_servicio`(`oidcosto_servicio`,`fecha_inicio`,`fecha_fin`,`monto`,`oidservicio_especial`) values ('26f09abf-b9e7-419a-b466-fa533931aaa0','2012-12-26','2012-12-31',55,'16292845-dbc6-4393-ae9d-13f6eb55fea0'),('301778a7-b8c4-4592-b1f2-2725eb9dbbd1','2011-01-15','2011-11-12',80,'72d72728-dc4f-4160-9f3c-e14c4e55aa64'),('5568d6b4-c1ab-4d9a-bd56-84ce1f354b2d','2012-01-11','2012-11-21',95,'72d72728-dc4f-4160-9f3c-e14c4e55aa64'),('6d22350f-126a-4815-b64b-a7617eb8a1d3','2011-11-10','2012-11-10',150,'94e6ebf4-3ff8-4e53-8c22-f52f771b44d8');
+insert  into `costo_servicio`(`oidcosto_servicio`,`fecha_inicio`,`fecha_fin`,`monto`,`oidservicio_especial`) values ('26f09abf-b9e7-419a-b466-fa533931aaa0','2010-12-26','2012-12-31',55,'16292845-dbc6-4393-ae9d-13f6eb55fea0'),('301778a7-b8c4-4592-b1f2-2725eb9dbbd1','2011-01-15','2011-11-12',80,'1f4393c4-3fdd-4d07-915f-d70fa8cea023'),('5568d6b4-c1ab-4d9a-bd56-84ce1f354b2d','2011-11-13','2012-11-21',95,'1f4393c4-3fdd-4d07-915f-d70fa8cea023'),('6d22350f-126a-4815-b64b-a7617eb8a1d3','2011-11-10','2012-11-10',150,'94e6ebf4-3ff8-4e53-8c22-f52f771b44d8');
 
 /*Data for the table `detalle_ficha` */
 
@@ -57,7 +56,7 @@ insert  into `estado_ficha_internacion`(`oidestado_ficha_internacion`,`nombre_es
 
 /*Data for the table `ficha_internacion` */
 
-insert  into `ficha_internacion`(`oidficha_internacion`,`numero_ficha_internacion`,`fecha`,`oidprestacion`,`oidestado_ficha_internacion`,`oidcama`,`oidpaciente`) values ('27d63055-766b-43ae-9711-8a350a5bfdfb',3,'2011-11-11','e2d33617-687f-466b-b1d7-0a7ac9d1fedf','af48fee7-69f6-4d85-9f19-57e54a8997a4','c7ea026b-c063-4681-a9a1-6b0f0fd4cbc5','633a6544-d13f-410a-b50c-c6a42b41389d'),('34f25a67-e562-48a1-b944-4083ac622f57',5,'2011-11-12','09b0a617-7924-448e-8bc1-8a9fbe186279','af48fee7-69f6-4d85-9f19-57e54a8997a4','d7005bc4-500e-4104-84cb-8af8e8f8c133','80c77567-960d-44c0-af0b-436c3a704bba'),('37c9d93e-15c2-4152-bf48-be8e0025734a',4,'2011-11-12','e2d33617-687f-466b-b1d7-0a7ac9d1fedf','af48fee7-69f6-4d85-9f19-57e54a8997a4','c7ea026b-c063-4681-a9a1-6b0f0fd4cbc5','d8c68653-6bcf-4c57-8453-c9bdc8a6a10d'),('56105120-4fd0-4cbd-9281-58137f205dbd',1,'2011-11-10','4821103d-5b08-496f-822e-014dfc16b950','af48fee7-69f6-4d85-9f19-57e54a8997a4','b20ccb2d-ec12-441f-9e00-82ca17eab7d6','3d23d5f0-f813-4e97-973e-34d5eebc5c6f'),('e05cdfcd-0db4-4f06-b601-343d2903810a',2,'2011-11-10','2ea9a442-8309-4b15-8600-2f89ad28f471','af48fee7-69f6-4d85-9f19-57e54a8997a4','bb30deea-9509-4d99-8640-de820bc49c06','e4d99be8-5b91-4bba-94b7-1bce78531b7d');
+insert  into `ficha_internacion`(`oidficha_internacion`,`numero_ficha_internacion`,`fecha`,`oidprestacion`,`oidestado_ficha_internacion`,`oidcama`,`oidpaciente`) values ('27d63055-766b-43ae-9711-8a350a5bfdfb',3,'2011-11-11','4821103d-5b08-496f-822e-014dfc16b950','af48fee7-69f6-4d85-9f19-57e54a8997a4','c7ea026b-c063-4681-a9a1-6b0f0fd4cbc5','633a6544-d13f-410a-b50c-c6a42b41389d'),('34f25a67-e562-48a1-b944-4083ac622f57',5,'2011-11-12','09b0a617-7924-448e-8bc1-8a9fbe186279','af48fee7-69f6-4d85-9f19-57e54a8997a4','d7005bc4-500e-4104-84cb-8af8e8f8c133','80c77567-960d-44c0-af0b-436c3a704bba'),('37c9d93e-15c2-4152-bf48-be8e0025734a',4,'2011-11-12','e2d33617-687f-466b-b1d7-0a7ac9d1fedf','af48fee7-69f6-4d85-9f19-57e54a8997a4','c7ea026b-c063-4681-a9a1-6b0f0fd4cbc5','d8c68653-6bcf-4c57-8453-c9bdc8a6a10d'),('56105120-4fd0-4cbd-9281-58137f205dbd',1,'2011-11-10','4821103d-5b08-496f-822e-014dfc16b950','af48fee7-69f6-4d85-9f19-57e54a8997a4','b20ccb2d-ec12-441f-9e00-82ca17eab7d6','3d23d5f0-f813-4e97-973e-34d5eebc5c6f'),('e05cdfcd-0db4-4f06-b601-343d2903810a',2,'2011-11-10','2ea9a442-8309-4b15-8600-2f89ad28f471','af48fee7-69f6-4d85-9f19-57e54a8997a4','bb30deea-9509-4d99-8640-de820bc49c06','e4d99be8-5b91-4bba-94b7-1bce78531b7d');
 
 /*Data for the table `habitacion` */
 
