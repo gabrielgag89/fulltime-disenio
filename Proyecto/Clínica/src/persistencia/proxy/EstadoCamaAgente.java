@@ -16,4 +16,4 @@ public class EstadoCamaAgente extends ObjetoPersistente implements EstadoCama {
    public void setNombreEstado(String nombreEstado) {
       this.impl.setNombreEstado(nombreEstado);
    }   
-} // fin EstadoCamaAgente
+} // fin de la clase EstadoCamaAgente

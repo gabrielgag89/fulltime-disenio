@@ -12,9 +12,9 @@ public interface CostoServicio {
 
    public void setFechaFin(Date fechaFin);
    
-   public float getMonto();
+   public double getMonto();
 
-   public void setMonto(float monto); 
+   public void setMonto(double monto); 
    
    public ServicioEspecial getServicioEspecial();
 

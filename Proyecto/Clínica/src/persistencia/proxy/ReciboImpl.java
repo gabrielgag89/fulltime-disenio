@@ -1,12 +1,11 @@
 package persistencia.proxy;
 
 import java.util.Date;
-import java.util.List;
 
 public class ReciboImpl implements Recibo{
    private int nroRecibo;
    private Date fecha;
-   private FacturaCliente facturacliente;
+   private FacturaCliente facturaCliente;
 
    @Override
    public int getNroRecibo() {
@@ -30,11 +29,11 @@ public class ReciboImpl implements Recibo{
 
    @Override
    public FacturaCliente getFacturaCliente() {
-      return this.facturacliente;
+      return this.facturaCliente;
    }
 
    @Override
-   public void setFacturaCliente(FacturaCliente facturacliente) {
-      this.facturacliente = facturacliente;
+   public void setFacturaCliente(FacturaCliente facturaCliente) {
+      this.facturaCliente = facturaCliente;
    }
-}
+} // fin de la clase ReciboImpl

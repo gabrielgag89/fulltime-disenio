@@ -6,101 +6,89 @@ import java.util.List;
 public class FichaInternacionImpl implements FichaInternacion {
    private int nroFicha;
    private Date fechaCreacion;
-   private Cama cama;
-   private Paciente paciente;
    private Prestacion prestacion;
    private EstadoFichaInternacion estadoFichaInternacion;
-   private Habitacion habitacion;
+   private Cama cama;
+   private Paciente paciente;
    private List<DetalleFicha> detalleFicha;
 
-    @Override
-    public Cama getCama() {
-        return cama;
-    }
+   @Override
+   public int getNroFicha() {
+      return nroFicha;
+   }
 
-    @Override
-    public void setCama(Cama cama) {
-        this.cama = cama;
-    }
+   @Override
+   public void setNroFicha(int nroFicha) {
+      this.nroFicha = nroFicha;
+   }
 
-    @Override
-    public List<DetalleFicha> getDetalleFicha() {
-        return detalleFicha;
-    }
-    
-    @Override
-    public void setDetalleFicha(List<DetalleFicha> ListaDetalleFicha) {
-        this.detalleFicha = ListaDetalleFicha;
-    }
+   @Override
+   public Date getFechaCreacion() {
+      return fechaCreacion;
+   }
 
-    @Override
-    public void addDetalleFicha(DetalleFicha detalleFicha) {
-        this.detalleFicha.add(detalleFicha);
-    }
+   @Override
+   public void setFechaCreacion(Date fechaCreacion) {
+      this.fechaCreacion = fechaCreacion;
+   }
 
-    @Override
-     public boolean deleteDetalleFicha(DetalleFicha detalleFicha) {
-        return this.detalleFicha.remove(detalleFicha);
-    }
+   @Override
+   public Prestacion getPrestacion() {
+      return prestacion;
+   }
 
-    @Override
-    public EstadoFichaInternacion getEstadoFichaInternacion() {
-        return estadoFichaInternacion;
-    }
+   @Override
+   public void setPrestacion(Prestacion prestacion) {
+      this.prestacion = prestacion;
+   }
 
-    @Override
-    public void setEstadoFichaInternacion(EstadoFichaInternacion estadoFichaInternacion) {
-        this.estadoFichaInternacion = estadoFichaInternacion;
-    }
+   @Override
+   public EstadoFichaInternacion getEstadoFichaInternacion() {
+      return estadoFichaInternacion;
+   }
 
-    @Override
-    public Date getFechaCreacion() {
-        return fechaCreacion;
-    }
+   @Override
+   public void setEstadoFichaInternacion(EstadoFichaInternacion estadoFichaInternacion) {
+      this.estadoFichaInternacion = estadoFichaInternacion;
+   }
 
-    @Override
-    public void setFechaCreacion(Date fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
-    }
+   @Override
+   public Cama getCama() {
+      return cama;
+   }
 
-    @Override
-    public Habitacion getHabitacion() {
-        return habitacion;
-    }
+   @Override
+   public void setCama(Cama cama) {
+      this.cama = cama;
+   }
 
-    @Override
-    public void setHabitacion(Habitacion habitacion) {
-        this.habitacion = habitacion;
-    }
+   @Override
+   public Paciente getPaciente() {
+      return paciente;
+   }
 
-    @Override
-    public int getNroFicha() {
-        return nroFicha;
-    }
+   @Override
+   public void setPaciente(Paciente paciente) {
+      this.paciente = paciente;
+   }
 
-    @Override
-    public void setNroFicha(int nroFicha) {
-        this.nroFicha = nroFicha;
-    }
+   @Override
+   public List<DetalleFicha> getDetalleFicha() {
+      return detalleFicha;
+   }
 
-    @Override
-    public Paciente getPaciente() {
-        return paciente;
-    }
+   @Override
+   public void setDetalleFicha(List<DetalleFicha> ListaDetalleFicha) {
+      this.detalleFicha = ListaDetalleFicha;
+   }
 
-    @Override
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
-    }
+   @Override
+   public void addDetalleFicha(DetalleFicha detalleFicha) {
+      this.detalleFicha.add(detalleFicha);
+   }
 
-    @Override
-    public Prestacion getPrestacion() {
-        return prestacion;
-    }
-
-    @Override
-    public void setPrestacion(Prestacion prestacion) {
-        this.prestacion = prestacion;
-    }
-
-}//end FichaInternacionImpl
+   @Override
+   public boolean deleteDetalleFicha(DetalleFicha detalleFicha) {
+      return this.detalleFicha.remove(detalleFicha);
+   }
+} // fin de la clase FichaInternacionImpl

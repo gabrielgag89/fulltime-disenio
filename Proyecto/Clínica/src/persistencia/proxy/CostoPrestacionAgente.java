@@ -13,16 +13,6 @@ public class CostoPrestacionAgente extends ObjetoPersistente implements CostoPre
    }
 
    @Override
-   public Date getFechaFin() {
-      return this.impl.getFechaFin();
-   }
-
-   @Override
-   public void setFechaFin(Date fechaFin) {
-      this.impl.setFechaFin(fechaFin);
-   }
-
-   @Override
    public Date getFechaInicio() {
       return this.impl.getFechaInicio();
    }
@@ -30,6 +20,16 @@ public class CostoPrestacionAgente extends ObjetoPersistente implements CostoPre
    @Override
    public void setFechaInicio(Date fechaInicio) {
       this.impl.setFechaInicio(fechaInicio);
+   }
+
+   @Override
+   public Date getFechaFin() {
+      return this.impl.getFechaFin();
+   }
+
+   @Override
+   public void setFechaFin(Date fechaFin) {
+      this.impl.setFechaFin(fechaFin);
    }
 
    @Override
@@ -55,6 +55,7 @@ public class CostoPrestacionAgente extends ObjetoPersistente implements CostoPre
    @Override
    public void setPrestacion(Prestacion prestacion) {
       this.impl.setPrestacion(prestacion);
+      this.oidPrestacion = ((ObjetoPersistente) prestacion).getOid();
    }
 
    public String getOidPrestacion() {
@@ -64,4 +65,4 @@ public class CostoPrestacionAgente extends ObjetoPersistente implements CostoPre
    public void setOidPrestacion(String oidPrestacion) {
       this.oidPrestacion = oidPrestacion;
    }
-} // fin CostoPrestacionAgente
+} // fin de la clase CostoPrestacionAgente

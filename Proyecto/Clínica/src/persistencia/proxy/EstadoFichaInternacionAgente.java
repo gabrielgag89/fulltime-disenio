@@ -16,4 +16,4 @@ public class EstadoFichaInternacionAgente extends ObjetoPersistente implements E
    public void setNombreEstado(String nombreEstado) {
       this.impl.setNombreEstado(nombreEstado);
    }
-}
+} // fin de la clase EstadoFichaInternacionAgente

@@ -1,15 +1,8 @@
-// ConvenioAgente: ConvenioAgente.java
-// 
-
 package persistencia.proxy;
 
 import java.util.Date;
 import persistencia.FachadaPersistenciaInterna;
 
-/**
- *
- * @author Gabriel
- */
 public class ConvenioAgente extends ObjetoPersistente implements Convenio{
    private ConvenioImpl impl;
    private boolean plan = false;
@@ -56,6 +49,7 @@ public class ConvenioAgente extends ObjetoPersistente implements Convenio{
    @Override
    public void setPlan(Plan plan) {
       this.impl.setPlan(plan);
+      this.oidPlan = ((ObjetoPersistente) plan).getOid();
    }
 
    @Override
@@ -71,6 +65,7 @@ public class ConvenioAgente extends ObjetoPersistente implements Convenio{
    @Override
    public void setPrestacion(Prestacion prestacion) {
       this.impl.setPrestacion(prestacion);
+      this.oidPrestacion = ((ObjetoPersistente) prestacion).getOid();
    }
 
    @Override
@@ -86,6 +81,7 @@ public class ConvenioAgente extends ObjetoPersistente implements Convenio{
    @Override
    public void setCoseguro(Coseguro coseguro) {
       this.impl.setCoseguro(coseguro);
+      this.oidCoseguro = ((ObjetoPersistente) coseguro).getOid();
    }
 
    public String getOidPlan() {

@@ -1,7 +1,6 @@
 package persistencia.proxy;
 
 import java.util.Date;
-import java.util.List;
 
 public interface Recibo {
    public int getNroRecibo();
@@ -14,5 +13,5 @@ public interface Recibo {
    
    public FacturaCliente getFacturaCliente();
    
-   public void setFacturaCliente(FacturaCliente facturacliente);
+   public void setFacturaCliente(FacturaCliente facturaCliente);
 }

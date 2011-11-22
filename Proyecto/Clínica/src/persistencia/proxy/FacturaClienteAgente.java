@@ -1,15 +1,8 @@
-// FacturaClienteAgente: FacturaClienteAgente.java
-// 
-
 package persistencia.proxy;
 
 import java.util.Date;
 import persistencia.FachadaPersistenciaInterna;
 
-/**
- *
- * @author Gabriel
- */
 public class FacturaClienteAgente extends ObjetoPersistente implements FacturaCliente{
    private FacturaClienteImpl impl;
    private boolean fichaInternacion = false;

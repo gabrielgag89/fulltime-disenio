@@ -1,13 +1,5 @@
-// PrestacionImpl: PrestacionImpl.java
-//
-
 package persistencia.proxy;
 
-/**
- * @author Cristian
- * @version 1.0
- * @created 22-oct-2011 07:16:22 p.m.
- */
 public class PrestacionImpl implements Prestacion{
    private int codigoPrestacion;
    private String descripcion;

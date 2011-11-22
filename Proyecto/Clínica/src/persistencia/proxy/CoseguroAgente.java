@@ -26,4 +26,4 @@ public class CoseguroAgente extends ObjetoPersistente implements Coseguro {
    public void setPorcentaje(float porcentaje) {
       this.impl.setPorcentaje(porcentaje);
    }
-}
+} // fin de la clase CoseguroAgente

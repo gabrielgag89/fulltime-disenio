@@ -23,4 +23,4 @@ public class CoseguroImpl implements Coseguro{
    public void setPorcentaje(float porcentaje) {
       this.porcentaje = porcentaje;
    }  
-}
+} // fin de la clase CoseguroImpl

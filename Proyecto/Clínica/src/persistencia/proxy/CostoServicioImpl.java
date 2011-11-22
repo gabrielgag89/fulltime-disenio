@@ -2,14 +2,10 @@ package persistencia.proxy;
 
 import java.util.Date;
 
-/**
- * @author Matías
- */
 public class CostoServicioImpl implements CostoServicio {
-    
     private Date fechaInicio;
     private Date fechaFin;
-    private float monto;
+    private double monto;
     private ServicioEspecial servicioEspecial;
 
     @Override
@@ -33,12 +29,12 @@ public class CostoServicioImpl implements CostoServicio {
     }
 
     @Override
-    public float getMonto() {
+    public double getMonto() {
         return monto;
     }
 
     @Override
-    public void setMonto(float monto) {
+    public void setMonto(double monto) {
         this.monto = monto;
     }
 
@@ -51,5 +47,4 @@ public class CostoServicioImpl implements CostoServicio {
     public void setServicioEspecial(ServicioEspecial servicioEspecial) {
         this.servicioEspecial = servicioEspecial;
     }
-    
 }

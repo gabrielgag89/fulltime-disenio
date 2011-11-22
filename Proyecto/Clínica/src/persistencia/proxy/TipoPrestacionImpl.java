@@ -16,16 +16,6 @@ public class TipoPrestacionImpl implements TipoPrestacion {
    }
 
    @Override
-   public TipoHabitacion getTipoHabitacion() {
-      return tipoHabitacion;
-   }
-
-   @Override
-   public void setTipoHabitacion(TipoHabitacion TipoHabitacion) {
-      this.tipoHabitacion = TipoHabitacion;
-   }
-
-   @Override
    public String getNombreTipoPrestacion() {
       return nombreTipoPrestacion;
    }
@@ -34,4 +24,14 @@ public class TipoPrestacionImpl implements TipoPrestacion {
    public void setNombreTipoPrestacion(String nombreTipoPrestacion) {
       this.nombreTipoPrestacion = nombreTipoPrestacion;
    }
-}//end TipoPrestacion
+
+   @Override
+   public TipoHabitacion getTipoHabitacion() {
+      return tipoHabitacion;
+   }
+
+   @Override
+   public void setTipoHabitacion(TipoHabitacion TipoHabitacion) {
+      this.tipoHabitacion = TipoHabitacion;
+   }
+} // fin de la clase TipoPrestacionImpl

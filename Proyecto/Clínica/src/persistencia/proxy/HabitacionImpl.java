@@ -12,7 +12,7 @@ public class HabitacionImpl  implements Habitacion  {
 
    @Override
    public void setNroHabitacion(int nroHabitacion) {
-      this. nroHabitacion=nroHabitacion;
+      this.nroHabitacion=nroHabitacion;
    }
 
    @Override
