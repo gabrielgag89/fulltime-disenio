@@ -1,20 +1,13 @@
-// Cache: Cache.java
-// Caché en la que se almacenarán las entidades que se han buscado, de manera de que no se
-// hagan llamadas innecesarias a la persistencia.
-
 package persistencia.plantilla;
 
 import java.util.HashMap;
 import persistencia.proxy.ObjetoPersistente;
 
-/**
- * Caché en la que se almacenarán las entidades que se han buscado, de manera de que no se 
- * hagan llamadas innecesarias a la persistencia.
- * @author Gabriel
- */
 public class Cache {
    private static Cache instancia;
    private HashMap objetos = new HashMap();
+   
+   private Cache(){}
    
    public static Cache getInstancia(){
       // si no contenía una referencia anteriormente, la crea

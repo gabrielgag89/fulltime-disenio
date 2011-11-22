@@ -1,12 +1,11 @@
 package util;
 
-// ServiciosTiempo: ServiciosTiempo.java
-// Clase que brinda sarvicios para controlar fechas y horas.
-
 import java.util.Date;
 
 public class ServiciosTiempo {
    private static ServiciosTiempo instancia;
+   
+   private ServiciosTiempo(){}
    
    public static ServiciosTiempo getInstancia(){
       if(instancia == null)

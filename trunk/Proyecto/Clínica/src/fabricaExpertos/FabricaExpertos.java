@@ -9,6 +9,8 @@ import cobrar_factura_paciente.DecoradorExpertoCobrarFacturaPaciente;
  */
 public class FabricaExpertos {
    private static FabricaExpertos instancia;
+   
+   private FabricaExpertos(){}
 
    public static FabricaExpertos getInstancia(){
       if(instancia == null)

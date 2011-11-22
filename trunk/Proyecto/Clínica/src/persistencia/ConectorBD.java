@@ -1,14 +1,7 @@
-// ConectorBD: ConectorBD.java
-// Contiene los datos necesarios para entablar la conexión con la base de datos.
-
 package persistencia;
 
 import java.sql.*;
 
-/**
- * Contiene los datos necesarios para entablar la conexión con la base de datos.
- * @author Gabriel
- */
 public class ConectorBD {
    private static String bd = "clinica";
    private static String login = "fulltime";
@@ -18,6 +11,8 @@ public class ConectorBD {
    private static String driver = "com.mysql.jdbc.Driver";
    private static ConectorBD instancia;
    private static Connection conexionBD = null;
+   
+   private ConectorBD(){}
    
    public static ConectorBD getInstancia(){
       // si no contenía una referencia anteriormente, la crea

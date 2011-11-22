@@ -1,17 +1,12 @@
-// FachadaPersistencia: FachadaPersistencia.java
-// Primer intermediario para no acoplar los expertos con la persistencia en la BDR.
-
 package persistencia;
 
 import java.util.List;
 import persistencia.criterios.Criterio;
 
-/**
- * Primer intermediario para no acoplar los expertos con la persistencia en la BDR.
- * @author Gabriel
- */
 public class FachadaPersistencia {
    private static FachadaPersistencia instancia;
+   
+   private FachadaPersistencia(){}
    
    public static FachadaPersistencia getInstancia(){
       // si no contenía una referencia anteriormente, la crea
