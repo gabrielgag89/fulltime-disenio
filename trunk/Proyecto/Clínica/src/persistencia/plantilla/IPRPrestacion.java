@@ -1,22 +1,22 @@
-// IPRPrestacion: IPRPrestacion.java
-// 
-
 package persistencia.plantilla;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.sql.SQLException;
 import persistencia.proxy.ObjetoPersistente;
 import persistencia.proxy.PrestacionAgente;
 import persistencia.proxy.PrestacionImpl;
 import persistencia.criterios.Criterio;
 
-/**
- *
- * @author Gabriel
- */
 public class IPRPrestacion extends IntermPersistenciaDBR{
+   public IPRPrestacion(){
+      this.mapeo.put("oid", "oidprestacion");
+      this.mapeo.put("codigoPrestacion", "codigo_prestacion");
+      this.mapeo.put("descripcion", "descripcion");
+      this.mapeo.put("tipoPrestacion", "oidtipo_prestacion");
+   } // fin del constructor
+   
    @Override
    public String select() {
       return "SELECT * FROM prestacion";
@@ -35,21 +35,22 @@ public class IPRPrestacion extends IntermPersistenciaDBR{
    @Override
    public String insertar(Object objeto) {
       PrestacionAgente prest = (PrestacionAgente) objeto;
-      return "INSERT INTO prestacion VALUES "
-                  + "('" + prest.getOid() + "', "
-                         + prest.getCodigoPrestacion() + ", '"
-                         + prest.getDescripcion() + "', '"
-                         + prest.getOidTipoPrestacion() + "')";
+      return "INSERT INTO prestacion "
+                  + "VALUES ('" + prest.getOid() + "', "
+                                + prest.getCodigoPrestacion() + ", '"
+                                + prest.getDescripcion() + "', '"
+                                + prest.getOidTipoPrestacion() + "')";
    } // fin del método insertar
 
    @Override
    public String actualizar(Object objeto) {
       PrestacionAgente prest = (PrestacionAgente) objeto;
+      
       return "UPDATE prestacion SET "
-                  + "codigo_prestacion = " + prest.getCodigoPrestacion() + ", "
-                  + "descripcion = '" + prest.getDescripcion() + "', "
-                  + "oidtipo_prestacion = '" + prest.getOidTipoPrestacion() + "' "
-                  + "WHERE oidprestacion =  '" + prest.getOid() + "'";
+               + "codigo_prestacion = " + prest.getCodigoPrestacion() + ", "
+               + "descripcion = '" + prest.getDescripcion() + "', "
+               + "oidtipo_prestacion = '" + prest.getOidTipoPrestacion() + "' "
+               + "WHERE oidprestacion =  '" + prest.getOid() + "'";
    } // fin del método actualizar
 
    @Override
@@ -68,10 +69,11 @@ public class IPRPrestacion extends IntermPersistenciaDBR{
             prest.setOidTipoPrestacion(resultado.getString("oidtipo_prestacion"));
             
             lista.add(prest);
-         }
-      } catch (SQLException ex) {
+         } // fin de while de creación de agentes
+      } // fin de try de error en la obtención del valor de una columna
+      catch (SQLException ex) {
          System.err.println("IPRPrestacion - convertirAObjeto(ResultSet resultado) - " + ex.getMessage());
-      }
+      } // fin de catch de error en la obtención del valor de una columna
       
       return lista;
    } // fin del método convertirAObjeto

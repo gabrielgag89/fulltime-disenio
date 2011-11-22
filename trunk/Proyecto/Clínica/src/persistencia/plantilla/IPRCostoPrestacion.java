@@ -1,57 +1,62 @@
-
 package persistencia.plantilla;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
-import persistencia.criterios.Criterio;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.sql.SQLException;
 import persistencia.proxy.CostoPrestacionAgente;
 import persistencia.proxy.CostoPrestacionImpl;
 import persistencia.proxy.ObjetoPersistente;
+import persistencia.criterios.Criterio;
 import util.ServiciosTiempo;
 
-
 public class IPRCostoPrestacion extends IntermPersistenciaDBR {
+   public IPRCostoPrestacion(){
+      this.mapeo.put("oid", "oidcosto_prestacion");
+      this.mapeo.put("fechaInicio", "fecha_inicio");
+      this.mapeo.put("fechaFin", "fecha_fin");
+      this.mapeo.put("monto", "monto");
+      this.mapeo.put("prestacion", "oidprestacion");
+   } // fin del constructor
 
    @Override
    public String select() {
-   return "SELECT  *  FROM  costo_prestacion";
-   }
+      return "SELECT * FROM costo_prestacion";
+   } // fin del método select
 
    @Override
    public String select(Criterio criterio) {
-   return "SELECT  *  FROM  costo_prestacion  WHERE " + criterio.getStringCriterio();
-   }
+      return "SELECT * FROM costo_prestacion WHERE " + criterio.getStringCriterio();
+   } // fin del método select
 
    @Override
    public String select(String oid) {
-   return "SELECT  *  FROM  costo_prestacion  WHERE oidcosto_prestacion ='" + oid +"')";
-   }
+      return "SELECT * FROM costo_prestacion WHERE oidcosto_prestacion ='" + oid +"')";
+   } // fin del método select
 
    @Override
    public String insertar(Object objeto) {
-      CostoPrestacionAgente costo = (CostoPrestacionAgente)objeto;
+   CostoPrestacionAgente costo = (CostoPrestacionAgente)objeto;
 
-      return "INSERT INTO costo_prestacion VALUES "
-                        + "('" + costo.getOid() + "', '"
-                               + ServiciosTiempo.getInstancia().dateToString(costo.getFechaInicio()) + "', '"                            
-                               + ServiciosTiempo.getInstancia().dateToString(costo.getFechaFin()) + "', "
-                               + costo.getMonto() + ", '"
-                               + costo.getOidPrestacion()+ "')";
-   }
+   return "INSERT INTO costo_prestacion "
+               + "VALUES ('" + costo.getOid() + "', '"
+                             + ServiciosTiempo.getInstancia().dateToString(costo.getFechaInicio()) + "', '"                            
+                             + ServiciosTiempo.getInstancia().dateToString(costo.getFechaFin()) + "', "
+                             + costo.getMonto() + ", '"
+                             + costo.getOidPrestacion()+ "')";
+   } // fin del método insertar
 
    @Override
    public String actualizar(Object objeto) {
       CostoPrestacionAgente costo = (CostoPrestacionAgente)objeto;
-      
+
       return "UPDATE costo_prestacion SET "
-                     + "fecha_inicio = '" + ServiciosTiempo.getInstancia().dateToString(costo.getFechaInicio()) + "', "                            
-                     + "fecha_fin  = '" + ServiciosTiempo.getInstancia().dateToString(costo.getFechaFin()) + "', "
-                     + "monto = " + costo.getMonto() + ", "
-                     + "oidprestacion = '"+ costo.getOidPrestacion()+ "' "
-                     + "WHERE oidcosto_prestacion = '" + costo.getOid() + "'";
-   }
+               + "fecha_inicio = '" + ServiciosTiempo.getInstancia().dateToString(costo.getFechaInicio()) + "', "                            
+               + "fecha_fin  = '" + ServiciosTiempo.getInstancia().dateToString(costo.getFechaFin()) + "', "
+               + "monto = " + costo.getMonto() + ", "
+               + "oidprestacion = '"+ costo.getOidPrestacion()+ "' "
+               + "WHERE oidcosto_prestacion = '" + costo.getOid() + "'";
+   } // fin del método actualizar
 
    @Override
    public List<ObjetoPersistente> convertirAObjeto(ResultSet resultado) {
@@ -70,14 +75,14 @@ public class IPRCostoPrestacion extends IntermPersistenciaDBR {
             costo.setOidPrestacion(resultado.getString("oidprestacion"));
 
             lista.add(costo);
-         }
-      }
+         } // fin de while de creación de agentes
+      } // fin de try de error en la obtención del valor de una columna
       catch (SQLException ex) {
          System.err.println("IPRCostoPrestacion - convertirAObjeto(ResultSet resultado) - " + ex.getMessage());
-      }
+      } // fin de catch de error en la obtención del valor de una columna
 
       return lista;
-   }
+   } // fin del método convertirAObjeto
 
    @Override
    public ObjetoPersistente nuevo() {
@@ -85,5 +90,5 @@ public class IPRCostoPrestacion extends IntermPersistenciaDBR {
       costo.setImplementacion(new CostoPrestacionImpl());
 
       return costo;
-   }
-}
+   } // fin del método 
+} // fin de la clase IPRCostoPrestacion
