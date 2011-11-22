@@ -1,14 +1,9 @@
-// FabricaDeIntermediarios: FabricaDeIntermediarios.java
-// Fábrica encargada de crear el intermediario correspondiente a la solicitud.
-
 package persistencia.plantilla;
 
-/**
- * Fábrica encargada de crear el intermediario correspondiente a la solicitud.
- * @author Gabriel
- */
 public class FabricaDeIntermediarios {
    private static FabricaDeIntermediarios instancia;
+   
+   private FabricaDeIntermediarios(){}
    
    public static FabricaDeIntermediarios getInstancia(){
       // si no contenía una referencia anteriormente, la crea

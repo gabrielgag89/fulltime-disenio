@@ -7,6 +7,8 @@ import dtos.DTOFacturaPaciente;
 public class SuscriptorGenerarFacturaPaciente {
    private static SuscriptorGenerarFacturaPaciente instancia;
    private List<ObservadorGenerarFacturaPaciente> observadores = new  ArrayList<ObservadorGenerarFacturaPaciente>();
+   
+   private SuscriptorGenerarFacturaPaciente(){}
 
    public static SuscriptorGenerarFacturaPaciente getInstancia(){
       if (instancia == null) 

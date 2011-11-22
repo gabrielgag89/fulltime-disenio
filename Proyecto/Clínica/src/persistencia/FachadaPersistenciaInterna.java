@@ -1,6 +1,3 @@
-// FachadaPersistenciaInterna: FachadaPersistenciaInterna.java
-// 
-
 package persistencia;
 
 import java.util.List;
@@ -11,12 +8,10 @@ import persistencia.plantilla.FabricaDeIntermediarios;
 import persistencia.criterios.FabricaDeCriterios;
 import persistencia.criterios.Criterio;
 
-/**
- * Segundo intermediario para no acoplar los expertos con la persistencia en la BDR.
- * @author Gabriel
- */
 public class FachadaPersistenciaInterna {
    private static FachadaPersistenciaInterna instancia;
+   
+   private FachadaPersistenciaInterna(){}
    
    public static FachadaPersistenciaInterna getInstancia(){
       // si no contenía una referencia anteriormente, la crea
