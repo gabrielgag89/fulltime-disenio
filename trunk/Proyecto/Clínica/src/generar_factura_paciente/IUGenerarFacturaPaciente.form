@@ -29,10 +29,10 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="botonVolver" min="-2" pref="150" max="-2" attributes="0"/>
-                              <EmptySpace pref="200" max="32767" attributes="0"/>
+                              <EmptySpace pref="240" max="32767" attributes="0"/>
                               <Component id="botonGenerarFactura" min="-2" pref="150" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="scrollPaneServiciosEspeciales" alignment="0" pref="500" max="32767" attributes="1"/>
+                          <Component id="scrollPaneServiciosEspeciales" alignment="0" pref="540" max="32767" attributes="1"/>
                           <Component id="panelDatosFicha" alignment="0" max="32767" attributes="1"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>

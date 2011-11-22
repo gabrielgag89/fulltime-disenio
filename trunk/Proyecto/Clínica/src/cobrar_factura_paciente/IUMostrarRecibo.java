@@ -156,7 +156,8 @@ public class IUMostrarRecibo extends javax.swing.JFrame {
       campoTextoReciboNum.setText(dtoRecibo.getNroRecibo() + "");
       campoTextoFecha.setText(ServiciosTiempo.getInstancia().dateToStringDDMMAAAA(dtoRecibo.getFecha()));
       campoTextoFacturaNum.setText(dtoRecibo.getNumFactura() + "");
-      campoTextoMonto.setText(dtoRecibo.getMonto() + "");
+      String monto = String.format("%.2f", dtoRecibo.getMonto());
+      campoTextoMonto.setText(monto);
    } // fin del método cargarCampos
    
     // Variables declaration - do not modify//GEN-BEGIN:variables

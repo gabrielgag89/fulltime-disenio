@@ -1,15 +1,7 @@
-// FacturaClienteImpl: FacturaClienteImpl.java
-// 
-
 package persistencia.proxy;
 
 import java.util.Date;
 
-/**
- * @author Cristian
- * @version 1.0
- * @created 22-oct-2011 07:16:23 p.m.
- */
 public class FacturaClienteImpl implements FacturaCliente{
    private int numFactura;
    private Date fechaEmision;

@@ -1,7 +1,3 @@
-// IntermPersistenciaDBR: IntermPersistenciaDBR.java
-// Segundo nivel de los intermediarios de la persistencia, para bases de datos
-// relacionales.
-
 package persistencia.plantilla;
 
 import java.util.List;
@@ -13,13 +9,8 @@ import persistencia.proxy.ObjetoPersistente;
 import persistencia.criterios.Criterio;
 import persistencia.ConectorBD;
 
-/**
- * Segundo nivel de los intermediarios de la persistencia, para bases de datos 
- * relacionales.
- * @author Gabriel
- */
 public abstract class IntermPersistenciaDBR extends IntermediarioPersistencia{
-   protected HashMap<String, String> mapeo;
+   protected HashMap<String, String> mapeo = new HashMap<String, String>();
    
    @Override
    public List<ObjetoPersistente> materializar(){
@@ -39,8 +30,8 @@ public abstract class IntermPersistenciaDBR extends IntermediarioPersistencia{
    } // fin del método materializar
    
    @Override
-   public List<ObjetoPersistente> materializar(Criterio criterio){
-      String sql = select(criterio);
+   public List<ObjetoPersistente> materializar(List<Criterio> criterios){
+      String sql = select(criterios);
       ResultSet resultado = ejecutarSQL(sql);
 
       return convertirAObjeto(resultado);
@@ -74,7 +65,7 @@ public abstract class IntermPersistenciaDBR extends IntermediarioPersistencia{
       System.out.println(sql);
       
       try{
-         PreparedStatement consulta = ConectorBD.getConexion().prepareStatement(sql);
+         PreparedStatement consulta = ConectorBD.getInstancia().getConexion().prepareStatement(sql);
 
          consulta.execute();
       }
@@ -87,7 +78,7 @@ public abstract class IntermPersistenciaDBR extends IntermediarioPersistencia{
       System.out.println(sql);
       
       try{
-         PreparedStatement consulta = ConectorBD.getConexion().prepareStatement(sql);
+         PreparedStatement consulta = ConectorBD.getInstancia().getConexion().prepareStatement(sql);
 
          return consulta.executeQuery(sql);
       }
@@ -99,7 +90,7 @@ public abstract class IntermPersistenciaDBR extends IntermediarioPersistencia{
    
    public abstract String select(); // método a implementar
    
-   public abstract String select(Criterio criterio); // método a implementar
+   public abstract String select(List<Criterio> criterios); // método a implementar
    
    public abstract String select(String oid); // método a implementar
    

@@ -22,8 +22,20 @@ public class IPRCoseguro extends IntermPersistenciaDBR{
    } // fin del método select
 
    @Override
-   public String select(Criterio criterio) {
-      return "SELECT * FROM coseguro WHERE " + criterio.getStringCriterio();
+   public String select(List<Criterio> criterios) {
+      String sql = "SELECT * FROM coseguro WHERE ";
+      int cont = 0;
+      
+      for(Criterio criterio : criterios){
+         sql += " (" + this.getNombreColumna(criterio.getAtributo()) + " "
+                 + criterio.getOperador() + " '"
+                 + criterio.getValor().toString() + "') "
+                 + criterio.getOpLogico();
+         
+         cont++;
+      }
+      
+      return sql;
    } // fin del método select
 
    @Override

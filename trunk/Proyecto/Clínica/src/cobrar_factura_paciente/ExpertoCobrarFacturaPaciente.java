@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package cobrar_factura_paciente;
 
 import java.util.Date;
@@ -18,73 +14,93 @@ import persistencia.proxy.Recibo;
 import util.ServiciosTiempo;
 import dtos.*;
 
-/**
- *
- * @author gabriel
- */
 public class ExpertoCobrarFacturaPaciente {
    public List<DTOFacturaPaciente> buscarFacturasPendientes() {
-      List<FacturaCliente> listaFacturas = FachadaPersistencia.getInstancia().buscar("FacturaCliente");
+      List<Criterio> criterios = new ArrayList<Criterio>();
+      Criterio criterio = FachadaPersistencia.getInstancia().getCriterio("nombreEstado", "=", "Emitida", "");
+      criterios.add(criterio);
+      
+      EstadoFacturaCliente estadoFactura = (EstadoFacturaCliente) FachadaPersistencia.getInstancia().buscar("EstadoFacturaCliente", criterios).get(0);
+      
+      criterios = new ArrayList<Criterio>();
+      criterio = FachadaPersistencia.getInstancia().getCriterio("estadoFacturaCliente", "=", estadoFactura, "");
+      criterios.add(criterio);
+      
+      List<FacturaCliente> listaFacturas = FachadaPersistencia.getInstancia().buscar("FacturaCliente", criterios);
+      
       List<DTOFacturaPaciente> listaDtoFacturas = new ArrayList<DTOFacturaPaciente>();
       DTOFacturaPaciente dtoFactura;
-      List<CostoPrestacion> listaCostosPrestaciones;
+      
       List<DetalleFicha> listaDetalle;
       List<DTODetalleServicio> listaDtoDetalle;
       DTODetalleServicio dtoDetalle;
-      List<CostoServicio> listaCostosServicios;
+      
+      CostoPrestacion costoPres;
+      CostoServicio costoServ;
       
       for(FacturaCliente f : listaFacturas){
-         if(f.getEstadoFacturaCliente().getNombreEstado().equals("Emitida")){
-            dtoFactura = new DTOFacturaPaciente();
-            dtoFactura.setNumFactura(f.getNumFactura());
-            dtoFactura.setFecha(f.getFechaEmision());
-            dtoFactura.setNroFicha(f.getFichaInternacion().getNroFicha());
-            dtoFactura.setNombrePaciente(f.getFichaInternacion().getPaciente().getNombre());
-            dtoFactura.setNombrePrestacion(f.getFichaInternacion().getPrestacion().getDescripcion());
-            
-            Criterio c1 = FachadaPersistencia.getInstancia().getCriterio("fecha_inicio", "<=", ServiciosTiempo.getInstancia().dateToString(dtoFactura.getFecha()));
-            Criterio c2 = FachadaPersistencia.getInstancia().getCriterio("fecha_fin", ">=", ServiciosTiempo.getInstancia().dateToString(dtoFactura.getFecha()));
-            Criterio cc = FachadaPersistencia.getInstancia().and(c1, c2);
-            
-            listaCostosPrestaciones = FachadaPersistencia.getInstancia().buscar("CostoPrestacion", cc);
-            
-            for(CostoPrestacion c : listaCostosPrestaciones){
-               if(c.getPrestacion().getCodigoPrestacion() == f.getFichaInternacion().getPrestacion().getCodigoPrestacion()){
-                  dtoFactura.setCostoPrestacion(c.getMonto());
-                  break;
-               }
-            }
-            
-            listaDetalle = f.getFichaInternacion().getDetalleFicha();
-            listaCostosServicios = FachadaPersistencia.getInstancia().buscar("CostoServicio", cc);
-            listaDtoDetalle = new ArrayList<DTODetalleServicio>();
-            
-            for(DetalleFicha df : listaDetalle){
-               for(CostoServicio c : listaCostosServicios){
-                  if(c.getServicioEspecial().getCodigoServicio() == df.getServicioEspecial().getCodigoServicio()){
-                     dtoDetalle = new DTODetalleServicio();
-                     dtoDetalle.setNombreServicio(c.getServicioEspecial().getNombreServicio());
-                     dtoDetalle.setMonto(c.getMonto());
-                     dtoDetalle.setCantidad(df.getCantidad());
-                     dtoDetalle.setSubtotal(dtoDetalle.getMonto() * dtoDetalle.getCantidad());
+         dtoFactura = new DTOFacturaPaciente();
+         dtoFactura.setNumFactura(f.getNumFactura());
+         dtoFactura.setFecha(f.getFechaEmision());
+         dtoFactura.setNroFicha(f.getFichaInternacion().getNroFicha());
+         dtoFactura.setNombrePaciente(f.getFichaInternacion().getPaciente().getNombre());
+         dtoFactura.setNombrePrestacion(f.getFichaInternacion().getPrestacion().getDescripcion());
 
-                     listaDtoDetalle.add(dtoDetalle);
-                  }
-               }
-            }
-            dtoFactura.setMonto(f.getMonto());
-            dtoFactura.setDtoDetalle(listaDtoDetalle);
-            
-            listaDtoFacturas.add(dtoFactura);
-         }
-      }
+         criterios = new ArrayList<Criterio>();
+         criterio = FachadaPersistencia.getInstancia().getCriterio("fechaInicio", "<=", ServiciosTiempo.getInstancia().dateToString(dtoFactura.getFecha()), "AND");
+         criterios.add(criterio);
+
+         criterio = FachadaPersistencia.getInstancia().getCriterio("fechaFin", ">=", ServiciosTiempo.getInstancia().dateToString(dtoFactura.getFecha()), "AND");
+         criterios.add(criterio);
+
+         criterio = FachadaPersistencia.getInstancia().getCriterio("prestacion", "=", f.getFichaInternacion().getPrestacion(), "");
+         criterios.add(criterio);
+
+         costoPres = (CostoPrestacion) FachadaPersistencia.getInstancia().buscar("CostoPrestacion", criterios).get(0);
+
+         dtoFactura.setCostoPrestacion(costoPres.getMonto());
+
+         listaDetalle = f.getFichaInternacion().getDetalleFicha();
+
+         listaDtoDetalle = new ArrayList<DTODetalleServicio>();
+
+         for(DetalleFicha df : listaDetalle){
+            criterios = new ArrayList<Criterio>();
+            criterio = FachadaPersistencia.getInstancia().getCriterio("fechaInicio", "<=", ServiciosTiempo.getInstancia().dateToString(dtoFactura.getFecha()), "AND");
+            criterios.add(criterio);
+
+            criterio = FachadaPersistencia.getInstancia().getCriterio("fechaFin", ">=", ServiciosTiempo.getInstancia().dateToString(dtoFactura.getFecha()), "AND");
+            criterios.add(criterio);
+
+            criterio = FachadaPersistencia.getInstancia().getCriterio("servicioEspecial", "=", df.getServicioEspecial(), "");
+            criterios.add(criterio);
+
+            costoServ = (CostoServicio) FachadaPersistencia.getInstancia().buscar("CostoServicio", criterios).get(0);
+
+            dtoDetalle = new DTODetalleServicio();
+            dtoDetalle.setNombreServicio(costoServ.getServicioEspecial().getNombreServicio());
+            dtoDetalle.setMonto(costoServ.getMonto());
+            dtoDetalle.setCantidad(df.getCantidad());
+            dtoDetalle.setSubtotal(dtoDetalle.getMonto() * dtoDetalle.getCantidad());
+
+            listaDtoDetalle.add(dtoDetalle);
+         } // fin de for de creación de DTOs de detalle de la ficha
+
+         dtoFactura.setMonto(f.getMonto());
+         dtoFactura.setDtoDetalle(listaDtoDetalle);
+
+         listaDtoFacturas.add(dtoFactura);
+      } // fin de for de creación de DTOs de facturas
       
       return listaDtoFacturas;
    } // fin del método buscarFacturasPendientes
    
    public DTORecibo cobrarFactura(int numFactura){
-      Criterio c1 = FachadaPersistencia.getInstancia().getCriterio("numero_factura_cliente", "=", numFactura + "");
-      FacturaCliente factura = (FacturaCliente) FachadaPersistencia.getInstancia().buscar("FacturaCliente", c1).get(0);
+      List<Criterio> criterios = new ArrayList<Criterio>();
+      Criterio criterio = FachadaPersistencia.getInstancia().getCriterio("numFactura", "=", numFactura, "");
+      criterios.add(criterio);
+      
+      FacturaCliente factura = (FacturaCliente) FachadaPersistencia.getInstancia().buscar("FacturaCliente", criterios).get(0);
       
       Recibo recibo = (Recibo) FachadaPersistencia.getInstancia().nuevaEntidad("Recibo");
       
@@ -98,8 +114,11 @@ public class ExpertoCobrarFacturaPaciente {
       dtoRecibo.setFecha(recibo.getFecha());
       dtoRecibo.setMonto(factura.getMonto());
       
-      Criterio c2 = FachadaPersistencia.getInstancia().getCriterio("nombre_estado_factura_cliente", "=", "Pagada");
-      EstadoFacturaCliente estadoFactura = (EstadoFacturaCliente) FachadaPersistencia.getInstancia().buscar("EstadoFacturaCliente", c2).get(0);
+      criterios = new ArrayList<Criterio>();
+      criterio = FachadaPersistencia.getInstancia().getCriterio("nombreEstado", "=", "Pagada", "");
+      criterios.add(criterio);
+      
+      EstadoFacturaCliente estadoFactura = (EstadoFacturaCliente) FachadaPersistencia.getInstancia().buscar("EstadoFacturaCliente", criterios).get(0);
       
       factura.setEstadoFacturaCliente(estadoFactura);
       

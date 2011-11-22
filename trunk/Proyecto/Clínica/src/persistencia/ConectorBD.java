@@ -1,6 +1,8 @@
 package persistencia;
 
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ConectorBD {
    private static String bd = "clinica";
@@ -10,7 +12,7 @@ public class ConectorBD {
    private static String url_bd = "jdbc:mysql://";
    private static String driver = "com.mysql.jdbc.Driver";
    private static ConectorBD instancia;
-   private static Connection conexionBD = null;
+   private static Connection conexion = null;
    
    private ConectorBD(){}
    
@@ -22,11 +24,12 @@ public class ConectorBD {
       return instancia;
    } // fin del método getInstancia
    
-   public synchronized void establecerConexion() throws Exception {
-      if (conexionBD == null) {
+   public void establecerConexion() throws Exception {
+      if (conexion == null) {
          try {
             Class.forName(driver);
-            conexionBD = DriverManager.getConnection(url_bd+host+"/"+bd,login,password);
+            conexion = DriverManager.getConnection(url_bd+host+"/"+bd,login,password);
+            conexion.setAutoCommit(false);
             System.out.println("Se logro la conexion con la base de datos "+url_bd+host+"/"+bd+".");
          }
          catch (SQLException e) {
@@ -35,12 +38,18 @@ public class ConectorBD {
       } // fin de if
    } // fin del método establecerConexion
    
-   public static Connection getConexion() {
-      return conexionBD;
+   public Connection getConexion() {
+      return conexion;
    } // fin del método getConexion
    
-   public synchronized static void cerrarConexionBD(){
-      conexionBD = null;
-      instancia = null;
+   public void cerrarConexion(){
+      try {
+         conexion.commit();
+         conexion = null;
+         instancia = null;
+      } // fin del método cerrarConexionBD
+      catch (SQLException ex) {
+         Logger.getLogger(ConectorBD.class.getName()).log(Level.SEVERE, null, ex);
+      }
    } // fin del método cerrarConexionBD
 } // fin de la clase ConectorBD

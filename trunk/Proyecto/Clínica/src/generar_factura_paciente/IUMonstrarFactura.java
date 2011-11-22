@@ -219,14 +219,17 @@ public class IUMonstrarFactura extends javax.swing.JFrame {
    
    public void cargarCampos(DTOFacturaPaciente dtoFactura){
       int fila = 0, col;
+      String monto, subtotal;
 
       this.campoTextoNumFactura.setText(dtoFactura.getNumFactura() + "");
       this.campoTextoFecha.setText(ServiciosTiempo.getInstancia().dateToStringDDMMAAAA(dtoFactura.getFecha()));
       this.campoTextoNumFicha.setText(dtoFactura.getNroFicha() + "");
       this.campoTextoNombrePaciente.setText(dtoFactura.getNombrePaciente());
       this.campoTextoNombrePrestacion.setText(dtoFactura.getNombrePrestacion());
-      this.campoTextoCostoPrestacion.setText(dtoFactura.getCostoPrestacion() + "");
-      this.campoTextoCoseguro.setText(dtoFactura.getDescuento() + "");
+      String costoPrest = String.format("%.2f", dtoFactura.getCostoPrestacion());
+      this.campoTextoCostoPrestacion.setText(costoPrest);
+      String descuento = String.format("%.2f", dtoFactura.getDescuento());
+      this.campoTextoCoseguro.setText(descuento);
 
       List<DTODetalleServicio> listaDetalle = dtoFactura.getDtoDetalle();
       
@@ -236,8 +239,10 @@ public class IUMonstrarFactura extends javax.swing.JFrame {
          col = 0;
          this.tablaFacturas.setValueAt(dtoDetalle.getNombreServicio(), fila, col++);
          this.tablaFacturas.setValueAt(dtoDetalle.getCantidad(), fila, col++);
-         this.tablaFacturas.setValueAt(dtoDetalle.getMonto(), fila, col++);
-         this.tablaFacturas.setValueAt(dtoDetalle.getSubtotal(), fila++, col++);
+         monto = String.format("%.2f", dtoDetalle.getMonto());
+         this.tablaFacturas.setValueAt(monto, fila, col++);
+         subtotal = String.format("%.2f", dtoDetalle.getSubtotal());
+         this.tablaFacturas.setValueAt(subtotal, fila++, col++);
       } // fin de for de llenado de la tabla de detalles de servicios especiales
       
       this.campoTextoTotal.setText(dtoFactura.getMonto() + "");
