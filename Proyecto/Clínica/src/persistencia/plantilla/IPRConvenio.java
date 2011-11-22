@@ -1,6 +1,3 @@
-// IPRConvenio: IPRConvenio.java
-// 
-
 package persistencia.plantilla;
 
 import java.util.List;
@@ -13,11 +10,16 @@ import persistencia.proxy.ConvenioAgente;
 import persistencia.proxy.ConvenioImpl;
 import util.ServiciosTiempo;
 
-/**
- *
- * @author Gabriel
- */
 public class IPRConvenio extends IntermPersistenciaDBR{
+   public IPRConvenio(){
+      this.mapeo.put("oid", "oidconvenio");
+      this.mapeo.put("fechaInicio", "fecha_inicio");
+      this.mapeo.put("fechaFin", "fecha_fin");
+      this.mapeo.put("plan", "oidplan");
+      this.mapeo.put("prestacion", "oidprestacion");
+      this.mapeo.put("coseguro", "oidcoseguro");
+   } // fin del constructor
+
    @Override
    public String select() {
       return "SELECT * FROM convenio";
@@ -37,13 +39,13 @@ public class IPRConvenio extends IntermPersistenciaDBR{
    public String insertar(Object objeto) {
       ConvenioAgente conv = (ConvenioAgente) objeto;
       
-      return "INSERT INTO convenio VALUES "
-                  + "('" + conv.getOid() + "', "
-                         + ServiciosTiempo.getInstancia().dateToString(conv.getFechaInicio()) + ", "
-                         + ServiciosTiempo.getInstancia().dateToString(conv.getFechaFin()) + ", '"
-                         + conv.getOidPlan() + "', '"
-                         + conv.getOidPrestacion() + "', '"
-                         + conv.getOidCoseguro() + "')";
+      return "INSERT INTO convenio "
+                  + "VALUES ('" + conv.getOid() + "', "
+                                + ServiciosTiempo.getInstancia().dateToString(conv.getFechaInicio()) + ", "
+                                + ServiciosTiempo.getInstancia().dateToString(conv.getFechaFin()) + ", '"
+                                + conv.getOidPlan() + "', '"
+                                + conv.getOidPrestacion() + "', '"
+                                + conv.getOidCoseguro() + "')";
    } // fin del método insertar
 
    @Override
@@ -77,10 +79,11 @@ public class IPRConvenio extends IntermPersistenciaDBR{
             conv.setOidCoseguro(resultado.getString("oidcoseguro"));
             
             lista.add(conv);
-         }
-      } catch (SQLException ex) {
+         } // fin de while de creación de agentes
+      } // fin de try de error en la obtención del valor de una columna
+      catch (SQLException ex) {
          System.err.println("IPRconvenio - convertirAObjeto(ResultSet resultado) - " + ex.getMessage());
-      }
+      } // fin de catch de error en la obtención del valor de una columna
       
       return lista;
    } // fin del método convertirAObjeto

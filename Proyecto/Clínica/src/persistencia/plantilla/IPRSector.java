@@ -1,87 +1,89 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package persistencia.plantilla;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
+
 import java.util.List;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.sql.SQLException;
+import persistencia.proxy.ObjetoPersistente;
 import persistencia.criterios.Criterio;
 import persistencia.proxy.SectorAgente;
-import persistencia.proxy.SectorImplementacion;
-import persistencia.proxy.ObjetoPersistente;
+import persistencia.proxy.SectorImpl;
 
-/**
- *
- * @author Cristian Mesa
- */
 public class IPRSector extends IntermPersistenciaDBR {
+   public IPRSector(){
+      this.mapeo.put("oid", "oidsector");
+      this.mapeo.put("codigoSector", "codigo_sector");
+      this.mapeo.put("descripcionSector", "descripcion_sector");
+      this.mapeo.put("nroPiso", "numero_piso");
+   } // fin del constructor
+   
    @Override
    public String select() {
       return "SELECT * FROM sector";
-   } 
-    
+   } // fin del método select
+
    @Override
    public String select(Criterio criterio) {
       return "SELECT * FROM sector WHERE " + criterio.getStringCriterio();
-   } 
+   } // fin del método select
 
    @Override
    public String select(String oid) {
       return "SELECT * FROM sector WHERE oidsector = '" + oid + "'";
-   } 
+   } // fin del método select
 
    @Override
    public String insertar(Object objeto) {
       SectorAgente sect = (SectorAgente) objeto;
-      return "INSERT INTO sector VALUES "
-                  + "('" + sect.getOid() + "', "
-                         + sect.getCodigoSector() + ", '"
-                         + sect.getDescripcionSector() + "', "
-                         + sect.getNumeroPisoSector() + ")";
-   } 
+
+      return "INSERT INTO sector "
+               + "VALUES ('" + sect.getOid() + "', "
+                             + sect.getCodigoSector() + ", '"
+                             + sect.getDescripcionSector() + "', "
+                             + sect.getNumeroPisoSector() + ")";
+   } // fin del método insertar
 
    @Override
    public String actualizar(Object objeto) {
       SectorAgente sect = (SectorAgente) objeto;
+
       return "UPDATE sector SET "
-                  + "codigo_sector = " + sect.getCodigoSector() + ", "
-                  + "descripcion_sector = '" + sect.getDescripcionSector() + "', "
-                  + "numero_piso = " + sect.getNumeroPisoSector() + " "
-                  + "WHERE oidsector =  '" + sect.getOid() + "'";
-   } 
+               + "codigo_sector = " + sect.getCodigoSector() + ", "
+               + "descripcion_sector = '" + sect.getDescripcionSector() + "', "
+               + "numero_piso = " + sect.getNumeroPisoSector() + " "
+               + "WHERE oidsector =  '" + sect.getOid() + "'";
+   } // fin del método actualizar
 
    @Override
    public List<ObjetoPersistente> convertirAObjeto(ResultSet resultado) {
       List<ObjetoPersistente> lista = new ArrayList<ObjetoPersistente>();
-      SectorAgente sect;
-      
+      SectorAgente sector;
+
       try {
          while(resultado.next()){
-            sect = new SectorAgente();
-            
-            sect.setImplementacion(new SectorImplementacion());
-            sect.setOid(resultado.getString("oidsector"));
-            sect.setCodigoSector(resultado.getInt("codigo_sector"));
-            sect.setDescripcionSector(resultado.getString("descripcion_sector"));
-            sect.setNumeroPisoSector(resultado.getInt("numero_piso"));
-            
-            
-            lista.add(sect);
-         }
-      } catch (SQLException ex) {
+            sector = new SectorAgente();
+
+            sector.setImplementacion(new SectorImpl());
+            sector.setOid(resultado.getString("oidsector"));
+            sector.setCodigoSector(resultado.getInt("codigo_sector"));
+            sector.setDescripcionSector(resultado.getString("descripcion_sector"));
+            sector.setNumeroPisoSector(resultado.getInt("numero_piso"));
+
+            lista.add(sector);
+         } // fin de while de creación de agentes
+      } // fin de try de error en la obtención del valor de una columna
+      catch (SQLException ex) {
          System.err.println("IPRSector - convertirAObjeto(ResultSet resultado) - " + ex.getMessage());
-      }
-      
+      } // fin de catch de error en la obtención del valor de una columna
+
       return lista;
-   } 
+   } // fin del método convertirAObjeto
 
    @Override
    public ObjetoPersistente nuevo() {
-      SectorAgente sect = new SectorAgente();
-      sect.setImplementacion(new SectorImplementacion());
-      
-      return sect;
-   } 
-} 
+      SectorAgente sector = new SectorAgente();
+      sector.setImplementacion(new SectorImpl());
+
+      return sector;
+   } // fin del método nuevo
+} // fin de la clase IPRSector

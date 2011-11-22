@@ -2,22 +2,29 @@ package persistencia.plantilla;
 
 import java.util.List;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
+import java.sql.SQLException;
 import persistencia.proxy.ObjetoPersistente;
 import persistencia.proxy.HabitacionAgente;
 import persistencia.proxy.HabitacionImpl;
 import persistencia.criterios.Criterio;
 
 public class IPRHabitacion  extends IntermPersistenciaDBR {
+   public IPRHabitacion(){
+      this.mapeo.put("oid", "oidhabitacion");
+      this.mapeo.put("nroHabitacion", "numero_habitacion");
+      this.mapeo.put("sector", "oidsector");
+      this.mapeo.put("tipoHabitacion", "oidtipo_habitacion");
+   } // fin del constructor
+   
    @Override
    public String select() {
-      return "SELECT  *  FROM  habitacion";
+      return "SELECT * FROM habitacion";
    } // fin del método select
 
    @Override
    public String select(Criterio criterio) {
-      return "SELECT  *  FROM  habitacion  WHERE " + criterio.getStringCriterio();
+      return "SELECT * FROM habitacion WHERE " + criterio.getStringCriterio();
    } // fin del método select
 
    @Override
@@ -27,47 +34,56 @@ public class IPRHabitacion  extends IntermPersistenciaDBR {
 
    @Override
    public String insertar(Object objeto) {
-      HabitacionAgente habitacion = (HabitacionAgente)objeto;
-      return "INSERT INTO habitacion (oidhabitacion,numero_habitacion,oidsector,oidtipo_habitacion) "
-                     + "VALUES ('" + habitacion.getOid() + "', "
-                                   + habitacion.getNroHabitacion() + ", '"
-                                   + habitacion.getOidSector() + "', '"
-                                   + habitacion.getOidTipoHabitacion() + "')";
+   HabitacionAgente habitacion = (HabitacionAgente)objeto;
+   
+   return "INSERT INTO habitacion "
+               + "VALUES ('" + habitacion.getOid() + "', "
+                             + habitacion.getNroHabitacion() + ", '"
+                             + habitacion.getOidSector() + "', '"
+                             + habitacion.getOidTipoHabitacion() + "')";
    } // fin del método insertar
 
    @Override
    public String actualizar(Object objeto) {
       HabitacionAgente habitacion = (HabitacionAgente)objeto;
+      
       return "UPDATE habitacion SET "
-                     + "numero_habitacion = " + habitacion.getNroHabitacion() + ", "
-                     + "oidsector = '" + habitacion.getOidSector() + "', "
-                     + "oidtipo_habitacion = '" + habitacion.getOidTipoHabitacion() + "' "
-                     + "WHERE oidhabitacion = '" + habitacion.getOid() + "'";
+               + "numero_habitacion = " + habitacion.getNroHabitacion() + ", "
+               + "oidsector = '" + habitacion.getOidSector() + "', "
+               + "oidtipo_habitacion = '" + habitacion.getOidTipoHabitacion() + "' "
+               + "WHERE oidhabitacion = '" + habitacion.getOid() + "'";
    } // fin del método actualizar
 
    @Override
    public List<ObjetoPersistente> convertirAObjeto(ResultSet rs) {
-      List<ObjetoPersistente> ListaHabitaciones =  new ArrayList<ObjetoPersistente>();
+      List<ObjetoPersistente> lista =  new ArrayList<ObjetoPersistente>();
+      HabitacionAgente habitacion;
+      
       try {
          while (rs.next()){
-            HabitacionAgente HA = new HabitacionAgente();
-            HA.setImplementacion(new HabitacionImpl());
-            HA.setOid(rs.getString("oidhabitacion"));
-            HA.setNroHabitacion(rs.getInt("numero_habitacion"));
-            HA.setOidSector(rs.getString("oidsector"));
-            HA.setOidTipoHabitacion(rs.getString("oidtipo_habitacion"));
-            ListaHabitaciones.add(HA);
-         }
-      } catch (SQLException ex) {
+            habitacion = new HabitacionAgente();
+
+            habitacion.setImplementacion(new HabitacionImpl());
+            habitacion.setOid(rs.getString("oidhabitacion"));
+            habitacion.setNroHabitacion(rs.getInt("numero_habitacion"));
+            habitacion.setOidSector(rs.getString("oidsector"));
+            habitacion.setOidTipoHabitacion(rs.getString("oidtipo_habitacion"));
+
+            lista.add(habitacion);
+         } // fin de while de creación de agentes
+      } // fin de try de error en la obtención del valor de una columna
+      catch (SQLException ex) {
          System.out.println("IPRHabitacionn - convertirAObjeto - SQLException: "+ex.getMessage());
-      }
-      return ListaHabitaciones;
+      } // fin de catch de error en la obtención del valor de una columna
+      
+      return lista;
    } // fin del método convertirAObjeto
 
    @Override
    public ObjetoPersistente nuevo() {
-      HabitacionAgente HA = new HabitacionAgente();
-      HA.setImplementacion(new HabitacionImpl());
-      return (ObjetoPersistente) HA;
+      HabitacionAgente habitacion = new HabitacionAgente();
+      habitacion.setImplementacion(new HabitacionImpl());
+      
+      return (ObjetoPersistente) habitacion;
    } // fin del método nuevo
-}
+} // fin de la clase IPRHabitacion

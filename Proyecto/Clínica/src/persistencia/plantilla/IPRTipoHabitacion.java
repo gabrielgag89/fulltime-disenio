@@ -1,92 +1,85 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package persistencia.plantilla;
   
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
-import persistencia.criterios.Criterio;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.sql.SQLException;
 import persistencia.proxy.TipoHabitacionAgente;
-import persistencia.proxy.TipoHabitacionImplementacion;
+import persistencia.proxy.TipoHabitacionImpl;
 import persistencia.proxy.ObjetoPersistente;
+import persistencia.criterios.Criterio;
 
-
-/**
- *
- * @author Cristian Mesa
- */
 public class IPRTipoHabitacion extends IntermPersistenciaDBR{
- @Override
+   public IPRTipoHabitacion(){
+      this.mapeo.put("oid", "oidtipo_habitacion");
+      this.mapeo.put("codigoTipoHab", "codigo_tipo_habitacion");
+      this.mapeo.put("nombreTipo", "nombre_tipo_habitacion");
+   } // fin del constructor
+   
+   @Override
    public String select() {
       return "SELECT * FROM tipo_habitacion";
-   } 
+   } // fin del método select
 
-@Override
+   @Override
    public String select(Criterio criterio) {
       return "SELECT * FROM tipo_habitacion WHERE " + criterio.getStringCriterio();
-   } 
+   } // fin del método select
 
    @Override
    public String select(String oid) {
       return "SELECT * FROM tipo_habitacion WHERE oidtipo_habitacion = '" + oid + "'";
-   } 
+   } // fin del método select
 
    @Override
    public String insertar(Object objeto) {
-      TipoHabitacionAgente tiph = (TipoHabitacionAgente) objeto;
-      return "INSERT INTO tipo_habitacion VALUES "
-                  + "('" + tiph.getOid() + "', "
-                         + tiph.getCodigoTipoHabitacion() + ", '"
-                         + tiph.getNombreTipo() + "')";
-                         
-   } 
+      TipoHabitacionAgente tipoHab = (TipoHabitacionAgente) objeto;
+      
+      return "INSERT INTO tipo_habitacion "
+                  + "VALUES ('" + tipoHab.getOid() + "', "
+                                + tipoHab.getCodigoTipoHabitacion() + ", '"
+                                + tipoHab.getNombreTipo() + "')";
+   } // fin del método insertar
 
    @Override
    public String actualizar(Object objeto) {
-      TipoHabitacionAgente tiph = (TipoHabitacionAgente) objeto;
+      TipoHabitacionAgente tipoHab = (TipoHabitacionAgente) objeto;
+
       return "UPDATE tipohabitacion SET "
-                  + "codigo_tipo_habitacion = " + tiph.getCodigoTipoHabitacion() + ", "
-                  + "nombre_tipo_habitacion = '" + tiph.getNombreTipo() + "' "
-                  + "WHERE oidtipo_habitacion =  '" + tiph.getOid() + "'";
-                  
-   } 
+                  + "codigo_tipo_habitacion = " + tipoHab.getCodigoTipoHabitacion() + ", "
+                  + "nombre_tipo_habitacion = '" + tipoHab.getNombreTipo() + "' "
+                  + "WHERE oidtipo_habitacion =  '" + tipoHab.getOid() + "'";
+   } // fin del método actualizar
 
    @Override
    public List<ObjetoPersistente> convertirAObjeto(ResultSet resultado) {
       List<ObjetoPersistente> lista = new ArrayList<ObjetoPersistente>();
-      TipoHabitacionAgente tiph;
-      
+      TipoHabitacionAgente tipoHab;
+
       try {
          while(resultado.next()){
-            tiph = new TipoHabitacionAgente();
+            tipoHab = new TipoHabitacionAgente();
+
+            tipoHab.setImplementacion(new TipoHabitacionImpl());
+            tipoHab.setOid(resultado.getString("oidtipo_habitacion"));
+            tipoHab.setCodigoTipoHabitacion(resultado.getInt("codigo_tipo_habitacion"));
+            tipoHab.setNombreTipo(resultado.getString("nombre_tipo_habitacion"));
             
-            tiph.setImplementacion(new TipoHabitacionImplementacion());
-            tiph.setOid(resultado.getString("oidtipo_habitacion"));
-            tiph.setCodigoTipoHabitacion(resultado.getInt("codigo_tipo_habitacion"));
-            tiph.setNombreTipo(resultado.getString("nombre_tipo_habitacion"));
-            
-            
-            
-            lista.add(tiph);
-         }
-      } catch (SQLException ex) {
+            lista.add(tipoHab);
+         } // fin de while de creación de agentes
+      } // fin de try de error en la obtención del valor de una columna
+      catch (SQLException ex) {
          System.err.println("IPRTipoHabitacion - convertirAObjeto(ResultSet resultado) - " + ex.getMessage());
-      }
-      
+      } // fin de catch de error en la obtención del valor de una columna
+
       return lista;
-   } 
+   } // fin del método convertirAObjeto
 
    @Override
    public ObjetoPersistente nuevo() {
-      TipoHabitacionAgente tiph = new TipoHabitacionAgente();
-      tiph.setImplementacion(new TipoHabitacionImplementacion());
-      
-      return tiph;
-   } 
-} 
+      TipoHabitacionAgente tipoHab = new TipoHabitacionAgente();
+      tipoHab.setImplementacion(new TipoHabitacionImpl());
 
-    
-
+      return tipoHab;
+   } // fin del método nuevo
+} // fin de la clase IPRTipoHabitacion

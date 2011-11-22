@@ -5,6 +5,7 @@
 package persistencia.plantilla;
 
 import java.util.List;
+import java.util.HashMap;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
@@ -18,6 +19,8 @@ import persistencia.ConectorBD;
  * @author Gabriel
  */
 public abstract class IntermPersistenciaDBR extends IntermediarioPersistencia{
+   protected HashMap<String, String> mapeo;
+   
    @Override
    public List<ObjetoPersistente> materializar(){
       String sql = select();
@@ -62,6 +65,10 @@ public abstract class IntermPersistenciaDBR extends IntermediarioPersistencia{
       
       return objPers;
    } // fin del método obtenerNuevaEntidad
+   
+   protected String getNombreColumna(String nombreAtributo){
+      return this.mapeo.get(nombreAtributo);
+   } // fin del método getNombreColumna
 
    private void ejecutarSQLSave(String sql){
       System.out.println(sql);

@@ -1,6 +1,3 @@
-// IPRFacturaCliente: IPRFacturaCliente.java
-// 
-
 package persistencia.plantilla;
 
 import java.util.List;
@@ -13,11 +10,16 @@ import persistencia.proxy.ObjetoPersistente;
 import persistencia.criterios.Criterio;
 import util.ServiciosTiempo;
 
-/**
- *
- * @author Gabriel
- */
 public class IPRFacturaCliente extends IntermPersistenciaDBR{
+   public IPRFacturaCliente(){
+      this.mapeo.put("oid", "oidfactura_cliente");
+      this.mapeo.put("numFactura", "numero_factura_cliente");
+      this.mapeo.put("fechaEmision", "fecha");
+      this.mapeo.put("monto", "monto");
+      this.mapeo.put("fichaInternacion", "oidestado_factura_cliente");
+      this.mapeo.put("estadoFacturaCliente", "oidficha_internacion");
+   } // fin del constructor
+   
    @Override
    public String select() {
       return "SELECT * FROM factura_cliente";
@@ -37,7 +39,7 @@ public class IPRFacturaCliente extends IntermPersistenciaDBR{
    public String insertar(Object objeto) {
       FacturaClienteAgente fact = (FacturaClienteAgente) objeto;
       
-      return "INSERT INTO factura_cliente (oidfactura_cliente, numero_factura_cliente, fecha, monto, oidestado_factura_cliente, oidficha_internacion) "
+      return "INSERT INTO factura_cliente "
                   + "VALUES ('" + fact.getOid() + "', "
                                 + fact.getNumFactura() + ", '"
                                 + ServiciosTiempo.getInstancia().dateToString(fact.getFechaEmision()) + "', "
@@ -62,34 +64,35 @@ public class IPRFacturaCliente extends IntermPersistenciaDBR{
    @Override
    public List<ObjetoPersistente> convertirAObjeto(ResultSet resultado) {
       List<ObjetoPersistente> lista = new ArrayList<ObjetoPersistente>();
-      FacturaClienteAgente fact;
+      FacturaClienteAgente factura;
       
       try {
          while(resultado.next()){
-            fact = new FacturaClienteAgente();
+            factura = new FacturaClienteAgente();
             
-            fact.setImplementacion(new FacturaClienteImpl());
-            fact.setOid(resultado.getString("oidfactura_cliente"));
-            fact.setNumFactura(resultado.getInt("numero_factura_cliente"));
-            fact.setFechaEmision(resultado.getDate("fecha"));
-            fact.setMonto(resultado.getDouble("monto"));
-            fact.setOidEstadoFacturaCliente(resultado.getString("oidestado_factura_cliente"));
-            fact.setOidFichaInternacion(resultado.getString("oidficha_internacion"));
+            factura.setImplementacion(new FacturaClienteImpl());
+            factura.setOid(resultado.getString("oidfactura_cliente"));
+            factura.setNumFactura(resultado.getInt("numero_factura_cliente"));
+            factura.setFechaEmision(resultado.getDate("fecha"));
+            factura.setMonto(resultado.getDouble("monto"));
+            factura.setOidEstadoFacturaCliente(resultado.getString("oidestado_factura_cliente"));
+            factura.setOidFichaInternacion(resultado.getString("oidficha_internacion"));
             
-            lista.add(fact);
-         }
-      } catch (SQLException ex) {
+            lista.add(factura);
+         } // fin de while de creación de agentes
+      } // fin de try de error en la obtención del valor de una columna
+      catch (SQLException ex) {
          System.err.println("IPRFacturaCliente - convertirAObjeto(ResultSet resultado) - " + ex.getMessage());
-      }
+      } // fin de catch de error en la obtención del valor de una columna
       
       return lista;
    } // fin del método convertirAObjeto
 
    @Override
    public ObjetoPersistente nuevo() {
-      FacturaClienteAgente fact = new FacturaClienteAgente();
-      fact.setImplementacion(new FacturaClienteImpl());
+      FacturaClienteAgente factura = new FacturaClienteAgente();
+      factura.setImplementacion(new FacturaClienteImpl());
       
-      return fact;
+      return factura;
    } // fin del método nuevo
 } // fin de la clase IPRFacturaCliente
