@@ -4,20 +4,32 @@ import persistencia.FachadaPersistenciaInterna;
 
 public class PacienteAgente extends ObjetoPersistente implements Paciente{
    private PacienteImpl impl;
-   private String oidPlan;
    private boolean plan = false;
+   private String oidPlan;
 
    public void setImplementacion(PacienteImpl impl) {
       this.impl = impl;
    }
 
-    public String getOidPlan() {
-        return oidPlan;
-    }
-    
-    public void setOidPlan(String oidPlan) {
-        this.oidPlan = oidPlan;
-    }
+   @Override
+   public int getNumPaciente() {
+      return this.impl.getNumPaciente();
+   }
+
+   @Override
+   public void setNumPaciente(int numPaciente) {
+      this.impl.setNumPaciente(numPaciente);
+   }
+
+   @Override
+   public String getNombre() {
+      return this.impl.getNombre();
+   }
+
+   @Override
+   public void setNombre(String nombreP) {
+      this.impl.setNombre(nombreP);
+   }
 
    @Override
    public int getDni() {
@@ -40,41 +52,6 @@ public class PacienteAgente extends ObjetoPersistente implements Paciente{
    }
 
    @Override
-   public Plan getPlan() {
-      if(!plan){
-           this.impl.setPlan((Plan)FachadaPersistenciaInterna.getInstancia()
-                   .buscar("Plan", oidPlan));        
-           this.plan = true;
-      }
-       return this.impl.getPlan();
-   }
-
-   @Override
-   public void setPlan(Plan plan) {
-      this.impl.setPlan(plan);
-   }
-
-   @Override
-   public String getNombre() {
-      return this.impl.getNombre();
-   }
-
-   @Override
-   public void setNombre(String nombreP) {
-      this.impl.setNombre(nombreP);
-   }
-
-   @Override
-   public int getNumPaciente() {
-      return this.impl.getNumPaciente();
-   }
-
-   @Override
-   public void setNumPaciente(int numPaciente) {
-      this.impl.setNumPaciente(numPaciente);
-   }
-
-   @Override
    public String getTelefono() {
       return this.impl.getTelefono();
    }
@@ -83,6 +60,28 @@ public class PacienteAgente extends ObjetoPersistente implements Paciente{
    public void setTelefono(String telefono) {
       this.impl.setTelefono(telefono);
    }
- 
 
-}//fin paciente agente
+   @Override
+   public Plan getPlan() {
+      if(!plan){
+         this.impl.setPlan((Plan)FachadaPersistenciaInterna.getInstancia().buscar("Plan", oidPlan));        
+         this.plan = true;
+      }
+
+      return this.impl.getPlan();
+   }
+
+   @Override
+   public void setPlan(Plan plan) {
+      this.impl.setPlan(plan);
+      this.oidPlan = ((ObjetoPersistente) plan).getOid();
+   }
+
+   public String getOidPlan() {
+      return oidPlan;
+   }
+
+   public void setOidPlan(String oidPlan) {
+      this.oidPlan = oidPlan;
+   }
+} // fin de la clase 

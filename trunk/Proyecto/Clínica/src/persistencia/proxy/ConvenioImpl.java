@@ -1,15 +1,7 @@
-// ConvenioImpl: ConvenioImpl.java
-// 
-
 package persistencia.proxy;
 
 import java.util.Date;
 
-/**
- * @author Cristian
- * @version 1.0
- * @created 22-oct-2011 07:16:34 p.m.
- */
 public class ConvenioImpl implements Convenio{
    private Date fechaInicio;
    private Date fechaFin;

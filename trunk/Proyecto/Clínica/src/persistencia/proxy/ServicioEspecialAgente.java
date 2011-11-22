@@ -1,11 +1,5 @@
-// ServicioEspecialAgente: ServicioEspecialAgente.java
-// 
 package persistencia.proxy;
 
-/**
- *
- * @author Gabriel
- */
 public class ServicioEspecialAgente extends ObjetoPersistente implements ServicioEspecial{
    private ServicioEspecialImpl impl;
    

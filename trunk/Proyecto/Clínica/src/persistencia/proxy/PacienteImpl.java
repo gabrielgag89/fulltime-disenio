@@ -67,5 +67,4 @@ public class PacienteImpl implements Paciente {
    public void setTelefono(String telefono) {
       this.telefono = telefono;
    }
-   
-}//end Paciente
+} // fin de la clase PacienteImpl

@@ -1,18 +1,11 @@
-// CamaAgente: CamaAgente.java
-// 
-
 package persistencia.proxy;
 
 import persistencia.FachadaPersistenciaInterna;
 
-/**
- *
- * @author Gabriel
- */
 public class CamaAgente extends ObjetoPersistente implements Cama{
    private CamaImpl impl;
-   private boolean habitacion=false;
-   private boolean estadoCama=false;
+   private boolean habitacion = false;
+   private boolean estadoCama = false;
    private String oidHabitacion;
    private String oidEstadoCama;
 
@@ -34,14 +27,32 @@ public class CamaAgente extends ObjetoPersistente implements Cama{
    public Habitacion getHabitacion() {
       if(!this.habitacion){
            this.impl.setHabitacion((Habitacion) FachadaPersistenciaInterna.getInstancia().buscar("Habitacion", this.oidHabitacion));
-           this.habitacion=true;
+           this.habitacion = true;
        }
+      
        return this.impl.getHabitacion();
    }
 
    @Override
    public void setHabitacion(Habitacion habitacion) {
-        this.impl.setHabitacion(habitacion);
+      this.impl.setHabitacion(habitacion);
+      this.oidHabitacion = ((ObjetoPersistente) habitacion).getOid();
+   }
+
+   @Override
+   public EstadoCama getEstadoCama() {
+       if(!this.estadoCama){
+           this.impl.setEstadoCama((EstadoCama) FachadaPersistenciaInterna.getInstancia().buscar("EstadoCama", this.oidEstadoCama));
+           this.estadoCama = true;
+       }
+       
+       return this.impl.getEstadoCama();
+   }
+
+   @Override
+   public void setEstadoCama(EstadoCama estadoCama) {
+      this.impl.setEstadoCama(estadoCama);
+      this.oidEstadoCama = ((ObjetoPersistente) estadoCama).getOid();
    }
    
    public String getOidHabitacion(){
@@ -51,20 +62,6 @@ public class CamaAgente extends ObjetoPersistente implements Cama{
    public void setOidHabitacion(String oidHabitacion){
        this.oidHabitacion = oidHabitacion;
    }
-
-   @Override
-   public EstadoCama getEstadoCama() {
-       if(!this.estadoCama){
-           this.impl.setEstadoCama((EstadoCama) FachadaPersistenciaInterna.getInstancia().buscar("EstadoCama", this.oidEstadoCama));
-           this.estadoCama = true;
-       }
-       return this.impl.getEstadoCama();
-   }
-
-   @Override
-   public void setEstadoCama(EstadoCama estadoCama) {
-      this.impl.setEstadoCama(estadoCama);
-   }
    
    public String getOidEstadoCama(){
        return oidEstadoCama;
@@ -73,5 +70,4 @@ public class CamaAgente extends ObjetoPersistente implements Cama{
    public void setOidEstadoCama(String oidEstadoCama){
        this.oidEstadoCama = oidEstadoCama;
    }
-      
 } // fin de la clase CamaAgente

@@ -1,13 +1,19 @@
 package persistencia.proxy;
 
-/**
- * @author Matías
- */
 public class DetalleFichaImpl implements DetalleFicha {
-    
+    private int cantidad;
     private FichaInternacion fichaInternacion;
     private ServicioEspecial servicioEspecial;
-    private int cantidad;
+
+   @Override
+   public int getCantidad() {
+      return cantidad;
+   }
+
+   @Override
+   public void setCantidad(int cantidad) {
+      this.cantidad = cantidad;
+   }
 
     @Override
     public FichaInternacion getFichaInternacion() {
@@ -28,14 +34,4 @@ public class DetalleFichaImpl implements DetalleFicha {
     public void setServicioEspecial(ServicioEspecial servicioEspecial) {
         this.servicioEspecial = servicioEspecial;
     }
-
-   @Override
-   public int getCantidad() {
-      return cantidad;
-   }
-
-   @Override
-   public void setCantidad(int cantidad) {
-      this.cantidad = cantidad;
-   }
-}
+} // fin de la clase DetalleFichaImpl

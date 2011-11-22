@@ -1,60 +1,57 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package persistencia.proxy;
+
 import persistencia.FachadaPersistenciaInterna;
 
-/**
- *
- * @author Cristian Mesa
- */
 public class PlanAgente extends ObjetoPersistente implements Plan {
-     private PlanImplementacion implementacion;
-     private boolean obrasocial = false;
-     private String oidObraSocial;
+   private PlanImpl impl;
+   private boolean obrasocial = false;
+   private String oidObraSocial;
 
-    public void setImplementacion(PlanImplementacion implementacion) {
-        this.implementacion = implementacion;
-    }
+   public void setImplementacion(PlanImpl impl) {
+      this.impl = impl;
+   }
 
-    @Override
-    public int getCodigoPlan() {
-        return this.implementacion.getCodigoPlan();
-    }
-    
-    @Override
-    public void setCodigoPlan(int codigoPlan) {
-        this.implementacion.setCodigoPlan(codigoPlan);
-    }
+   @Override
+   public int getCodigoPlan() {
+      return this.impl.getCodigoPlan();
+   }
 
-    @Override
-    public String getDescripcion() {
-        return this.implementacion.getDescripcion();
-    }
+   @Override
+   public void setCodigoPlan(int codigoPlan) {
+      this.impl.setCodigoPlan(codigoPlan);
+   }
 
-    @Override
-    public void setDescripcion(String descripcion) {
-        this.implementacion.setDescripcion(descripcion);
-    }
-    
-    @Override
-    public ObraSocial getObraSocial() {
-        if(!obrasocial){
-            this.implementacion.setObraSocial((ObraSocial)FachadaPersistenciaInterna.getInstancia().buscar("ObraSocial",oidObraSocial));
-            this.obrasocial = true;
-        }
-            return this.implementacion.getObraSocial();
-        }       
-     
-    @Override
-    public void setObraSocial(ObraSocial obrasocial) {
-        this.implementacion.setObraSocial(obrasocial);
-    }
-    public String getOidObraSocial() {
+   @Override
+   public String getDescripcion() {
+      return this.impl.getDescripcion();
+   }
+
+   @Override
+   public void setDescripcion(String descripcion) {
+      this.impl.setDescripcion(descripcion);
+   }
+
+   @Override
+   public ObraSocial getObraSocial() {
+      if(!obrasocial){
+         this.impl.setObraSocial((ObraSocial)FachadaPersistenciaInterna.getInstancia().buscar("ObraSocial",oidObraSocial));
+         this.obrasocial = true;
+      }
+      
+      return this.impl.getObraSocial();
+   }       
+
+   @Override
+   public void setObraSocial(ObraSocial obrasocial) {
+      this.impl.setObraSocial(obrasocial);
+      this.oidObraSocial = ((ObjetoPersistente) obrasocial).getOid();
+   }
+   
+   public String getOidObraSocial() {
       return oidObraSocial;
-}
-    public void setOidObraSocial(String oidObraSocial) {
+   }
+   
+   public void setOidObraSocial(String oidObraSocial) {
       this.oidObraSocial = oidObraSocial;
-}
-    }
+   }
+} // fin de la clase PlanAgente

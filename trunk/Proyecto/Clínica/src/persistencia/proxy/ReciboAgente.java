@@ -1,24 +1,15 @@
 package persistencia.proxy;
 
 import java.util.Date;
-import java.util.List;
 import persistencia.FachadaPersistenciaInterna;
 
 public class ReciboAgente extends ObjetoPersistente implements Recibo {
    private ReciboImpl impl;
-   private String oidFacturaCliente;
    private boolean facturacliente = false;
+   private String oidFacturaCliente;
 
    public void setImplementacion(ReciboImpl impl) {
       this.impl = impl;
-   }
-
-   public String getOidFacturaCliente() {
-      return oidFacturaCliente;
-   }
-
-   public void setOidFacturaCliente(String oidFacturaCliente) {
-      this.oidFacturaCliente = oidFacturaCliente;
    }
 
    @Override
@@ -56,4 +47,12 @@ public class ReciboAgente extends ObjetoPersistente implements Recibo {
       this.impl.setFacturaCliente(facturaCliente);
       this.oidFacturaCliente = ((ObjetoPersistente) facturaCliente).getOid();
    }
-}
+
+   public String getOidFacturaCliente() {
+      return oidFacturaCliente;
+   }
+
+   public void setOidFacturaCliente(String oidFacturaCliente) {
+      this.oidFacturaCliente = oidFacturaCliente;
+   }
+} // fin de la clase ReciboAgente
