@@ -142,6 +142,7 @@ public class IUCobrarFacturaPaciente extends javax.swing.JFrame {
       int fila = 0, col;
       this.seleccion = -1;
       this.tablaFacturas.setRowCount(listaFacturas.size());
+      String monto;
       
       for(DTOFacturaPaciente dtoFactura : listaFacturas){
          col = 0;
@@ -150,7 +151,8 @@ public class IUCobrarFacturaPaciente extends javax.swing.JFrame {
          this.tablaFacturas.setValueAt(dtoFactura.getNroFicha(), fila, col++);
          this.tablaFacturas.setValueAt(dtoFactura.getNombrePaciente(), fila, col++);
          this.tablaFacturas.setValueAt(dtoFactura.getNombrePrestacion(), fila, col++);
-         this.tablaFacturas.setValueAt(dtoFactura.getMonto(), fila, col++);
+         monto = String.format("%.2f", dtoFactura.getMonto());
+         this.tablaFacturas.setValueAt(monto, fila, col++);
          fila++;
       } // fin de for de llenado de la tabla de facturas
       
@@ -170,7 +172,8 @@ public class IUCobrarFacturaPaciente extends javax.swing.JFrame {
       fila.add(dtoFactura.getNroFicha());
       fila.add(dtoFactura.getNombrePaciente());
       fila.add(dtoFactura.getNombrePrestacion());
-      fila.add(dtoFactura.getMonto());
+      String monto = String.format("%.2f", dtoFactura.getMonto());
+      fila.add(monto);
       
       tablaFacturas.addRow(fila);
    } // fin del método actualizar

@@ -225,7 +225,7 @@ public class IUGenerarFacturaPaciente extends javax.swing.JFrame {
             cargarCampos(fichaInt);
          } // fin de if de carga de campos
          else
-            JOptionPane.showMessageDialog(null, "La ficha ingresada no existe");
+            JOptionPane.showMessageDialog(null, "La ficha ingresada no existe o ya se ha facturado");
       } // fin de try de error de formato
       catch(NumberFormatException ex){
          JOptionPane.showMessageDialog(null, "Debe ingresar un número en el campo \"Nº Ficha Internacion:\"");

@@ -24,23 +24,15 @@ public class FachadaPersistencia {
        return FachadaPersistenciaInterna.getInstancia().buscar(entidad);
    } // fin del método 
    
-   public List buscar(String entidad, Criterio cc) {
-      return FachadaPersistenciaInterna.getInstancia().buscar(entidad, cc);
+   public List buscar(String entidad, List<Criterio> criterios) {
+      return FachadaPersistenciaInterna.getInstancia().buscar(entidad, criterios);
    } // fin del método buscar
    
    public void guardar(String entidad , Object objeto){
-      FachadaPersistenciaInterna.getInstancia().guardar(entidad,objeto);
+      FachadaPersistenciaInterna.getInstancia().guardar(entidad, objeto);
    } // fin del método guardar
    
-   public Criterio getCriterio(String atributo, String operador, String valor){
-      return  FachadaPersistenciaInterna.getInstancia().getCriterio(atributo,operador,valor);
+   public Criterio getCriterio(String atributo, String operador, Object valor, String opLogico){
+      return  FachadaPersistenciaInterna.getInstancia().getCriterio(atributo, operador, valor, opLogico);
    } // fin del método getCriterio
-   
-   public Criterio and(List c) {
-      return FachadaPersistenciaInterna.getInstancia().and(c);
-   } // fin del método and
-   
-   public Criterio and(Criterio c1,Criterio c2){
-      return  FachadaPersistenciaInterna.getInstancia().and(c1,c2);
-   } // fin del método and
 } // fin de la clase FachadaPersistencia

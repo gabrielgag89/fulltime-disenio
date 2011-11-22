@@ -109,8 +109,10 @@ public class FichaInternacionAgente extends ObjetoPersistente implements FichaIn
    @Override
    public List<DetalleFicha> getDetalleFicha() {
       if(!detalleFicha){
-         Criterio c = FachadaPersistenciaInterna.getInstancia().getCriterio("oidficha_internacion", "=", this.getOid());
-         this.impl.setDetalleFicha(FachadaPersistenciaInterna.getInstancia().buscar("DetalleFicha", c));
+         List<Criterio> lista = new ArrayList<Criterio>();
+         Criterio c = FachadaPersistenciaInterna.getInstancia().getCriterio("fichaInternacion", "=", this.getOid(), "");
+         lista.add(c);
+         this.impl.setDetalleFicha(FachadaPersistenciaInterna.getInstancia().buscar("DetalleFicha", lista));
          this.detalleFicha = true;
       }
       

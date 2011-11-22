@@ -1,24 +1,24 @@
 package generar_factura_paciente;
 
-import dtos.DTODetalleServicio;
-import persistencia.proxy.FichaInternacion;
-import dtos.DTOFichaInternacion;
-import dtos.DTOFacturaPaciente;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.ArrayList;
 import observador.SuscriptorGenerarFacturaPaciente;
-import persistencia.FachadaPersistencia;
+import persistencia.proxy.EstadoFichaInternacion;
 import persistencia.FachadaPersistenciaInterna;
-import persistencia.criterios.Criterio;
-import persistencia.proxy.Convenio;
+import persistencia.proxy.EstadoFacturaCliente;
+import persistencia.proxy.FichaInternacion;
 import persistencia.proxy.CostoPrestacion;
+import persistencia.proxy.FacturaCliente;
 import persistencia.proxy.CostoServicio;
+import persistencia.FachadaPersistencia;
+import persistencia.criterios.Criterio;
 import persistencia.proxy.DetalleFicha;
 import persistencia.proxy.EstadoCama;
-import persistencia.proxy.EstadoFacturaCliente;
-import persistencia.proxy.EstadoFichaInternacion;
-import persistencia.proxy.FacturaCliente;
+import persistencia.proxy.Convenio;
+import dtos.DTOFichaInternacion;
+import dtos.DTODetalleServicio;
+import dtos.DTOFacturaPaciente;
 import util.ServiciosTiempo;
 
 public class ExpertoGenerarFacturaPaciente {
@@ -26,48 +26,56 @@ public class ExpertoGenerarFacturaPaciente {
    private DTOFichaInternacion dtoFicha = null;
 
    public DTOFichaInternacion buscarFichaInternacion(int numFicha){
-      Criterio criterio = FachadaPersistencia.getInstancia().getCriterio("numero_ficha_internacion", "=", numFicha + "");
+      List<Criterio> criterios = new ArrayList<Criterio>();
+      Criterio criterio = FachadaPersistencia.getInstancia().getCriterio("nroFicha", "=", numFicha, "");
+      criterios.add(criterio);
       
       try{
-         this.fichaInternacion = (FichaInternacion) FachadaPersistencia.getInstancia().buscar("FichaInternacion", criterio).get(0);
+         this.fichaInternacion = (FichaInternacion) FachadaPersistencia.getInstancia().buscar("FichaInternacion", criterios).get(0);
          
          if(this.fichaInternacion.getEstadoFichaInternacion().getNombreEstado().equals("Creada")){
-            dtoFicha = new DTOFichaInternacion();
+            this.dtoFicha = new DTOFichaInternacion();
+            this.dtoFicha.setFecha(this.fichaInternacion.getFechaCreacion());
+            this.dtoFicha.setNroFicha(this.fichaInternacion.getNroFicha());
+            this.dtoFicha.setNumPaciente(this.fichaInternacion.getPaciente().getNumPaciente());
+            this.dtoFicha.setNombrePaciente(this.fichaInternacion.getPaciente().getNombre());
+            this.dtoFicha.setNombrePrestacion(this.fichaInternacion.getPrestacion().getDescripcion());
+            
+            criterios = new ArrayList<Criterio>();
+            criterio = FachadaPersistenciaInterna.getInstancia().getCriterio("fechaInicio", "<=", ServiciosTiempo.getInstancia().dateToString(this.fichaInternacion.getFechaCreacion()), "AND");
+            criterios.add(criterio);
+            criterio = FachadaPersistenciaInterna.getInstancia().getCriterio("fechaFin", ">=", ServiciosTiempo.getInstancia().dateToString(this.fichaInternacion.getFechaCreacion()), "AND");
+            criterios.add(criterio);
+            criterio = FachadaPersistenciaInterna.getInstancia().getCriterio("prestacion", "=", this.fichaInternacion.getPrestacion(), "");
+            criterios.add(criterio);
+            
+            CostoPrestacion costoPres = (CostoPrestacion) FachadaPersistencia.getInstancia().buscar("CostoPrestacion", criterios).get(0);
 
-            dtoFicha.setFecha(this.fichaInternacion.getFechaCreacion());
-            dtoFicha.setNroFicha(this.fichaInternacion.getNroFicha());
-            dtoFicha.setNumPaciente(this.fichaInternacion.getPaciente().getNumPaciente());
-            dtoFicha.setNombrePaciente(this.fichaInternacion.getPaciente().getNombre());
-            dtoFicha.setNombrePrestacion(this.fichaInternacion.getPrestacion().getDescripcion());
-
-            Criterio c1 = FachadaPersistenciaInterna.getInstancia().getCriterio("fecha_inicio", "<=", ServiciosTiempo.getInstancia().dateToString(this.fichaInternacion.getFechaCreacion()));
-            Criterio c2 = FachadaPersistenciaInterna.getInstancia().getCriterio("fecha_fin", ">=", ServiciosTiempo.getInstancia().dateToString(this.fichaInternacion.getFechaCreacion()));
-            Criterio cc = FachadaPersistenciaInterna.getInstancia().and(c1, c2);
-
-            List<CostoPrestacion> listaCostos = FachadaPersistencia.getInstancia().buscar("CostoPrestacion", cc);
-
-            for(CostoPrestacion costo : listaCostos){
-               if(this.fichaInternacion.getPrestacion().getCodigoPrestacion() == costo.getPrestacion().getCodigoPrestacion()){
-                  dtoFicha.setCostoPrestacion(costo.getMonto());
-                  break;
-               } // fin de if de búsqueda del costo de la prestación
-            } // fin de for de búsqueda del costo de la prestación
+            this.dtoFicha.setCostoPrestacion(costoPres.getMonto());
 
             if(this.fichaInternacion.getPaciente().getPlan() != null){
-               List<Convenio> listaConvenios = FachadaPersistencia.getInstancia().buscar("Convenio", cc);
-
-               dtoFicha.setDescuento(0.0);
-
-               for(Convenio conv : listaConvenios){
-                  if(this.fichaInternacion.getPrestacion().getCodigoPrestacion() == conv.getPrestacion().getCodigoPrestacion() &&
-                          this.fichaInternacion.getPaciente().getPlan().getCodigoPlan() == conv.getPlan().getCodigoPlan()){
-                     dtoFicha.setDescuento(conv.getCoseguro().getPorcentaje());
-                     break;
-                  } // fin de if de búsqueda del convenio
-               } // fin de for de búsqueda del convenio
+               criterios = new ArrayList<Criterio>();
+               criterio = FachadaPersistenciaInterna.getInstancia().getCriterio("fechaInicio", "<=", ServiciosTiempo.getInstancia().dateToString(this.fichaInternacion.getFechaCreacion()), "AND");
+               criterios.add(criterio);
+               criterio = FachadaPersistenciaInterna.getInstancia().getCriterio("fechaFin", ">=", ServiciosTiempo.getInstancia().dateToString(this.fichaInternacion.getFechaCreacion()), "AND");
+               criterios.add(criterio);
+               criterio = FachadaPersistenciaInterna.getInstancia().getCriterio("prestacion", "=", this.fichaInternacion.getPrestacion(), "AND");
+               criterios.add(criterio);
+               criterio = FachadaPersistenciaInterna.getInstancia().getCriterio("plan", "=", this.fichaInternacion.getPaciente().getPlan(), "");
+               criterios.add(criterio);
+               
+               try{
+                  Convenio convenio = (Convenio) FachadaPersistencia.getInstancia().buscar("Convenio", criterios).get(0);
+                  this.dtoFicha.setDescuento(convenio.getCoseguro().getPorcentaje());
+               } // fin de try ocasionado por inexistencia de un convenio para el plan y la prestación en el período
+               catch(IndexOutOfBoundsException ex){
+                  this.dtoFicha.setDescuento(0.0);
+                  System.err.println("ExpertoGenerarFacturaPaciente - buscarFichaInternacion(int numFicha) - No existe convenio en el período - " + ex.getMessage());
+               } // fin de catch ocasionado por inexistencia de un convenio para el plan y la prestación en el período
             } // fin de if de búsqueda del plan del paciente
 
             List<DetalleFicha> listaDetalles = this.fichaInternacion.getDetalleFicha();
+            
             List<DTODetalleServicio> listaDtoDetalle = new ArrayList<DTODetalleServicio>();
             DTODetalleServicio dtoDetalle;
 
@@ -77,28 +85,31 @@ public class ExpertoGenerarFacturaPaciente {
                dtoDetalle.setNombreServicio(detalle.getServicioEspecial().getNombreServicio());
                dtoDetalle.setCantidad(detalle.getCantidad());
 
-               List<CostoServicio> listaCostosServicios = FachadaPersistencia.getInstancia().buscar("CostoServicio", cc);
+               criterios = new ArrayList<Criterio>();
+               criterio = FachadaPersistenciaInterna.getInstancia().getCriterio("fechaInicio", "<=", ServiciosTiempo.getInstancia().dateToString(this.fichaInternacion.getFechaCreacion()), "AND");
+               criterios.add(criterio);
+               criterio = FachadaPersistenciaInterna.getInstancia().getCriterio("fechaFin", ">=", ServiciosTiempo.getInstancia().dateToString(this.fichaInternacion.getFechaCreacion()), "AND");
+               criterios.add(criterio);
+               criterio = FachadaPersistenciaInterna.getInstancia().getCriterio("servicioEspecial", "=", detalle.getServicioEspecial(), "");
+               criterios.add(criterio);
+               
+               CostoServicio costoServ = (CostoServicio) FachadaPersistencia.getInstancia().buscar("CostoServicio", criterios).get(0);
 
-               for(CostoServicio costo : listaCostosServicios){
-                  if(detalle.getServicioEspecial().getCodigoServicio() == costo.getServicioEspecial().getCodigoServicio()){
-                     dtoDetalle.setMonto(costo.getMonto());
-                     dtoDetalle.setSubtotal(costo.getMonto() * detalle.getCantidad());
-                     break;
-                  } // fin de if de búsqueda del costo del servicio
-               } // fin de for de búsqueda del costo del servicio
+               dtoDetalle.setMonto(costoServ.getMonto());
+               dtoDetalle.setSubtotal(costoServ.getMonto() * detalle.getCantidad());
 
                listaDtoDetalle.add(dtoDetalle);
             } // fin de for de creación del DTO del detalle
 
-            dtoFicha.setDtoDetalle(listaDtoDetalle);
+            this.dtoFicha.setDtoDetalle(listaDtoDetalle);
          } // fin de if de búsqueda de facturas en estado "Creada"
       } // fin de try de comprobación de existencia de ficha
       catch(IndexOutOfBoundsException ex){
-         System.err.println("IndexOutOfBoundsException en buscarFichaInternacion - " + ex.getMessage());
+         System.err.println("ExpertoGenerarFacturaPaciente - buscarFichaInternacion(int numFicha) - Ficha no encontrada - " + ex.getMessage());
          return null;
       } // fin de catch de comprobación de existencia de ficha
       
-      return dtoFicha;
+      return this.dtoFicha;
    } // findel método buscarFichaInternacion
    
    public DTOFacturaPaciente generarFactura(){
@@ -108,16 +119,25 @@ public class ExpertoGenerarFacturaPaciente {
       factura.setNumFactura(this.fichaInternacion.getNroFicha());
       factura.setFichaInternacion(this.fichaInternacion);
       
-      Criterio c1 = FachadaPersistencia.getInstancia().getCriterio("nombre_estado_factura_cliente", "=", "Emitida");
-      EstadoFacturaCliente estadoFactura = (EstadoFacturaCliente) FachadaPersistencia.getInstancia().buscar("EstadoFacturaCliente", c1).get(0);
+      List<Criterio> criterios = new ArrayList<Criterio>();
+      Criterio criterio = FachadaPersistencia.getInstancia().getCriterio("nombreEstado", "=", "Emitida", "");
+      criterios.add(criterio);
+      
+      EstadoFacturaCliente estadoFactura = (EstadoFacturaCliente) FachadaPersistencia.getInstancia().buscar("EstadoFacturaCliente", criterios).get(0);
       factura.setEstadoFacturaCliente(estadoFactura);
       
-      Criterio c2 = FachadaPersistencia.getInstancia().getCriterio("nombre_estado_ficha_internacion", "=", "Facturada");
-      EstadoFichaInternacion estadoFicha = (EstadoFichaInternacion) FachadaPersistencia.getInstancia().buscar("EstadoFichaInternacion", c2).get(0);
+      criterios = new ArrayList<Criterio>();
+      criterio = FachadaPersistencia.getInstancia().getCriterio("nombreEstado", "=", "Facturada", "");
+      criterios.add(criterio);
+      
+      EstadoFichaInternacion estadoFicha = (EstadoFichaInternacion) FachadaPersistencia.getInstancia().buscar("EstadoFichaInternacion", criterios).get(0);
       this.fichaInternacion.setEstadoFichaInternacion(estadoFicha);
       
-      Criterio c3 = FachadaPersistencia.getInstancia().getCriterio("nombre_estado_cama", "=", "Disponible");
-      EstadoCama estadoCama = (EstadoCama) FachadaPersistencia.getInstancia().buscar("EstadoCama", c3).get(0);
+      criterios = new ArrayList<Criterio>();
+      criterio = FachadaPersistencia.getInstancia().getCriterio("nombreEstado", "=", "Disponible", "");
+      criterios.add(criterio);
+      
+      EstadoCama estadoCama = (EstadoCama) FachadaPersistencia.getInstancia().buscar("EstadoCama", criterios).get(0);
       this.fichaInternacion.getCama().setEstadoCama(estadoCama);
       
       DTOFacturaPaciente dtoFactura = new DTOFacturaPaciente();
@@ -126,9 +146,9 @@ public class ExpertoGenerarFacturaPaciente {
       dtoFactura.setNumFactura(factura.getNumFactura());
       dtoFactura.setNombrePaciente(this.dtoFicha.getNombrePaciente());
       dtoFactura.setNombrePrestacion(this.dtoFicha.getNombrePrestacion());
-      dtoFactura.setCostoPrestacion(dtoFicha.getCostoPrestacion());
-      dtoFactura.setDescuento(dtoFicha.getDescuento());
-      dtoFactura.setDtoDetalle(dtoFicha.getDtoDetalle());
+      dtoFactura.setCostoPrestacion(this.dtoFicha.getCostoPrestacion());
+      dtoFactura.setDescuento(this.dtoFicha.getDescuento());
+      dtoFactura.setDtoDetalle(this.dtoFicha.getDtoDetalle());
       
       double monto = dtoFactura.getCostoPrestacion() - dtoFactura.getCostoPrestacion() * dtoFactura.getDescuento();
       

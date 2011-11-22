@@ -16,8 +16,8 @@ public class IPRFacturaCliente extends IntermPersistenciaDBR{
       this.mapeo.put("numFactura", "numero_factura_cliente");
       this.mapeo.put("fechaEmision", "fecha");
       this.mapeo.put("monto", "monto");
-      this.mapeo.put("fichaInternacion", "oidestado_factura_cliente");
-      this.mapeo.put("estadoFacturaCliente", "oidficha_internacion");
+      this.mapeo.put("estadoFacturaCliente", "oidestado_factura_cliente");
+      this.mapeo.put("fichaInternacion", "oidficha_internacion");
    } // fin del constructor
    
    @Override
@@ -26,8 +26,20 @@ public class IPRFacturaCliente extends IntermPersistenciaDBR{
    } // fin del método select
 
    @Override
-   public String select(Criterio criterio) {
-      return "SELECT * FROM factura_cliente WHERE " + criterio.getStringCriterio();
+   public String select(List<Criterio> criterios) {
+      String sql = "SELECT * FROM factura_cliente WHERE ";
+      int cont = 0;
+      
+      for(Criterio criterio : criterios){
+         sql += " (" + this.getNombreColumna(criterio.getAtributo()) + " "
+                 + criterio.getOperador() + " '"
+                 + criterio.getValor().toString() + "') "
+                 + criterio.getOpLogico();
+         
+         cont++;
+      }
+      
+      return sql;
    } // fin del método select
 
    @Override

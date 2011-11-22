@@ -2,8 +2,6 @@ package persistencia;
 
 import java.util.List;
 import java.sql.SQLException;
-import com.mysql.jdbc.Statement;
-import com.mysql.jdbc.Connection;
 import persistencia.plantilla.FabricaDeIntermediarios;
 import persistencia.criterios.FabricaDeCriterios;
 import persistencia.criterios.Criterio;
@@ -14,27 +12,18 @@ public class FachadaPersistenciaInterna {
    private FachadaPersistenciaInterna(){}
    
    public static FachadaPersistenciaInterna getInstancia(){
-      // si no contenía una referencia anteriormente, la crea
       if (instancia == null)
          instancia = new FachadaPersistenciaInterna();
       
       return instancia;
    } // fin del método getInstancia
    
-   public Connection iniciarTransaccion() throws SQLException, Exception{
+   public void iniciarTransaccion() throws SQLException, Exception{
       ConectorBD.getInstancia().establecerConexion();
-      Connection con = (Connection) ConectorBD.getConexion();
-      Statement stmt = (Statement) con.createStatement();
-      stmt.execute("START TRANSACTION WITH CONSISTENT SNAPSHOT");
-      
-      return con;
    } // fin del método iniciarTransaccion
    
-   public void finalizarTransaccion() throws SQLException{
-      Connection con = (Connection) ConectorBD.getConexion();
-      Statement stmt = (Statement) con.createStatement();
-      stmt.execute("COMMIT");
-      ConectorBD.cerrarConexionBD();
+   public void finalizarTransaccion(ConectorBD conector) throws SQLException{
+      ConectorBD.getInstancia().cerrarConexion();
    } // fin del método finalizarTransaccion
    
    public Object nuevaEntidad(String entidad){
@@ -45,8 +34,8 @@ public class FachadaPersistenciaInterna {
        return FabricaDeIntermediarios.getInstancia().getIntermediario(entidad).buscar();
    }
    
-   public List buscar(String objeto, Criterio cc) {
-      return FabricaDeIntermediarios.getInstancia().getIntermediario(objeto).buscar(cc);
+   public List buscar(String objeto, List<Criterio> criterios) {
+      return FabricaDeIntermediarios.getInstancia().getIntermediario(objeto).buscar(criterios);
    } // fin del método getColeccion
    
    public Object buscar(String entidad, String oid){
@@ -57,15 +46,7 @@ public class FachadaPersistenciaInterna {
       FabricaDeIntermediarios.getInstancia().getIntermediario(entidad).guardar(objeto);
    } // fin del método persistirEntidad
    
-   public Criterio getCriterio(String atributo, String operador, String valor){
-      return FabricaDeCriterios.getInstancia().getCriterio(atributo,operador,valor);
+   public Criterio getCriterio(String atributo, String operador, Object valor, String opLogico){
+      return FabricaDeCriterios.getInstancia().getCriterio(atributo, operador, valor, opLogico);
    } // fin del método getCriterio
-   
-   public Criterio and(List c) {
-      return FabricaDeCriterios.getInstancia().and(c);
-   } // fin del método and
-   
-   public Criterio and(Criterio c1,Criterio c2){
-      return  FabricaDeCriterios.getInstancia().and(c1,c2);
-   } // fin del método and
 } // fin de la clase FachadaPersistenciaInterna

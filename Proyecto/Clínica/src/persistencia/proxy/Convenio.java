@@ -1,14 +1,7 @@
-// Convenio: Convenio.java
-//
-
 package persistencia.proxy;
 
 import java.util.Date;
 
-/**
- *
- * @author Gabriel
- */
 public interface Convenio {
    public Date getFechaInicio();
 

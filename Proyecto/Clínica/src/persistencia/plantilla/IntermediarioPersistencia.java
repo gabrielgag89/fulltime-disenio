@@ -25,8 +25,8 @@ public abstract class IntermediarioPersistencia {
       return buscados;
    } // fin del método buscar
    
-   public List<ObjetoPersistente> buscar(Criterio criterio){
-      List<ObjetoPersistente> buscados = materializar(criterio);
+   public List<ObjetoPersistente> buscar(List<Criterio> criterios){
+      List<ObjetoPersistente> buscados = materializar(criterios);
       
       if(!buscados.isEmpty()){
          for(ObjetoPersistente objeto : buscados){
@@ -72,7 +72,7 @@ public abstract class IntermediarioPersistencia {
    
    public abstract ObjetoPersistente materializar(String oid); // método a implementar
    
-   public abstract List<ObjetoPersistente> materializar(Criterio criterio); // método a implementar
+   public abstract List<ObjetoPersistente> materializar(List<Criterio> criterios); // método a implementar
    
    public abstract void desmaterializar(ObjetoPersistente objeto); // método a implementar
 } // fin de la clase IntermediarioPersistencia

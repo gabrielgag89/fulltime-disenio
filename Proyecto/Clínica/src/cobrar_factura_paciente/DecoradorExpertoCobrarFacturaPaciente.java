@@ -1,16 +1,15 @@
 package cobrar_factura_paciente;
 
-import dtos.DTORecibo;
-import dtos.DTOFacturaPaciente;
 import java.util.List;
 import java.sql.SQLException;
 import persistencia.FachadaPersistenciaInterna;
+import dtos.DTOFacturaPaciente;
+import persistencia.ConectorBD;
+import dtos.DTORecibo;
 
-/**
- *
- * @author gabriel
- */
 public class DecoradorExpertoCobrarFacturaPaciente extends ExpertoCobrarFacturaPaciente{
+   private ConectorBD conector;
+   
    @Override
    public List<DTOFacturaPaciente> buscarFacturasPendientes() {
       try {
@@ -25,32 +24,15 @@ public class DecoradorExpertoCobrarFacturaPaciente extends ExpertoCobrarFacturaP
       
       List<DTOFacturaPaciente> listaDtoFacturas = super.buscarFacturasPendientes();
       
-      try {
-         FachadaPersistenciaInterna.getInstancia().finalizarTransaccion();
-      } // fin de try de fin de transacción
-      catch (SQLException ex) {
-         System.err.println("SQLException en cobrarFactura: " + ex.getMessage());
-      } // fin de catch de SQLException
-      
       return listaDtoFacturas;
    } // fin del método buscarFacturasPendientes
    
    @Override
    public DTORecibo cobrarFactura(int numFactura){
-      try {
-         FachadaPersistenciaInterna.getInstancia().iniciarTransaccion();
-      } // fin de try de inicio de transacción
-      catch (SQLException ex) {
-         System.err.println("SQLException en buscarFacturasPendientes: " + ex.getMessage());
-      } // fin de catch de SQLException
-      catch (Exception ex) {
-         System.err.println("Exception en buscarFacturasPendientes: " + ex.getMessage());
-      } // fin de catch de Exception
-      
       DTORecibo dtoRecibo = super.cobrarFactura(numFactura);
       
       try {
-         FachadaPersistenciaInterna.getInstancia().finalizarTransaccion();
+         FachadaPersistenciaInterna.getInstancia().finalizarTransaccion(this.conector);
       } // fin de try de fin de transacción
       catch (SQLException ex) {
          System.err.println("SQLException en cobrarFactura: " + ex.getMessage());
