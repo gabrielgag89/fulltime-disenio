@@ -10,7 +10,7 @@ public class Conector {
    private static String url_bd = "jdbc:mysql://";
    private static String driver = "com.mysql.jdbc.Driver";
    private static Conector instancia;
-   private static Connection conexion = null;
+   private static Connection conexion;
    
    private Conector(){}
    
@@ -43,8 +43,6 @@ public class Conector {
    public void confirmarTransaccion(){
       try {
          conexion.commit();
-         conexion = null;
-         instancia = null;
       } // fin del método cerrarConexionBD
       catch (SQLException ex) {
          System.err.println("Conector - confirmarTransaccion() - " + ex.getMessage());
@@ -54,8 +52,6 @@ public class Conector {
    public void deshacerTransaccion(){
       try {
          conexion.rollback();
-         conexion = null;
-         instancia = null;
       } // fin del método cerrarConexionBD
       catch (SQLException ex) {
          System.err.println("Conector - deshacerTransaccion() - " + ex.getMessage());

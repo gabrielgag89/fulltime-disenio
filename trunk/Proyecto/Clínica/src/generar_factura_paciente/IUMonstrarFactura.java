@@ -245,7 +245,8 @@ public class IUMonstrarFactura extends javax.swing.JFrame {
          this.tablaFacturas.setValueAt(subtotal, fila++, col++);
       } // fin de for de llenado de la tabla de detalles de servicios especiales
       
-      this.campoTextoTotal.setText(dtoFactura.getMonto() + "");
+      String total = String.format("%.2f", dtoFactura.getMonto());
+      this.campoTextoTotal.setText(total);
    } // fin del método cargarCampos
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
