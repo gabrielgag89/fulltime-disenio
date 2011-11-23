@@ -4,11 +4,11 @@ import java.util.List;
 import java.sql.SQLException;
 import persistencia.FachadaPersistenciaInterna;
 import dtos.DTOFacturaPaciente;
-import persistencia.ConectorBD;
+import persistencia.Conector;
 import dtos.DTORecibo;
 
 public class DecoradorExpertoCobrarFacturaPaciente extends ExpertoCobrarFacturaPaciente{
-   private ConectorBD conector;
+   private Conector conector;
    
    @Override
    public List<DTOFacturaPaciente> buscarFacturasPendientes() {

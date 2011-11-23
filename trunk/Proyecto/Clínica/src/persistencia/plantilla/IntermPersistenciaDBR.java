@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import persistencia.proxy.ObjetoPersistente;
 import persistencia.criterios.Criterio;
-import persistencia.ConectorBD;
+import persistencia.Conector;
 
 public abstract class IntermPersistenciaDBR extends IntermediarioPersistencia{
    protected HashMap<String, String> mapeo = new HashMap<String, String>();
@@ -65,7 +65,7 @@ public abstract class IntermPersistenciaDBR extends IntermediarioPersistencia{
       System.out.println(sql);
       
       try{
-         PreparedStatement consulta = ConectorBD.getInstancia().getConexion().prepareStatement(sql);
+         PreparedStatement consulta = Conector.getInstancia().getConexion().prepareStatement(sql);
 
          consulta.execute();
       }
@@ -78,7 +78,7 @@ public abstract class IntermPersistenciaDBR extends IntermediarioPersistencia{
       System.out.println(sql);
       
       try{
-         PreparedStatement consulta = ConectorBD.getInstancia().getConexion().prepareStatement(sql);
+         PreparedStatement consulta = Conector.getInstancia().getConexion().prepareStatement(sql);
 
          return consulta.executeQuery(sql);
       }

@@ -4,10 +4,10 @@ import java.sql.SQLException;
 import persistencia.FachadaPersistenciaInterna;
 import dtos.DTOFichaInternacion;
 import dtos.DTOFacturaPaciente;
-import persistencia.ConectorBD;
+import persistencia.Conector;
 
 public class DecoradorExpertoGenerarFacturaPaciente extends ExpertoGenerarFacturaPaciente {
-   private ConectorBD conecctor;
+   private Conector conecctor;
    
    @Override
    public DTOFichaInternacion buscarFichaInternacion(int numPaciente){

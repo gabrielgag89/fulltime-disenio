@@ -1,30 +1,28 @@
 package persistencia;
 
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-public class ConectorBD {
+public class Conector {
    private static String bd = "clinica";
    private static String login = "fulltime";
    private static String password = "disenio";
    private static String host = "localhost";
    private static String url_bd = "jdbc:mysql://";
    private static String driver = "com.mysql.jdbc.Driver";
-   private static ConectorBD instancia;
+   private static Conector instancia;
    private static Connection conexion = null;
    
-   private ConectorBD(){}
+   private Conector(){}
    
-   public static ConectorBD getInstancia(){
+   public static Conector getInstancia(){
       // si no contenía una referencia anteriormente, la crea
       if (instancia == null)
-         instancia = new ConectorBD();
+         instancia = new Conector();
       
       return instancia;
    } // fin del método getInstancia
    
-   public void establecerConexion() throws Exception {
+   public void iniciarTransaccion() throws Exception {
       if (conexion == null) {
          try {
             Class.forName(driver);
@@ -36,20 +34,31 @@ public class ConectorBD {
             System.out.println (e.getMessage());
          } // fin de try... catch
       } // fin de if
-   } // fin del método establecerConexion
+   } // fin del método iniciarTransaccion
    
    public Connection getConexion() {
       return conexion;
    } // fin del método getConexion
    
-   public void cerrarConexion(){
+   public void confirmarTransaccion(){
       try {
          conexion.commit();
          conexion = null;
          instancia = null;
       } // fin del método cerrarConexionBD
       catch (SQLException ex) {
-         Logger.getLogger(ConectorBD.class.getName()).log(Level.SEVERE, null, ex);
+         System.err.println("Conector - confirmarTransaccion() - " + ex.getMessage());
       }
-   } // fin del método cerrarConexionBD
-} // fin de la clase ConectorBD
+   } // fin del método confirmarTransaccion
+   
+   public void deshacerTransaccion(){
+      try {
+         conexion.rollback();
+         conexion = null;
+         instancia = null;
+      } // fin del método cerrarConexionBD
+      catch (SQLException ex) {
+         System.err.println("Conector - deshacerTransaccion() - " + ex.getMessage());
+      }
+   } // fin del método deshacerTransaccion
+} // fin de la clase Conector
