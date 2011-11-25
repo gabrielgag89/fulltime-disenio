@@ -7,7 +7,7 @@ import dtos.DTOFacturaPaciente;
 public class ControladorGenerarFacturaPaciente {
    private ExpertoGenerarFacturaPaciente experto;
    
-   public DTOFichaInternacion buscarFicha(int numFicha){ 
+   public DTOFichaInternacion buscarFichaInternacion(int numFicha){ 
       // se obtiene un ExpertoGenerarFacturaPaciente y se guarda en una variable de instancia
       this.experto = (ExpertoGenerarFacturaPaciente) FabricaExpertos.getInstancia().getExperto("GenerarFacturarPaciente");
       
