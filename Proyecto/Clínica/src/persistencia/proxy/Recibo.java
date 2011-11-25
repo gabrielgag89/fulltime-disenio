@@ -11,7 +11,7 @@ public interface Recibo {
    
    public void setFecha(Date fecha);
    
-   public FacturaCliente getFacturaCliente();
+   public FacturaPaciente getFacturaPaciente();
    
-   public void setFacturaCliente(FacturaCliente facturaCliente);
+   public void setFacturaPaciente(FacturaPaciente facturaPaciente);
 }

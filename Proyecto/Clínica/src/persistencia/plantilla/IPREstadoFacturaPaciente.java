@@ -4,13 +4,13 @@ import java.util.List;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.sql.SQLException;
-import persistencia.proxy.EstadoFacturaClienteAgente;
-import persistencia.proxy.EstadoFacturaClienteImpl;
+import persistencia.proxy.EstadoFacturaPacienteAgente;
+import persistencia.proxy.EstadoFacturaPacienteImpl;
 import persistencia.proxy.ObjetoPersistente;
 import persistencia.criterios.Criterio;
 
-public class IPREstadoFacturaCliente extends IntermPersistenciaDBR{
-   public IPREstadoFacturaCliente(){
+public class IPREstadoFacturaPaciente extends IntermPersistenciaDBR{
+   public IPREstadoFacturaPaciente(){
       this.mapeo.put("oid", "oidestado_factura_cliente");
       this.mapeo.put("nombreEstado", "nombre_estado_factura_cliente");
    } // fin del constructor
@@ -44,7 +44,7 @@ public class IPREstadoFacturaCliente extends IntermPersistenciaDBR{
 
    @Override
    public String insertar(Object objeto) {
-      EstadoFacturaClienteAgente estado = (EstadoFacturaClienteAgente) objeto;
+      EstadoFacturaPacienteAgente estado = (EstadoFacturaPacienteAgente) objeto;
 
       return "INSERT INTO estado_factura_cliente "
                   + "VALUES ('" + estado.getOid() + "', '"
@@ -53,7 +53,7 @@ public class IPREstadoFacturaCliente extends IntermPersistenciaDBR{
 
    @Override
    public String actualizar(Object objeto) {
-      EstadoFacturaClienteAgente estado = (EstadoFacturaClienteAgente)objeto;
+      EstadoFacturaPacienteAgente estado = (EstadoFacturaPacienteAgente)objeto;
 
       return "UPDATE estado_factura_cliente SET "
                + "nombre_estado_factura_cliente = '" + estado.getNombreEstado() + "' "
@@ -63,13 +63,13 @@ public class IPREstadoFacturaCliente extends IntermPersistenciaDBR{
    @Override
    public List<ObjetoPersistente> convertirAObjeto(ResultSet resultado) {
       List<ObjetoPersistente> lista = new ArrayList<ObjetoPersistente>();
-      EstadoFacturaClienteAgente estado;
+      EstadoFacturaPacienteAgente estado;
 
       try {
          while(resultado.next()){
-            estado = new EstadoFacturaClienteAgente();
+            estado = new EstadoFacturaPacienteAgente();
 
-            estado.setImplementacion(new EstadoFacturaClienteImpl());
+            estado.setImplementacion(new EstadoFacturaPacienteImpl());
             estado.setOid(resultado.getString("oidestado_factura_cliente"));
             estado.setNombreEstado(resultado.getString("nombre_estado_factura_cliente"));
 
@@ -85,9 +85,9 @@ public class IPREstadoFacturaCliente extends IntermPersistenciaDBR{
 
    @Override
    public ObjetoPersistente nuevo() {
-      EstadoFacturaClienteAgente estado = new EstadoFacturaClienteAgente();
-      estado.setImplementacion(new EstadoFacturaClienteImpl());
+      EstadoFacturaPacienteAgente estado = new EstadoFacturaPacienteAgente();
+      estado.setImplementacion(new EstadoFacturaPacienteImpl());
 
       return estado;
    } // fin del método nuevo
-} // fin de la clase IPREstadoFacturaCliente
+} // fin de la clase IPREstadoFacturaPaciente

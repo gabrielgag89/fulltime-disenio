@@ -5,7 +5,7 @@ import java.util.Date;
 public class ReciboImpl implements Recibo{
    private int nroRecibo;
    private Date fecha;
-   private FacturaCliente facturaCliente;
+   private FacturaPaciente facturaPaciente;
 
    @Override
    public int getNroRecibo() {
@@ -28,12 +28,12 @@ public class ReciboImpl implements Recibo{
    }
 
    @Override
-   public FacturaCliente getFacturaCliente() {
-      return this.facturaCliente;
+   public FacturaPaciente getFacturaPaciente() {
+      return this.facturaPaciente;
    }
 
    @Override
-   public void setFacturaCliente(FacturaCliente facturaCliente) {
-      this.facturaCliente = facturaCliente;
+   public void setFacturaPaciente(FacturaPaciente facturaCliente) {
+      this.facturaPaciente = facturaCliente;
    }
 } // fin de la clase ReciboImpl

@@ -3,14 +3,14 @@ package persistencia.proxy;
 import java.util.Date;
 import persistencia.FachadaPersistenciaInterna;
 
-public class FacturaClienteAgente extends ObjetoPersistente implements FacturaCliente{
-   private FacturaClienteImpl impl;
+public class FacturaPacienteAgente extends ObjetoPersistente implements FacturaPaciente{
+   private FacturaPacienteImpl impl;
    private boolean fichaInternacion = false;
-   private boolean estadoFacturaCliente = false;
+   private boolean estadoFacturaPaciente = false;
    private String oidFichaInternacion;
-   private String oidEstadoFacturaCliente;
+   private String oidEstadoFacturaPaciente;
    
-   public void setImplementacion(FacturaClienteImpl impl){
+   public void setImplementacion(FacturaPacienteImpl impl){
       this.impl = impl;
    }
 
@@ -61,19 +61,19 @@ public class FacturaClienteAgente extends ObjetoPersistente implements FacturaCl
    }
 
    @Override
-   public EstadoFacturaCliente getEstadoFacturaCliente() {
-      if(!this.estadoFacturaCliente){
-         this.impl.setEstadoFacturaCliente((EstadoFacturaCliente) FachadaPersistenciaInterna.getInstancia().buscar("EstadoFacturaCliente", this.oidEstadoFacturaCliente));
-         this.estadoFacturaCliente = true;
+   public EstadoFacturaPaciente getEstadoFacturaPaciente() {
+      if(!this.estadoFacturaPaciente){
+         this.impl.setEstadoFacturaPaciente((EstadoFacturaPaciente) FachadaPersistenciaInterna.getInstancia().buscar("EstadoFacturaPaciente", this.oidEstadoFacturaPaciente));
+         this.estadoFacturaPaciente = true;
       }
       
-      return this.impl.getEstadoFacturaCliente();
+      return this.impl.getEstadoFacturaPaciente();
    }
 
    @Override
-   public void setEstadoFacturaCliente(EstadoFacturaCliente estadoFacturaCliente) {
-      this.impl.setEstadoFacturaCliente(estadoFacturaCliente);
-      this.oidEstadoFacturaCliente = ((ObjetoPersistente) estadoFacturaCliente).getOid();
+   public void setEstadoFacturaPaciente(EstadoFacturaPaciente estadoFacturaPaciente) {
+      this.impl.setEstadoFacturaPaciente(estadoFacturaPaciente);
+      this.oidEstadoFacturaPaciente = ((ObjetoPersistente) estadoFacturaPaciente).getOid();
    }
 
    public String getOidFichaInternacion() {
@@ -85,10 +85,10 @@ public class FacturaClienteAgente extends ObjetoPersistente implements FacturaCl
    }
 
    public String getOidEstadoFacturaCliente() {
-      return oidEstadoFacturaCliente;
+      return oidEstadoFacturaPaciente;
    }
 
-   public void setOidEstadoFacturaCliente(String oidEstadoFacturaCliente) {
-      this.oidEstadoFacturaCliente = oidEstadoFacturaCliente;
+   public void setOidEstadoFacturaPaciente(String oidEstadoFacturaPaciente) {
+      this.oidEstadoFacturaPaciente = oidEstadoFacturaPaciente;
    }
-} // fin de la clase FacturaClienteAgente
+} // fin de la clase FacturaPacienteAgente

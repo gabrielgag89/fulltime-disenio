@@ -1,9 +1,9 @@
 package persistencia.proxy;
 
-public class EstadoFacturaClienteAgente extends ObjetoPersistente implements EstadoFacturaCliente {
-   private EstadoFacturaClienteImpl impl;
+public class EstadoFacturaPacienteAgente extends ObjetoPersistente implements EstadoFacturaPaciente {
+   private EstadoFacturaPacienteImpl impl;
 
-   public void setImplementacion(EstadoFacturaClienteImpl impl){
+   public void setImplementacion(EstadoFacturaPacienteImpl impl){
       this.impl = impl;
    }
    
@@ -16,4 +16,4 @@ public class EstadoFacturaClienteAgente extends ObjetoPersistente implements Est
    public void setNombreEstado(String nombreEstado) {
       this.impl.setNombreEstado(nombreEstado);
    }
-} // fin de la clase EstadoFacturaClienteAgente
+} // fin de la clase EstadoFacturaPacienteAgente

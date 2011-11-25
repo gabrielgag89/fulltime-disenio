@@ -1,15 +1,8 @@
-// FacturaCliente: FacturaCliente.java
-//
-
 package persistencia.proxy;
 
 import java.util.Date;
 
-/**
- *
- * @author Gabriel
- */
-public interface FacturaCliente {
+public interface FacturaPaciente {
    public int getNumFactura();
 
    public void setNumFactura(int numFactura);
@@ -26,7 +19,7 @@ public interface FacturaCliente {
 
    public void setFichaInternacion(FichaInternacion fichaInternacion);
 
-   public EstadoFacturaCliente getEstadoFacturaCliente();
+   public EstadoFacturaPaciente getEstadoFacturaPaciente();
 
-   public void setEstadoFacturaCliente(EstadoFacturaCliente estadoFacturaCliente);
-} // fin de la clase FacturaCliente
+   public void setEstadoFacturaPaciente(EstadoFacturaPaciente estadoFacturaPaciente);
+} // fin de la clase FacturaPaciente

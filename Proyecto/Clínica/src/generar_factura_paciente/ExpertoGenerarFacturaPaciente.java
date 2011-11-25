@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import observador.SuscriptorGenerarFacturaPaciente;
 import persistencia.proxy.EstadoFichaInternacion;
 import persistencia.FachadaPersistenciaInterna;
-import persistencia.proxy.EstadoFacturaCliente;
+import persistencia.proxy.EstadoFacturaPaciente;
 import persistencia.proxy.FichaInternacion;
 import persistencia.proxy.CostoPrestacion;
-import persistencia.proxy.FacturaCliente;
+import persistencia.proxy.FacturaPaciente;
 import persistencia.proxy.CostoServicio;
 import persistencia.FachadaPersistencia;
 import persistencia.criterios.Criterio;
@@ -150,7 +150,7 @@ public class ExpertoGenerarFacturaPaciente {
    } // findel método buscarFichaInternacion
    
    public DTOFacturaPaciente generarFactura(){
-      FacturaCliente factura = (FacturaCliente) FachadaPersistencia.getInstancia().nuevaEntidad("FacturaCliente");
+      FacturaPaciente factura = (FacturaPaciente) FachadaPersistencia.getInstancia().nuevaEntidad("FacturaPaciente");
       
       factura.setFechaEmision(new Date());
       factura.setNumFactura(this.fichaInternacion.getNroFicha());
@@ -160,8 +160,8 @@ public class ExpertoGenerarFacturaPaciente {
       Criterio criterio = FachadaPersistencia.getInstancia().getCriterio("nombreEstado", "=", "Emitida", "");
       criterios.add(criterio);
       
-      EstadoFacturaCliente estadoFactura = (EstadoFacturaCliente) FachadaPersistencia.getInstancia().buscar("EstadoFacturaCliente", criterios).get(0);
-      factura.setEstadoFacturaCliente(estadoFactura);
+      EstadoFacturaPaciente estadoFactura = (EstadoFacturaPaciente) FachadaPersistencia.getInstancia().buscar("EstadoFacturaPaciente", criterios).get(0);
+      factura.setEstadoFacturaPaciente(estadoFactura);
       
       criterios = new ArrayList<Criterio>();
       criterio = FachadaPersistencia.getInstancia().getCriterio("nombreEstado", "=", "Facturada", "");
@@ -196,7 +196,7 @@ public class ExpertoGenerarFacturaPaciente {
       factura.setMonto(monto);
       dtoFactura.setMonto(monto);
       
-      FachadaPersistencia.getInstancia().guardar("FacturaCliente", factura);
+      FachadaPersistencia.getInstancia().guardar("FacturaPaciente", factura);
       FachadaPersistencia.getInstancia().guardar("Cama", this.fichaInternacion.getCama());
       FachadaPersistencia.getInstancia().guardar("FichaInternacion", this.fichaInternacion);
       

@@ -2,12 +2,12 @@ package persistencia.proxy;
 
 import java.util.Date;
 
-public class FacturaClienteImpl implements FacturaCliente{
+public class FacturaPacienteImpl implements FacturaPaciente{
    private int numFactura;
    private Date fechaEmision;
    private double monto;
    public FichaInternacion fichaInternacion;
-   public EstadoFacturaCliente estadoFacturaCliente;
+   public EstadoFacturaPaciente estadoFacturaPaciente;
 
    @Override
    public int getNumFactura() {
@@ -50,12 +50,12 @@ public class FacturaClienteImpl implements FacturaCliente{
    }
 
    @Override
-   public EstadoFacturaCliente getEstadoFacturaCliente() {
-      return estadoFacturaCliente;
+   public EstadoFacturaPaciente getEstadoFacturaPaciente() {
+      return estadoFacturaPaciente;
    }
 
    @Override
-   public void setEstadoFacturaCliente(EstadoFacturaCliente estadoFacturaCliente) {
-      this.estadoFacturaCliente = estadoFacturaCliente;
+   public void setEstadoFacturaPaciente(EstadoFacturaPaciente estadoFacturaCliente) {
+      this.estadoFacturaPaciente = estadoFacturaCliente;
    }
-} // fin de la clase FacturaClienteImpl
+} // fin de la clase FacturaPacienteImpl

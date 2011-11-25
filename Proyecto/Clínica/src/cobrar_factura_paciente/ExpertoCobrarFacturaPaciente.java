@@ -3,9 +3,9 @@ package cobrar_factura_paciente;
 import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
-import persistencia.proxy.EstadoFacturaCliente;
+import persistencia.proxy.EstadoFacturaPaciente;
 import persistencia.proxy.CostoPrestacion;
-import persistencia.proxy.FacturaCliente;
+import persistencia.proxy.FacturaPaciente;
 import persistencia.FachadaPersistencia;
 import persistencia.proxy.CostoServicio;
 import persistencia.proxy.DetalleFicha;
@@ -20,13 +20,13 @@ public class ExpertoCobrarFacturaPaciente {
       Criterio criterio = FachadaPersistencia.getInstancia().getCriterio("nombreEstado", "=", "Emitida", "");
       criterios.add(criterio);
       
-      EstadoFacturaCliente estadoFactura = (EstadoFacturaCliente) FachadaPersistencia.getInstancia().buscar("EstadoFacturaCliente", criterios).get(0);
+      EstadoFacturaPaciente estadoFactura = (EstadoFacturaPaciente) FachadaPersistencia.getInstancia().buscar("EstadoFacturaPaciente", criterios).get(0);
       
       criterios = new ArrayList<Criterio>();
-      criterio = FachadaPersistencia.getInstancia().getCriterio("estadoFacturaCliente", "=", estadoFactura, "");
+      criterio = FachadaPersistencia.getInstancia().getCriterio("estadoFacturaPaciente", "=", estadoFactura, "");
       criterios.add(criterio);
       
-      List<FacturaCliente> listaFacturas = FachadaPersistencia.getInstancia().buscar("FacturaCliente", criterios);
+      List<FacturaPaciente> listaFacturas = FachadaPersistencia.getInstancia().buscar("FacturaPaciente", criterios);
       
       List<DTOFacturaPaciente> listaDtoFacturas = new ArrayList<DTOFacturaPaciente>();
       DTOFacturaPaciente dtoFactura;
@@ -38,7 +38,7 @@ public class ExpertoCobrarFacturaPaciente {
       CostoPrestacion costoPres;
       CostoServicio costoServ;
       
-      for(FacturaCliente f : listaFacturas){
+      for(FacturaPaciente f : listaFacturas){
          dtoFactura = new DTOFacturaPaciente();
          dtoFactura.setNumFactura(f.getNumFactura());
          dtoFactura.setFecha(f.getFechaEmision());
@@ -100,17 +100,17 @@ public class ExpertoCobrarFacturaPaciente {
       Criterio criterio = FachadaPersistencia.getInstancia().getCriterio("numFactura", "=", numFactura, "");
       criterios.add(criterio);
       
-      FacturaCliente factura = (FacturaCliente) FachadaPersistencia.getInstancia().buscar("FacturaCliente", criterios).get(0);
+      FacturaPaciente factura = (FacturaPaciente) FachadaPersistencia.getInstancia().buscar("FacturaPaciente", criterios).get(0);
       
       Recibo recibo = (Recibo) FachadaPersistencia.getInstancia().nuevaEntidad("Recibo");
       
-      recibo.setFacturaCliente(factura);
+      recibo.setFacturaPaciente(factura);
       recibo.setFecha(new Date());
       recibo.setNroRecibo(numFactura);
       
       DTORecibo dtoRecibo = new DTORecibo();
       dtoRecibo.setNroRecibo(recibo.getNroRecibo());
-      dtoRecibo.setNumFactura(recibo.getFacturaCliente().getNumFactura());
+      dtoRecibo.setNumFactura(recibo.getFacturaPaciente().getNumFactura());
       dtoRecibo.setFecha(recibo.getFecha());
       dtoRecibo.setMonto(factura.getMonto());
       
@@ -118,11 +118,11 @@ public class ExpertoCobrarFacturaPaciente {
       criterio = FachadaPersistencia.getInstancia().getCriterio("nombreEstado", "=", "Pagada", "");
       criterios.add(criterio);
       
-      EstadoFacturaCliente estadoFactura = (EstadoFacturaCliente) FachadaPersistencia.getInstancia().buscar("EstadoFacturaCliente", criterios).get(0);
+      EstadoFacturaPaciente estadoFactura = (EstadoFacturaPaciente) FachadaPersistencia.getInstancia().buscar("EstadoFacturaPaciente", criterios).get(0);
       
-      factura.setEstadoFacturaCliente(estadoFactura);
+      factura.setEstadoFacturaPaciente(estadoFactura);
       
-      FachadaPersistencia.getInstancia().guardar("FacturaCliente", factura);
+      FachadaPersistencia.getInstancia().guardar("FacturaPaciente", factura);
       FachadaPersistencia.getInstancia().guardar("Recibo", recibo);
       
       return dtoRecibo;

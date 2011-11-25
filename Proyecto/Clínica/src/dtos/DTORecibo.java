@@ -5,7 +5,7 @@
 package dtos;
 
 import java.util.Date;
-import persistencia.proxy.FacturaCliente;
+import persistencia.proxy.FacturaPaciente;
 
 /**
  *
