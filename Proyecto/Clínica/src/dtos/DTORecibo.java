@@ -1,21 +1,12 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package dtos;
 
 import java.util.Date;
-import persistencia.proxy.FacturaPaciente;
 
-/**
- *
- * @author Gabriel
- */
 public class DTORecibo {
-    private int nroRecibo;
-    private int numFactura;
-    private Date fecha;
-    private double monto;
+   private int nroRecibo;
+   private int numFactura;
+   private Date fecha;
+   private double monto;
 
    public int getNroRecibo() {
       return nroRecibo;

@@ -1,19 +1,12 @@
-// IntermediarioPersistencia: IntermediarioPersistencia.java
-// Primer nivel de los intermediarios de la persistencia.
-
 package persistencia.plantilla;
 
 import java.util.List;
 import persistencia.proxy.ObjetoPersistente;
 import persistencia.criterios.Criterio;
 
-/**
- * Primer nivel de los intermediarios de la persistencia.
- * @author Gabriel
- */
 public abstract class IntermediarioPersistencia {
    public List<ObjetoPersistente> buscar(){
-       List<ObjetoPersistente> buscados = materializar();
+      List<ObjetoPersistente> buscados = materializar();
       
       if(!buscados.isEmpty()){
          for(ObjetoPersistente objeto : buscados){
@@ -39,7 +32,7 @@ public abstract class IntermediarioPersistencia {
    } // fin del método buscar
    
    public ObjetoPersistente buscar(String oid){
-      ObjetoPersistente buscado = Cache.getInstancia().enCache(oid);
+      ObjetoPersistente buscado = Cache.getInstancia().obtener(oid);
       
       if(buscado == null) {
          buscado =  materializar(oid);
@@ -60,18 +53,18 @@ public abstract class IntermediarioPersistencia {
       ObjetoPersistente objPers = obtenerNuevaEntidad();
       objPers.setNuevo(true);
       
-      Cache.getInstancia().agregar(objPers.getOid(),objPers);
+      Cache.getInstancia().agregar(objPers.getOid(), objPers);
       
       return objPers;
    } // fin del método nuevaEntidad
    
-   public abstract ObjetoPersistente obtenerNuevaEntidad(); // método a implementar
-   
    public abstract List<ObjetoPersistente> materializar(); // método a implementar
-   
-   public abstract ObjetoPersistente materializar(String oid); // método a implementar
    
    public abstract List<ObjetoPersistente> materializar(List<Criterio> criterios); // método a implementar
    
+   public abstract ObjetoPersistente materializar(String oid); // método a implementar
+   
    public abstract void desmaterializar(ObjetoPersistente objeto); // método a implementar
+   
+   public abstract ObjetoPersistente obtenerNuevaEntidad(); // método a implementar
 } // fin de la clase IntermediarioPersistencia

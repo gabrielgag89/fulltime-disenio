@@ -11,10 +11,10 @@ import persistencia.proxy.SectorImpl;
 
 public class IPRSector extends IntermPersistenciaDBR {
    public IPRSector(){
-      this.mapeo.put("oid", "oidsector");
-      this.mapeo.put("codigoSector", "codigo_sector");
-      this.mapeo.put("descripcionSector", "descripcion_sector");
-      this.mapeo.put("nroPiso", "numero_piso");
+      this.mapeoAtributos.put("oid", "oidsector");
+      this.mapeoAtributos.put("codigoSector", "codigo_sector");
+      this.mapeoAtributos.put("descripcionSector", "descripcion_sector");
+      this.mapeoAtributos.put("nroPiso", "numero_piso");
    } // fin del constructor
    
    @Override

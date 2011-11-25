@@ -11,9 +11,9 @@ import persistencia.proxy.CoseguroImpl;
 
 public class IPRCoseguro extends IntermPersistenciaDBR{
    public IPRCoseguro(){
-      this.mapeo.put("oid", "oidcoseguro");
-      this.mapeo.put("codigoCoseguro", "codigo_coseguro");
-      this.mapeo.put("porcentaje", "porcentaje");
+      this.mapeoAtributos.put("oid", "oidcoseguro");
+      this.mapeoAtributos.put("codigoCoseguro", "codigo_coseguro");
+      this.mapeoAtributos.put("porcentaje", "porcentaje");
    } // fin del constructor
 
    @Override

@@ -12,13 +12,13 @@ import util.ServiciosTiempo;
 
 public class IPRFichaInternacion extends IntermPersistenciaDBR{
    public IPRFichaInternacion(){
-      this.mapeo.put("oid", "oidficha_internacion");
-      this.mapeo.put("nroFicha", "numero_ficha_internacion");
-      this.mapeo.put("fechaCreacion", "fecha");
-      this.mapeo.put("prestacion", "oidprestacion");
-      this.mapeo.put("estadoFichaInternacion", "oidestado_ficha_internacion");
-      this.mapeo.put("cama", "oidcama");
-      this.mapeo.put("paciente", "oidpaciente");
+      this.mapeoAtributos.put("oid", "oidficha_internacion");
+      this.mapeoAtributos.put("nroFicha", "numero_ficha_internacion");
+      this.mapeoAtributos.put("fechaCreacion", "fecha");
+      this.mapeoAtributos.put("prestacion", "oidprestacion");
+      this.mapeoAtributos.put("estadoFichaInternacion", "oidestado_ficha_internacion");
+      this.mapeoAtributos.put("cama", "oidcama");
+      this.mapeoAtributos.put("paciente", "oidpaciente");
    } // fin del constructor
    
    @Override

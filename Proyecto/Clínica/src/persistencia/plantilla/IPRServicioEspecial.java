@@ -11,9 +11,9 @@ import persistencia.criterios.Criterio;
 
 public class IPRServicioEspecial extends IntermPersistenciaDBR{
    public IPRServicioEspecial(){
-      this.mapeo.put("oid", "oidservicio_especial");
-      this.mapeo.put("codigoServicio", "codigo_servicio_especial");
-      this.mapeo.put("nombreServicio", "nombre_servicio_especial");
+      this.mapeoAtributos.put("oid", "oidservicio_especial");
+      this.mapeoAtributos.put("codigoServicio", "codigo_servicio_especial");
+      this.mapeoAtributos.put("nombreServicio", "nombre_servicio_especial");
    } // fin del constructor
    
    @Override

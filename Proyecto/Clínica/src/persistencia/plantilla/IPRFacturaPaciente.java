@@ -12,12 +12,12 @@ import util.ServiciosTiempo;
 
 public class IPRFacturaPaciente extends IntermPersistenciaDBR{
    public IPRFacturaPaciente(){
-      this.mapeo.put("oid", "oidfactura_paciente");
-      this.mapeo.put("numFactura", "numero_factura_paciente");
-      this.mapeo.put("fechaEmision", "fecha");
-      this.mapeo.put("monto", "monto");
-      this.mapeo.put("estadoFacturaPaciente", "oidestado_factura_paciente");
-      this.mapeo.put("fichaInternacion", "oidficha_internacion");
+      this.mapeoAtributos.put("oid", "oidfactura_paciente");
+      this.mapeoAtributos.put("numFactura", "numero_factura_paciente");
+      this.mapeoAtributos.put("fechaEmision", "fecha");
+      this.mapeoAtributos.put("monto", "monto");
+      this.mapeoAtributos.put("estadoFacturaPaciente", "oidestado_factura_paciente");
+      this.mapeoAtributos.put("fichaInternacion", "oidficha_internacion");
    } // fin del constructor
    
    @Override

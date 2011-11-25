@@ -11,8 +11,8 @@ import persistencia.criterios.Criterio;
 
 public class IPREstadoCama extends IntermPersistenciaDBR {
    public IPREstadoCama(){
-      this.mapeo.put("oid", "oidestado_cama");
-      this.mapeo.put("nombreEstado", "nombre_estado_cama");
+      this.mapeoAtributos.put("oid", "oidestado_cama");
+      this.mapeoAtributos.put("nombreEstado", "nombre_estado_cama");
    } // fin del constructor
    
    @Override

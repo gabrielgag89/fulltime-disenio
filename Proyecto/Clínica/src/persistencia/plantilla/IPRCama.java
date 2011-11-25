@@ -11,10 +11,10 @@ import persistencia.proxy.CamaImpl;
 
 public class IPRCama extends IntermPersistenciaDBR {
    public IPRCama(){
-      this.mapeo.put("oid", "oidcama");
-      this.mapeo.put("numCama", "numero_cama");
-      this.mapeo.put("habitacion", "oidhabitacion");
-      this.mapeo.put("estadoCama", "oidestado_cama");
+      this.mapeoAtributos.put("oid", "oidcama");
+      this.mapeoAtributos.put("numCama", "numero_cama");
+      this.mapeoAtributos.put("habitacion", "oidhabitacion");
+      this.mapeoAtributos.put("estadoCama", "oidestado_cama");
    } // fin del constructor
 
    @Override

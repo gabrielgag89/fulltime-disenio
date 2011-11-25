@@ -3,10 +3,6 @@ package dtos;
 import java.util.Date;
 import java.util.List;
 
-/**
- *
- * @author gabriel
- */
 public class DTOFacturaPaciente {
    private int numFactura;
    private Date fecha;
@@ -89,4 +85,4 @@ public class DTOFacturaPaciente {
    public void setMonto(double monto) {
       this.monto = monto;
    }
-}
+} // fin de la clase DTOFacturaPaciente

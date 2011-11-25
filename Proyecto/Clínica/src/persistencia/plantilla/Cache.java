@@ -10,7 +10,6 @@ public class Cache {
    private Cache(){}
    
    public static Cache getInstancia(){
-      // si no contenía una referencia anteriormente, la crea
       if (instancia == null)
          instancia = new Cache();
       
@@ -29,10 +28,10 @@ public class Cache {
       objetos.remove(oid);
    } // fin del método quitar
    
-   public ObjetoPersistente enCache(String oid){
+   public ObjetoPersistente obtener(String oid){
       if (existe(oid))
          return (ObjetoPersistente) objetos.get(oid);
       else 
          return null;
-   } // fin del método enCache
+   } // fin del método obtener
 } // fin de la clase Cache

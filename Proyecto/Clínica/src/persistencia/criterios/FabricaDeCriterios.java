@@ -6,7 +6,6 @@ public class FabricaDeCriterios {
    private FabricaDeCriterios(){}
    
    public static FabricaDeCriterios getInstancia(){
-      // si no contenía una referencia anteriormente, la crea
       if (instancia == null)
          instancia = new FabricaDeCriterios();
       

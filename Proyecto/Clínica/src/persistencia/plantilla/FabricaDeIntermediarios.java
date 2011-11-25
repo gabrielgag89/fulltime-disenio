@@ -6,7 +6,6 @@ public class FabricaDeIntermediarios {
    private FabricaDeIntermediarios(){}
    
    public static FabricaDeIntermediarios getInstancia(){
-      // si no contenía una referencia anteriormente, la crea
       if (instancia == null)
          instancia = new FabricaDeIntermediarios();
       

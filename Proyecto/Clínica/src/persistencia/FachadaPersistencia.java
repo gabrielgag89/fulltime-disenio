@@ -9,7 +9,6 @@ public class FachadaPersistencia {
    private FachadaPersistencia(){}
    
    public static FachadaPersistencia getInstancia(){
-      // si no contenía una referencia anteriormente, la crea
       if (instancia == null)
          instancia = new FachadaPersistencia();
       

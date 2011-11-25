@@ -11,8 +11,8 @@ import persistencia.criterios.Criterio;
 
 public class IPREstadoFichaInternacion extends IntermPersistenciaDBR{
    public IPREstadoFichaInternacion(){
-      this.mapeo.put("oid", "oidestado_ficha_internacion");
-      this.mapeo.put("nombreEstado", "nombre_estado_ficha_internacion");
+      this.mapeoAtributos.put("oid", "oidestado_ficha_internacion");
+      this.mapeoAtributos.put("nombreEstado", "nombre_estado_ficha_internacion");
    } // fin del constructor
    
    @Override

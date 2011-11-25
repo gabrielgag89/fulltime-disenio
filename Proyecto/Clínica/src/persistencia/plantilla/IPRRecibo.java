@@ -12,10 +12,10 @@ import util.ServiciosTiempo;
 
 public class IPRRecibo extends IntermPersistenciaDBR {
    public IPRRecibo(){
-      this.mapeo.put("oid", "oidrecibo");
-      this.mapeo.put("nroRecibo", "numero_recibo");
-      this.mapeo.put("fecha", "fecha");
-      this.mapeo.put("facturaPaciente", "oidfactura_paciente");
+      this.mapeoAtributos.put("oid", "oidrecibo");
+      this.mapeoAtributos.put("nroRecibo", "numero_recibo");
+      this.mapeoAtributos.put("fecha", "fecha");
+      this.mapeoAtributos.put("facturaPaciente", "oidfactura_paciente");
    } // fin del constructor
    
    @Override
