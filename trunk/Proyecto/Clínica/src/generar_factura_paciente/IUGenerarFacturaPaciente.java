@@ -1,10 +1,10 @@
 package generar_factura_paciente;
 
-import dtos.DTODetalleServicio;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import dtos.DTOFichaInternacion;
-import javax.swing.JOptionPane;
+import dtos.DTODetalleServicio;
 import util.ServiciosTiempo;
 
 public class IUGenerarFacturaPaciente extends javax.swing.JFrame {
@@ -12,11 +12,17 @@ public class IUGenerarFacturaPaciente extends javax.swing.JFrame {
    private ControladorGenerarFacturaPaciente controlador;
    
    public IUGenerarFacturaPaciente() {
+      // crea la tabla para los detalles
       this.tablaFichas = new DefaultTableModel();
+      // inicializa los componentes de la GUI
       initComponents();
+      // centra la GUI en la pantalla
       this.setLocationRelativeTo(null);
+      // crea el controlador con el que se comunicará laa GUI y lo guarda en una variable de instancia
       this.controlador = new ControladorGenerarFacturaPaciente();
+      // arma la cabecera de la tabla
       armarTabla();
+      // deshabilita los controles
       disableControls();
    } // fin del constructor
 
@@ -229,16 +235,24 @@ public class IUGenerarFacturaPaciente extends javax.swing.JFrame {
 
    private void botonMostrarFichaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMostrarFichaActionPerformed
       try{
+         // toma el número de ficha ingresado
          int numFicha = Integer.parseInt(this.campoTextoNumFicha.getText());
          
-         DTOFichaInternacion fichaInt = this.controlador.buscarFicha(numFicha);
+         // busca los datos de la ficha para mostrarlos en la GUI
+         DTOFichaInternacion fichaInt = this.controlador.buscarFichaInternacion(numFicha);
          
+         // comprueba que la ficha se haya encontrado
          if(fichaInt != null){
+            // habilita los controles
             enableControls();
+            // llena los campos con los datos de la ficha
             cargarCampos(fichaInt);
          } // fin de if de carga de campos
-         else
+         else{
             JOptionPane.showMessageDialog(null, "La ficha ingresada no existe o ya se ha facturado");
+            // deshabilita los controles
+            disableControls();
+         } // fin de else de inexistencia de la ficha
       } // fin de try de error de formato
       catch(NumberFormatException ex){
          JOptionPane.showMessageDialog(null, "Debe ingresar un número en el campo \"Nº Ficha Internacion:\"");
@@ -247,13 +261,16 @@ public class IUGenerarFacturaPaciente extends javax.swing.JFrame {
    // fin del método botonMostrarFichaActionPerformed
    
    private void botonGenerarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGenerarFacturaActionPerformed
+      // oculta la ventana
       this.setVisible(false);
+      // se genera la factura sobre la ficha ingresada
       this.controlador.generarFactura();
    }//GEN-LAST:event_botonGenerarFacturaActionPerformed
    // fin del método botonGenerarFacturaActionPerformed
    
     private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed
-        this.setVisible(false);
+       // oculta la ventana
+       this.setVisible(false);
     }//GEN-LAST:event_botonVolverActionPerformed
    // fin del método botonGenerarFacturaActionPerformed
    
@@ -310,8 +327,11 @@ public class IUGenerarFacturaPaciente extends javax.swing.JFrame {
    } // fin del método armarTabla
    
    private void cargarCampos(DTOFichaInternacion fichaInt){
+      // se declaran variables utilizadas para las posiciones de la tabla a llenar
       int fila = 0, col;
+      String monto, subtotal;
 
+      // se cargan los campos de texto de la GUI en base a los datos recibidos en el DTO de la ficha
       this.campoTextoFecha.setText(ServiciosTiempo.getInstancia().dateToStringDDMMAAAA(fichaInt.getFecha()));
       this.campoTextoNumPaciente.setText(fichaInt.getNumPaciente() + "");
       this.campoTextoNombrePaciente.setText(fichaInt.getNombrePaciente());
@@ -320,12 +340,14 @@ public class IUGenerarFacturaPaciente extends javax.swing.JFrame {
       this.campoTextoCostoPrestacion.setText(costo);
       String coseguro = String.format("%.2f", fichaInt.getDescuento());
       this.campoTextoCoseguro.setText(coseguro);
-
+      
+      // se toma la lista de DTOs de detalles del DTO de la ficha
       List<DTODetalleServicio> listaDetalle = fichaInt.getDtoDetalle();
+      
+      // se configura la cantidad de filas de la tabla respecto al número de detalles a colocar
       this.tablaFichas.setRowCount(listaDetalle.size());
       
-      String monto, subtotal;
-
+      // se cargan las filas de la tabla con los datos de la lista de DTOs de detalles
       for(DTODetalleServicio dtoDetalle : listaDetalle){
          col = 0;
          this.tablaFichas.setValueAt(dtoDetalle.getNombreServicio(), fila, col++);

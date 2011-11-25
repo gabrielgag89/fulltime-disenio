@@ -150,58 +150,102 @@ public class ExpertoGenerarFacturaPaciente {
    } // findel método buscarFichaInternacion
    
    public DTOFacturaPaciente generarFactura(){
-      FacturaPaciente factura = (FacturaPaciente) FachadaPersistencia.getInstancia().nuevaEntidad("FacturaPaciente");
+      // se declara un DTO de factura
+      DTOFacturaPaciente dtoFactura = null;
       
+      // se crea una nueva factura y le asigna los datos correspondientes
+      FacturaPaciente factura = (FacturaPaciente) FachadaPersistencia.getInstancia().nuevaEntidad("FacturaPaciente");
       factura.setFechaEmision(new Date());
       factura.setNumFactura(this.fichaInternacion.getNroFicha());
       factura.setFichaInternacion(this.fichaInternacion);
       
+      // se declara y crea una lista de criterios para utilizarlos en las búsquedas
       List<Criterio> criterios = new ArrayList<Criterio>();
+      // declara y crea un criterio
       Criterio criterio = FachadaPersistencia.getInstancia().getCriterio("nombreEstado", "=", "Emitida", "");
+      // se agrega el criterio a la lista de criterios
       criterios.add(criterio);
       
-      EstadoFacturaPaciente estadoFactura = (EstadoFacturaPaciente) FachadaPersistencia.getInstancia().buscar("EstadoFacturaPaciente", criterios).get(0);
-      factura.setEstadoFacturaPaciente(estadoFactura);
+      // se busca el estado, para la factura, con nombre "Emitida"
+      List<EstadoFacturaPaciente> listaEstadosFacturas = FachadaPersistencia.getInstancia().buscar("EstadoFacturaPaciente", criterios);
       
-      criterios = new ArrayList<Criterio>();
-      criterio = FachadaPersistencia.getInstancia().getCriterio("nombreEstado", "=", "Facturada", "");
-      criterios.add(criterio);
+      // se comprueba que se hayan encontrado estados para la factura
+      if(!listaEstadosFacturas.isEmpty()){
+         // se toma el primer elemento de la lista de estados de facturas
+         EstadoFacturaPaciente estadoFactura = listaEstadosFacturas.get(0);
+         
+         // se cambia el estado de la factura al nuevo estado buscado
+         factura.setEstadoFacturaPaciente(estadoFactura);
+         
+         // se crea una nueva lista de criterios
+         criterios = new ArrayList<Criterio>();
+         criterio = FachadaPersistencia.getInstancia().getCriterio("nombreEstado", "=", "Facturada", "");
+         criterios.add(criterio);
+         
+         // se buscan el estado, para la ficha, con nombre "Facturada"
+         List<EstadoFichaInternacion> listaEstadosFichas = FachadaPersistencia.getInstancia().buscar("EstadoFichaInternacion", criterios);
+         
+         // se comprueba que se hayan encontrado estados para la ficha
+         if(!listaEstadosFichas.isEmpty()){
+            // se toma el primer elemento de la lista de estados de fichas
+            EstadoFichaInternacion estadoFicha = listaEstadosFichas.get(0);
+            
+            // se cambia el estado de la ficha al nuevo estado buscado
+            this.fichaInternacion.setEstadoFichaInternacion(estadoFicha);
+            
+            // se crea una nueva lista de criterios
+            criterios = new ArrayList<Criterio>();
+            criterio = FachadaPersistencia.getInstancia().getCriterio("nombreEstado", "=", "Disponible", "");
+            criterios.add(criterio);
+
+            // se buscan el estado, para la cama, con nombre "Disponible"
+            List<EstadoCama> listaEstadosCamas = FachadaPersistencia.getInstancia().buscar("EstadoCama", criterios);
+            
+            // se comprueba que se hayan encontrado estados para la cama
+            if(!listaEstadosFichas.isEmpty()){
+               // se toma el primer elemento de la lista de estados de camas
+               EstadoCama estadoCama = listaEstadosCamas.get(0);
+               
+               // se cambia el estado de la cama al nuevo estado buscado
+               this.fichaInternacion.getCama().setEstadoCama(estadoCama);
+
+               // se crea un nuevo DTO de factura y se le asignan los datos correspondientes
+               dtoFactura = new DTOFacturaPaciente();
+               dtoFactura.setFecha(factura.getFechaEmision());
+               dtoFactura.setNroFicha(factura.getFichaInternacion().getNroFicha());
+               dtoFactura.setNumFactura(factura.getNumFactura());
+               dtoFactura.setNombrePaciente(this.dtoFicha.getNombrePaciente());
+               dtoFactura.setNombrePrestacion(this.dtoFicha.getNombrePrestacion());
+               dtoFactura.setCostoPrestacion(this.dtoFicha.getCostoPrestacion());
+               dtoFactura.setDescuento(this.dtoFicha.getDescuento());
+               dtoFactura.setDtoDetalle(this.dtoFicha.getDtoDetalle());
+               
+               // se calcula el monto de la factura
+               double monto = dtoFactura.getCostoPrestacion() - dtoFactura.getCostoPrestacion() * dtoFactura.getDescuento();
+               
+               // se suma al monto el subtotal de cada detalle de servicios
+               for(DTODetalleServicio dtoDetalle : dtoFactura.getDtoDetalle())
+                  monto += dtoDetalle.getSubtotal();
+               
+               // se guarda el monto final en la factura
+               factura.setMonto(monto);
+               // se guarda el monto final en el DTO de factura
+               dtoFactura.setMonto(monto);
+
+               // se guarda la factura
+               FachadaPersistencia.getInstancia().guardar("FacturaPaciente", factura);
+               // se guarda la cama
+               FachadaPersistencia.getInstancia().guardar("Cama", this.fichaInternacion.getCama());
+               // se guarda la ficha de internación
+               FachadaPersistencia.getInstancia().guardar("FichaInternacion", this.fichaInternacion);
+
+               // se notifica a todos los observadores acerca de la nueva factura emitida
+               SuscriptorGenerarFacturaPaciente.getInstancia().notificar(dtoFactura);
+            } // fin de if de comprobación de existencia del estado de la cama
+         } // fin de if de comprobación de existencia del estado de la ficha
+      } // fin de if de comprobación de existencia del estado de la factura
       
-      EstadoFichaInternacion estadoFicha = (EstadoFichaInternacion) FachadaPersistencia.getInstancia().buscar("EstadoFichaInternacion", criterios).get(0);
-      this.fichaInternacion.setEstadoFichaInternacion(estadoFicha);
-      
-      criterios = new ArrayList<Criterio>();
-      criterio = FachadaPersistencia.getInstancia().getCriterio("nombreEstado", "=", "Disponible", "");
-      criterios.add(criterio);
-      
-      EstadoCama estadoCama = (EstadoCama) FachadaPersistencia.getInstancia().buscar("EstadoCama", criterios).get(0);
-      this.fichaInternacion.getCama().setEstadoCama(estadoCama);
-      
-      DTOFacturaPaciente dtoFactura = new DTOFacturaPaciente();
-      dtoFactura.setFecha(factura.getFechaEmision());
-      dtoFactura.setNroFicha(factura.getFichaInternacion().getNroFicha());
-      dtoFactura.setNumFactura(factura.getNumFactura());
-      dtoFactura.setNombrePaciente(this.dtoFicha.getNombrePaciente());
-      dtoFactura.setNombrePrestacion(this.dtoFicha.getNombrePrestacion());
-      dtoFactura.setCostoPrestacion(this.dtoFicha.getCostoPrestacion());
-      dtoFactura.setDescuento(this.dtoFicha.getDescuento());
-      dtoFactura.setDtoDetalle(this.dtoFicha.getDtoDetalle());
-      
-      double monto = dtoFactura.getCostoPrestacion() - dtoFactura.getCostoPrestacion() * dtoFactura.getDescuento();
-      
-      for(DTODetalleServicio dtoDetalle : dtoFactura.getDtoDetalle()){
-         monto += dtoDetalle.getSubtotal();
-      } // fin de for 
-      
-      factura.setMonto(monto);
-      dtoFactura.setMonto(monto);
-      
-      FachadaPersistencia.getInstancia().guardar("FacturaPaciente", factura);
-      FachadaPersistencia.getInstancia().guardar("Cama", this.fichaInternacion.getCama());
-      FachadaPersistencia.getInstancia().guardar("FichaInternacion", this.fichaInternacion);
-      
-      SuscriptorGenerarFacturaPaciente.getInstancia().notificar(dtoFactura);
-      
+      // se devuelve el DTO de la factura
       return dtoFactura;
    } // findel método generarFactura
 } // fin de la clase ExpertoGenerarFacturaPaciente

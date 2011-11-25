@@ -10,9 +10,13 @@ public class IUMonstrarFactura extends javax.swing.JFrame {
    private DefaultTableModel tablaFacturas;
    
    public IUMonstrarFactura() {
+      // crea la tabla para los detalles
       this.tablaFacturas = new DefaultTableModel();
+      // inicializa los componentes de la GUI
       initComponents();
+      // centra la GUI en la pantalla
       this.setLocationRelativeTo(null);
+      // arma la cabecera de la tabla
       armarTabla();
    } // fin del constructor
 
@@ -243,9 +247,11 @@ public class IUMonstrarFactura extends javax.swing.JFrame {
    } // fin del método armarTabla
    
    public void cargarCampos(DTOFacturaPaciente dtoFactura){
+      // se declaran variables utilizadas para las posiciones de la tabla a llenar
       int fila = 0, col;
       String monto, subtotal;
-
+      
+      // se cargan los campos de texto de la GUI en base a los datos recibidos en el DTO de la factura
       this.campoTextoNumFactura.setText(dtoFactura.getNumFactura() + "");
       this.campoTextoFecha.setText(ServiciosTiempo.getInstancia().dateToStringDDMMAAAA(dtoFactura.getFecha()));
       this.campoTextoNumFicha.setText(dtoFactura.getNroFicha() + "");
@@ -256,10 +262,13 @@ public class IUMonstrarFactura extends javax.swing.JFrame {
       String descuento = String.format("%.2f", dtoFactura.getDescuento());
       this.campoTextoCoseguro.setText(descuento);
 
+      // se toma la lista de DTOs de detalles del DTO de la factura
       List<DTODetalleServicio> listaDetalle = dtoFactura.getDtoDetalle();
       
+      // se configura la cantidad de filas de la tabla respecto al número de detalles a colocar
       this.tablaFacturas.setRowCount(listaDetalle.size());
 
+      // se cargan las filas de la tabla con los datos de la lista de DTOs de detalles
       for(DTODetalleServicio dtoDetalle : listaDetalle){
          col = 0;
          this.tablaFacturas.setValueAt(dtoDetalle.getNombreServicio(), fila, col++);
@@ -270,6 +279,7 @@ public class IUMonstrarFactura extends javax.swing.JFrame {
          this.tablaFacturas.setValueAt(subtotal, fila++, col++);
       } // fin de for de llenado de la tabla de detalles de servicios especiales
       
+      // se carga el campo de texto con el total de la factura
       String total = String.format("%.2f", dtoFactura.getMonto());
       this.campoTextoTotal.setText(total);
    } // fin del método cargarCampos
