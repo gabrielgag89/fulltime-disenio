@@ -55,8 +55,16 @@ public class IUMonstrarFactura extends javax.swing.JFrame {
         });
 
         scrollPaneServiciosEspeciales.setBorder(javax.swing.BorderFactory.createTitledBorder("Servicios Especiales"));
+        scrollPaneServiciosEspeciales.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        scrollPaneServiciosEspeciales.setFocusable(false);
+        scrollPaneServiciosEspeciales.setRequestFocusEnabled(false);
 
         tablaFacturasExterna.setModel(tablaFacturas);
+        tablaFacturasExterna.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        tablaFacturasExterna.setEnabled(false);
+        tablaFacturasExterna.setFocusable(false);
+        tablaFacturasExterna.setRequestFocusEnabled(false);
+        tablaFacturasExterna.setRowSelectionAllowed(false);
         scrollPaneServiciosEspeciales.setViewportView(tablaFacturasExterna);
 
         panelDatosFactura.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos Factura"));
@@ -73,18 +81,32 @@ public class IUMonstrarFactura extends javax.swing.JFrame {
 
         etiquetaFecha.setText("Fecha:");
 
+        campoTextoFecha.setBackground(new java.awt.Color(255, 255, 255));
+        campoTextoFecha.setEditable(false);
         campoTextoFecha.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
+        campoTextoNumFactura.setBackground(new java.awt.Color(255, 255, 255));
+        campoTextoNumFactura.setEditable(false);
         campoTextoNumFactura.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
+        campoTextoNombrePaciente.setBackground(new java.awt.Color(255, 255, 255));
+        campoTextoNombrePaciente.setEditable(false);
         campoTextoNombrePaciente.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
+        campoTextoNombrePrestacion.setBackground(new java.awt.Color(255, 255, 255));
+        campoTextoNombrePrestacion.setEditable(false);
         campoTextoNombrePrestacion.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
+        campoTextoCostoPrestacion.setBackground(new java.awt.Color(255, 255, 255));
+        campoTextoCostoPrestacion.setEditable(false);
         campoTextoCostoPrestacion.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
+        campoTextoCoseguro.setBackground(new java.awt.Color(255, 255, 255));
+        campoTextoCoseguro.setEditable(false);
         campoTextoCoseguro.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
+        campoTextoNumFicha.setBackground(new java.awt.Color(255, 255, 255));
+        campoTextoNumFicha.setEditable(false);
         campoTextoNumFicha.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         etiquetaNumFicha.setText("Nº Ficha:");
@@ -94,7 +116,7 @@ public class IUMonstrarFactura extends javax.swing.JFrame {
         panelDatosFacturaLayout.setHorizontalGroup(
             panelDatosFacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelDatosFacturaLayout.createSequentialGroup()
-                .addContainerGap(52, Short.MAX_VALUE)
+                .addContainerGap(56, Short.MAX_VALUE)
                 .addGroup(panelDatosFacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDatosFacturaLayout.createSequentialGroup()
                         .addGroup(panelDatosFacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -157,6 +179,8 @@ public class IUMonstrarFactura extends javax.swing.JFrame {
 
         etiquetaTotal.setText("Total:");
 
+        campoTextoTotal.setBackground(new java.awt.Color(255, 255, 255));
+        campoTextoTotal.setEditable(false);
         campoTextoTotal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -166,7 +190,7 @@ public class IUMonstrarFactura extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrollPaneServiciosEspeciales, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                    .addComponent(scrollPaneServiciosEspeciales, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(botonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(187, 187, 187)

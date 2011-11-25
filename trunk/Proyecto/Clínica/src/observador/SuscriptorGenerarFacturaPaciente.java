@@ -17,16 +17,17 @@ public class SuscriptorGenerarFacturaPaciente {
       return instancia;
    } // fin del método getInstancia
 
-   public  void suscribirse(ObservadorGenerarFacturaPaciente o) {
-      this.observadores.add(o);
+   public  void suscribirse(ObservadorGenerarFacturaPaciente obs) {
+      this.observadores.add(obs);
    } // fin del método agregarObservador
 
-   public void quitarObservador(ObservadorGenerarFacturaPaciente o) {
-      this.observadores.remove(o);
+   public void quitarObservador(ObservadorGenerarFacturaPaciente obs) {
+      this.observadores.remove(obs);
    } // fin del método quitarObservador
 
    public void notificar(DTOFacturaPaciente dtoFactura){
-      for(ObservadorGenerarFacturaPaciente obs : observadores)
+      for(ObservadorGenerarFacturaPaciente obs : observadores){
          obs.actualizar(dtoFactura);
+      }
    } // fin del método notificar
 } // fin de la clase SuscriptorGenerarFacturaPaciente

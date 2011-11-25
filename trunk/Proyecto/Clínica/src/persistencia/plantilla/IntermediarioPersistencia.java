@@ -58,7 +58,6 @@ public abstract class IntermediarioPersistencia {
    
    public ObjetoPersistente nuevaEntidad(){
       ObjetoPersistente objPers = obtenerNuevaEntidad();
-      objPers.setLimpio(true);
       objPers.setNuevo(true);
       
       Cache.getInstancia().agregar(objPers.getOid(),objPers);

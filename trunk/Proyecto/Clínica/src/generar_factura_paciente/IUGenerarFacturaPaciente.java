@@ -87,16 +87,22 @@ public class IUGenerarFacturaPaciente extends javax.swing.JFrame {
 
         etiquetaFecha.setText("Fecha:");
 
+        campoTextoFecha.setEditable(false);
         campoTextoFecha.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
+        campoTextoNumPaciente.setEditable(false);
         campoTextoNumPaciente.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
+        campoTextoNombrePaciente.setEditable(false);
         campoTextoNombrePaciente.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
+        campoTextoNombrePrestacion.setEditable(false);
         campoTextoNombrePrestacion.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
+        campoTextoCostoPrestacion.setEditable(false);
         campoTextoCostoPrestacion.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
+        campoTextoCoseguro.setEditable(false);
         campoTextoCoseguro.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         javax.swing.GroupLayout panelDatosFichaLayout = new javax.swing.GroupLayout(panelDatosFicha);
@@ -120,7 +126,7 @@ public class IUGenerarFacturaPaciente extends javax.swing.JFrame {
                     .addComponent(campoTextoNombrePaciente)
                     .addComponent(campoTextoNumPaciente)
                     .addComponent(campoTextoFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         panelDatosFichaLayout.setVerticalGroup(
             panelDatosFichaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,8 +159,15 @@ public class IUGenerarFacturaPaciente extends javax.swing.JFrame {
         );
 
         scrollPaneServiciosEspeciales.setBorder(javax.swing.BorderFactory.createTitledBorder("Servicios Especiales"));
+        scrollPaneServiciosEspeciales.setFocusable(false);
+        scrollPaneServiciosEspeciales.setRequestFocusEnabled(false);
 
         tablaFichasExterna.setModel(tablaFichas);
+        tablaFichasExterna.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        tablaFichasExterna.setEnabled(false);
+        tablaFichasExterna.setFocusable(false);
+        tablaFichasExterna.setRequestFocusEnabled(false);
+        tablaFichasExterna.setRowSelectionAllowed(false);
         scrollPaneServiciosEspeciales.setViewportView(tablaFichasExterna);
 
         botonVolver.setText("Volver");
@@ -171,15 +184,6 @@ public class IUGenerarFacturaPaciente extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(botonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 200, Short.MAX_VALUE)
-                                .addComponent(botonGenerarFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(scrollPaneServiciosEspeciales, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
-                            .addComponent(panelDatosFicha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(etiqueteNumFicha)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -188,7 +192,16 @@ public class IUGenerarFacturaPaciente extends javax.swing.JFrame {
                             .addComponent(campoTextoNumFicha, javax.swing.GroupLayout.Alignment.LEADING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botonBuscarFicha, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(109, 109, 109))))
+                        .addGap(109, 109, 109))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(panelDatosFicha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(botonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(botonGenerarFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(scrollPaneServiciosEspeciales, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -255,7 +268,7 @@ public class IUGenerarFacturaPaciente extends javax.swing.JFrame {
       this.campoTextoCoseguro.setEnabled(false);
       
       // deshabilita la tabla de detalles de servicios especiales
-      this.tablaFichasExterna.setEnabled(false);
+      this.scrollPaneServiciosEspeciales.setEnabled(false);
       
       // deshabilita el botón para generar la factura
       this.botonGenerarFactura.setEnabled(false);
@@ -272,7 +285,7 @@ public class IUGenerarFacturaPaciente extends javax.swing.JFrame {
       this.campoTextoCoseguro.setEnabled(true);
       
       // habilita la tabla de detalles de servicios especiales
-      this.tablaFichasExterna.setEnabled(true);
+      this.scrollPaneServiciosEspeciales.setEnabled(true);
       
       // habilita el botón para generar la factura
       this.botonGenerarFactura.setEnabled(true);

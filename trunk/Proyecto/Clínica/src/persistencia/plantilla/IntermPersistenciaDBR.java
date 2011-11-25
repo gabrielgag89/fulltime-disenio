@@ -1,6 +1,7 @@
 package persistencia.plantilla;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.HashMap;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -52,7 +53,7 @@ public abstract class IntermPersistenciaDBR extends IntermediarioPersistencia{
    @Override
    public ObjetoPersistente obtenerNuevaEntidad(){
       ObjetoPersistente objPers = nuevo();
-      objPers.setOid(objPers.generarOid());
+      objPers.setOid(UUID.randomUUID().toString());
       
       return objPers;
    } // fin del método obtenerNuevaEntidad
