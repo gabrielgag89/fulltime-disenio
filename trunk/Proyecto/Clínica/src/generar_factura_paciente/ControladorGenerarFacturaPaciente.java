@@ -19,11 +19,14 @@ public class ControladorGenerarFacturaPaciente {
       // se genera la factura y se guarda el DTO recibido para mostrarla luego en la GUI
       DTOFacturaPaciente dtoFactura = this.experto.generarFactura();
       
-      // se crea una GUI para mostrar la factura emitida
-      IUMonstrarFactura iuMostrFact = new IUMonstrarFactura();
-      // se envía el DTO con los datos de la factura a la GUI
-      iuMostrFact.cargarCampos(dtoFactura);
-      // se hace visible la GUI
-      iuMostrFact.setVisible(true);
+      // se comprueba que se haya emitido la factura con éxito
+      if(dtoFactura != null){
+         // se crea una GUI para mostrar la factura emitida
+         IUMonstrarFactura iuMostrFact = new IUMonstrarFactura();
+         // se envía el DTO con los datos de la factura a la GUI
+         iuMostrFact.cargarCampos(dtoFactura);
+         // se hace visible la GUI
+         iuMostrFact.setVisible(true);
+      } // fin de if de comprobación de emisión de la factura
    } // fin del método generarFactura
 } // fin de la clase ControladorGenerarFacturaPaciente

@@ -153,40 +153,43 @@ public class ExpertoCobrarFacturaPaciente {
          // se tome el primer elemento de la lista de facturas
          FacturaPaciente factura = listaFacturas.get(0);
          
-         // se crea un nuevo recibo y se guardan en él los datos correspondientes
-         Recibo recibo = (Recibo) FachadaPersistencia.getInstancia().nuevaEntidad("Recibo");
-         recibo.setFacturaPaciente(factura);
-         recibo.setFecha(new Date());
-         recibo.setNroRecibo(numFactura);
-         
-         // se crea el DTO de recibo y se le asignan los datos correspondientes
-         dtoRecibo = new DTORecibo();
-         dtoRecibo.setNroRecibo(recibo.getNroRecibo());
-         dtoRecibo.setNumFactura(recibo.getFacturaPaciente().getNumFactura());
-         dtoRecibo.setFecha(recibo.getFecha());
-         dtoRecibo.setMonto(factura.getMonto());
-         
-         // se crea una nueva lista de criterios
-         criterios = new ArrayList<Criterio>();
-         criterio = FachadaPersistencia.getInstancia().getCriterio("nombreEstado", "=", "Pagada", "");
-         criterios.add(criterio);
-         
-         // se busca el estado, para la factura, con el nombre "Pagada"
-         List<EstadoFacturaPaciente> listaEstadosFacturas = FachadaPersistencia.getInstancia().buscar("EstadoFacturaPaciente", criterios);
-         
-         // se comprueba que exista el estado de la factura buscado
-         if(!listaEstadosFacturas.isEmpty()){
-            // se tome el primer elemento de la lista de estados de facturas
-            EstadoFacturaPaciente estadoFactura = listaEstadosFacturas.get(0);
-            
-            // se cambia el estado de la factura por el nuevo estado encontrado
-            factura.setEstadoFacturaPaciente(estadoFactura);
-         } // fin de if de comprobación de existencia del estado de la factura
-         
-         // se guarda la factura
-         FachadaPersistencia.getInstancia().guardar("FacturaPaciente", factura);
-         // se guarda el recibo
-         FachadaPersistencia.getInstancia().guardar("Recibo", recibo);
+         // comprueba si efectivamente la factura aún no se ha cobrado
+         if(!factura.getEstadoFacturaPaciente().getNombreEstado().equals("Pagada")){
+            // se crea un nuevo recibo y se guardan en él los datos correspondientes
+            Recibo recibo = (Recibo) FachadaPersistencia.getInstancia().nuevaEntidad("Recibo");
+            recibo.setFacturaPaciente(factura);
+            recibo.setFecha(new Date());
+            recibo.setNroRecibo(numFactura);
+
+            // se crea el DTO de recibo y se le asignan los datos correspondientes
+            dtoRecibo = new DTORecibo();
+            dtoRecibo.setNroRecibo(recibo.getNroRecibo());
+            dtoRecibo.setNumFactura(recibo.getFacturaPaciente().getNumFactura());
+            dtoRecibo.setFecha(recibo.getFecha());
+            dtoRecibo.setMonto(factura.getMonto());
+
+            // se crea una nueva lista de criterios
+            criterios = new ArrayList<Criterio>();
+            criterio = FachadaPersistencia.getInstancia().getCriterio("nombreEstado", "=", "Pagada", "");
+            criterios.add(criterio);
+
+            // se busca el estado, para la factura, con el nombre "Pagada"
+            List<EstadoFacturaPaciente> listaEstadosFacturas = FachadaPersistencia.getInstancia().buscar("EstadoFacturaPaciente", criterios);
+
+            // se comprueba que exista el estado de la factura buscado
+            if(!listaEstadosFacturas.isEmpty()){
+               // se tome el primer elemento de la lista de estados de facturas
+               EstadoFacturaPaciente estadoFactura = listaEstadosFacturas.get(0);
+
+               // se cambia el estado de la factura por el nuevo estado encontrado
+               factura.setEstadoFacturaPaciente(estadoFactura);
+            } // fin de if de comprobación de existencia del estado de la factura
+
+            // se guarda la factura
+            FachadaPersistencia.getInstancia().guardar("FacturaPaciente", factura);
+            // se guarda el recibo
+            FachadaPersistencia.getInstancia().guardar("Recibo", recibo);
+         } // fin de if de comprobación del estado de la factura
       } // fin de if de comprobación de existencia de la factura
       
       // se devuelve el DTO de recibo, o null si la factura no se encontró

@@ -28,12 +28,15 @@ public class ControladorCobrarFacturaPaciente implements ObservadorGenerarFactur
       // se genera el recibo para la factura
       DTORecibo dtoRecibo = this.experto.cobrarFactura(numFactura);
       
-      // se crea una GUI para mostrar el recibo emitido
-      IUMostrarRecibo iuMostrar = new IUMostrarRecibo();
-      // se envía el DTO con los datos del recibo a la GUI
-      iuMostrar.cargarCampos(dtoRecibo);
-      // se hace visible la GUI
-      iuMostrar.setVisible(true);
+      // se comprueba que se haya emitido el recibo con éxito
+      if(dtoRecibo != null){
+         // se crea una GUI para mostrar el recibo emitido
+         IUMostrarRecibo iuMostrar = new IUMostrarRecibo();
+         // se envía el DTO con los datos del recibo a la GUI
+         iuMostrar.cargarCampos(dtoRecibo);
+         // se hace visible la GUI
+         iuMostrar.setVisible(true);
+      } // find e if de comprobación de emisión del recibo
    } // fin del método cobrarFactura
    
    @Override
