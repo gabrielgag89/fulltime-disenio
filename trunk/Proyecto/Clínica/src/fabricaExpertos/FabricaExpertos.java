@@ -3,10 +3,6 @@ package fabricaExpertos;
 import generar_factura_paciente.DecoradorExpertoGenerarFacturaPaciente;
 import cobrar_factura_paciente.DecoradorExpertoCobrarFacturaPaciente;
 
-/**
- *
- * @author gabriel
- */
 public class FabricaExpertos {
    private static FabricaExpertos instancia;
    

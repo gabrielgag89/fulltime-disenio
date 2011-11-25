@@ -12,10 +12,10 @@ import persistencia.criterios.Criterio;
 
 public class IPRTipoPrestacion extends IntermPersistenciaDBR {
    public IPRTipoPrestacion(){
-      this.mapeo.put("oid", "oidtipo_prestacion");
-      this.mapeo.put("codigoTipoPrestacion", "codigo_tipo_prestacion");
-      this.mapeo.put("nombreTipoPrestacion", "nombre_tipo_prestacion");
-      this.mapeo.put("tipoHabitacion", "oidtipo_habitacion");
+      this.mapeoAtributos.put("oid", "oidtipo_prestacion");
+      this.mapeoAtributos.put("codigoTipoPrestacion", "codigo_tipo_prestacion");
+      this.mapeoAtributos.put("nombreTipoPrestacion", "nombre_tipo_prestacion");
+      this.mapeoAtributos.put("tipoHabitacion", "oidtipo_habitacion");
    } // fin del constructor
    
    @Override

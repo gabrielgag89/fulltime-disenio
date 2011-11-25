@@ -12,11 +12,11 @@ import util.ServiciosTiempo;
 
 public class IPRCostoServicio extends IntermPersistenciaDBR {
    public IPRCostoServicio(){
-      this.mapeo.put("oid", "oidcosto_servicio");
-      this.mapeo.put("fechaInicio", "fecha_inicio");
-      this.mapeo.put("fechaFin", "fecha_fin");
-      this.mapeo.put("monto", "monto");
-      this.mapeo.put("servicioEspecial", "oidservicio_especial");
+      this.mapeoAtributos.put("oid", "oidcosto_servicio");
+      this.mapeoAtributos.put("fechaInicio", "fecha_inicio");
+      this.mapeoAtributos.put("fechaFin", "fecha_fin");
+      this.mapeoAtributos.put("monto", "monto");
+      this.mapeoAtributos.put("servicioEspecial", "oidservicio_especial");
    } // fin del constructor
    
    @Override

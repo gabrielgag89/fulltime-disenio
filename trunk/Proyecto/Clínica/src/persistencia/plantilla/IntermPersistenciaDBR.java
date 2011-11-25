@@ -11,11 +11,19 @@ import persistencia.criterios.Criterio;
 import persistencia.Conector;
 
 public abstract class IntermPersistenciaDBR extends IntermediarioPersistencia{
-   protected HashMap<String, String> mapeo = new HashMap<String, String>();
+   protected HashMap<String, String> mapeoAtributos = new HashMap<String, String>();
    
    @Override
    public List<ObjetoPersistente> materializar(){
       String sql = select();
+      ResultSet resultado = ejecutarSQL(sql);
+
+      return convertirAObjeto(resultado);
+   } // fin del método materializar
+   
+   @Override
+   public List<ObjetoPersistente> materializar(List<Criterio> criterios){
+      String sql = select(criterios);
       ResultSet resultado = ejecutarSQL(sql);
 
       return convertirAObjeto(resultado);
@@ -28,14 +36,6 @@ public abstract class IntermPersistenciaDBR extends IntermediarioPersistencia{
       List<ObjetoPersistente> buscado = convertirAObjeto(resultado);
 
       return buscado.get(0);
-   } // fin del método materializar
-   
-   @Override
-   public List<ObjetoPersistente> materializar(List<Criterio> criterios){
-      String sql = select(criterios);
-      ResultSet resultado = ejecutarSQL(sql);
-
-      return convertirAObjeto(resultado);
    } // fin del método materializar
    
    @Override
@@ -59,7 +59,7 @@ public abstract class IntermPersistenciaDBR extends IntermediarioPersistencia{
    } // fin del método obtenerNuevaEntidad
    
    protected String getNombreColumna(String nombreAtributo){
-      return this.mapeo.get(nombreAtributo);
+      return this.mapeoAtributos.get(nombreAtributo);
    } // fin del método getNombreColumna
 
    private void ejecutarSQLSave(String sql){
@@ -71,7 +71,7 @@ public abstract class IntermPersistenciaDBR extends IntermediarioPersistencia{
          consulta.execute();
       }
       catch (SQLException ex) {
-         System.out.println("IntermPersistenciaDBR-ejecutarSQL(String sql) - SQLException: " + ex.getMessage());
+         System.err.println("IntermPersistenciaDBR-ejecutarSQL(String sql) - SQLException: " + ex.getMessage());
       }
    } // fin del método ejecutarSQLSave
 
@@ -84,7 +84,7 @@ public abstract class IntermPersistenciaDBR extends IntermediarioPersistencia{
          return consulta.executeQuery(sql);
       }
       catch (SQLException ex) {
-         System.out.println("IntermPersistenciaDBR-ejecutarSQL(String sql) - SQLException: " + ex.getMessage());
+         System.err.println("IntermPersistenciaDBR-ejecutarSQL(String sql) - SQLException: " + ex.getMessage());
          return null;
       }
    } // fin del método ejecutarSQL

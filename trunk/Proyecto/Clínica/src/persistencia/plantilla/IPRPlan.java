@@ -11,10 +11,10 @@ import persistencia.proxy.PlanAgente;
 
 public class IPRPlan extends IntermPersistenciaDBR {
    public IPRPlan(){
-      this.mapeo.put("oid", "oidplan");
-      this.mapeo.put("codigoPlan", "codigo_plan");
-      this.mapeo.put("descripcion", "descripcion");
-      this.mapeo.put("obraSocial", "oidobra_social");
+      this.mapeoAtributos.put("oid", "oidplan");
+      this.mapeoAtributos.put("codigoPlan", "codigo_plan");
+      this.mapeoAtributos.put("descripcion", "descripcion");
+      this.mapeoAtributos.put("obraSocial", "oidobra_social");
    } // fin del constructor
    
    @Override

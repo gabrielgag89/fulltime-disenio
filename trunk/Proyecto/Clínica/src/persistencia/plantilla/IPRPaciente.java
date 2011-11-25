@@ -11,13 +11,13 @@ import persistencia.criterios.Criterio;
 
 public class IPRPaciente extends IntermPersistenciaDBR {
    public IPRPaciente(){
-      this.mapeo.put("oid", "oidpaciente");
-      this.mapeo.put("numeroPaciente", "numero_paciente");
-      this.mapeo.put("nombrePaciente", "nombre_paciente");
-      this.mapeo.put("dni", "dni");
-      this.mapeo.put("domicilio", "domicilio");
-      this.mapeo.put("telefono", "telefono");
-      this.mapeo.put("plan", "oidplan");
+      this.mapeoAtributos.put("oid", "oidpaciente");
+      this.mapeoAtributos.put("numeroPaciente", "numero_paciente");
+      this.mapeoAtributos.put("nombrePaciente", "nombre_paciente");
+      this.mapeoAtributos.put("dni", "dni");
+      this.mapeoAtributos.put("domicilio", "domicilio");
+      this.mapeoAtributos.put("telefono", "telefono");
+      this.mapeoAtributos.put("plan", "oidplan");
    } // fin del constructor
    
    @Override

@@ -12,12 +12,12 @@ import util.ServiciosTiempo;
 
 public class IPRConvenio extends IntermPersistenciaDBR{
    public IPRConvenio(){
-      this.mapeo.put("oid", "oidconvenio");
-      this.mapeo.put("fechaInicio", "fecha_inicio");
-      this.mapeo.put("fechaFin", "fecha_fin");
-      this.mapeo.put("plan", "oidplan");
-      this.mapeo.put("prestacion", "oidprestacion");
-      this.mapeo.put("coseguro", "oidcoseguro");
+      this.mapeoAtributos.put("oid", "oidconvenio");
+      this.mapeoAtributos.put("fechaInicio", "fecha_inicio");
+      this.mapeoAtributos.put("fechaFin", "fecha_fin");
+      this.mapeoAtributos.put("plan", "oidplan");
+      this.mapeoAtributos.put("prestacion", "oidprestacion");
+      this.mapeoAtributos.put("coseguro", "oidcoseguro");
    } // fin del constructor
 
    @Override

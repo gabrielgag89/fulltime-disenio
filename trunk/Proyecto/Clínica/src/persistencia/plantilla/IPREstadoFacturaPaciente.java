@@ -11,8 +11,8 @@ import persistencia.criterios.Criterio;
 
 public class IPREstadoFacturaPaciente extends IntermPersistenciaDBR{
    public IPREstadoFacturaPaciente(){
-      this.mapeo.put("oid", "oidestado_factura_paciente");
-      this.mapeo.put("nombreEstado", "nombre_estado_factura_paciente");
+      this.mapeoAtributos.put("oid", "oidestado_factura_paciente");
+      this.mapeoAtributos.put("nombreEstado", "nombre_estado_factura_paciente");
    } // fin del constructor
    
    @Override

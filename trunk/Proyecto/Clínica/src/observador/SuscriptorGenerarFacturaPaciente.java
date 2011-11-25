@@ -26,8 +26,7 @@ public class SuscriptorGenerarFacturaPaciente {
    } // fin del método quitarObservador
 
    public void notificar(DTOFacturaPaciente dtoFactura){
-      for(ObservadorGenerarFacturaPaciente obs : observadores){
+      for(ObservadorGenerarFacturaPaciente obs : observadores)
          obs.actualizar(dtoFactura);
-      }
    } // fin del método notificar
 } // fin de la clase SuscriptorGenerarFacturaPaciente
