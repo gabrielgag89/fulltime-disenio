@@ -11,18 +11,18 @@ import persistencia.criterios.Criterio;
 
 public class IPREstadoFacturaPaciente extends IntermPersistenciaDBR{
    public IPREstadoFacturaPaciente(){
-      this.mapeo.put("oid", "oidestado_factura_cliente");
-      this.mapeo.put("nombreEstado", "nombre_estado_factura_cliente");
+      this.mapeo.put("oid", "oidestado_factura_paciente");
+      this.mapeo.put("nombreEstado", "nombre_estado_factura_paciente");
    } // fin del constructor
    
    @Override
    public String select() {
-      return "SELECT * FROM estado_factura_cliente";
+      return "SELECT * FROM estado_factura_paciente";
    } // fin del método select
 
    @Override
    public String select(List<Criterio> criterios) {
-      String sql = "SELECT * FROM estado_factura_cliente WHERE ";
+      String sql = "SELECT * FROM estado_factura_paciente WHERE ";
       int cont = 0;
       
       for(Criterio criterio : criterios){
@@ -39,14 +39,14 @@ public class IPREstadoFacturaPaciente extends IntermPersistenciaDBR{
 
    @Override
    public String select(String oid) {
-      return "SELECT * FROM estado_factura_cliente WHERE oidestado_factura_cliente = '" + oid +"'";
+      return "SELECT * FROM estado_factura_paciente WHERE oidestado_factura_paciente = '" + oid +"'";
    } // fin del método select
 
    @Override
    public String insertar(Object objeto) {
       EstadoFacturaPacienteAgente estado = (EstadoFacturaPacienteAgente) objeto;
 
-      return "INSERT INTO estado_factura_cliente "
+      return "INSERT INTO estado_factura_paciente "
                   + "VALUES ('" + estado.getOid() + "', '"
                                 + estado.getNombreEstado() + "'";
    } // fin del método insertar
@@ -55,9 +55,9 @@ public class IPREstadoFacturaPaciente extends IntermPersistenciaDBR{
    public String actualizar(Object objeto) {
       EstadoFacturaPacienteAgente estado = (EstadoFacturaPacienteAgente)objeto;
 
-      return "UPDATE estado_factura_cliente SET "
-               + "nombre_estado_factura_cliente = '" + estado.getNombreEstado() + "' "
-               + "WHERE oidestado_factura_cliente = '" + estado.getOid() + "'";
+      return "UPDATE estado_factura_paciente SET "
+               + "nombre_estado_factura_paciente = '" + estado.getNombreEstado() + "' "
+               + "WHERE oidestado_factura_paciente = '" + estado.getOid() + "'";
    } // fin del método actualizar
 
    @Override
@@ -70,8 +70,8 @@ public class IPREstadoFacturaPaciente extends IntermPersistenciaDBR{
             estado = new EstadoFacturaPacienteAgente();
 
             estado.setImplementacion(new EstadoFacturaPacienteImpl());
-            estado.setOid(resultado.getString("oidestado_factura_cliente"));
-            estado.setNombreEstado(resultado.getString("nombre_estado_factura_cliente"));
+            estado.setOid(resultado.getString("oidestado_factura_paciente"));
+            estado.setNombreEstado(resultado.getString("nombre_estado_factura_paciente"));
 
             lista.add(estado);
          } // fin de while de creación de agentes
