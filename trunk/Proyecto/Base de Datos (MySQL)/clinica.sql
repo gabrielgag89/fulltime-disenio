@@ -1,6 +1,6 @@
 /*
-SQLyog Ultimate - MySQL GUI v8.22 
-MySQL - 6.0.10-alpha-community : Database - clinica
+SQLyog Ultimate v9.02 
+MySQL - 5.5.17 : Database - clinica
 *********************************************************************
 */
 
@@ -119,14 +119,14 @@ CREATE TABLE `estado_cama` (
   PRIMARY KEY (`oidestado_cama`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*Table structure for table `estado_factura_cliente` */
+/*Table structure for table `estado_factura_paciente` */
 
-DROP TABLE IF EXISTS `estado_factura_cliente`;
+DROP TABLE IF EXISTS `estado_factura_paciente`;
 
-CREATE TABLE `estado_factura_cliente` (
-  `oidestado_factura_cliente` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `nombre_estado_factura_cliente` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`oidestado_factura_cliente`)
+CREATE TABLE `estado_factura_paciente` (
+  `oidestado_factura_paciente` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `nombre_estado_factura_paciente` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`oidestado_factura_paciente`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Table structure for table `estado_ficha_internacion` */
@@ -139,21 +139,21 @@ CREATE TABLE `estado_ficha_internacion` (
   PRIMARY KEY (`oidestado_ficha_internacion`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*Table structure for table `factura_cliente` */
+/*Table structure for table `factura_paciente` */
 
-DROP TABLE IF EXISTS `factura_cliente`;
+DROP TABLE IF EXISTS `factura_paciente`;
 
-CREATE TABLE `factura_cliente` (
-  `oidfactura_cliente` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `numero_factura_cliente` int(11) NOT NULL,
+CREATE TABLE `factura_paciente` (
+  `oidfactura_paciente` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `numero_factura_paciente` int(11) NOT NULL,
   `fecha` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   `monto` double NOT NULL,
-  `oidestado_factura_cliente` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `oidestado_factura_paciente` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `oidficha_internacion` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`oidfactura_cliente`),
-  KEY `fk_factura_cliente_estado_factura_cliente1` (`oidestado_factura_cliente`),
+  PRIMARY KEY (`oidfactura_paciente`),
+  KEY `fk_factura_cliente_estado_factura_cliente1` (`oidestado_factura_paciente`),
   KEY `fk_factura_cliente_ficha_internacion1` (`oidficha_internacion`),
-  CONSTRAINT `fk_factura_cliente_estado_factura_cliente1` FOREIGN KEY (`oidestado_factura_cliente`) REFERENCES `estado_factura_cliente` (`oidestado_factura_cliente`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_factura_cliente_estado_factura_cliente1` FOREIGN KEY (`oidestado_factura_paciente`) REFERENCES `estado_factura_paciente` (`oidestado_factura_paciente`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_factura_cliente_ficha_internacion1` FOREIGN KEY (`oidficha_internacion`) REFERENCES `ficha_internacion` (`oidficha_internacion`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -260,10 +260,10 @@ CREATE TABLE `recibo` (
   `oidrecibo` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `numero_recibo` int(11) NOT NULL,
   `fecha` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
-  `oidfactura_cliente` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `oidfactura_paciente` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`oidrecibo`),
-  KEY `fk_recibo_factura_cliente1` (`oidfactura_cliente`),
-  CONSTRAINT `fk_recibo_factura_cliente1` FOREIGN KEY (`oidfactura_cliente`) REFERENCES `factura_cliente` (`oidfactura_cliente`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_recibo_factura_cliente1` (`oidfactura_paciente`),
+  CONSTRAINT `fk_recibo_factura_cliente1` FOREIGN KEY (`oidfactura_paciente`) REFERENCES `factura_paciente` (`oidfactura_paciente`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Table structure for table `sector` */

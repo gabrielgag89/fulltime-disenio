@@ -44,15 +44,15 @@ insert  into `detalle_ficha`(`oiddetalle_ficha`,`cantidad`,`oidficha_internacion
 
 insert  into `estado_cama`(`oidestado_cama`,`nombre_estado_cama`) values ('6f21d411-b27c-495c-964c-0ec6e177d9dd','Ocupada'),('bbb664d0-8148-4589-be68-8f333ceb1826','Disponible');
 
-/*Data for the table `estado_factura_cliente` */
+/*Data for the table `estado_factura_paciente` */
 
-insert  into `estado_factura_cliente`(`oidestado_factura_cliente`,`nombre_estado_factura_cliente`) values ('0d046148-9172-4274-a6f4-2a35c32ddb97','Emitida'),('19388d8d-a9c8-4e44-895d-66a47329cc67','Pagada');
+insert  into `estado_factura_paciente`(`oidestado_factura_paciente`,`nombre_estado_factura_paciente`) values ('0d046148-9172-4274-a6f4-2a35c32ddb97','Emitida'),('19388d8d-a9c8-4e44-895d-66a47329cc67','Pagada');
 
 /*Data for the table `estado_ficha_internacion` */
 
 insert  into `estado_ficha_internacion`(`oidestado_ficha_internacion`,`nombre_estado_ficha_internacion`) values ('7fff7879-7808-4ac4-8e48-56e1fe3f4da5','Facturada'),('af48fee7-69f6-4d85-9f19-57e54a8997a4','Creada');
 
-/*Data for the table `factura_cliente` */
+/*Data for the table `factura_paciente` */
 
 /*Data for the table `ficha_internacion` */
 
