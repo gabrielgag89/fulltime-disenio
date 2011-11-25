@@ -15,7 +15,7 @@ public class IPRRecibo extends IntermPersistenciaDBR {
       this.mapeo.put("oid", "oidrecibo");
       this.mapeo.put("nroRecibo", "numero_recibo");
       this.mapeo.put("fecha", "fecha");
-      this.mapeo.put("facturaPaciente", "oidfactura_cliente");
+      this.mapeo.put("facturaPaciente", "oidfactura_paciente");
    } // fin del constructor
    
    @Override
@@ -63,7 +63,7 @@ public class IPRRecibo extends IntermPersistenciaDBR {
       return "UPDATE recibo SET "
                   + "numero_recibo = " +  recibo.getNroRecibo() + ", "
                   + "fecha = '" + ServiciosTiempo.getInstancia().dateToString(recibo.getFecha()) + ", "
-                  + "oidfactura_cliente = '" + recibo.getOidFacturaPaciente() + "' "
+                  + "oidfactura_paciente = '" + recibo.getOidFacturaPaciente() + "' "
                   + "WHERE oidrecibo = '" + recibo.getOid() + "'";
    } // fin del método actualizar
 
@@ -79,7 +79,7 @@ public class IPRRecibo extends IntermPersistenciaDBR {
             recibo.setOid(resultado.getString("oidrecibo"));
             recibo.setNroRecibo(resultado.getInt("numero_recibo"));
             recibo.setFecha(resultado.getDate("fecha"));
-            recibo.setOidFacturaPaciente(resultado.getString("oidfactura_cliente"));
+            recibo.setOidFacturaPaciente(resultado.getString("oidfactura_paciente"));
             
             lista.add(recibo);
          } // fin de while de creación de agentes

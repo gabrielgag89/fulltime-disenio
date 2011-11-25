@@ -12,22 +12,22 @@ import util.ServiciosTiempo;
 
 public class IPRFacturaPaciente extends IntermPersistenciaDBR{
    public IPRFacturaPaciente(){
-      this.mapeo.put("oid", "oidfactura_cliente");
-      this.mapeo.put("numFactura", "numero_factura_cliente");
+      this.mapeo.put("oid", "oidfactura_paciente");
+      this.mapeo.put("numFactura", "numero_factura_paciente");
       this.mapeo.put("fechaEmision", "fecha");
       this.mapeo.put("monto", "monto");
-      this.mapeo.put("estadoFacturaPaciente", "oidestado_factura_cliente");
+      this.mapeo.put("estadoFacturaPaciente", "oidestado_factura_paciente");
       this.mapeo.put("fichaInternacion", "oidficha_internacion");
    } // fin del constructor
    
    @Override
    public String select() {
-      return "SELECT * FROM factura_cliente";
+      return "SELECT * FROM factura_paciente";
    } // fin del método select
 
    @Override
    public String select(List<Criterio> criterios) {
-      String sql = "SELECT * FROM factura_cliente WHERE ";
+      String sql = "SELECT * FROM factura_paciente WHERE ";
       int cont = 0;
       
       for(Criterio criterio : criterios){
@@ -44,14 +44,14 @@ public class IPRFacturaPaciente extends IntermPersistenciaDBR{
 
    @Override
    public String select(String oid) {
-      return "SELECT * FROM factura_cliente WHERE oidfactura_cliente = '" + oid + "'";
+      return "SELECT * FROM factura_paciente WHERE oidfactura_paciente = '" + oid + "'";
    } // fin del método select
 
    @Override
    public String insertar(Object objeto) {
       FacturaPacienteAgente fact = (FacturaPacienteAgente) objeto;
       
-      return "INSERT INTO factura_cliente "
+      return "INSERT INTO factura_paciente "
                   + "VALUES ('" + fact.getOid() + "', "
                                 + fact.getNumFactura() + ", '"
                                 + ServiciosTiempo.getInstancia().dateToString(fact.getFechaEmision()) + "', "
@@ -64,13 +64,13 @@ public class IPRFacturaPaciente extends IntermPersistenciaDBR{
    public String actualizar(Object objeto) {
       FacturaPacienteAgente fact = (FacturaPacienteAgente) objeto;
       
-      return "UPDATE factura_cliente SET "
-                  + "numero_factura_cliente = " + fact.getNumFactura() + ", "
+      return "UPDATE factura_paciente SET "
+                  + "numero_factura_paciente = " + fact.getNumFactura() + ", "
                   + "fecha = '" + ServiciosTiempo.getInstancia().dateToString(fact.getFechaEmision()) + "', "
                   + "monto = " + fact.getMonto() + ", "
-                  + "oidestado_factura_cliente = '" + fact.getOidEstadoFacturaCliente() + "', "
+                  + "oidestado_factura_paciente = '" + fact.getOidEstadoFacturaCliente() + "', "
                   + "oidficha_internacion = '" + fact.getOidFichaInternacion() + "' "
-                  + "WHERE oidfactura_cliente =  '" + fact.getOid() + "'";
+                  + "WHERE oidfactura_paciente =  '" + fact.getOid() + "'";
    } // fin del método actualizar
 
    @Override
@@ -83,11 +83,11 @@ public class IPRFacturaPaciente extends IntermPersistenciaDBR{
             factura = new FacturaPacienteAgente();
             
             factura.setImplementacion(new FacturaPacienteImpl());
-            factura.setOid(resultado.getString("oidfactura_cliente"));
-            factura.setNumFactura(resultado.getInt("numero_factura_cliente"));
+            factura.setOid(resultado.getString("oidfactura_paciente"));
+            factura.setNumFactura(resultado.getInt("numero_factura_paciente"));
             factura.setFechaEmision(resultado.getDate("fecha"));
             factura.setMonto(resultado.getDouble("monto"));
-            factura.setOidEstadoFacturaPaciente(resultado.getString("oidestado_factura_cliente"));
+            factura.setOidEstadoFacturaPaciente(resultado.getString("oidestado_factura_paciente"));
             factura.setOidFichaInternacion(resultado.getString("oidficha_internacion"));
             
             lista.add(factura);
