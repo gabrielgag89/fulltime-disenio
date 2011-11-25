@@ -18,12 +18,15 @@ public class FachadaPersistenciaInterna {
       return instancia;
    } // fin del método getInstancia
    
-   public void iniciarTransaccion() throws SQLException, Exception{
+   public void iniciarTransaccion(){
       Conector.getInstancia().iniciarTransaccion();
    } // fin del método iniciarTransaccion
    
-   public void finalizarTransaccion(Conector conector) throws SQLException{
-      Conector.getInstancia().confirmarTransaccion();
+   public void finalizarTransaccion(boolean resultado){
+      if(resultado)
+         Conector.getInstancia().confirmarTransaccion();
+      else
+         Conector.getInstancia().deshacerTransaccion();
    } // fin del método finalizarTransaccion
    
    public Object nuevaEntidad(String entidad){
