@@ -1,15 +1,9 @@
 package persistencia.proxy;
 
-import java.util.UUID;
-
 public class ObjetoPersistente {
    protected String oid;
    protected boolean nuevo;
    protected boolean limpio;
-   
-   public String generarOid(){
-      return UUID.randomUUID().toString();
-   } // fin del método generarOid
    
    public String getOid(){
       return oid;
@@ -26,17 +20,9 @@ public class ObjetoPersistente {
    public void setNuevo(boolean nuevo){
       this.nuevo = nuevo;
    } // fin del método setNuevo
-
-   public boolean getLimpio(){
-      return limpio;
-   }
-
-   public void setLimpio(boolean limpio){
-      this.limpio = limpio;
-   }
    
    @Override
    public String toString(){
       return this.oid;
-   }
+   } // fin del método toString
 } // fin de la clase ObjetoPersistente

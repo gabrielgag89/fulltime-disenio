@@ -46,18 +46,26 @@ public class IUMostrarRecibo extends javax.swing.JFrame {
 
         panelDatosRecibo.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos Recibo"));
 
+        campoTextoFecha.setBackground(new java.awt.Color(255, 255, 255));
+        campoTextoFecha.setEditable(false);
         campoTextoFecha.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         etiquetaFecha.setText("Fecha:");
 
+        campoTextoFacturaNum.setBackground(new java.awt.Color(255, 255, 255));
+        campoTextoFacturaNum.setEditable(false);
         campoTextoFacturaNum.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         etiquetaFacturaNum.setText("Factura Nº:");
 
         etiquetaMonto.setText("Monto:");
 
+        campoTextoReciboNum.setBackground(new java.awt.Color(255, 255, 255));
+        campoTextoReciboNum.setEditable(false);
         campoTextoReciboNum.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
+        campoTextoMonto.setBackground(new java.awt.Color(255, 255, 255));
+        campoTextoMonto.setEditable(false);
         campoTextoMonto.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         etiquetaReciboNum.setText("Recibo Nº:");
@@ -123,9 +131,9 @@ public class IUMostrarRecibo extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(panelDatosRecibo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(100, Short.MAX_VALUE)
+                .addContainerGap(104, Short.MAX_VALUE)
                 .addComponent(botonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(63, 63, 63))
         );

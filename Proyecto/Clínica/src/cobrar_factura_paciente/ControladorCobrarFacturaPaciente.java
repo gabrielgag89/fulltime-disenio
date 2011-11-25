@@ -6,10 +6,6 @@ import java.util.List;
 import fabricaExpertos.FabricaExpertos;
 import observador.*;
 
-/**
- *
- * @author gabriel
- */
 public class ControladorCobrarFacturaPaciente implements ObservadorGenerarFacturaPaciente{
    private ExpertoCobrarFacturaPaciente experto;
    private IUCobrarFacturaPaciente iuCobrar;
