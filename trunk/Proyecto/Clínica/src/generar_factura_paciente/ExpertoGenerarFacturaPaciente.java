@@ -26,14 +26,24 @@ public class ExpertoGenerarFacturaPaciente {
    private DTOFichaInternacion dtoFicha = null;
 
    public DTOFichaInternacion buscarFichaInternacion(int numFicha){
+      // se declara y crea una lista de criterios para usar en la búsqueda
       List<Criterio> criterios = new ArrayList<Criterio>();
+      // se daclara y crea un criterio
       Criterio criterio = FachadaPersistencia.getInstancia().getCriterio("nroFicha", "=", numFicha, "");
+      // se agrega el criterio a la lista
       criterios.add(criterio);
       
-      try{
-         this.fichaInternacion = (FichaInternacion) FachadaPersistencia.getInstancia().buscar("FichaInternacion", criterios).get(0);
+      // se buscan todas la ficha de internación que corresponde al número de ficha ingresado
+      List<FichaInternacion> listaFichas = FachadaPersistencia.getInstancia().buscar("FichaInternacion", criterios);
+      
+      // se comprueba que la lista no esté vacía
+      if(!listaFichas.isEmpty()){
+         // se obtiene el primer elemento de la lista
+         this.fichaInternacion = listaFichas.get(0);
          
+         // se comprueba que la ficha de internación no esté facturada
          if(this.fichaInternacion.getEstadoFichaInternacion().getNombreEstado().equals("Creada")){
+            // se crea el DTO donde se colocarán los datos de la ficha, la preatación y los servicios especiales
             this.dtoFicha = new DTOFichaInternacion();
             this.dtoFicha.setFecha(this.fichaInternacion.getFechaCreacion());
             this.dtoFicha.setNroFicha(this.fichaInternacion.getNroFicha());
@@ -41,6 +51,7 @@ public class ExpertoGenerarFacturaPaciente {
             this.dtoFicha.setNombrePaciente(this.fichaInternacion.getPaciente().getNombre());
             this.dtoFicha.setNombrePrestacion(this.fichaInternacion.getPrestacion().getDescripcion());
             
+            // se crea una nueva lista de criterios
             criterios = new ArrayList<Criterio>();
             criterio = FachadaPersistenciaInterna.getInstancia().getCriterio("fechaInicio", "<=", ServiciosTiempo.getInstancia().dateToString(this.fichaInternacion.getFechaCreacion()), "AND");
             criterios.add(criterio);
@@ -49,11 +60,21 @@ public class ExpertoGenerarFacturaPaciente {
             criterio = FachadaPersistenciaInterna.getInstancia().getCriterio("prestacion", "=", this.fichaInternacion.getPrestacion(), "");
             criterios.add(criterio);
             
-            CostoPrestacion costoPres = (CostoPrestacion) FachadaPersistencia.getInstancia().buscar("CostoPrestacion", criterios).get(0);
+            // se buscan los costos de la prestación que pertenezcan al período indicado y a la prestación
+            List<CostoPrestacion> listaCostosPres = FachadaPersistencia.getInstancia().buscar("CostoPrestacion", criterios);
+            
+            // se comprueba que exista un costo para la prestación en el período
+            if(!listaCostosPres.isEmpty()){
+               // se toma el primer elemento de la lista de costos
+               CostoPrestacion costoPres = listaCostosPres.get(0);
+               
+               // se guarda en el DTO de la ficha el costo de la prestación
+               this.dtoFicha.setCostoPrestacion(costoPres.getMonto());
+            } // fin de if de comprobación del costo de la prestación
 
-            this.dtoFicha.setCostoPrestacion(costoPres.getMonto());
-
+            // se comprueba si el paciente tiene un plan de alguna obra social
             if(this.fichaInternacion.getPaciente().getPlan() != null){
+               // se crea una nueva lista de criterios
                criterios = new ArrayList<Criterio>();
                criterio = FachadaPersistenciaInterna.getInstancia().getCriterio("fechaInicio", "<=", ServiciosTiempo.getInstancia().dateToString(this.fichaInternacion.getFechaCreacion()), "AND");
                criterios.add(criterio);
@@ -63,28 +84,36 @@ public class ExpertoGenerarFacturaPaciente {
                criterios.add(criterio);
                criterio = FachadaPersistenciaInterna.getInstancia().getCriterio("plan", "=", this.fichaInternacion.getPaciente().getPlan(), "");
                criterios.add(criterio);
-               
-               try{
-                  Convenio convenio = (Convenio) FachadaPersistencia.getInstancia().buscar("Convenio", criterios).get(0);
-                  this.dtoFicha.setDescuento(convenio.getCoseguro().getPorcentaje());
-               } // fin de try ocasionado por inexistencia de un convenio para el plan y la prestación en el período
-               catch(IndexOutOfBoundsException ex){
-                  this.dtoFicha.setDescuento(0.0);
-                  System.err.println("ExpertoGenerarFacturaPaciente - buscarFichaInternacion(int numFicha) - No existe convenio en el período - " + ex.getMessage());
-               } // fin de catch ocasionado por inexistencia de un convenio para el plan y la prestación en el período
-            } // fin de if de búsqueda del plan del paciente
 
+               // se buscan los criterios que pertenezcan al período indicado y a la prestación y plan correspondiente
+               List<Convenio> listaConvenios = FachadaPersistencia.getInstancia().buscar("Convenio", criterios);
+
+               // se comprueba que exista un convenio
+               if(!listaConvenios.isEmpty()){
+                  // se toma el primer elemento de la lista de convenios
+                  Convenio convenio = (Convenio) FachadaPersistencia.getInstancia().buscar("Convenio", criterios).get(0);
+                  
+                  // se guarda en la ficha el porcentaje de descuento para la prestación
+                  this.dtoFicha.setDescuento(convenio.getCoseguro().getPorcentaje());
+               } // fin de if de comprobación de existencia de un convenio para la prestación
+            } // fin de if de comprobación del plan del paciente
+            
+            // se toman los detalles de la ficha de internación
             List<DetalleFicha> listaDetalles = this.fichaInternacion.getDetalleFicha();
             
+            // se declara una lista de DTOs de datalles
             List<DTODetalleServicio> listaDtoDetalle = new ArrayList<DTODetalleServicio>();
+            // se declara un DTO de detalle
             DTODetalleServicio dtoDetalle;
 
+            // se recorre la lista de detalles
             for(DetalleFicha detalle : listaDetalles){
+               // se crea un nuevo DTO de detalle y se le asignan los datos del detalle correspondiente
                dtoDetalle = new DTODetalleServicio();
-
                dtoDetalle.setNombreServicio(detalle.getServicioEspecial().getNombreServicio());
                dtoDetalle.setCantidad(detalle.getCantidad());
-
+               
+               // se crea una nueva lista de criterios
                criterios = new ArrayList<Criterio>();
                criterio = FachadaPersistenciaInterna.getInstancia().getCriterio("fechaInicio", "<=", ServiciosTiempo.getInstancia().dateToString(this.fichaInternacion.getFechaCreacion()), "AND");
                criterios.add(criterio);
@@ -93,22 +122,30 @@ public class ExpertoGenerarFacturaPaciente {
                criterio = FachadaPersistenciaInterna.getInstancia().getCriterio("servicioEspecial", "=", detalle.getServicioEspecial(), "");
                criterios.add(criterio);
                
-               CostoServicio costoServ = (CostoServicio) FachadaPersistencia.getInstancia().buscar("CostoServicio", criterios).get(0);
+               // se buscan los costos del servicio especial que pertenezcan al período indicado
+               List<CostoServicio> listaCostosServ = FachadaPersistencia.getInstancia().buscar("CostoServicio", criterios);
+               
+               // se comprueba que se hayan encontrado costos para el servicio en el período
+               if(!listaCostosServ.isEmpty()){
+                  // se toma el primer elemento de la lista de costos del servicio
+                  CostoServicio costoServ = listaCostosServ.get(0);
 
-               dtoDetalle.setMonto(costoServ.getMonto());
-               dtoDetalle.setSubtotal(costoServ.getMonto() * detalle.getCantidad());
-
+                  // se guarda en el DTO del detalle el costo del servicio especial
+                  dtoDetalle.setMonto(costoServ.getMonto());
+                  // se calcula el subtotal para el detalle y se guarda en éste
+                  dtoDetalle.setSubtotal(costoServ.getMonto() * detalle.getCantidad());
+               } // fin de if de comprobación del costo del servicio
+               
+               // se agrega el DTO del detalle a la lista de DTOs de detalles para el DTO de la ficha
                listaDtoDetalle.add(dtoDetalle);
             } // fin de for de creación del DTO del detalle
 
+            // se coloca la lista de DTOs de detalles en el DTO de la ficha
             this.dtoFicha.setDtoDetalle(listaDtoDetalle);
-         } // fin de if de búsqueda de facturas en estado "Creada"
-      } // fin de try de comprobación de existencia de ficha
-      catch(IndexOutOfBoundsException ex){
-         System.err.println("ExpertoGenerarFacturaPaciente - buscarFichaInternacion(int numFicha) - Ficha no encontrada - " + ex.getMessage());
-         return null;
-      } // fin de catch de comprobación de existencia de ficha
+         } // fin de if de comprobación del estado de la ficha
+      } // fin de if de comprobación de existencia de la ficha
       
+      // se regresa el DTO con los datos de la ficha solicitada, o null si ésta no se encontró o ya se había facturado
       return this.dtoFicha;
    } // findel método buscarFichaInternacion
    
