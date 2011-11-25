@@ -1,9 +1,9 @@
 package cobrar_factura_paciente;
 
-import dtos.DTORecibo;
-import dtos.DTOFacturaPaciente;
 import java.util.List;
 import fabricaExpertos.FabricaExpertos;
+import dtos.DTOFacturaPaciente;
+import dtos.DTORecibo;
 import observador.*;
 
 public class ControladorCobrarFacturaPaciente implements ObservadorGenerarFacturaPaciente{
@@ -11,31 +11,34 @@ public class ControladorCobrarFacturaPaciente implements ObservadorGenerarFactur
    private IUCobrarFacturaPaciente iuCobrar;
    
    public List<DTOFacturaPaciente> buscarFacturasPacientes(IUCobrarFacturaPaciente iuCobrar){
+      // el controlador guarda la referencia a la GUI correspondiente
       this.iuCobrar = iuCobrar;
       
+      // el controlador se suscribe como observador para ser notificado
       SuscriptorGenerarFacturaPaciente.getInstancia().suscribirse(this);
       
-      experto = (ExpertoCobrarFacturaPaciente) FabricaExpertos.getInstancia().getExperto("CobrarFacturaPaciente");
+      // se obtiene un ExpertoCobrarFacturaPaciente y se guarda en una variable de instancia
+      this.experto = (ExpertoCobrarFacturaPaciente) FabricaExpertos.getInstancia().getExperto("CobrarFacturaPaciente");
       
-      return experto.buscarFacturasPendientes();
+      // se buscan las facturas pendientes de cobro y se devuelven a la GUI
+      return this.experto.buscarFacturasPendientes();
    } // fin del método cobrarFacturaPaciente
    
    public void cobrarFactura(int numFactura){
-      DTORecibo dtoRecibo = experto.cobrarFactura(numFactura);
+      // se genera el recibo para la factura
+      DTORecibo dtoRecibo = this.experto.cobrarFactura(numFactura);
       
+      // se crea una GUI para mostrar el recibo emitido
       IUMostrarRecibo iuMostrar = new IUMostrarRecibo();
-      iuMostrar.cargarControlador(this);
+      // se envía el DTO con los datos del recibo a la GUI
       iuMostrar.cargarCampos(dtoRecibo);
+      // se hace visible la GUI
       iuMostrar.setVisible(true);
    } // fin del método cobrarFactura
-
-   public void volver() {
-      this.iuCobrar.cargarFacturas();
-      this.iuCobrar.setVisible(true);
-   } // fin del método volver
    
    @Override
    public void actualizar(DTOFacturaPaciente dtoFactura) {
+      // se actualiza en la lista de facturas pendientes con el DTO de factura recibido
       this.iuCobrar.actualizar(dtoFactura);
    } // fin del método actualizar
 } // fin de la clase ControladorCobrarFacturaPaciente

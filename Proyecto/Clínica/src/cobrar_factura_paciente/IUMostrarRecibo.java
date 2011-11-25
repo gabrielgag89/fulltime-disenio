@@ -1,22 +1,9 @@
-
-/*
- * IUMostrarRecibo.java
- *
- * Created on Nov 18, 2011, 9:45:47 PM
- */
 package cobrar_factura_paciente;
 
-import dtos.DTORecibo;
 import util.ServiciosTiempo;
+import dtos.DTORecibo;
 
-/**
- *
- * @author Gabriel
- */
 public class IUMostrarRecibo extends javax.swing.JFrame {
-   private ControladorCobrarFacturaPaciente controlador;
-
-   /** Creates new form IUMostrarRecibo */
    public IUMostrarRecibo() {
       initComponents();
       this.setLocationRelativeTo(null);
@@ -151,16 +138,13 @@ public class IUMostrarRecibo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
    private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed
+      // oculta la ventana
       this.setVisible(false);
-      controlador.volver();
    }//GEN-LAST:event_botonVolverActionPerformed
    // fin del método botonVolverActionPerformed
    
-   public void cargarControlador(ControladorCobrarFacturaPaciente controlador){
-      this.controlador = controlador;
-   } // fin del método cargarControlador
-   
    public void cargarCampos(DTORecibo dtoRecibo){
+      // carga los campos de texto en la GUI con los datos del DTO de recibo recibido
       campoTextoReciboNum.setText(dtoRecibo.getNroRecibo() + "");
       campoTextoFecha.setText(ServiciosTiempo.getInstancia().dateToStringDDMMAAAA(dtoRecibo.getFecha()));
       campoTextoFacturaNum.setText(dtoRecibo.getNumFactura() + "");
