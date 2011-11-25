@@ -12,6 +12,7 @@ public class IUMonstrarFactura extends javax.swing.JFrame {
    public IUMonstrarFactura() {
       this.tablaFacturas = new DefaultTableModel();
       initComponents();
+      this.setLocationRelativeTo(null);
       armarTabla();
    } // fin del constructor
 

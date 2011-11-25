@@ -1,41 +1,45 @@
 package generar_factura_paciente;
 
-import java.sql.SQLException;
 import persistencia.FachadaPersistenciaInterna;
 import dtos.DTOFichaInternacion;
 import dtos.DTOFacturaPaciente;
-import persistencia.Conector;
 
 public class DecoradorExpertoGenerarFacturaPaciente extends ExpertoGenerarFacturaPaciente {
-   private Conector conecctor;
-   
    @Override
    public DTOFichaInternacion buscarFichaInternacion(int numPaciente){
+      DTOFichaInternacion dtoFicha = null;
+      
       try {
+         // se inicia la transacción
          FachadaPersistenciaInterna.getInstancia().iniciarTransaccion();
-      } // fin de try de inicio de transacción
-      catch (SQLException ex) {
-         System.err.println("SQLException en buscarFichaInternacion: " + ex.getMessage());
-      } // fin de catch de SQLException
+         
+         // se busca la ficha de internación correspondiente al número recibido y se devuelve el DTO con los datos de la ficha
+         dtoFicha = super.buscarFichaInternacion(numPaciente);
+      } // fin de try de búsqueda de la ficha
       catch (Exception ex) {
-         System.err.println("Exception en buscarFacturasPendientes: " + ex.getMessage());
+         System.err.println("Exception en buscarFichaInternacion: " + ex.getStackTrace());
       } // fin de catch de Exception
       
-      DTOFichaInternacion dtoDetalle = super.buscarFichaInternacion(numPaciente);
-      
-      return dtoDetalle;
+      return dtoFicha;
    } // fin del método buscarFichaInternacion
 
    @Override
    public DTOFacturaPaciente generarFactura() {
-      DTOFacturaPaciente dtoFactura = super.generarFactura();
+      DTOFacturaPaciente dtoFactura = null;
       
       try {
-         FachadaPersistenciaInterna.getInstancia().finalizarTransaccion(this.conecctor);
-      } // fin de try de fin de transacción
-      catch (SQLException ex) {
-         System.err.println("SQLException en generarFactura: " + ex.getMessage());
-      } // fin de catch de SQLException
+         // se genera la factura sobre la ficha de internación correspondiente y se devuelve el DTO con los datos de ésta
+         dtoFactura = super.generarFactura();
+         
+         // se confirma la transacción
+         FachadaPersistenciaInterna.getInstancia().finalizarTransaccion(true);
+      } // fin de try de generación de factura
+      catch (Exception ex) {
+         System.err.println("Exception en generarFactura: " + ex.getStackTrace());
+         
+         // se deshace la transacción
+         FachadaPersistenciaInterna.getInstancia().finalizarTransaccion(false);
+      } // fin de catch de Exception
       
       return dtoFactura;
    } // fin del método generarFactura
