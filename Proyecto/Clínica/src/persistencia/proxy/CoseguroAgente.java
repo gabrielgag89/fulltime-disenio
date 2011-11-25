@@ -18,12 +18,12 @@ public class CoseguroAgente extends ObjetoPersistente implements Coseguro {
    }
 
    @Override
-   public float getPorcentaje() {
+   public double getPorcentaje() {
       return this.impl.getPorcentaje();
    }
 
    @Override
-   public void setPorcentaje(float porcentaje) {
+   public void setPorcentaje(double porcentaje) {
       this.impl.setPorcentaje(porcentaje);
    }
 } // fin de la clase CoseguroAgente

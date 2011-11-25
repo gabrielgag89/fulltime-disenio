@@ -2,7 +2,7 @@ package persistencia.proxy;
 
 public class CoseguroImpl implements Coseguro{
    private int codigoCoseguro;
-   private float porcentaje;
+   private double porcentaje;
 
    @Override
    public int getCodigoCoseguro() {
@@ -15,12 +15,12 @@ public class CoseguroImpl implements Coseguro{
    }
 
    @Override
-   public float getPorcentaje() {
+   public double getPorcentaje() {
       return porcentaje;
    }
 
    @Override
-   public void setPorcentaje(float porcentaje) {
+   public void setPorcentaje(double porcentaje) {
       this.porcentaje = porcentaje;
    }  
 } // fin de la clase CoseguroImpl

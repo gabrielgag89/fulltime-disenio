@@ -75,7 +75,7 @@ public class IPRCoseguro extends IntermPersistenciaDBR{
             coseguro.setImplementacion(new CoseguroImpl());
             coseguro.setOid(resultado.getString("oidcoseguro"));
             coseguro.setCodigoCoseguro(resultado.getInt("codigo_coseguro"));
-            coseguro.setPorcentaje(resultado.getFloat("porcentaje"));
+            coseguro.setPorcentaje(resultado.getDouble("porcentaje"));
 
             lista.add(coseguro);
          } // fin de while de creación de agentes
