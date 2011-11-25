@@ -4,19 +4,19 @@ import java.util.List;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.sql.SQLException;
-import persistencia.proxy.FacturaClienteAgente;
-import persistencia.proxy.FacturaClienteImpl;
+import persistencia.proxy.FacturaPacienteAgente;
+import persistencia.proxy.FacturaPacienteImpl;
 import persistencia.proxy.ObjetoPersistente;
 import persistencia.criterios.Criterio;
 import util.ServiciosTiempo;
 
-public class IPRFacturaCliente extends IntermPersistenciaDBR{
-   public IPRFacturaCliente(){
+public class IPRFacturaPaciente extends IntermPersistenciaDBR{
+   public IPRFacturaPaciente(){
       this.mapeo.put("oid", "oidfactura_cliente");
       this.mapeo.put("numFactura", "numero_factura_cliente");
       this.mapeo.put("fechaEmision", "fecha");
       this.mapeo.put("monto", "monto");
-      this.mapeo.put("estadoFacturaCliente", "oidestado_factura_cliente");
+      this.mapeo.put("estadoFacturaPaciente", "oidestado_factura_cliente");
       this.mapeo.put("fichaInternacion", "oidficha_internacion");
    } // fin del constructor
    
@@ -49,7 +49,7 @@ public class IPRFacturaCliente extends IntermPersistenciaDBR{
 
    @Override
    public String insertar(Object objeto) {
-      FacturaClienteAgente fact = (FacturaClienteAgente) objeto;
+      FacturaPacienteAgente fact = (FacturaPacienteAgente) objeto;
       
       return "INSERT INTO factura_cliente "
                   + "VALUES ('" + fact.getOid() + "', "
@@ -62,7 +62,7 @@ public class IPRFacturaCliente extends IntermPersistenciaDBR{
 
    @Override
    public String actualizar(Object objeto) {
-      FacturaClienteAgente fact = (FacturaClienteAgente) objeto;
+      FacturaPacienteAgente fact = (FacturaPacienteAgente) objeto;
       
       return "UPDATE factura_cliente SET "
                   + "numero_factura_cliente = " + fact.getNumFactura() + ", "
@@ -76,18 +76,18 @@ public class IPRFacturaCliente extends IntermPersistenciaDBR{
    @Override
    public List<ObjetoPersistente> convertirAObjeto(ResultSet resultado) {
       List<ObjetoPersistente> lista = new ArrayList<ObjetoPersistente>();
-      FacturaClienteAgente factura;
+      FacturaPacienteAgente factura;
       
       try {
          while(resultado.next()){
-            factura = new FacturaClienteAgente();
+            factura = new FacturaPacienteAgente();
             
-            factura.setImplementacion(new FacturaClienteImpl());
+            factura.setImplementacion(new FacturaPacienteImpl());
             factura.setOid(resultado.getString("oidfactura_cliente"));
             factura.setNumFactura(resultado.getInt("numero_factura_cliente"));
             factura.setFechaEmision(resultado.getDate("fecha"));
             factura.setMonto(resultado.getDouble("monto"));
-            factura.setOidEstadoFacturaCliente(resultado.getString("oidestado_factura_cliente"));
+            factura.setOidEstadoFacturaPaciente(resultado.getString("oidestado_factura_cliente"));
             factura.setOidFichaInternacion(resultado.getString("oidficha_internacion"));
             
             lista.add(factura);
@@ -102,9 +102,9 @@ public class IPRFacturaCliente extends IntermPersistenciaDBR{
 
    @Override
    public ObjetoPersistente nuevo() {
-      FacturaClienteAgente factura = new FacturaClienteAgente();
-      factura.setImplementacion(new FacturaClienteImpl());
+      FacturaPacienteAgente factura = new FacturaPacienteAgente();
+      factura.setImplementacion(new FacturaPacienteImpl());
       
       return factura;
    } // fin del método nuevo
-} // fin de la clase IPRFacturaCliente
+} // fin de la clase IPRFacturaPaciente

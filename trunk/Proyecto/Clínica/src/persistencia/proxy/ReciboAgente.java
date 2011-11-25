@@ -5,8 +5,8 @@ import persistencia.FachadaPersistenciaInterna;
 
 public class ReciboAgente extends ObjetoPersistente implements Recibo {
    private ReciboImpl impl;
-   private boolean facturacliente = false;
-   private String oidFacturaCliente;
+   private boolean facturaPaciente = false;
+   private String oidFacturaPaciente;
 
    public void setImplementacion(ReciboImpl impl) {
       this.impl = impl;
@@ -33,26 +33,26 @@ public class ReciboAgente extends ObjetoPersistente implements Recibo {
    }
 
    @Override
-   public FacturaCliente getFacturaCliente() {
-      if(!facturacliente){
-         this.impl.setFacturaCliente((FacturaCliente) FachadaPersistenciaInterna.getInstancia().buscar("FacturaCliente", oidFacturaCliente));
-         this.facturacliente = true;
+   public FacturaPaciente getFacturaPaciente() {
+      if(!facturaPaciente){
+         this.impl.setFacturaPaciente((FacturaPaciente) FachadaPersistenciaInterna.getInstancia().buscar("FacturaPaciente", this.oidFacturaPaciente));
+         this.facturaPaciente = true;
       }
       
-      return this.impl.getFacturaCliente();
+      return this.impl.getFacturaPaciente();
    }
 
    @Override
-   public void setFacturaCliente(FacturaCliente facturaCliente) {
-      this.impl.setFacturaCliente(facturaCliente);
-      this.oidFacturaCliente = ((ObjetoPersistente) facturaCliente).getOid();
+   public void setFacturaPaciente(FacturaPaciente facturaPaciente) {
+      this.impl.setFacturaPaciente(facturaPaciente);
+      this.oidFacturaPaciente = ((ObjetoPersistente) facturaPaciente).getOid();
    }
 
-   public String getOidFacturaCliente() {
-      return oidFacturaCliente;
+   public String getOidFacturaPaciente() {
+      return oidFacturaPaciente;
    }
 
-   public void setOidFacturaCliente(String oidFacturaCliente) {
-      this.oidFacturaCliente = oidFacturaCliente;
+   public void setOidFacturaPaciente(String oidFacturaPaciente) {
+      this.oidFacturaPaciente = oidFacturaPaciente;
    }
 } // fin de la clase ReciboAgente

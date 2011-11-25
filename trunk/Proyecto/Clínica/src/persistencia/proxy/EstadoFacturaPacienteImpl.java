@@ -1,6 +1,6 @@
 package persistencia.proxy;
 
-public class EstadoFacturaClienteImpl implements EstadoFacturaCliente {
+public class EstadoFacturaPacienteImpl implements EstadoFacturaPaciente {
    private String nombreEstado;
 
    @Override
