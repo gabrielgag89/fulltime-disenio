@@ -37,7 +37,6 @@ public class IUGenerarFacturaPaciente extends javax.swing.JFrame {
     private void initComponents() {
 
         etiqueteNumFicha = new javax.swing.JLabel();
-        botonBuscarFicha = new javax.swing.JButton();
         botonGenerarFactura = new javax.swing.JButton();
         campoTextoNumFicha = new javax.swing.JTextField();
         botonMostrarFicha = new javax.swing.JButton();
@@ -61,8 +60,6 @@ public class IUGenerarFacturaPaciente extends javax.swing.JFrame {
         setResizable(false);
 
         etiqueteNumFicha.setText("Nº Ficha Internacion:");
-
-        botonBuscarFicha.setText("...");
 
         botonGenerarFactura.setText("Generar Factura");
         botonGenerarFactura.addActionListener(new java.awt.event.ActionListener() {
@@ -195,37 +192,32 @@ public class IUGenerarFacturaPaciente extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(etiqueteNumFicha)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(botonMostrarFicha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                            .addComponent(campoTextoNumFicha, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonBuscarFicha, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(109, 109, 109))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(panelDatosFicha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(botonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(botonGenerarFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(scrollPaneServiciosEspeciales, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(panelDatosFicha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(botonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonGenerarFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(scrollPaneServiciosEspeciales, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addComponent(etiqueteNumFicha)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(campoTextoNumFicha, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addComponent(botonMostrarFicha, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoTextoNumFicha, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(etiqueteNumFicha)
-                    .addComponent(botonBuscarFicha, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonMostrarFicha, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(campoTextoNumFicha, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonMostrarFicha, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
                 .addComponent(panelDatosFicha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(scrollPaneServiciosEspeciales, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -233,7 +225,7 @@ public class IUGenerarFacturaPaciente extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonVolver)
                     .addComponent(botonGenerarFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -256,7 +248,8 @@ public class IUGenerarFacturaPaciente extends javax.swing.JFrame {
          } // fin de if de carga de campos
          else{
             JOptionPane.showMessageDialog(null, "La ficha ingresada no existe o ya se ha facturado");
-            this.campoTextoNumFicha.setText(""); 
+            this.campoTextoNumFicha.selectAll();
+            this.campoTextoNumFicha.cut();
             this.campoTextoNumFicha.requestFocus();
             // deshabilita los controles
             disableControls();
@@ -264,7 +257,8 @@ public class IUGenerarFacturaPaciente extends javax.swing.JFrame {
       } // fin de try de error de formato
       catch(NumberFormatException ex){
          JOptionPane.showMessageDialog(null, "Debe ingresar un número en el campo \"Nº Ficha Internacion:\"");
-         this.campoTextoNumFicha.setText(""); 
+         this.campoTextoNumFicha.selectAll();
+         this.campoTextoNumFicha.cut(); 
          this.campoTextoNumFicha.requestFocus();
       } // fin de catch de error de formato
    }//GEN-LAST:event_botonMostrarFichaActionPerformed
@@ -284,23 +278,11 @@ public class IUGenerarFacturaPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_botonVolverActionPerformed
 
     private void campoTextoNumFichaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoTextoNumFichaKeyTyped
-        int k=(int)evt.getKeyChar();
-        if (k >= 97 && k <= 122 || k>=65 && k<=90){
-           evt.setKeyChar((char)KeyEvent.VK_CLEAR);
-           JOptionPane.showMessageDialog(null,"No puede ingresar letras!","Ventana Error Datos",JOptionPane.ERROR_MESSAGE);
-           this.campoTextoNumFicha.setText(""); 
-           this.campoTextoNumFicha.requestFocus();
-        }
-        if(k==241 || k==209){
-           evt.setKeyChar((char)KeyEvent.VK_CLEAR);
-           JOptionPane.showMessageDialog(null,"No puede ingresar letras!","Ventana Error Datos",JOptionPane.ERROR_MESSAGE);
-           this.campoTextoNumFicha.setText(""); 
-           this.campoTextoNumFicha.requestFocus();
-        }
+        int k = (int)evt.getKeyChar();
         if(k==10){
-           java.awt.event.ActionEvent event = null;
-           botonMostrarFichaActionPerformed(event);
-        }
+          java.awt.event.ActionEvent event = null;
+          botonMostrarFichaActionPerformed(event);
+        }      
         
     }//GEN-LAST:event_campoTextoNumFichaKeyTyped
    // fin del método botonGenerarFacturaActionPerformed
@@ -391,7 +373,6 @@ public class IUGenerarFacturaPaciente extends javax.swing.JFrame {
    } // fin del método cargarCampos
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonBuscarFicha;
     private javax.swing.JButton botonGenerarFactura;
     private javax.swing.JButton botonMostrarFicha;
     private javax.swing.JButton botonVolver;
