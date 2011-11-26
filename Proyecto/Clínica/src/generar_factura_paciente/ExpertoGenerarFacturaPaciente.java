@@ -91,7 +91,7 @@ public class ExpertoGenerarFacturaPaciente {
                // se comprueba que exista un convenio
                if(!listaConvenios.isEmpty()){
                   // se toma el primer elemento de la lista de convenios
-                  Convenio convenio = (Convenio) FachadaPersistencia.getInstancia().buscar("Convenio", criterios).get(0);
+                  Convenio convenio = listaConvenios.get(0);
                   
                   // se guarda en la ficha el porcentaje de descuento para la prestación
                   this.dtoFicha.setDescuento(convenio.getCoseguro().getPorcentaje());
