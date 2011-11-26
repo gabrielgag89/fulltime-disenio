@@ -57,6 +57,7 @@ public class IUGenerarFacturaPaciente extends javax.swing.JFrame {
         tablaFichasExterna = new javax.swing.JTable();
         botonVolver = new javax.swing.JButton();
 
+        setTitle("Generar Factura Paciente");
         setResizable(false);
 
         etiqueteNumFicha.setText("Nº Ficha Internacion:");
