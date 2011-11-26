@@ -172,8 +172,8 @@ public class IUStub extends javax.swing.JFrame {
        while(rs.next()){
           this.tabla.setValueAt(rs.getInt("numero_ficha_internacion"), fila, columna++);
           this.tabla.setValueAt(rs.getString("nombre_estado_ficha_internacion"), fila, columna++);
-          this.tabla.setValueAt(rs.getInt("numero_factura_cliente"), fila, columna++);
-          this.tabla.setValueAt(rs.getString("nombre_estado_factura_cliente"), fila, columna++);
+          this.tabla.setValueAt(rs.getInt("numero_factura_paciente"), fila, columna++);
+          this.tabla.setValueAt(rs.getString("nombre_estado_factura_paciente"), fila, columna++);
           this.tabla.setValueAt(rs.getInt("numero_cama"), fila, columna++);
           this.tabla.setValueAt(rs.getString("nombre_estado_cama"), fila, columna);
        }
