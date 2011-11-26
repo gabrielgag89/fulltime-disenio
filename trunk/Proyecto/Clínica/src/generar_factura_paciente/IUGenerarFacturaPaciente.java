@@ -286,16 +286,22 @@ public class IUGenerarFacturaPaciente extends javax.swing.JFrame {
     private void campoTextoNumFichaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoTextoNumFichaKeyTyped
         int k=(int)evt.getKeyChar();
         if (k >= 97 && k <= 122 || k>=65 && k<=90){
-        evt.setKeyChar((char)KeyEvent.VK_CLEAR);
-        JOptionPane.showMessageDialog(null,"No puede ingresar letras!","Ventana Error Datos",JOptionPane.ERROR_MESSAGE);
+           evt.setKeyChar((char)KeyEvent.VK_CLEAR);
+           JOptionPane.showMessageDialog(null,"No puede ingresar letras!","Ventana Error Datos",JOptionPane.ERROR_MESSAGE);
+           this.campoTextoNumFicha.setText(""); 
+           this.campoTextoNumFicha.requestFocus();
         }
         if(k==241 || k==209){
-        evt.setKeyChar((char)KeyEvent.VK_CLEAR);
-        JOptionPane.showMessageDialog(null,"No puede ingresar letras!","Ventana Error Datos",JOptionPane.ERROR_MESSAGE);
+           evt.setKeyChar((char)KeyEvent.VK_CLEAR);
+           JOptionPane.showMessageDialog(null,"No puede ingresar letras!","Ventana Error Datos",JOptionPane.ERROR_MESSAGE);
+           this.campoTextoNumFicha.setText(""); 
+           this.campoTextoNumFicha.requestFocus();
         }
         if(k==10){
-        campoTextoNumFicha.transferFocus();
+           java.awt.event.ActionEvent event = null;
+           botonMostrarFichaActionPerformed(event);
         }
+        
     }//GEN-LAST:event_campoTextoNumFichaKeyTyped
    // fin del método botonGenerarFacturaActionPerformed
    
