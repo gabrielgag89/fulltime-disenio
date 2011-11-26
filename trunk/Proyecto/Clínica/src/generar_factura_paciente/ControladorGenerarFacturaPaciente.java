@@ -22,7 +22,7 @@ public class ControladorGenerarFacturaPaciente {
       // se comprueba que se haya emitido la factura con éxito
       if(dtoFactura != null){
          // se crea una GUI para mostrar la factura emitida
-         IUMonstrarFactura iuMostrFact = new IUMonstrarFactura();
+         IUMostrarFactura iuMostrFact = new IUMostrarFactura();
          // se envía el DTO con los datos de la factura a la GUI
          iuMostrFact.cargarCampos(dtoFactura);
          // se hace visible la GUI
