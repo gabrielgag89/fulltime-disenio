@@ -6,7 +6,7 @@ import dtos.DTOFacturaPaciente;
 
 public class DecoradorExpertoGenerarFacturaPaciente extends ExpertoGenerarFacturaPaciente {
    @Override
-   public DTOFichaInternacion buscarFichaInternacion(int numPaciente){
+   public DTOFichaInternacion buscarFichaInternacion(int numFicha){
       DTOFichaInternacion dtoFicha = null;
       
       try {
@@ -14,7 +14,7 @@ public class DecoradorExpertoGenerarFacturaPaciente extends ExpertoGenerarFactur
          FachadaPersistenciaInterna.getInstancia().iniciarTransaccion();
          
          // se busca la ficha de internación correspondiente al número recibido y se devuelve el DTO con los datos de la ficha
-         dtoFicha = super.buscarFichaInternacion(numPaciente);
+         dtoFicha = super.buscarFichaInternacion(numFicha);
       } // fin de try de búsqueda de la ficha
       catch (Exception ex) {
          System.err.println("Exception en buscarFichaInternacion: " + ex.getStackTrace());
