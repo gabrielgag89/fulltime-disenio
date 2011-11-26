@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import dtos.DTOFichaInternacion;
 import dtos.DTODetalleServicio;
+import java.awt.event.KeyEvent;
 import util.ServiciosTiempo;
 
 public class IUGenerarFacturaPaciente extends javax.swing.JFrame {
@@ -71,6 +72,11 @@ public class IUGenerarFacturaPaciente extends javax.swing.JFrame {
         });
 
         campoTextoNumFicha.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        campoTextoNumFicha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoTextoNumFichaKeyTyped(evt);
+            }
+        });
 
         botonMostrarFicha.setText("Mostrar Ficha");
         botonMostrarFicha.addActionListener(new java.awt.event.ActionListener() {
@@ -276,6 +282,21 @@ public class IUGenerarFacturaPaciente extends javax.swing.JFrame {
        // oculta la ventana
        this.setVisible(false);
     }//GEN-LAST:event_botonVolverActionPerformed
+
+    private void campoTextoNumFichaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoTextoNumFichaKeyTyped
+        int k=(int)evt.getKeyChar();
+        if (k >= 97 && k <= 122 || k>=65 && k<=90){
+        evt.setKeyChar((char)KeyEvent.VK_CLEAR);
+        JOptionPane.showMessageDialog(null,"No puede ingresar letras!","Ventana Error Datos",JOptionPane.ERROR_MESSAGE);
+        }
+        if(k==241 || k==209){
+        evt.setKeyChar((char)KeyEvent.VK_CLEAR);
+        JOptionPane.showMessageDialog(null,"No puede ingresar letras!","Ventana Error Datos",JOptionPane.ERROR_MESSAGE);
+        }
+        if(k==10){
+        campoTextoNumFicha.transferFocus();
+        }
+    }//GEN-LAST:event_campoTextoNumFichaKeyTyped
    // fin del método botonGenerarFacturaActionPerformed
    
    private void disableControls(){
