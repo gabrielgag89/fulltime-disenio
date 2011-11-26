@@ -28,18 +28,17 @@ public class IUMostrarRecibo extends javax.swing.JFrame {
         campoTextoMonto = new javax.swing.JTextField();
         etiquetaReciboNum = new javax.swing.JLabel();
         botonVolver = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setTitle("Recibo");
 
         panelDatosRecibo.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos Recibo"));
 
-        campoTextoFecha.setBackground(new java.awt.Color(255, 255, 255));
         campoTextoFecha.setEditable(false);
         campoTextoFecha.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         etiquetaFecha.setText("Fecha:");
 
-        campoTextoFacturaNum.setBackground(new java.awt.Color(255, 255, 255));
         campoTextoFacturaNum.setEditable(false);
         campoTextoFacturaNum.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
@@ -47,11 +46,9 @@ public class IUMostrarRecibo extends javax.swing.JFrame {
 
         etiquetaMonto.setText("Monto:");
 
-        campoTextoReciboNum.setBackground(new java.awt.Color(255, 255, 255));
         campoTextoReciboNum.setEditable(false);
         campoTextoReciboNum.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
-        campoTextoMonto.setBackground(new java.awt.Color(255, 255, 255));
         campoTextoMonto.setEditable(false);
         campoTextoMonto.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
@@ -116,22 +113,28 @@ public class IUMostrarRecibo extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panelDatosRecibo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(104, Short.MAX_VALUE)
-                .addComponent(botonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addComponent(botonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(panelDatosRecibo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 16, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(panelDatosRecibo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botonVolver)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(19, 19, 19))
         );
 
         pack();
@@ -162,6 +165,7 @@ public class IUMostrarRecibo extends javax.swing.JFrame {
     private javax.swing.JLabel etiquetaFecha;
     private javax.swing.JLabel etiquetaMonto;
     private javax.swing.JLabel etiquetaReciboNum;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel panelDatosRecibo;
     // End of variables declaration//GEN-END:variables
 } // fin de la clase IUMostrarRecibo
