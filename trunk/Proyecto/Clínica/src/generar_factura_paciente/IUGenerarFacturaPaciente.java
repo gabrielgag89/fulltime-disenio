@@ -250,12 +250,16 @@ public class IUGenerarFacturaPaciente extends javax.swing.JFrame {
          } // fin de if de carga de campos
          else{
             JOptionPane.showMessageDialog(null, "La ficha ingresada no existe o ya se ha facturado");
+            this.campoTextoNumFicha.setText(""); 
+            this.campoTextoNumFicha.requestFocus();
             // deshabilita los controles
             disableControls();
          } // fin de else de inexistencia de la ficha
       } // fin de try de error de formato
       catch(NumberFormatException ex){
          JOptionPane.showMessageDialog(null, "Debe ingresar un número en el campo \"Nº Ficha Internacion:\"");
+         this.campoTextoNumFicha.setText(""); 
+         this.campoTextoNumFicha.requestFocus();
       } // fin de catch de error de formato
    }//GEN-LAST:event_botonMostrarFichaActionPerformed
    // fin del método botonMostrarFichaActionPerformed
