@@ -1,5 +1,6 @@
 import generar_factura_paciente.IUGenerarFacturaPaciente;
 import cobrar_factura_paciente.IUCobrarFacturaPaciente;
+import javax.swing.JOptionPane;
 
 public class Main extends javax.swing.JFrame {
    public Main() {
@@ -16,28 +17,63 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        botonFacturarFicha = new javax.swing.JButton();
-        botonCobrarFactura = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        cobrar = new javax.swing.JMenuItem();
+        facturar = new javax.swing.JMenuItem();
+        archivo = new javax.swing.JMenu();
+        salir = new javax.swing.JMenuItem();
+        acerca = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Sistema de Clínicas para tratamientos de alta complejidad");
         setResizable(false);
 
-        botonFacturarFicha.setText("Facturar Ficha");
-        botonFacturarFicha.addActionListener(new java.awt.event.ActionListener() {
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/images (2).jpg"))); // NOI18N
+
+        jMenu1.setText("Facturación");
+
+        cobrar.setText("Cobrar Facturas");
+        cobrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonFacturarFichaActionPerformed(evt);
+                cobrarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(cobrar);
+
+        facturar.setText("Facturar Ficha");
+        facturar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                facturarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(facturar);
+
+        jMenuBar1.add(jMenu1);
+
+        archivo.setText("Ayuda");
+        archivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                archivoActionPerformed(evt);
             }
         });
 
-        botonCobrarFactura.setText("Cobrar Factura");
-        botonCobrarFactura.addActionListener(new java.awt.event.ActionListener() {
+        salir.setText("Contenidos");
+        archivo.add(salir);
+
+        acerca.setText("Acerca de");
+        acerca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonCobrarFacturaActionPerformed(evt);
+                acercaActionPerformed(evt);
             }
         });
+        archivo.add(acerca);
 
-        jLabel1.setText("Clinica");
+        jMenuBar1.add(archivo);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -46,38 +82,43 @@ public class Main extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botonCobrarFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonFacturarFicha, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(265, 265, 265)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(130, 130, 130)
-                        .addComponent(jLabel1)))
-                .addContainerGap(240, Short.MAX_VALUE))
+                        .addGap(157, 157, 157)
+                        .addComponent(jLabel2)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(26, 26, 26)
-                .addComponent(botonFacturarFicha)
-                .addGap(18, 18, 18)
-                .addComponent(botonCobrarFactura)
-                .addContainerGap(185, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-   private void botonFacturarFichaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFacturarFichaActionPerformed
-      new IUGenerarFacturaPaciente().setVisible(true);
-   }//GEN-LAST:event_botonFacturarFichaActionPerformed
    // fin del método botonFacturarFichaActionPerformed
    
-   private void botonCobrarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCobrarFacturaActionPerformed
-      new IUCobrarFacturaPaciente().setVisible(true);
-   }//GEN-LAST:event_botonCobrarFacturaActionPerformed
+   private void cobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cobrarActionPerformed
+      new IUCobrarFacturaPaciente().setVisible(true); 
+   }//GEN-LAST:event_cobrarActionPerformed
+
+   private void facturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_facturarActionPerformed
+     new IUGenerarFacturaPaciente().setVisible(true);
+   }//GEN-LAST:event_facturarActionPerformed
+
+   private void archivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_archivoActionPerformed
+     this.setVisible(false); // TODO add your handling code here:
+   }//GEN-LAST:event_archivoActionPerformed
+
+   private void acercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acercaActionPerformed
+     JOptionPane.showMessageDialog(rootPane, "IMPLEMENTACIÓN Versión 2.0 Beta \n "
+             + "Diseño de Sistemas 2011 \n FULLTIME");// TODO add your handling code here:
+   }//GEN-LAST:event_acercaActionPerformed
    // fin del método botonCobrarFacturaActionPerformed
    
    public static void main(String args[]) {
@@ -114,8 +155,14 @@ public class Main extends javax.swing.JFrame {
    } // fin del método main
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonCobrarFactura;
-    private javax.swing.JButton botonFacturarFicha;
+    private javax.swing.JMenuItem acerca;
+    private javax.swing.JMenu archivo;
+    private javax.swing.JMenuItem cobrar;
+    private javax.swing.JMenuItem facturar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem salir;
     // End of variables declaration//GEN-END:variables
 } // fin de la clase Main

@@ -64,6 +64,12 @@ public class IUStub extends javax.swing.JFrame {
 
         jLabel1.setText("N° Ficha:");
 
+        campoNumFicha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoNumFichaKeyTyped(evt);
+            }
+        });
+
         botonBuscar.setText("Buscar");
         botonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,21 +84,21 @@ public class IUStub extends javax.swing.JFrame {
             .addGroup(panelLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(campoNumFicha, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(campoNumFicha, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botonBuscar)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addContainerGap()
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
                     .addComponent(campoNumFicha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
                     .addComponent(botonBuscar))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         tablaExterna.setModel(tabla);
@@ -109,16 +115,16 @@ public class IUStub extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(101, 101, 101)
                 .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(142, Short.MAX_VALUE))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(49, 49, 49)
                 .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(30, 30, 30)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         pack();
@@ -134,6 +140,14 @@ public class IUStub extends javax.swing.JFrame {
          limpiarCampos();
       }
    }//GEN-LAST:event_botonBuscarActionPerformed
+
+   private void campoNumFichaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoNumFichaKeyTyped
+      int k = (int)evt.getKeyChar();
+        if(k==10){
+          java.awt.event.ActionEvent event = null;
+          botonBuscarActionPerformed(event);
+        }    
+   }//GEN-LAST:event_campoNumFichaKeyTyped
  private void armarTabla(){
       // configura la cabecera de las columnas
       this.tabla.addColumn("Nº Ficha");
@@ -164,15 +178,31 @@ public class IUStub extends javax.swing.JFrame {
        conexion = DriverManager.getConnection(url_bd+host+"/"+bd,login,password);
        conexion.setAutoCommit(false);
        System.out.println("Se logro la conexion con la base de datos "+url_bd+host+"/"+bd+".");
-       String sql = "SELECT `ficha_internacion`.`numero_ficha_internacion`,`estado_ficha_internacion`.`nombre_estado_ficha_internacion`, `cama`.`numero_cama`, `estado_cama`.`nombre_estado_cama` , `factura_paciente`.`numero_factura_paciente` , `estado_factura_paciente`.`nombre_estado_factura_paciente` FROM `clinica`.`cama` INNER JOIN `clinica`.`estado_cama` ON (`cama`.`oidestado_cama` = `estado_cama`.`oidestado_cama`) INNER JOIN `clinica`.`ficha_internacion` ON (`ficha_internacion`.`oidcama` = `cama`.`oidcama`) INNER JOIN `clinica`.`estado_ficha_internacion` ON (`ficha_internacion`.`oidestado_ficha_internacion` = `estado_ficha_internacion`.`oidestado_ficha_internacion`) INNER JOIN `clinica`.`factura_paciente` ON (`factura_paciente`.`oidficha_internacion` = `ficha_internacion`.`oidficha_internacion`) INNER JOIN `clinica`.`estado_factura_paciente`  ON (`factura_paciente`.`oidestado_factura_paciente` = `estado_factura_paciente`.`oidestado_factura_paciente`) WHERE (`ficha_internacion`.`numero_ficha_internacion` = '"+numFicha+"')";
+       String sql = "SELECT `ficha_internacion`.`numero_ficha_internacion`"
+                           + ",`estado_ficha_internacion`.`nombre_estado_ficha_internacion`, `cama`.`numero_cama`,"
+                           + " `estado_cama`.`nombre_estado_cama` , `factura_paciente`.`numero_factura_paciente` ,"
+                           + " `estado_factura_paciente`.`nombre_estado_factura_paciente` "
+                  + "FROM `clinica`.`ficha_internacion` "       
+                     + "LEFT JOIN `clinica`.`factura_paciente` ON (`factura_paciente`.`oidficha_internacion` = `ficha_internacion`.`oidficha_internacion`) "
+                     + "LEFT JOIN `clinica`.`estado_factura_paciente`  ON (`factura_paciente`.`oidestado_factura_paciente` = `estado_factura_paciente`.`oidestado_factura_paciente`) "                     
+                     + "LEFT JOIN `clinica`.`estado_ficha_internacion` ON (`ficha_internacion`.`oidestado_ficha_internacion` = `estado_ficha_internacion`.`oidestado_ficha_internacion`)"
+                     + "RIGHT JOIN `clinica`.`cama` ON (`ficha_internacion`.`oidcama` = `cama`.`oidcama`) "
+                     + "RIGHT JOIN `clinica`.`estado_cama` ON (`cama`.`oidestado_cama` = `estado_cama`.`oidestado_cama`) "
+                     
+                     
+                    
+                  + "WHERE (`ficha_internacion`.`numero_ficha_internacion` = '"+numFicha+"')";
+       
+       System.out.println(sql);
        PreparedStatement consulta = conexion.prepareStatement(sql);
        ResultSet rs = consulta.executeQuery(sql);
        int fila = 0,columna = 0;
        this.tabla.setRowCount(1);
-       while(rs.next()){
+       limpiarTabla();
+       while(rs.next()) {
           this.tabla.setValueAt(rs.getInt("numero_ficha_internacion"), fila, columna++);
           this.tabla.setValueAt(rs.getString("nombre_estado_ficha_internacion"), fila, columna++);
-          this.tabla.setValueAt(rs.getInt("numero_factura_paciente"), fila, columna++);
+          this.tabla.setValueAt(rs.getString("numero_factura_paciente"), fila, columna++);
           this.tabla.setValueAt(rs.getString("nombre_estado_factura_paciente"), fila, columna++);
           this.tabla.setValueAt(rs.getInt("numero_cama"), fila, columna++);
           this.tabla.setValueAt(rs.getString("nombre_estado_cama"), fila, columna);
@@ -189,6 +219,12 @@ public class IUStub extends javax.swing.JFrame {
        campoNumFicha.cut();
        campoNumFicha.requestFocus();       
    }
+ 
+ private void limpiarTabla(){
+    int i;
+    for(i=0;i<6;i++)
+       tabla.setValueAt("", 0, i);
+ }
  
    public static void main(String args[]) {
       /* Set the Nimbus look and feel */
