@@ -1,6 +1,6 @@
-import generar_factura_paciente.IUGenerarFacturaPaciente;
-import cobrar_factura_paciente.IUCobrarFacturaPaciente;
 import javax.swing.JOptionPane;
+import generar_factura_paciente.ControladorGenerarFacturaPaciente;
+import cobrar_factura_paciente.ControladorCobrarFacturaPaciente;
 
 public class Main extends javax.swing.JFrame {
    public Main() {
@@ -28,7 +28,7 @@ public class Main extends javax.swing.JFrame {
         acerca = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Sistema de Clínicas para tratamientos de alta complejidad");
+        setTitle("Clínica para tratamientos de alta complejidad");
         setResizable(false);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/images (2).jpg"))); // NOI18N
@@ -104,11 +104,11 @@ public class Main extends javax.swing.JFrame {
    // fin del método botonFacturarFichaActionPerformed
    
    private void cobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cobrarActionPerformed
-      new IUCobrarFacturaPaciente().setVisible(true); 
+      new ControladorCobrarFacturaPaciente(); 
    }//GEN-LAST:event_cobrarActionPerformed
 
    private void facturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_facturarActionPerformed
-     new IUGenerarFacturaPaciente().setVisible(true);
+     new ControladorGenerarFacturaPaciente();
    }//GEN-LAST:event_facturarActionPerformed
 
    private void archivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_archivoActionPerformed

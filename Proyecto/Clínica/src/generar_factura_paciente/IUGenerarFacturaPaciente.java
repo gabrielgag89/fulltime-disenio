@@ -5,14 +5,13 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import dtos.DTOFichaInternacion;
 import dtos.DTODetalleServicio;
-import java.awt.event.KeyEvent;
 import util.ServiciosTiempo;
 
 public class IUGenerarFacturaPaciente extends javax.swing.JFrame {
    private DefaultTableModel tablaFichas;
    private ControladorGenerarFacturaPaciente controlador;
    
-   public IUGenerarFacturaPaciente() {
+   public IUGenerarFacturaPaciente(ControladorGenerarFacturaPaciente controlador) {
       // crea la tabla para los detalles
       this.tablaFichas = new DefaultTableModel();
       // inicializa los componentes de la GUI
@@ -20,7 +19,7 @@ public class IUGenerarFacturaPaciente extends javax.swing.JFrame {
       // centra la GUI en la pantalla
       this.setLocationRelativeTo(null);
       // crea el controlador con el que se comunicará laa GUI y lo guarda en una variable de instancia
-      this.controlador = new ControladorGenerarFacturaPaciente();
+      this.controlador = controlador;
       // arma la cabecera de la tabla
       armarTabla();
       // deshabilita los controles
