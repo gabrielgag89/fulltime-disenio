@@ -1,7 +1,6 @@
 package cobrar_factura_paciente;
 
 import java.util.List;
-import java.util.Vector;
 import javax.swing.JOptionPane;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
@@ -14,13 +13,13 @@ public class IUCobrarFacturaPaciente extends javax.swing.JFrame {
    private ControladorCobrarFacturaPaciente controlador;
    private int seleccion;
    
-   public IUCobrarFacturaPaciente() {
+   public IUCobrarFacturaPaciente(ControladorCobrarFacturaPaciente controlador) {
       // crea la tabla personalizada
       tablaFacturas = new DefaultTableModel();
       initComponents();
       this.setLocationRelativeTo(null);
       // guarda la referencia al controlador
-      controlador = new ControladorCobrarFacturaPaciente();
+      this.controlador = controlador;
       // arma la tabla
       armarTablaFacturas();
       // carga la tabla
@@ -137,7 +136,7 @@ public class IUCobrarFacturaPaciente extends javax.swing.JFrame {
    } // fin del método armarTablaFacturas
    
    public void cargarFacturas(){
-      List<DTOFacturaPaciente> listaFacturas = this.controlador.buscarFacturasPacientes(this);
+      List<DTOFacturaPaciente> listaFacturas = this.controlador.buscarFacturasPacientes();
       int fila = 0, col;
       this.seleccion = -1;
       this.tablaFacturas.setRowCount(listaFacturas.size());

@@ -10,10 +10,12 @@ public class ControladorCobrarFacturaPaciente implements ObservadorGenerarFactur
    private ExpertoCobrarFacturaPaciente experto;
    private IUCobrarFacturaPaciente iuCobrar;
    
-   public List<DTOFacturaPaciente> buscarFacturasPacientes(IUCobrarFacturaPaciente iuCobrar){
-      // el controlador guarda la referencia a la GUI correspondiente
-      this.iuCobrar = iuCobrar;
-      
+   public ControladorCobrarFacturaPaciente(){
+      this.iuCobrar = new IUCobrarFacturaPaciente(this);
+      this.iuCobrar.setVisible(true);
+   } // fin del constructor
+   
+   public List<DTOFacturaPaciente> buscarFacturasPacientes(){
       // el controlador se suscribe como observador para ser notificado
       SuscriptorGenerarFacturaPaciente.getInstancia().suscribirse(this);
       

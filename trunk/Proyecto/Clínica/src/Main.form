@@ -55,7 +55,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
-    <Property name="title" type="java.lang.String" value="Sistema de Cl&#xed;nicas para tratamientos de alta complejidad"/>
+    <Property name="title" type="java.lang.String" value="Cl&#xed;nica para tratamientos de alta complejidad"/>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
