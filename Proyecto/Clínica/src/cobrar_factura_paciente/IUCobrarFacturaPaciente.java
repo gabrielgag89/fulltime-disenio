@@ -18,7 +18,7 @@ public class IUCobrarFacturaPaciente extends javax.swing.JFrame {
       tablaFacturas = new DefaultTableModel();
       initComponents();
       this.setLocationRelativeTo(null);
-      // guarda la referencia al controlador
+      // guarda el controlador con el que se comunicará la GUI
       this.controlador = controlador;
       // arma la tabla
       armarTablaFacturas();

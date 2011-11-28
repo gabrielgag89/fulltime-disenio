@@ -31,7 +31,7 @@ public class Main extends javax.swing.JFrame {
         setTitle("Clínica para tratamientos de alta complejidad");
         setResizable(false);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/images (2).jpg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/images.jpg"))); // NOI18N
 
         jMenu1.setText("Facturación");
 
