@@ -26,8 +26,44 @@ public class ExpertoGenerarFacturaPaciente {
    private DTOFichaInternacion dtoFicha = null;
    
    public List<DTOFichaInternacion> buscarFichasPendientes(){
-      List<DTOFichaInternacion> listaDtoFichas = null;
+      List<DTOFichaInternacion> listaDtoFichas = new ArrayList<DTOFichaInternacion>();
+      DTOFichaInternacion dtoF;
+      // se declara y crea una lista de criterios para usar en la búsqueda
+      List<Criterio> criterios = new ArrayList<Criterio>();
+      // se daclara y crea un criterio
+      Criterio criterio = FachadaPersistencia.getInstancia().getCriterio("nombreEstado", "=", "Creada", "");
+      // se agrega el criterio a la lista
+      criterios.add(criterio);
       
+      // se busca el estado, para las fichas de internación, con nombre "Creada"
+      List<EstadoFichaInternacion> listaEstadosFichas = FachadaPersistencia.getInstancia().buscar("EstadoFichaInternacion", criterios);
+      
+      // se comprueba que la lista no esté vacía
+      if(!listaEstadosFichas.isEmpty()){
+         // se obtiene el primer elemento de la lista
+         EstadoFichaInternacion estadoFicha = listaEstadosFichas.get(0);
+         
+         // se crea una nueva lista de criterios
+         criterios = new ArrayList<Criterio>();
+         criterio = FachadaPersistencia.getInstancia().getCriterio("estadoFichaInternacion", "=", estadoFicha, "");
+         criterios.add(criterio);
+         
+         // se buscan las fichas de internación que no estén facturadas
+         List<FichaInternacion> listaFichas = FachadaPersistencia.getInstancia().buscar("FichaInternacion", criterios);
+         
+         // se recorre la lista de fichas
+         for(FichaInternacion ficha : listaFichas){
+            // se crea un nuevo DTO de ficha y se le asignan los datos correspondientes
+            dtoF = new DTOFichaInternacion();
+            dtoF.setNroFicha(ficha.getNroFicha());
+            dtoF.setFecha(ficha.getFechaCreacion());
+            dtoF.setNombrePaciente(ficha.getPaciente().getNombre());
+            dtoF.setNombrePrestacion(ficha.getPrestacion().getDescripcion());
+            
+            // se agrega el DTO de ficha a la lista de DTOs de fichas
+            listaDtoFichas.add(dtoF);
+         } // fin de for de creación de DTOs de fichas de internación
+      } // fin de if de comprobación de existencia del estado
       
       return listaDtoFichas;
    } // fin del método buscarFichasPendientes
@@ -40,7 +76,7 @@ public class ExpertoGenerarFacturaPaciente {
       // se agrega el criterio a la lista
       criterios.add(criterio);
       
-      // se buscan todas la ficha de internación que corresponde al número de ficha ingresado
+      // se busca la ficha de internación que corresponde al número de ficha ingresado
       List<FichaInternacion> listaFichas = FachadaPersistencia.getInstancia().buscar("FichaInternacion", criterios);
       
       // se comprueba que la lista no esté vacía
