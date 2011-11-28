@@ -1,5 +1,6 @@
 package generar_factura_paciente;
 
+import java.util.List;
 import fabricaExpertos.FabricaExpertos;
 import dtos.DTOFichaInternacion;
 import dtos.DTOFacturaPaciente;
@@ -12,9 +13,20 @@ public class ControladorGenerarFacturaPaciente {
       iuGenerarFactura.setVisible(true);
    } // fin del constructor
    
+   public void buscarFichasPendientes(){
+      if(this.experto == null)
+         this.experto = (ExpertoGenerarFacturaPaciente) FabricaExpertos.getInstancia().getExperto("GenerarFacturarPaciente");
+      
+      // se buscan las fichas de internación que aún no hayan sido facturadas
+      List<DTOFichaInternacion> listaDtoFichas =  this.experto.buscarFichasPendientes();
+      
+      IUMostrarFichasPendientes iuMostrarFichas = new IUMostrarFichasPendientes(this);
+      iuMostrarFichas.cargarTabla(listaDtoFichas);
+   } // fin del método buscarFichasPendientes
+   
    public DTOFichaInternacion buscarFichaInternacion(int numFicha){ 
-      // se obtiene un ExpertoGenerarFacturaPaciente y se guarda en una variable de instancia
-      this.experto = (ExpertoGenerarFacturaPaciente) FabricaExpertos.getInstancia().getExperto("GenerarFacturarPaciente");
+      if(this.experto == null)
+         this.experto = (ExpertoGenerarFacturaPaciente) FabricaExpertos.getInstancia().getExperto("GenerarFacturarPaciente");
       
       // se busca la ficha de internación correspondiente al número ingresado y se devuelve a la GUI
       return this.experto.buscarFichaInternacion(numFicha);   

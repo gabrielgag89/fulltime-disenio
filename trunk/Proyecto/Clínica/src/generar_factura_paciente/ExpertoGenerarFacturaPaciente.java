@@ -24,6 +24,13 @@ import util.ServiciosTiempo;
 public class ExpertoGenerarFacturaPaciente {
    private FichaInternacion fichaInternacion = null;
    private DTOFichaInternacion dtoFicha = null;
+   
+   public List<DTOFichaInternacion> buscarFichasPendientes(){
+      List<DTOFichaInternacion> listaDtoFichas = null;
+      
+      
+      return listaDtoFichas;
+   } // fin del método buscarFichasPendientes
 
    public DTOFichaInternacion buscarFichaInternacion(int numFicha){
       // se declara y crea una lista de criterios para usar en la búsqueda
