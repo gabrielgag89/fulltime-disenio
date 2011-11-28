@@ -97,7 +97,7 @@ public class IUCobrarFacturaPaciente extends javax.swing.JFrame {
    private void botonCobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCobrarActionPerformed
       if(this.seleccion == -1 || this.seleccion >= this.tablaFacturas.getRowCount()){
          JOptionPane.showMessageDialog(null, "Debe seleccionar una factura");
-      } // fub de if de comprobación de selección de fila
+      } // fin de if de comprobación de selección de fila
       else{
          int numFactura = Integer.parseInt(this.tablaFacturas.getValueAt(seleccion, 0).toString());
          this.controlador.cobrarFactura(numFactura);
@@ -158,7 +158,6 @@ public class IUCobrarFacturaPaciente extends javax.swing.JFrame {
          @Override
          public void mouseClicked(MouseEvent e){
             seleccion = tablaFacturasExterna.rowAtPoint(e.getPoint());
-            tablaFacturas.isCellEditable(seleccion, 0);
          } // fin del método mouseClicked
       });
    } // fin del método cargarFacturas

@@ -3,10 +3,14 @@ package generar_factura_paciente;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import dtos.DTOFichaInternacion;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JOptionPane;
 
 public class IUMostrarFichasPendientes extends javax.swing.JFrame {
    private DefaultTableModel tablaFichasPendientes;
    private ControladorGenerarFacturaPaciente controlador;
+   private int seleccion = -1;
    
    public IUMostrarFichasPendientes(ControladorGenerarFacturaPaciente controlador) {
       // crea la tabla para las fichas pendientes de facturación
@@ -90,7 +94,14 @@ public class IUMostrarFichasPendientes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
    private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
-      // TODO add your handling code here:
+      if(this.seleccion == -1 || this.seleccion >= this.tablaFichasPendientes.getRowCount()){
+         JOptionPane.showMessageDialog(null, "Debe seleccionar una ficha");
+      } // fin de if de comprobación de selección de fila
+      else{
+         int numFicha = Integer.parseInt(this.tablaFichasPendientes.getValueAt(seleccion, 0).toString());
+         this.setVisible(false);
+         this.controlador.cargarNumFicha(numFicha);
+      } // fin de else de comprobación de selección de fila
    }//GEN-LAST:event_botonAceptarActionPerformed
    // fin del método botonAceptarActionPerformed
    
@@ -107,7 +118,24 @@ public class IUMostrarFichasPendientes extends javax.swing.JFrame {
    } // fin del método armarTabla
    
    public void cargarTabla(List<DTOFichaInternacion> listaDtoFichas){
+      int fila = 0, col;
+      this.tablaFichasPendientes.setRowCount(listaDtoFichas.size());
       
+      for(DTOFichaInternacion dtoFicha : listaDtoFichas){
+         col = 0;
+         this.tablaFichasPendientes.setValueAt(dtoFicha.getNroFicha(), fila, col++);
+         this.tablaFichasPendientes.setValueAt(dtoFicha.getFecha(), fila, col++);
+         this.tablaFichasPendientes.setValueAt(dtoFicha.getNombrePaciente(), fila, col++);
+         this.tablaFichasPendientes.setValueAt(dtoFicha.getNombrePrestacion(), fila, col++);
+         fila++;
+      } // fin de for de llenado de la tabla
+      
+      this.tablaFichasPendientesExterna.addMouseListener(new MouseAdapter(){
+         @Override
+         public void mouseClicked(MouseEvent e){
+            seleccion = tablaFichasPendientesExterna.rowAtPoint(e.getPoint());
+         } // fin del método mouseClicked
+      });
    } // fin del método cargarTabla
    
     // Variables declaration - do not modify//GEN-BEGIN:variables

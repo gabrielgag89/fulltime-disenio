@@ -7,10 +7,11 @@ import dtos.DTOFacturaPaciente;
 
 public class ControladorGenerarFacturaPaciente {
    private ExpertoGenerarFacturaPaciente experto;
+   private IUGenerarFacturaPaciente iuGenerarFactura;
    
    public ControladorGenerarFacturaPaciente(){
-      IUGenerarFacturaPaciente iuGenerarFactura = new IUGenerarFacturaPaciente(this);
-      iuGenerarFactura.setVisible(true);
+      this.iuGenerarFactura = new IUGenerarFacturaPaciente(this);
+      this.iuGenerarFactura.setVisible(true);
    } // fin del constructor
    
    public void buscarFichasPendientes(){
@@ -22,7 +23,12 @@ public class ControladorGenerarFacturaPaciente {
       
       IUMostrarFichasPendientes iuMostrarFichas = new IUMostrarFichasPendientes(this);
       iuMostrarFichas.cargarTabla(listaDtoFichas);
+      iuMostrarFichas.setVisible(true);
    } // fin del método buscarFichasPendientes
+   
+   public void cargarNumFicha(int numFicha){
+      this.iuGenerarFactura.cargaNumFicha(numFicha);
+   } // fin del método cargarNumFicha
    
    public DTOFichaInternacion buscarFichaInternacion(int numFicha){ 
       if(this.experto == null)
