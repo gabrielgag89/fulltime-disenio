@@ -21,8 +21,8 @@ import dtos.DTOFacturaPaciente;
 import util.ServiciosTiempo;
 
 public class ExpertoGenerarFacturaPaciente {
-   private FichaInternacion fichaInternacion = null;
-   private DTOFichaInternacion dtoFicha = null;
+   private FichaInternacion fichaInternacion;
+   private DTOFichaInternacion dtoFicha;
    
    public List<DTOFichaInternacion> buscarFichasPendientes(){
       List<DTOFichaInternacion> listaDtoFichas = new ArrayList<DTOFichaInternacion>();
@@ -68,6 +68,8 @@ public class ExpertoGenerarFacturaPaciente {
    } // fin del método buscarFichasPendientes
 
    public DTOFichaInternacion buscarFichaInternacion(int numFicha){
+      this.fichaInternacion = null;
+      this.dtoFicha = null;
       // se declara y crea una lista de criterios para usar en la búsqueda
       List<Criterio> criterios = new ArrayList<Criterio>();
       // se daclara y crea un criterio
