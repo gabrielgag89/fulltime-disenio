@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.ArrayList;
 import observador.SuscriptorGenerarFacturaPaciente;
 import persistencia.proxy.EstadoFichaInternacion;
-import persistencia.FachadaPersistenciaInterna;
 import persistencia.proxy.EstadoFacturaPaciente;
 import persistencia.proxy.FichaInternacion;
 import persistencia.proxy.CostoPrestacion;
@@ -96,11 +95,11 @@ public class ExpertoGenerarFacturaPaciente {
             
             // se crea una nueva lista de criterios
             criterios = new ArrayList<Criterio>();
-            criterio = FachadaPersistenciaInterna.getInstancia().getCriterio("fechaInicio", "<=", ServiciosTiempo.getInstancia().dateToString(this.fichaInternacion.getFechaCreacion()), "AND");
+            criterio = FachadaPersistencia.getInstancia().getCriterio("fechaInicio", "<=", ServiciosTiempo.getInstancia().dateToString(this.fichaInternacion.getFechaCreacion()), "AND");
             criterios.add(criterio);
-            criterio = FachadaPersistenciaInterna.getInstancia().getCriterio("fechaFin", ">=", ServiciosTiempo.getInstancia().dateToString(this.fichaInternacion.getFechaCreacion()), "AND");
+            criterio = FachadaPersistencia.getInstancia().getCriterio("fechaFin", ">=", ServiciosTiempo.getInstancia().dateToString(this.fichaInternacion.getFechaCreacion()), "AND");
             criterios.add(criterio);
-            criterio = FachadaPersistenciaInterna.getInstancia().getCriterio("prestacion", "=", this.fichaInternacion.getPrestacion(), "");
+            criterio = FachadaPersistencia.getInstancia().getCriterio("prestacion", "=", this.fichaInternacion.getPrestacion(), "");
             criterios.add(criterio);
             
             // se buscan los costos de la prestación que pertenezcan al período indicado y a la prestación
@@ -119,13 +118,13 @@ public class ExpertoGenerarFacturaPaciente {
             if(this.fichaInternacion.getPaciente().getPlan() != null){
                // se crea una nueva lista de criterios
                criterios = new ArrayList<Criterio>();
-               criterio = FachadaPersistenciaInterna.getInstancia().getCriterio("fechaInicio", "<=", ServiciosTiempo.getInstancia().dateToString(this.fichaInternacion.getFechaCreacion()), "AND");
+               criterio = FachadaPersistencia.getInstancia().getCriterio("fechaInicio", "<=", ServiciosTiempo.getInstancia().dateToString(this.fichaInternacion.getFechaCreacion()), "AND");
                criterios.add(criterio);
-               criterio = FachadaPersistenciaInterna.getInstancia().getCriterio("fechaFin", ">=", ServiciosTiempo.getInstancia().dateToString(this.fichaInternacion.getFechaCreacion()), "AND");
+               criterio = FachadaPersistencia.getInstancia().getCriterio("fechaFin", ">=", ServiciosTiempo.getInstancia().dateToString(this.fichaInternacion.getFechaCreacion()), "AND");
                criterios.add(criterio);
-               criterio = FachadaPersistenciaInterna.getInstancia().getCriterio("prestacion", "=", this.fichaInternacion.getPrestacion(), "AND");
+               criterio = FachadaPersistencia.getInstancia().getCriterio("prestacion", "=", this.fichaInternacion.getPrestacion(), "AND");
                criterios.add(criterio);
-               criterio = FachadaPersistenciaInterna.getInstancia().getCriterio("plan", "=", this.fichaInternacion.getPaciente().getPlan(), "");
+               criterio = FachadaPersistencia.getInstancia().getCriterio("plan", "=", this.fichaInternacion.getPaciente().getPlan(), "");
                criterios.add(criterio);
 
                // se buscan los criterios que pertenezcan al período indicado y a la prestación y plan correspondiente
@@ -158,11 +157,11 @@ public class ExpertoGenerarFacturaPaciente {
                
                // se crea una nueva lista de criterios
                criterios = new ArrayList<Criterio>();
-               criterio = FachadaPersistenciaInterna.getInstancia().getCriterio("fechaInicio", "<=", ServiciosTiempo.getInstancia().dateToString(this.fichaInternacion.getFechaCreacion()), "AND");
+               criterio = FachadaPersistencia.getInstancia().getCriterio("fechaInicio", "<=", ServiciosTiempo.getInstancia().dateToString(this.fichaInternacion.getFechaCreacion()), "AND");
                criterios.add(criterio);
-               criterio = FachadaPersistenciaInterna.getInstancia().getCriterio("fechaFin", ">=", ServiciosTiempo.getInstancia().dateToString(this.fichaInternacion.getFechaCreacion()), "AND");
+               criterio = FachadaPersistencia.getInstancia().getCriterio("fechaFin", ">=", ServiciosTiempo.getInstancia().dateToString(this.fichaInternacion.getFechaCreacion()), "AND");
                criterios.add(criterio);
-               criterio = FachadaPersistenciaInterna.getInstancia().getCriterio("servicioEspecial", "=", detalle.getServicioEspecial(), "");
+               criterio = FachadaPersistencia.getInstancia().getCriterio("servicioEspecial", "=", detalle.getServicioEspecial(), "");
                criterios.add(criterio);
                
                // se buscan los costos del servicio especial que pertenezcan al período indicado
