@@ -14,8 +14,7 @@ public class IUStub extends javax.swing.JFrame {
    private static String login = "fulltime";
    private static String password = "disenio";
    private static String host = "localhost";
-   private static String url_bd = "jdbc:mysql://";
-   private static String driver = "com.mysql.jdbc.Driver";
+   private static String url_bd = "jdbc:mysql://";   
    private static Connection conexion;
    
    public IUStub() {
@@ -89,20 +88,21 @@ public class IUStub extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addGap(19, 19, 19))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(101, 101, 101)
-                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(157, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(131, 131, 131)
+                        .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
+                .addGap(61, 61, 61)
                 .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(61, Short.MAX_VALUE))
         );
@@ -137,6 +137,7 @@ public class IUStub extends javax.swing.JFrame {
       this.tabla.addColumn("Estado Factura");      
       this.tabla.addColumn("Nº Cama");
       this.tabla.addColumn("Estado Cama");      
+      this.tabla.addColumn("N° Recibo");
       
       // configura el ancho de las columnas
       this.tablaExterna.getColumnModel().getColumn(0).setMinWidth(60);
@@ -151,6 +152,8 @@ public class IUStub extends javax.swing.JFrame {
       this.tablaExterna.getColumnModel().getColumn(4).setMaxWidth(50);
       this.tablaExterna.getColumnModel().getColumn(5).setMinWidth(90);
       this.tablaExterna.getColumnModel().getColumn(5).setMaxWidth(75);
+      this.tablaExterna.getColumnModel().getColumn(6).setMinWidth(60);
+      this.tablaExterna.getColumnModel().getColumn(6).setMaxWidth(50);
    } // fin del método armarTablaFacturas
  
  public void cargarTabla(int numFicha) {
@@ -162,16 +165,17 @@ public class IUStub extends javax.swing.JFrame {
        String sql = "SELECT `ficha_internacion`.`numero_ficha_internacion`"
                            + ",`estado_ficha_internacion`.`nombre_estado_ficha_internacion`, `cama`.`numero_cama`,"
                            + " `estado_cama`.`nombre_estado_cama` , `factura_paciente`.`numero_factura_paciente` ,"
-                           + " `estado_factura_paciente`.`nombre_estado_factura_paciente` "
-                  + "FROM `clinica`.`ficha_internacion` "       
+                           + " `estado_factura_paciente`.`nombre_estado_factura_paciente` ,"
+                           + " `recibo`.`numero_recibo` " 
+                  + "FROM `clinica`.`ficha_internacion` "   
+                      
                      + "LEFT JOIN `clinica`.`factura_paciente` ON (`factura_paciente`.`oidficha_internacion` = `ficha_internacion`.`oidficha_internacion`) "
+                     + "LEFT JOIN `clinica`.`recibo` ON (`factura_paciente`.`oidfactura_paciente` = `recibo`.`oidfactura_paciente`) " 
                      + "LEFT JOIN `clinica`.`estado_factura_paciente`  ON (`factura_paciente`.`oidestado_factura_paciente` = `estado_factura_paciente`.`oidestado_factura_paciente`) "                     
                      + "LEFT JOIN `clinica`.`estado_ficha_internacion` ON (`ficha_internacion`.`oidestado_ficha_internacion` = `estado_ficha_internacion`.`oidestado_ficha_internacion`)"
                      + "RIGHT JOIN `clinica`.`cama` ON (`ficha_internacion`.`oidcama` = `cama`.`oidcama`) "
-                     + "RIGHT JOIN `clinica`.`estado_cama` ON (`cama`.`oidestado_cama` = `estado_cama`.`oidestado_cama`) "
+                     + "RIGHT JOIN `clinica`.`estado_cama` ON (`cama`.`oidestado_cama` = `estado_cama`.`oidestado_cama`) " 
                      
-                     
-                    
                   + "WHERE (`ficha_internacion`.`numero_ficha_internacion` = '"+numFicha+"')";
        
        System.out.println(sql);
@@ -186,7 +190,8 @@ public class IUStub extends javax.swing.JFrame {
           this.tabla.setValueAt(rs.getString("numero_factura_paciente"), fila, columna++);
           this.tabla.setValueAt(rs.getString("nombre_estado_factura_paciente"), fila, columna++);
           this.tabla.setValueAt(rs.getInt("numero_cama"), fila, columna++);
-          this.tabla.setValueAt(rs.getString("nombre_estado_cama"), fila, columna);
+          this.tabla.setValueAt(rs.getString("nombre_estado_cama"), fila, columna++);
+          this.tabla.setValueAt(rs.getString("numero_recibo"), fila, columna);
        }
        
     }catch (SQLException e) {
@@ -203,7 +208,7 @@ public class IUStub extends javax.swing.JFrame {
  
  private void limpiarTabla(){
     int i;
-    for(i=0;i<6;i++)
+    for(i=0;i<7;i++)
        tabla.setValueAt("", 0, i);
  }
  
