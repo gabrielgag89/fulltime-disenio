@@ -101,7 +101,8 @@ public class IUCobrarFacturaPaciente extends javax.swing.JFrame {
       else{
          int numFactura = Integer.parseInt(this.tablaFacturas.getValueAt(seleccion, 0).toString());
          this.controlador.cobrarFactura(numFactura);
-         cargarFacturas();
+         this.tablaFacturas.removeRow(this.seleccion);
+         //cargarFacturas();
       } // fin de else de comprobación de selección de fila
    }//GEN-LAST:event_botonCobrarActionPerformed
    // fin del método botonCobrarActionPerformed
