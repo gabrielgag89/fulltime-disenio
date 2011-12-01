@@ -268,6 +268,8 @@ public class IUGenerarFacturaPaciente extends javax.swing.JFrame {
          //JOptionPane.showMessageDialog(null, "Debe ingresar un número en el campo \"Nº Ficha Internacion:\"");
          this.campoTextoNumFicha.setText("");
          botonMostrarFichasPendientesActionPerformed(null);
+         // deshabilita los controles
+         disableControls();
       } // fin de catch de error de formato
    }//GEN-LAST:event_botonMostrarFichaActionPerformed
    // fin del método botonMostrarFichaActionPerformed
@@ -284,20 +286,18 @@ public class IUGenerarFacturaPaciente extends javax.swing.JFrame {
        // oculta la ventana
        this.setVisible(false);
     }//GEN-LAST:event_botonVolverActionPerformed
-   // fin del método botonGenerarFacturaActionPerformed
+   // fin del método botonVolverActionPerformed
     
     private void botonMostrarFichasPendientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMostrarFichasPendientesActionPerformed
        this.controlador.buscarFichasPendientes();
     }//GEN-LAST:event_botonMostrarFichasPendientesActionPerformed
-// fin del método botonMostrarFichasPendientesActionPerformed
+   // fin del método botonMostrarFichasPendientesActionPerformed
     
    private void campoTextoNumFichaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoTextoNumFichaKeyTyped
-      if((int)evt.getKeyChar()==10){
-         java.awt.event.ActionEvent e = null;
-         botonMostrarFichaActionPerformed(e);
-      }
+      if((int)evt.getKeyChar()== '\n')
+         botonMostrarFichaActionPerformed(null);
    }//GEN-LAST:event_campoTextoNumFichaKeyTyped
-   
+   // fin del método campoTextoNumFichaKeyTyped
    
    private void disableControls(){
       // deshabilita los campos del panel de datos de la ficha
