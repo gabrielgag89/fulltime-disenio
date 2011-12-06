@@ -82,7 +82,7 @@ insert  into `prestacion`(`oidprestacion`,`codigo_prestacion`,`descripcion`,`oid
 
 /*Data for the table `recibo` */
 
-insert  into `recibo`(`oidrecibo`,`numero_recibo`,`fecha`,`oidfactura_paciente`) values ('1501',7,'2011-11-25','9002');
+insert  into `recibo`(`oidrecibo`,`numero_recibo`,`fecha`,`oidfactura_paciente`) values ('1501',8,'2011-11-25','9002');
 
 /*Data for the table `sector` */
 
