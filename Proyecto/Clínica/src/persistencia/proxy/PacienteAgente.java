@@ -63,6 +63,9 @@ public class PacienteAgente extends ObjetoPersistente implements Paciente{
 
    @Override
    public Plan getPlan() {
+      if(oidPlan == null)
+         return null;
+      
       if(!plan){
          this.impl.setPlan((Plan)FachadaPersistenciaInterna.getInstancia().buscar("Plan", oidPlan));        
          this.plan = true;

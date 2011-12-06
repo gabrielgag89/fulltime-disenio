@@ -218,7 +218,7 @@ CREATE TABLE `paciente` (
   `dni` int(11) NOT NULL,
   `domicilio` varchar(70) COLLATE utf8_unicode_ci DEFAULT NULL,
   `telefono` mediumtext COLLATE utf8_unicode_ci,
-  `oidplan` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `oidplan` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`oidpaciente`),
   KEY `fk_paciente_plan1` (`oidplan`),
   CONSTRAINT `fk_paciente_plan1` FOREIGN KEY (`oidplan`) REFERENCES `plan` (`oidplan`) ON DELETE NO ACTION ON UPDATE NO ACTION
