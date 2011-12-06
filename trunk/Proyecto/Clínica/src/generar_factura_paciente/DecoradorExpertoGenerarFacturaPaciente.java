@@ -39,7 +39,7 @@ public class DecoradorExpertoGenerarFacturaPaciente extends ExpertoGenerarFactur
          dtoFicha = super.buscarFichaInternacion(numFicha);
       } // fin de try de búsqueda de la ficha
       catch (Exception ex) {
-         System.err.println("Exception en buscarFichaInternacion: " + ex.getStackTrace());
+         ex.printStackTrace();
       } // fin de catch de Exception
       
       return dtoFicha;

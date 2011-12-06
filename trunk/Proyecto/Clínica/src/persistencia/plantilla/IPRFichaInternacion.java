@@ -40,8 +40,6 @@ public class IPRFichaInternacion extends IntermPersistenciaDBR{
          cont++;
       }
       
-      sql += " ORDER BY numero_ficha_internacion";
-      
       return sql;
    } // fin del método select
 
